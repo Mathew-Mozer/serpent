@@ -51,7 +51,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="startbootstrap-admin/dist/js/sb-admin-2.js"></script>
     
+	<!-- TPS Generated Content -->
 	<link href="dependencies/css/tiles.css" rel="stylesheet">
+	<link href="dependencies/css/text.css" rel="stylesheet">
 	
 	
 

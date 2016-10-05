@@ -13,13 +13,26 @@
    </body>
    
    <script>
+   
    $(document).ready(function(){
-    $(".tile-menu-item").hover(function(){
+	   
+		$(".tile-menu-item").hover(function(){
         $(this).addClass("tile-menu-item-hover");
         }, function(){
         $(this).removeClass("tile-menu-item-hover");
+		
+		});
+	});
+	
+		$(document).ready(function(){
+
+		//Button Click
+		$(".tile-menu-item").click(function(){
+			alert("You clicked an option);
+		});
+
     });
-});
+	
 
    </script>
 </html>
