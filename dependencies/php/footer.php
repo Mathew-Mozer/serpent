@@ -11,6 +11,17 @@
         
     </footer>
    </body>
+   
+   <script>
+   $(document).ready(function(){
+    $(".tile-menu-item").hover(function(){
+        $(this).addClass("tile-menu-item-hover");
+        }, function(){
+        $(this).removeClass("tile-menu-item-hover");
+    });
+});
+
+   </script>
 </html>
 
 

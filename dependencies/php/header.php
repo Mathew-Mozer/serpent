@@ -19,40 +19,46 @@
     <title>Green River Tech</title>
 
       <!-- Bootstrap Core CSS -->
-    <link href="startbootstrap-admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="startbootstrap-admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="startbootstrap-admin/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="startbootstrap-admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="startbootstrap-admin/dist/css/timeline.css" rel="stylesheet">
+   <!-- <link href="startbootstrap-admin/dist/css/timeline.css" rel="stylesheet">
 
+	<!--Morris Charts CSS-->
+	<link href="startbootstrap-admin/vendor/morrisjs/morris.css" rel="stylesheet">
+	
     <!-- Custom CSS -->
     <link href="startbootstrap-admin/dist/css/sb-admin-2.css" rel="stylesheet">
-    
-        <!-- DataTables CSS -->
-    <link href="startbootstrap-admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="startbootstrap-admin/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="startbootstrap-admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="startbootstrap-admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-     <!-- Metis Menu Plugin JavaScript -->
-    <script src="startbootstrap-admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
+	 <!-- jQuery -->
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+    <script src="startbootstrap-admin/vendor/jquery/jquery.min.js"></script>
+	
+	 <!-- Bootstrap Core JavaScript -->
+    <script src="startbootstrap-admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+	
+	 <!-- Metis Menu Plugin JavaScript -->
+    <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>
+	
+	
+	
     <!-- Custom Theme JavaScript -->
     <script src="startbootstrap-admin/dist/js/sb-admin-2.js"></script>
     
-    <link href="dependancies/css/navbar-override.css" type="text/css" rel="stylesheet">
-    <link href="dependancies/css/body.css" type="text/css" rel="stylesheet">
-    <script src="dependancies/ckeditor/ckeditor.js"></script>
+	<link href="dependencies/css/tiles.css" rel="stylesheet">
+	
+	
+
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="dependancies/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
