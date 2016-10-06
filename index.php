@@ -33,14 +33,14 @@
 
 <?php
 
-foreach(/*database row stuff */){
-echo	'<!--Promotion Title-->
+//foreach(/*database row stuff *///){
+/*echo	'<!--Promotion Title-->
 		<div class="tile-body" id="$row['compositekey']">
 			<img class="tile-icon" src="dependencies/images/$row['vaultdweller.jpg']">
 			<div class="tile-menu-bar">';
 	
-			foreach(/*database row stuff */){
-				echo '<div class="tile-menu-item">
+	//		foreach(/*database row stuff *///){
+	/*			echo '<div class="tile-menu-item">
 					<span class="glyphicon $row['glyphicon-cog'] glyphicon-menu black" aria-hidden="true"></span>
 				</div>
 			
@@ -51,18 +51,29 @@ echo	'<!--Promotion Title-->
 				<div class="tile-menu-item">
 					<span class="glyphicon $row['glyphicon-user'] glyphicon-menu black" aria-hidden="true"></span>
 				</div>';
-			}
+		//	}
 			echo '</div>
 		</div>
 			
 <!--End Promotion Tile-->';
-}
+//}*/
 ?>
 
 <!--Promotion Title-->
 <div class="tile-body" id="12x100">
+
+<div class="promotion-title">
+<h3>High Hand</h3>
+</div>
+
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
+	
+	
+
+
 	<div class="tile-menu-bar">
+	
+			
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
