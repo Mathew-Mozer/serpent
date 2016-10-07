@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e2d76aa3-42d8-4e35-b00d-d6d700867ad6" name="Serpent" url="http://casino.greenrivertech.net">
+        <fileTransfer host="casino.greenrivertech.net" port="2222" rootFolder="/home/casino/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

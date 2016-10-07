@@ -14,8 +14,10 @@
 
 
 
-<div>
+<div class="container">
+	<div class="row">
 <h2 class="casino-title">Casino - Great American Lakewood</h2>
+
 
 <!--New Promotion Title-->
 <div class="tile-body">
@@ -62,16 +64,9 @@
 <!--Promotion Title-->
 <div class="tile-body" id="12x100">
 
-<div class="promotion-title">
-<h3>High Hand</h3>
-</div>
-
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
-	
-	
 
-
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			
 	
@@ -94,20 +89,20 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
-	<div class="tile-menu-bar">
-	
+	<div class="tile-menu-bar hidden">
+
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
 			</div>
-			
+
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>
 			</div>
-			
+
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>
 			</div>
-			
+
 	</div>
 </div>
 <!--End Promotion Tile-->
@@ -115,7 +110,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -132,7 +127,9 @@
 	</div>
 </div>
 <!--End Promotion Tile-->
-</div>	
+</div>
+
+
 <!-- End Casino -->
 
 <hr>
@@ -141,7 +138,7 @@
 
 
 
-<div>
+<div class="row">
 <h2 class="casino-title">Casino - Great American Tukwila</h2>
 
 <!--New Promotion Title-->
@@ -159,7 +156,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdwelleryes.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -180,7 +177,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdwelleryes.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -201,7 +198,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdwelleryes.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -214,11 +211,11 @@
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>
 			</div>
-			
 	</div>
 </div>
 <!--End Promotion Tile-->
-</div>	
+</div>
+</div>
 <!-- End Casino -->
 
 <?php include "dependencies/php/footer.php"; ?>
