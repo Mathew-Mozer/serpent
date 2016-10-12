@@ -15,20 +15,26 @@
    <script>
    
    $(document).ready(function(){
-	   
+
+       //Show option bar
+       $(".tile-body").hover(function(){
+           $(this).children(".tile-menu-bar").removeClass("hidden");
+       }, function(){
+           $(this).children(".tile-menu-bar").addClass("hidden");
+
+       });
+
+       //highlight option under mouse
 		$(".tile-menu-item").hover(function(){
         $(this).addClass("tile-menu-item-hover");
         }, function(){
         $(this).removeClass("tile-menu-item-hover");
 		
 		});
-	});
-	
-		$(document).ready(function(){
 
 		//Button Click
 		$(".tile-menu-item").click(function(){
-			alert("You clicked an option);
+			alert("You clicked an option");
 		});
 
     });
