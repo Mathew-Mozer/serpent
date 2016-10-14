@@ -4,7 +4,7 @@
  *
  * Author Chris Barbour
  */
-require_once("/home/casino/dbcon.php");
+
 //for local test runs
 //require ('../../dbcon.php');
 
@@ -67,4 +67,3 @@ class OptionsModal{
 }
 
 ?>
-

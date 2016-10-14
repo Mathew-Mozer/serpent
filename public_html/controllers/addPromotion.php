@@ -1,6 +1,6 @@
 <?php
-
-  require "/home/casino/dbcon.php";
+  require "../dependencies/php/FactoryFunctions.php";
+  require getServerPath()."dbcon.php";
   require "../modals/PromotionModal.php";
   $dbcon = NEW DbCon();
 

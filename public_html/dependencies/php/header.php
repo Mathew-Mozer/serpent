@@ -6,6 +6,7 @@
 *
 * This page controls all of the dependencies and opening tags for the website.
 */
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +57,8 @@
 	<link href="dependencies/css/text.css" rel="stylesheet">
 
 	<?php
-    require "/home/casino/dbcon.php";
+    require_once("FactoryFunctions.php");
+    require_once(getServerPath()."dbcon.php");
     $dbcon = NEW DbCon();
    ?>
 
