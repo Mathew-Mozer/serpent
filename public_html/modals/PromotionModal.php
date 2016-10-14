@@ -58,14 +58,12 @@
       $result->bindValue(':id', $id, PDO::PARAM_STR);
       $result->execute();
 
-      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
-
       return $promoResult;
 
     }
 
     public function getPromotionImage($id){
-      $sql = "SELECT title FROM promotion_type WHERE id = :id;";
+      $sql = "SELECT image FROM promotion_type WHERE id = :id;";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);

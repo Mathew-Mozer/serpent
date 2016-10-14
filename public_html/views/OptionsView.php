@@ -1,5 +1,5 @@
 <?php
-    include('/home/casino/public_html/modals/OptionsModal.php');
+    include('modals/OptionsModal.php');
 
     $optionsModal = new OptionsModal(1);
     $options = $optionsModal->getPromotionSettings();
@@ -39,4 +39,3 @@
         ?>
     </div>
 </body>
-
