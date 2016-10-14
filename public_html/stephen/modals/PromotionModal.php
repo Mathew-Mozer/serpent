@@ -26,7 +26,7 @@
               FROM
                 promotion, promotion_type
               WHERE
-                promotion.promotion_type_id = promotion_type.id;
+                promotion.promotion_type_id = promotion_type.id AND promotion.visible = 'T';
               ";
       $result = $this->db->prepare($sql);
       $result->execute();
@@ -56,16 +56,14 @@
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);
-      $result->execute();
-
-      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+      $promoResult = $result->execute();
 
       return $promoResult;
 
     }
 
     public function getPromotionImage($id){
-      $sql = "SELECT title FROM promotion_type WHERE id = :id;";
+      $sql = "SELECT image FROM promotion_type WHERE id = :id;";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);

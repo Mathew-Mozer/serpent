@@ -44,8 +44,7 @@ class OptionsModal{
         $statement = $this->conn->prepare($sql);
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**

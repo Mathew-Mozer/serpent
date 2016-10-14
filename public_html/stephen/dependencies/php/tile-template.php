@@ -8,7 +8,7 @@ echo	'<!--Promotion Title-->
 	
 			foreach(/*database row stuff */){
 				echo '<div class="tile-menu-item">
-					<spani class="glyphicon $row['glyphicon-cog'] glyphicon-menu black" aria-hidden="true"></span>
+					<span class="glyphicon $row['glyphicon-cog'] glyphicon-menu black" aria-hidden="true"></span>
 				</div>
 			
 				<div class="tile-menu-item">

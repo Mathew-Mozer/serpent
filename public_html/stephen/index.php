@@ -62,16 +62,12 @@
 <!--Promotion Title-->
 <div class="tile-body" id="12x100">
 
-<div class="promotion-title">
-<h3>High Hand</h3>
-</div>
-
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
 	
 	
 
 
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			
 	
@@ -94,7 +90,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -115,7 +111,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdweller.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -159,7 +155,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdwelleryes.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -180,7 +176,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdwelleryes.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
@@ -201,7 +197,7 @@
 <!--Promotion Title-->
 <div class="tile-body">
 	<img class="tile-icon" src="dependencies/images/vaultdwelleryes.jpg">
-	<div class="tile-menu-bar">
+	<div class="tile-menu-bar hidden">
 	
 			<div class="tile-menu-item">
 				<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>

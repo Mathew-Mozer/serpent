@@ -22,7 +22,7 @@
                 modal: true,
                 buttons: {
                     Submit: function () {
-                        //submit changes to db through options modal class
+                        //submit changes to
                         dialog.dialog('close');
                     }
                 }
