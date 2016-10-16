@@ -1,3 +1,7 @@
+/**************************
+* Promotion Tiles
+**************************/
+
 .tile-body{
 	max-height: 150px;
 	max-width: 150px;
@@ -97,4 +101,54 @@
 
 .white{
 	color: white;
+}
+
+/**************************
+* Toolbar Buttons
+**************************/
+
+.button-body{
+	max-height: 50px;
+	max-width: 50px;
+	min-height: 50px;
+	min-width: 50px;
+	background-color: gray;
+	/*border-width: 1px;
+	border-style: solid;
+	border-color: #e6e6e6; */
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	margin: 10px;
+	display: inline-block;
+	box-shadow:2px 2px 5px #969696;
+	vertical-align: top;
+}
+
+.button-icon{
+	max-height: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	min-width: 40px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.tool-glyphicon{
+	clear: both;
+	font-size: 30px;
+    display: block;
+	text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.toolbar{
+    display: inline-block;
+
+}
+
+.toolbench{
+    text-align: center;
+
 }

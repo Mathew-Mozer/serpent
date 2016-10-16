@@ -2,13 +2,32 @@
 It constructs the 10 upcoming event list*/-->
 
 <?php
-    require "dependencies/php/header.php";
-    require "modals/PromotionModal.php";
-    include('/home/casino/public_html/modals/OptionsModal.php');
+require "dependencies/php/header.php";
+require "modals/PromotionModal.php";
+include('/home/casino/public_html/modals/OptionsModal.php');
 
-    $optionsModal = new OptionsModal(1);
-    $options = $optionsModal->getPromotionSettings();
+$optionsModal = new OptionsModal(1);
+$options = $optionsModal->getPromotionSettings();
 ?>
+
+<!--Toolbar-->
+<div class="toolbench">
+    <div class="toolbar">
+        <div class="button-body tool-button" data-toggle="tooltip" title="Create New Property">
+            <span class="glyphicon glyphicon-home tool-glyphicon white" aria-hidden="true"></span>
+        </div>
+        <div class="button-body tool-button" data-toggle="tooltip" title="Add New User">
+            <span class="glyphicon glyphicon-user tool-glyphicon white" aria-hidden="true"></span>
+        </div>
+        <div class="button-body tool-button" data-toggle="tooltip" title="Options">
+            <span class="glyphicon glyphicon-cog tool-glyphicon white" aria-hidden="true"></span>
+        </div>
+        <div class="button-body tool-button" data-toggle="tooltip" title="Request Help">
+            <span class="glyphicon glyphicon-comment tool-glyphicon white" aria-hidden="true"></span>
+        </div>
+    </div>
+</div>
+
 <!-- Begin Casino -->
 <div id="promotion-list">
     <h2 class="casino-title">Casino - Great American Lakewood</h2>
@@ -22,10 +41,10 @@ It constructs the 10 upcoming event list*/-->
     <!--End New Promotion Tile-->
     <!--Promotion Title-->
     <?php
-        $promotion = new PromotionModal($dbcon->read_database());
-        $promotionList = $promotion->getAllPromotions();
-        if(count($promotionList)>0){
-            foreach($promotionList as $row){?>
+    $promotion = new PromotionModal($dbcon->read_database());
+    $promotionList = $promotion->getAllPromotions();
+    if(count($promotionList)>0){
+        foreach($promotionList as $row){?>
             <div class="tile-body">
                 <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image']?>">
                 <div class="tile-menu-bar hidden">
@@ -40,7 +59,7 @@ It constructs the 10 upcoming event list*/-->
                     </div>
                 </div>
             </div>
-    <?php } }?>
+        <?php } }?>
     <!--End Promotion Tile-->
 </div>
 <!-- End Casino -->
@@ -56,18 +75,18 @@ include "dependencies/php/footer.php"; ?>
     ?>
 </div>
 <div id="addPromotion" title="Promotion">
-  <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
-  <select name="promoId">
-  <?php
-  $promotionTypeList = $promotion->getPromotionTypes();
+    <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
+        <select name="promoId">
+            <?php
+            $promotionTypeList = $promotion->getPromotionTypes();
 
-  foreach($promotionTypeList as $row){
-    echo '<option value="'.$row['promo_id'].'">'.$row['promo_title'].'</option>';
-  }
-  ?>
-  </select>
-</form>
- </div>
+            foreach($promotionTypeList as $row){
+                echo '<option value="'.$row['promo_id'].'">'.$row['promo_title'].'</option>';
+            }
+            ?>
+        </select>
+    </form>
+</div>
 <?php
 include "views/promotionModalView.php";
 include "dependencies/php/footer.php"; ?>

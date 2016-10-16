@@ -17,6 +17,11 @@
 
    $(document).ready(function(){
 
+       //Load tooltips
+       $(document).ready(function(){
+           $('[data-toggle="tooltip"]').tooltip();
+       });
+
        //Show option bar
        $(".tile-body").hover(function(){
            $(this).children(".tile-menu-bar").removeClass("hidden");
@@ -46,6 +51,11 @@
        $(".userBtn").unbind('click').click(function(){
            editUsersModal.dialog('open');
        });
+
+       $(".tool-glyphicon").unbind('click').click(function(){
+           alert("you clicked: " + this);
+       });
+
 
        /*
         These are the modal windows that can be opened. Note that these need
