@@ -175,8 +175,8 @@
 
         var loginModal = $("#loginModal").dialog({
             autoOpen: false,
-            height: 210,
-            width: 359,
+            height: 275,
+            width: 350,
             modal: true,
             buttons: {
                 Submit: function () {
