@@ -4,8 +4,7 @@
  *
  * Driver for loginValidation class
  */
-require('../loginValidation.php');
-$_SESSION['loggedIn'] = 'false';
+require('../models/loginValidation.php');
 
 //if call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

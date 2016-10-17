@@ -4,7 +4,8 @@
  *
  * Author Chris Barbour
  */
-require_once("dependencies/php/FactoryFunctions.php");
+session_start();
+require_once("../dependencies/php/FactoryFunctions.php");
 require_once(getServerPath()."dbcon.php");
 
 //For local test runs
