@@ -10,12 +10,12 @@
 class DbCon
 {
   private $servername = 'localhost';
-  private $dbname = 'ontopgam_serpent';
-  private $updateUser = 'ontopgam_updates';
+  private $dbname = 'casino_chimera';
+  private $updateUser = 'casino_update';
   private $updatePw ='}TwyDfSQm93F';
-  private $readUser = 'ontopgam_reads';
+  private $readUser = 'casino_read';
   private $readPw = 'icDEpbatf57l';
-  private $createUser = 'ontopgam_inserts';
+  private $createUser = 'casino_insert';
   private $createPw = 'b@iHw53J-K+r';
 
   protected function createConnection($username, $password){
