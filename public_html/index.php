@@ -4,45 +4,31 @@ It constructs the 10 upcoming event list*/-->
 <?php
     require "dependencies/php/header.php";
     require "modals/PromotionModal.php";
-    include('modals/OptionsModal.php');
+    require "modals/permissionModal.php";
+    require "modals/OptionsModal.php";
 
     $optionsModal = new OptionsModal(1);
     $options = $optionsModal->getPromotionSettings();
-?>
-<!-- Begin Casino -->
-<div id="promotion-list">
-    <h2 class="casino-title">Casino - Great American Lakewood</h2>
-    <!--New Promotion Title-->
-    <div id="add-promotion-btn" class="tile-body tile-insert">
-        <img class="tile-icon" src="dependencies/images/clear.png">
-        <div class="glyphicon-new-container">
-            <span class="glyphicon glyphicon-plus-sign glyphicon-new-tile white" aria-hidden="true"></span>
-        </div>
-    </div>
-    <!--End New Promotion Tile-->
-    <!--Promotion Title-->
-    <?php
-        $promotion = new PromotionModal($dbcon->read_database());
-        $promotionList = $promotion->getAllPromotions();
-        if(count($promotionList)>0){
-            foreach($promotionList as $row){?>
-            <div class="tile-body">
-                <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image']?>">
-                <div class="tile-menu-bar hidden">
-                    <div class="tile-menu-item settingsBtn">
-                        <span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
-                    </div>
-                    <div class="tile-menu-item">
-                        <span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>
-                    </div>
-                    <div class="tile-menu-item">
-                        <span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>
-                    </div>
-                </div>
-            </div>
-    <?php } }?>
-    <!--End Promotion Tile-->
-</div>
+    $promotion = new PromotionModal($dbcon->read_database());
+    $permission = new PermissionModal($dbcon->update_database(), 1);
+
+    $casinoList = $promotion->getPromotionCasinos();
+    $casinoCount = count($casinoList);
+    $casinoRowIndex = 0;
+    foreach($casinoList as $casino){
+
+//Begin Casino
+  if($permission->canSeeAPromotionsInACasino($casino['id'])){
+  include 'views/casinoView.php';
+  $casinoRowIndex++;
+
+  if($casinoRowIndex < $casinoCount){ ?>
+    <hr>
+  <?php }
+
+}} if($casinoRowIndex == 0){?>
+  <div><h3>You have no access to any casinos.</h3></div>
+  <?php } ?>
 <!-- End Casino -->
 
 <div id="settings" title="Settings">
