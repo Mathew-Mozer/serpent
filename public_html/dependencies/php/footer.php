@@ -38,8 +38,9 @@
            settingsModal.dialog('open');
        });
 
-       $("#add-promotion-btn").click(function(){
-           addPromotionModal.dialog('open');
+       $(".add-promotion-btn").unbind('click').click(function(){
+          $('input[name=casinoId]').val(this.id);
+          addPromotionModal.dialog('open');
        });
 
        //Open add/remove user panel
@@ -67,10 +68,10 @@
        });
 
        //Adds a new tile to the view with the image that is passed into the function
-       var addPromotion = function(data) {
-           $('#promotion-list').append(
+       var addPromotion = function(image, casinoId) {
+           $('#promotion-list-' + casinoId).append(
                '<div class="tile-body">'+
-                    '<img class="tile-icon" src="dependencies/images/' + data + '">'+
+                    '<img class="tile-icon" src="dependencies/images/' + image + '">'+
                     '<div class="tile-menu-bar hidden">'+
                         '<div class="tile-menu-item settingsBtn">'+
                             '<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>'+
@@ -93,18 +94,19 @@
            modal: true,
            buttons: {
                Submit: function () {
-                   var id = $('select[name=promoId]').val();
+                   var promotionId = $('select[name=promoId]').val();
+                   var casinoId = $('input[name=casinoId]').val();
                //Ajax call to update database with new promotion
                  $.ajax({
                         url: 'controllers/addPromotion.php',
                         type: 'post',
-                        data: {id: id},
+                        data: {casinoId: casinoId, promotionId : promotionId},
                         cache: false,
                         success:function(response){
                             console.log(response);
 
                             //update view with new promotion
-                            addPromotion(response.image);
+                            addPromotion(response.image, casinoId);
                             addPromotionModal.dialog('close');
                         },
                         error: function(xhr, desc, err){

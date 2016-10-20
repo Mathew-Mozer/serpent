@@ -18,7 +18,7 @@ It constructs the 10 upcoming event list*/-->
     foreach($casinoList as $casino){
 
 //Begin Casino
-  if($permission->canSeeAPromotionsInACasino($casino['id'])){
+  if($permission->canViewCasinoPromotions($casino['id'])){
   include 'views/casinoView.php';
   $casinoRowIndex++;
 
@@ -40,6 +40,7 @@ It constructs the 10 upcoming event list*/-->
 </div>
 <div id="addPromotion" title="Promotion">
   <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
+    <input type="hidden" name="casinoId" value="">
   <select name="promoId">
   <?php
   $promotionTypeList = $promotion->getPromotionTypes();

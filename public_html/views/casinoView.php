@@ -1,10 +1,10 @@
 
-<div id="promotion-list">
+<div id=<?php echo "\"promotion-list-" . $casino['id'] . "\""; ?>>
     <h2 class="casino-title"><?php echo $casino['name'];?></h2>
     <!--New Promotion Title-->
     <?php
-    if($permission->canCreateAPromotionInACasino($casino['id'])){?>
-    <div class="add-promotion-btn tile-body tile-insert">
+    if($permission->canCreateCasinoPromotion($casino['id'])){?>
+    <div id=<?php echo "\"" . $casino['id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert">
         <img class="tile-icon" src="dependencies/images/clear.png">
         <div class="glyphicon-new-container">
             <span class="glyphicon glyphicon-plus-sign glyphicon-new-tile white" aria-hidden="true"></span>

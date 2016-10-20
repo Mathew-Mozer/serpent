@@ -1,70 +1,104 @@
 <?php
-  // PromotionModal class
-  //
-  // author: Alex Onorati
-  // This class contains all the legal queries on the database casino_serpent.
-
+/**
+  * PromotionModal class
+  *
+  * author: Alex Onorati
+  * This class contains all the permissions for a user to acces and alter casinos and promotions.
+*/
   class PermissionModal{
 
     protected $db;
     protected $loginId;
+    protected $permissions;
 
     public function __construct(PDO $db, $loginId){
       $this->db = $db;
       $this->loginId = $loginId;
-    }
 
-    public function setLoginId($loginId){
-      $this->loginId = $loginId;
-    }
-
-    public function canCreateAPromotionInACasino($casinoId){
       $sql = "SELECT
-                *
+                account_permissions.casino_id as casinoId, tag.type as `tag`, account_permissions.permissions as permissions
               FROM
-                account, account_permissions
+                account, account_permissions, tag
               WHERE
-                account_permissions.casino_id = :casinoId
-                AND account.id = :id
+                account.id = :id
                 AND account.id = account_permissions.account_id
-                AND account_permissions.tag_id = 1
-                AND account_permissions.permissions LIKE ('%C%');
-              ";
-              
+                AND tag.id = account_permissions.tag_id;";
+
       $result = $this->db->prepare($sql);
-      $result->bindValue(':casinoId', $casinoId, PDO::PARAM_STR);
       $result->bindValue(':id', $this->loginId, PDO::PARAM_STR);
       $result->execute();
+      $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
 
-      $promoResult = $result->rowCount();
-
-      return $promoResult > 0;
+      // Format permssions into an array.
+      $this->permissions = array();
+      foreach( $promoResult as $row){
+        foreach(str_split($row['permissions']) as $permissionChar){
+          $this->permissions[$row['tag']][$row['casinoId']]['permission'][$permissionChar] = true;
+        }
+      }
     }
 
-    public function canSeeAPromotionsInACasino($casinoId){
-      $sql = "SELECT
-                *
-              FROM
-                account, account_permissions
-              WHERE
-                account_permissions.casino_id = :casinoId
-                AND account.id = :id
-                AND account.id = account_permissions.account_id
-                AND account_permissions.tag_id = 1
-                AND account_permissions.permissions LIKE ('%R%');
-              ";
-      $result = $this->db->prepare($sql);
-      $result->bindValue(':casinoId', $casinoId, PDO::PARAM_STR);
-      $result->bindValue(':id', $this->loginId, PDO::PARAM_STR);
-      $result->execute();
-
-      $promoResult = $result->rowCount();
-
-      return $promoResult > 0;
+    /**
+    * Checks to see if the user has permission to create a promtion under a casino.
+    */
+    public function canCreateCasinoPromotion($casinoId){
+      return $this->hasPermission('promotion', $casinoId, 'C');
     }
 
-    public function canSeePromotion($promotionId, $casinoPromotion){
+    /**
+    * Checks to see if the user has permission to view a promotion under a casino.
+    */
+    public function canViewCasinoPromotions($casinoId){
+      return $this->hasPermission('promotion', $casinoId, 'R');
+    }
 
+    /**
+    * Checks to see if the user has permission to update a promotion under a casino.
+    */
+    public function canUpdateCasinoPromtion($casinoId){
+      return $this->hasPermission('promotion', $casinoId, 'U');
+    }
+
+    /**
+    * Checks to see if the user has permission to delete a promotion under a casino.
+    */
+    public function canDeleteCasinoPromotion(){
+      return $this->hasPermission('promotion', $casinoId, 'D');
+    }
+
+    /**
+    * Checks to see if the user has permission to create a casino.
+    */
+    public function canCreateCasino($casinoId){
+      return $this->hasPermission('casino', $casinoId, 'C');
+    }
+
+    /**
+    * Checks to see if the user has permission to view a casino.
+    */
+    public function canViewCasino($casinoId){
+      return $this->hasPermission('casino', $casinoId, 'R');
+    }
+
+    /**
+    * Checks to see if the user has permission to update a casino.
+    */
+    public function canUpdateCasino($casinoId){
+      return $this->hasPermission('casino', $casinoId, 'U');
+    }
+
+    /**
+    * Checks to see if the user has permission to delete a casino.
+    */
+    public function canDeleteCasino(){
+      return $this->hasPermission('casino', $casinoId, 'D');
+    }
+
+    /**
+    * Base permission test for user.
+    */
+    private function hasPermission($tag, $casinoId, $permission){
+      return isset($this->permissions[$tag][$casinoId]) && isset($this->permissions[$tag][$casinoId]['permission'][$permission]);
     }
   }
   ?>
