@@ -7,8 +7,8 @@
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $promotion = new PromotionModal($dbcon->insert_database());
-      $addResponse = $promotion->addPromotion($_POST['id']);
-      $response = $promotion->getPromotionImage($_POST['id']);
+      $addResponse = $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId']);
+      $response = $promotion->getPromotionImage($_POST['promotionId']);
 
       header('content-type:application/json');
       echo json_encode($response);
