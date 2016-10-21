@@ -91,14 +91,26 @@
       return $promoResult;
     }
 
-    public function addPromotion($id){
+    public function addPromotion($promotionTypeId, $casinoId){
       $sql = "INSERT INTO promotion (promotion_type_id) VALUES (:id);";
 
       $result = $this->db->prepare($sql);
-      $result->bindValue(':id', $id, PDO::PARAM_STR);
+      $result->bindValue(':id', $promotionTypeId, PDO::PARAM_STR);
       $result->execute();
 
-      return $promoResult;
+      $promotionId = $this->db->lastInsertId();
+
+
+      $sql = "INSERT INTO promotion_casino (promotion_id, casino_id) VALUES (:promotionId, :casinoId);";
+
+      $result = $this->db->prepare($sql);
+      $result->bindValue(':casinoId', $casinoId, PDO::PARAM_STR);
+      $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+      $result->execute();
+
+
+
+
 
     }
 

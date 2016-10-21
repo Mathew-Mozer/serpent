@@ -7,15 +7,15 @@
 * This page controls the footer and closing material for the website
 */
 ?>
-<footer>
+    <footer>
 
 
-</footer>
-</body>
+    </footer>
+   </body>
 
-<script>
+   <script>
 
-    $(document).ready(function () {
+   $(document).ready(function(){
 
         //Load tooltips
         $(document).ready(function () {
@@ -30,25 +30,26 @@
 
         });
 
-        //highlight option under mouse
-        $(".tile-menu-item").hover(function () {
-            $(this).addClass("tile-menu-item-hover");
-        }, function () {
-            $(this).removeClass("tile-menu-item-hover");
+       //highlight option under mouse
+		$(".tile-menu-item").hover(function(){
+        $(this).addClass("tile-menu-item-hover");
+        }, function(){
+        $(this).removeClass("tile-menu-item-hover");
 
-        });
+		});
 
         $("#createCasinoBtn").click(function (){
            createCasinoModal.dialog('open');
         });
 
-        $(".settingsBtn").unbind('click').click(function () {
-            settingsModal.dialog('open');
-        });
+       $(".settingsBtn").unbind('click').click(function(){
+           settingsModal.dialog('open');
+       });
 
-        $("#add-promotion-btn").click(function () {
-            addPromotionModal.dialog('open');
-        });
+       $(".add-promotion-btn").unbind('click').click(function(){
+          $('input[name=casinoId]').val(this.id);
+          addPromotionModal.dialog('open');
+       });
 
         //Open add/remove user panel
         $(".userBtn").unbind('click').click(function () {
@@ -74,25 +75,25 @@
             }
         });
 
-        //Adds a new tile to the view with the image that is passed into the function
-        var addPromotion = function (data) {
-            $('#promotion-list').append(
-                '<div class="tile-body">' +
-                '<img class="tile-icon" src="dependencies/images/' + data + '">' +
-                '<div class="tile-menu-bar hidden">' +
-                '<div class="tile-menu-item settingsBtn">' +
-                '<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>' +
-                '</div>' +
-                '<div class="tile-menu-item">' +
-                '<span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>' +
-                '</div>' +
-                '<div class="tile-menu-item">' +
-                '<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-            );
-        };
+       //Adds a new tile to the view with the image that is passed into the function
+       var addPromotion = function(image, casinoId) {
+           $('#promotion-list-' + casinoId).append(
+               '<div class="tile-body">'+
+                    '<img class="tile-icon" src="dependencies/images/' + image + '">'+
+                    '<div class="tile-menu-bar hidden">'+
+                        '<div class="tile-menu-item settingsBtn">'+
+                            '<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>'+
+                        '</div>'+
+                        '<div class="tile-menu-item">'+
+                            '<span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>'+
+                        '</div>'+
+                        '<div class="tile-menu-item">'+
+                            '<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>'+
+                        '</div>'+
+                    '</div>'+
+               '</div>'
+           );
+       };
 
         var validateLogin = function () {
             //assign variables from form data
@@ -141,15 +142,26 @@
                     var id = $('select[name=promoId]').val();
                     //Ajax call to update database with new promotion
                     $.ajax({
+       var addPromotionModal = $("#addPromotion").dialog({
+           autoOpen: false,
+           height: 400,
+           width: 350,
+           modal: true,
+           buttons: {
+               Submit: function () {
+                   var promotionId = $('select[name=promoId]').val();
+                   var casinoId = $('input[name=casinoId]').val();
+               //Ajax call to update database with new promotion
+                 $.ajax({
                         url: 'controllers/addPromotion.php',
                         type: 'post',
-                        data: {id: id},
+                        data: {casinoId: casinoId, promotionId : promotionId},
                         cache: false,
                         success: function (response) {
                             console.log(response);
 
                             //update view with new promotion
-                            addPromotion(response.image);
+                            addPromotion(response.image, casinoId);
                             addPromotionModal.dialog('close');
                         },
                         error: function (xhr, desc, err) {
