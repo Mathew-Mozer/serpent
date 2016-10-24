@@ -57,7 +57,7 @@
 	<link href="dependencies/css/text.css" rel="stylesheet">
 
 	<?php
-    require_once("FactoryFunctions.php");
+    require_once("HelperFunctions.php");
     require_once(getServerPath()."dbcon.php");
     $dbcon = NEW DbCon();
    ?>

@@ -62,7 +62,7 @@
     /**
     * Checks to see if the user has permission to delete a promotion under a casino.
     */
-    public function canDeleteCasinoPromotion(){
+    public function canDeleteCasinoPromotion($casinoId){
       return $this->hasPermission('promotion', $casinoId, 'D');
     }
 
@@ -90,9 +90,38 @@
     /**
     * Checks to see if the user has permission to delete a casino.
     */
-    public function canDeleteCasino(){
+    public function canDeleteCasino($casinoId){
       return $this->hasPermission('casino', $casinoId, 'D');
     }
+
+    /**
+    * Checks to see if the user has permission to create a casino.
+    */
+    public function canCreateAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'C');
+    }
+
+    /**
+    * Checks to see if the user has permission to view a casino.
+    */
+    public function canViewAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'R');
+    }
+
+    /**
+    * Checks to see if the user has permission to update a casino.
+    */
+    public function canUpdateAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'U');
+    }
+
+    /**
+    * Checks to see if the user has permission to delete a casino.
+    */
+    public function canDeleteAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'D');
+    }
+
 
     /**
     * Base permission test for user.

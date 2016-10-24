@@ -1,6 +1,6 @@
 
 <div id=<?php echo "\"promotion-list-" . $casino['id'] . "\""; ?>>
-    <h2 class="casino-title"><?php echo $casino['name'];?></h2>
+    <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
     <!--New Promotion Title-->
     <?php
     if($permission->canCreateCasinoPromotion($casino['id'])){?>
@@ -17,7 +17,7 @@
     $promotionList = $promotion->getAllPromotionsByCasino($casino['id']);
     if(count($promotionList)>0){
         foreach($promotionList as $row){
-          include 'views/promotionView.php';
+          include 'promotionView.php';
         }
       }?>
     <!--End Promotion Tile-->

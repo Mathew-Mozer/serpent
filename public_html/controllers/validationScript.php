@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = $validator->validateLogin();
 
     //set session variables
-    if($response['valid']==='yes'){
+    if ($response['valid'] === 'yes') {
         $_SESSION['user'] = $_POST['userName'];
         $_SESSION['loggedIn'] = 'true';
     }

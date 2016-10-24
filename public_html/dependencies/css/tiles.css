@@ -7,7 +7,7 @@
 	max-width: 150px;
 	min-height: 150px;
 	min-width: 150px;
-	background-color: gray;
+	background-color: #c3cacc;
 	/*border-width: 1px;
 	border-style: solid;
 	border-color: #e6e6e6; */
@@ -112,7 +112,7 @@
 	max-width: 50px;
 	min-height: 50px;
 	min-width: 50px;
-	background-color: gray;
+	background-color: #a2acbc;
 	/*border-width: 1px;
 	border-style: solid;
 	border-color: #e6e6e6; */
@@ -123,6 +123,11 @@
 	display: inline-block;
 	box-shadow:2px 2px 5px #969696;
 	vertical-align: top;
+}
+
+
+.button-body:hover, .tile-body:hover{
+	background-color: #00b226;
 }
 
 .button-icon{

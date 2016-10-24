@@ -6,22 +6,16 @@
 *
 * This page controls the footer and closing material for the website
 */
-?>
-    <footer>
-
-
-    </footer>
-   </body>
-
-   <script>
-
-   $(document).ready(function(){
-
+?>   <script>   $(document).ready(function() {
+        var perm =
+            <?php if($permission->canDeleteCasinoPromotion($casino['id'])){
+                            echo true;
+                    } else {
+                        echo false;} ?> ;
         //Load tooltips
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
         //Show option bar
         $(".tile-body").hover(function () {
             $(this).children(".tile-menu-bar").removeClass("hidden");
@@ -29,31 +23,29 @@
             $(this).children(".tile-menu-bar").addClass("hidden");
 
         });
+        //highlight option under mouse
+        $(".tile-menu-item").hover(function () {
+            $(this).addClass("tile-menu-item-hover");
+        }, function () {
+            $(this).removeClass("tile-menu-item-hover");
 
-       //highlight option under mouse
-		$(".tile-menu-item").hover(function(){
-        $(this).addClass("tile-menu-item-hover");
-        }, function(){
-        $(this).removeClass("tile-menu-item-hover");
-
-		});
-
-        $("#createCasinoBtn").click(function (){
-           createCasinoModal.dialog('open');
+        });
+        $("#createCasinoBtn").click(function () {
+            createCasinoModal.dialog('open');
         });
 
-       $(".settingsBtn").unbind('click').click(function(){
-           settingsModal.dialog('open');
-       });
-
-       $(".add-promotion-btn").unbind('click').click(function(){
-          $('input[name=casinoId]').val(this.id);
-          addPromotionModal.dialog('open');
-       });
+        $(".add-promotion-btn").unbind('click').click(function () {
+            $('input[name=casinoId]').val(this.id);
+            addPromotionModal.dialog('open');
+        });
 
         //Open add/remove user panel
         $(".userBtn").unbind('click').click(function () {
             editUsersModal.dialog('open');
+        });
+
+        $(".settingsBtn").unbind('click').click(function() {
+            getSettings($(this).attr('id'), perm);
         });
 
         /*
@@ -75,62 +67,26 @@
             }
         });
 
-       //Adds a new tile to the view with the image that is passed into the function
-       var addPromotion = function(image, casinoId) {
-           $('#promotion-list-' + casinoId).append(
-               '<div class="tile-body">'+
-                    '<img class="tile-icon" src="dependencies/images/' + image + '">'+
-                    '<div class="tile-menu-bar hidden">'+
-                        '<div class="tile-menu-item settingsBtn">'+
-                            '<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>'+
-                        '</div>'+
-                        '<div class="tile-menu-item">'+
-                            '<span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>'+
-                        '</div>'+
-                        '<div class="tile-menu-item">'+
-                            '<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>'+
-                        '</div>'+
-                    '</div>'+
-               '</div>'
-           );
-       };
-
-        var validateLogin = function () {
-            //assign variables from form data
-            var s_name = $("#userName").val();
-            var s_password = $("#password").val();
-
-            //ajax call to validation controller
-            $.ajax({
-                url: 'controllers/validationScript.php',
-                type: 'post',
-                data: {userName: s_name, password: s_password},
-                cache: false,
-                success: function (json) {
-
-                    if (json.valid === "yes") {
-                        $("#errorMessage").empty();
-                        $("#errorMessage").hide();
-                        loginModal.dialog('close');
-                        $('#page').show();
-
-                    } else {
-                        //display error message
-                        ul = document.getElementById("errorMessage");
-                        $("#errorMessage").empty();
-                        $("#errorMessage").show();
-                        $.each(json.errorMessage, function (index, item) {
-                            var li = document.createElement("li");
-                            li.appendChild(document.createTextNode(item));
-                            ul.appendChild(li);
-                        });
-                    }
-                },
-                error: function (xhr, desc, err) {
-                    console.log(xhr + "\n" + err);
-                }
-            });
+        //Adds a new tile to the view with the image that is passed into the function
+        var addPromotion = function (image, casinoId) {
+            $('#promotion-list-' + casinoId).append(
+                '<div class="tile-body">' +
+                '<img class="tile-icon" src="dependencies/images/' + image + '">' +
+                '<div class="tile-menu-bar hidden">' +
+                '<div class="tile-menu-item settingsBtn">' +
+                '<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>' +
+                '</div>' +
+                '<div class="tile-menu-item">' +
+                '<span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>' +
+                '</div>' +
+                '<div class="tile-menu-item">' +
+                '<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
+            );
         };
+
 
         var addPromotionModal = $("#addPromotion").dialog({
             autoOpen: false,
@@ -139,23 +95,13 @@
             modal: true,
             buttons: {
                 Submit: function () {
-                    var id = $('select[name=promoId]').val();
+                    var promotionId = $('select[name=promoId]').val();
+                    var casinoId = $('input[name=casinoId]').val();
                     //Ajax call to update database with new promotion
                     $.ajax({
-       var addPromotionModal = $("#addPromotion").dialog({
-           autoOpen: false,
-           height: 400,
-           width: 350,
-           modal: true,
-           buttons: {
-               Submit: function () {
-                   var promotionId = $('select[name=promoId]').val();
-                   var casinoId = $('input[name=casinoId]').val();
-               //Ajax call to update database with new promotion
-                 $.ajax({
                         url: 'controllers/addPromotion.php',
                         type: 'post',
-                        data: {casinoId: casinoId, promotionId : promotionId},
+                        data: {casinoId: casinoId, promotionId: promotionId},
                         cache: false,
                         success: function (response) {
                             console.log(response);
@@ -168,31 +114,6 @@
                             console.log(xhr + "\n" + err);
                         }
                     });
-                }
-            }
-        });
-
-        var settingsModal = $("#settings").dialog({
-            autoOpen: false,
-            height: 400,
-            width: 350,
-            modal: true,
-            buttons: {
-                Submit: function () {
-                    //submit changes to db through options modal class
-                    settingsModal.dialog('close');
-                }
-            }
-        });
-
-        var loginModal = $("#loginModal").dialog({
-            autoOpen: false,
-            height: 275,
-            width: 350,
-            modal: true,
-            buttons: {
-                Submit: function () {
-                    validateLogin();
                 }
             }
         });
@@ -210,7 +131,7 @@
             }
         });
 
-        var createCasino = function (){
+        var createCasino = function () {
             var casinoName = $('#casinoName').val();
             var parentCompany = $('#parentCompany').val();
             var assetBundleUrl = $('#assetBundleUrl').val();
@@ -225,33 +146,26 @@
             $.ajax({
                 url: '../public_html/controllers/toolBarController.php',
                 type: 'post',
-                data: {casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
-                        assetBundleWindows: assetBundleWindows, assetName: assetName, defaultSkin: defaultSkin,
-                        defaultLogo: defaultLogo, supportGroup: supportGroup, businessOpen: businessOpen,
-                        businessClose: businessClose},
+                data: {
+                    casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
+                    assetBundleWindows: assetBundleWindows, assetName: assetName, defaultSkin: defaultSkin,
+                    defaultLogo: defaultLogo, supportGroup: supportGroup, businessOpen: businessOpen,
+                    businessClose: businessClose
+                },
                 cache: false,
                 success: function (json) {
-                        var result = JSON.parse(json);
-                        if(result.error === 'none'){
-                            alert("Casino Created!");
-                        } else {
-                            alert("Error creating casino");
-                        }
+                    var result = JSON.parse(json);
+                    if (result.error === 'none') {
+                        alert("Casino Created!");
+                    } else {
+                        alert("Error creating casino");
+                    }
                 },
-                error: function() {
+                error: function () {
                     alert("An error occurred!")
                 }
             })
         };
-
-        <?php
-            if($_SESSION['loggedIn'] != 'true') {
-                    echo "$('#page').hide();";
-                    echo "loginModal.dialog('open');";
-            } else {
-                echo 'alert("LoggedIn")';
-            }
-        ?>
     });
 
 </script>
