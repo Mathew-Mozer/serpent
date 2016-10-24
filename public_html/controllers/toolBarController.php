@@ -6,6 +6,9 @@
  */
 require_once ('../models/ToolBarModel.php');
 
+/**
+* Construct toolbar modal
+*/
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $toolBarModel = new ToolBarModel($_POST['casinoName'], $_POST['parentCompany'], $_POST['assetBundleUrl'],
         $_POST['assetBundleWindows'], $_POST['assetName'], $_POST['defaultSkin'], $_POST['defaultLogo'],

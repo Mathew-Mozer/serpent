@@ -2,7 +2,7 @@
 /*
 * Footer
 * Author: Stephen King
-* Version 2016.10.5.1
+* Version 2016.10.5.3
 *
 * This page controls the footer and closing material for the website
 */
@@ -25,7 +25,12 @@
         }, function(){
         $(this).removeClass("tile-menu-item-hover");
 
-		});        $("#createCasinoBtn").click( function (){
+		});        
+		
+		/**
+		* This is for click listeners
+		*/
+		$("#createCasinoBtn").click( function (){
            createCasinoModal.dialog('open');
         });
 
@@ -46,6 +51,10 @@
         $("#create-casino-btn").click(function(){
             createCasinoModal.dialog('open');
         })
+		
+		/**
+		* End Click Listeners
+		*/
 
         /*
          These are the modal windows that can be opened. Note that these need
@@ -87,7 +96,7 @@
        };
 
 
-
+	//Construct the add promotion modal
        var addPromotionModal = $("#addPromotion").dialog({
            autoOpen: false,
            height: 400,
@@ -118,6 +127,7 @@
             }
         });
 
+		//construct the promotion settings modal
         var settingsModal = $("#settings").dialog({
             autoOpen: false,
             height: 400,
@@ -132,6 +142,7 @@
         });
 
 
+		//Construct the create casino modal
         var createCasinoModal = $('#createCasino').dialog({
             autoOpen: false,
             height: 570,
@@ -145,6 +156,7 @@
             }
         });
 
+		//Generate fields for initial casino properties
         var createCasino = function (){
             var casinoName = $('#casinoName').val();
             var parentCompany = $('#parentCompany').val();
