@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
 *	This script builds the entire main page
 *	This needs to be cleaned up and recommented
@@ -13,7 +14,6 @@
   */
   require "../modals/PromotionModal.php";
   require "../modals/permissionModal.php";
-  require "../modals/OptionsModal.php";
   require_once("../dependencies/php/HelperFunctions.php");
   require_once(getServerPath()."dbcon.php");
 
@@ -54,5 +54,5 @@
 	  </div>
 	<?php }
 	 include '../dependencies/php/footer.php';
-	 }
+
 ?>

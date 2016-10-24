@@ -37,10 +37,9 @@
       foreach( $promoResult as $row){
         foreach(str_split($row['permissions']) as $permissionChar){
           $this->permissions[$row['tag']][$row['casinoId']]['permission'][$permissionChar] = true;
-          $this->permission[$row['tag']]['permission'][$permissionChar] = true;
+          $this->permissions[$row['tag']]['permission'][$permissionChar] = true;
         }
       }
-      var_dump($this->permission);
     }
 
     /**
@@ -139,7 +138,6 @@
 	* Account permissions
 	*/
     private function hasPermissionByAccount($tag, $permission){
-      var_dump(isset($this->permissions[$tag]) && isset($this->permissions[$tag]['permission'][$permission]));
       return isset($this->permissions[$tag]) && isset($this->permissions[$tag]['permission'][$permission]);
     }
   }

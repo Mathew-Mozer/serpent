@@ -1,16 +1,9 @@
-<!--/** Index* Author: Stephen King* Version 2016.10.5.1** This is the main page.
-It constructs the 10 upcoming event list*/-->
-
 <?php
     require "dependencies/php/header.php";
     require "modals/PromotionModal.php";
     require "modals/permissionModal.php";
-    require "modals/OptionsModal.php";
-
-    $optionsModal = new OptionsModal(1);
-      $promotion = new PromotionModal($dbcon->read_database());
-    $options = $optionsModal->getPromotionSettings();
-    ?>
+    $promotion = new PromotionModal($dbcon->read_database());
+?>
 <body>
     <div id="page">
     </div>
@@ -18,13 +11,9 @@ It constructs the 10 upcoming event list*/-->
       //require "views/mainView.php";
      ?>
 <!-- End Casino -->
-
+    
 <div id="settings" style="display: none;" title="Settings">
-    <?php
-    foreach ($options as $setting => $value){
-        echo $setting . " = " . $value . "<br>";
-    }
-    ?>
+
 </div>
 <div id="addPromotion" style="display: none;" title="Promotion">
   <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
@@ -139,6 +128,7 @@ It constructs the 10 upcoming event list*/-->
 
   </body>
   <script src = "dependencies/js/login.js"></script>
+  <script src = "dependencies/js/optionsmodal.js"></script>
   <script>
           <?php
 
@@ -150,9 +140,10 @@ It constructs the 10 upcoming event list*/-->
 
             } else {
 
+                echo  "$('#page').load('views/mainView.php', {id :".$_SESSION['userId']."});";
 
                 echo "$('#page').show();";
-                echo 'alert("LoggedIn")';
+
 
             }
 

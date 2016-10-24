@@ -12,6 +12,7 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+
         //Show option bar
         $(".tile-body").hover(function () {
             $(this).children(".tile-menu-bar").removeClass("hidden");
@@ -19,11 +20,11 @@
             $(this).children(".tile-menu-bar").addClass("hidden");
 
         });
-       //highlight option under mouse
-		$(".tile-menu-item").hover( function(){
-        $(this).addClass("tile-menu-item-hover");
-        }, function(){
-        $(this).removeClass("tile-menu-item-hover");
+        //highlight option under mouse
+        $(".tile-menu-item").hover(function () {
+            $(this).addClass("tile-menu-item-hover");
+        }, function () {
+            $(this).removeClass("tile-menu-item-hover");
 
 		});        
 		
@@ -35,10 +36,13 @@
         });
 
        $(".settingsBtn").unbind('click').click(function(){
-           settingsModal.dialog('open');
-       });
+           var ids = $(this).attr('id').split('-');
+           <?php echo "var id=".$_SESSION['userId'].";"; ?>
+           var perm = canDelete(ids[0],id);
+           getSettings(ids[1], perm);
+        });
 
-       $(".add-promotion-btn").unbind('click').click( function(){
+       $(".add-promotion-btn").unbind('click').click(function(){
           $('input[name=casinoId]').val(this.id);
           addPromotionModal.dialog('open');
        });
@@ -50,7 +54,7 @@
 
         $("#create-casino-btn").click(function(){
             createCasinoModal.dialog('open');
-        })
+        });
 		
 		/**
 		* End Click Listeners
@@ -110,7 +114,7 @@
                  $.ajax({
                         url: 'controllers/addPromotion.php',
                         type: 'post',
-                        data: {casinoId: casinoId, promotionId : promotionId},
+                        data: {casinoId: casinoId, promotionId: promotionId},
                         cache: false,
                         success: function (response) {
                             console.log(response);
@@ -157,7 +161,7 @@
         });
 
 		//Generate fields for initial casino properties
-        var createCasino = function (){
+        var createCasino = function () {
             var casinoName = $('#casinoName').val();
             var parentCompany = $('#parentCompany').val();
             var assetBundleUrl = $('#assetBundleUrl').val();
@@ -172,20 +176,22 @@
             $.ajax({
                 url: 'controllers/toolBarController.php',
                 type: 'post',
-                data: {casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
-                        assetBundleWindows: assetBundleWindows, assetName: assetName, defaultSkin: defaultSkin,
-                        defaultLogo: defaultLogo, supportGroup: supportGroup, businessOpen: businessOpen,
-                        businessClose: businessClose},
+                data: {
+                    casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
+                    assetBundleWindows: assetBundleWindows, assetName: assetName, defaultSkin: defaultSkin,
+                    defaultLogo: defaultLogo, supportGroup: supportGroup, businessOpen: businessOpen,
+                    businessClose: businessClose
+                },
                 cache: false,
                 success: function (json) {
-                        var result = JSON.parse(json);
-                        if(result.error === 'none'){
-                            alert("Casino Created!");
-                        } else {
-                            alert("Error creating casino");
-                        }
+                    var result = JSON.parse(json);
+                    if (result.error === 'none') {
+                        alert("Casino Created!");
+                    } else {
+                        alert("Error creating casino");
+                    }
                 },
-                error: function() {
+                error: function () {
                     alert("An error occurred!")
                 }
             })
