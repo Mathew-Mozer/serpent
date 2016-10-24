@@ -6,22 +6,12 @@
 *
 * This page controls the footer and closing material for the website
 */
-?>
-    <footer>
-
-
-    </footer>
-   </body>
-
-   <script>
-
-   $(document).ready(function(){
+?>   <script>   $(document).ready(function(){
 
         //Load tooltips
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-
         //Show option bar
         $(".tile-body").hover(function () {
             $(this).children(".tile-menu-bar").removeClass("hidden");
@@ -29,16 +19,13 @@
             $(this).children(".tile-menu-bar").addClass("hidden");
 
         });
-
        //highlight option under mouse
-		$(".tile-menu-item").hover(function(){
+		$(".tile-menu-item").hover( function(){
         $(this).addClass("tile-menu-item-hover");
         }, function(){
         $(this).removeClass("tile-menu-item-hover");
 
-		});
-
-        $("#createCasinoBtn").click(function (){
+		});        $("#createCasinoBtn").click( function (){
            createCasinoModal.dialog('open');
         });
 
@@ -46,7 +33,7 @@
            settingsModal.dialog('open');
        });
 
-       $(".add-promotion-btn").unbind('click').click(function(){
+       $(".add-promotion-btn").unbind('click').click( function(){
           $('input[name=casinoId]').val(this.id);
           addPromotionModal.dialog('open');
        });
@@ -55,6 +42,10 @@
         $(".userBtn").unbind('click').click(function () {
             editUsersModal.dialog('open');
         });
+
+        $("#create-casino-btn").click(function(){
+            createCasinoModal.dialog('open');
+        })
 
         /*
          These are the modal windows that can be opened. Note that these need
@@ -95,53 +86,8 @@
            );
        };
 
-        var validateLogin = function () {
-            //assign variables from form data
-            var s_name = $("#userName").val();
-            var s_password = $("#password").val();
 
-            //ajax call to validation controller
-            $.ajax({
-                url: 'controllers/validationScript.php',
-                type: 'post',
-                data: {userName: s_name, password: s_password},
-                cache: false,
-                success: function (json) {
 
-                    if (json.valid === "yes") {
-                        $("#errorMessage").empty();
-                        $("#errorMessage").hide();
-                        loginModal.dialog('close');
-                        $('#page').show();
-
-                    } else {
-                        //display error message
-                        ul = document.getElementById("errorMessage");
-                        $("#errorMessage").empty();
-                        $("#errorMessage").show();
-                        $.each(json.errorMessage, function (index, item) {
-                            var li = document.createElement("li");
-                            li.appendChild(document.createTextNode(item));
-                            ul.appendChild(li);
-                        });
-                    }
-                },
-                error: function (xhr, desc, err) {
-                    console.log(xhr + "\n" + err);
-                }
-            });
-        };
-
-        var addPromotionModal = $("#addPromotion").dialog({
-            autoOpen: false,
-            height: 400,
-            width: 350,
-            modal: true,
-            buttons: {
-                Submit: function () {
-                    var id = $('select[name=promoId]').val();
-                    //Ajax call to update database with new promotion
-                    $.ajax({
        var addPromotionModal = $("#addPromotion").dialog({
            autoOpen: false,
            height: 400,
@@ -185,17 +131,6 @@
             }
         });
 
-        var loginModal = $("#loginModal").dialog({
-            autoOpen: false,
-            height: 275,
-            width: 350,
-            modal: true,
-            buttons: {
-                Submit: function () {
-                    validateLogin();
-                }
-            }
-        });
 
         var createCasinoModal = $('#createCasino').dialog({
             autoOpen: false,
@@ -223,7 +158,7 @@
             var businessClose = $('#businessHoursClose').val();
 
             $.ajax({
-                url: '../public_html/controllers/toolBarController.php',
+                url: 'controllers/toolBarController.php',
                 type: 'post',
                 data: {casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
                         assetBundleWindows: assetBundleWindows, assetName: assetName, defaultSkin: defaultSkin,
@@ -244,14 +179,7 @@
             })
         };
 
-        <?php
-            if($_SESSION['loggedIn'] != 'true') {
-                    echo "$('#page').hide();";
-                    echo "loginModal.dialog('open');";
-            } else {
-                echo 'alert("LoggedIn")';
-            }
-        ?>
+
     });
 
 </script>

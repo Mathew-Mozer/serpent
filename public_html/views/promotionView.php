@@ -1,6 +1,3 @@
-
-
-
         <div class="tile-body">
             <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image']?>">
             <div class="tile-menu-bar hidden">
