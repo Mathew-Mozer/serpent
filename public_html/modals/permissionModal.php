@@ -11,6 +11,9 @@
     protected $loginId;
     protected $permissions;
 
+	/**
+	* Get Constructor
+	*/
     public function __construct(PDO $db, $loginId){
       $this->db = $db;
       $this->loginId = $loginId;
@@ -131,6 +134,9 @@
       return isset($this->permissions[$tag][$casinoId]) && isset($this->permissions[$tag][$casinoId]['permission'][$permission]);
     }
 
+	/**
+	* Account permissions
+	*/
     private function hasPermissionByAccount($tag, $permission){
       return isset($this->permissions[$tag]) && isset($this->permissions[$tag]['permission'][$permission]);
     }

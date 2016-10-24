@@ -1,8 +1,8 @@
 <?php
 /**
- * Author: Chris Barbour
- *
- * Driver for loginValidation class
+ * User: Christopher Barbour
+ * Date: 10/16/16
+ * Time: 8:47 PM
  */
 require('../models/loginValidation.php');
 
