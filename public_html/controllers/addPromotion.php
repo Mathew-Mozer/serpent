@@ -1,5 +1,5 @@
 <?php
-  require "../dependencies/php/FactoryFunctions.php";
+  require "../dependencies/php/HelperFunctions.php";
   require getServerPath()."dbcon.php";
   require "../modals/PromotionModal.php";
   $dbcon = NEW DbCon();

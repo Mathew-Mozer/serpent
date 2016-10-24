@@ -34,6 +34,7 @@
       foreach( $promoResult as $row){
         foreach(str_split($row['permissions']) as $permissionChar){
           $this->permissions[$row['tag']][$row['casinoId']]['permission'][$permissionChar] = true;
+          $this->permissions[$row['tag']]['permission'][$permissionChar] = true;
         }
       }
     }
@@ -62,15 +63,15 @@
     /**
     * Checks to see if the user has permission to delete a promotion under a casino.
     */
-    public function canDeleteCasinoPromotion(){
+    public function canDeleteCasinoPromotion($casinoId){
       return $this->hasPermission('promotion', $casinoId, 'D');
     }
 
     /**
     * Checks to see if the user has permission to create a casino.
     */
-    public function canCreateCasino($casinoId){
-      return $this->hasPermission('casino', $casinoId, 'C');
+    public function canCreateCasino(){
+      return $this->hasPermissionByAccount('casino', 'C');
     }
 
     /**
@@ -95,10 +96,43 @@
     }
 
     /**
+    * Checks to see if the user has permission to create a casino.
+    */
+    public function canCreateAccount(){
+      return $this->hasPermissionByAccount('account', 'C');
+    }
+
+    /**
+    * Checks to see if the user has permission to view a casino.
+    */
+    public function canViewAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'R');
+    }
+
+    /**
+    * Checks to see if the user has permission to update a casino.
+    */
+    public function canUpdateAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'U');
+    }
+
+    /**
+    * Checks to see if the user has permission to delete a casino.
+    */
+    public function canDeleteAccount($casinoId){
+      return $this->hasPermission('account', $casinoId, 'D');
+    }
+
+
+    /**
     * Base permission test for user.
     */
     private function hasPermission($tag, $casinoId, $permission){
       return isset($this->permissions[$tag][$casinoId]) && isset($this->permissions[$tag][$casinoId]['permission'][$permission]);
+    }
+
+    private function hasPermissionByAccount($tag, $permission){
+      return isset($this->permissions[$tag]) && isset($this->permissions[$tag]['permission'][$permission]);
     }
   }
   ?>
