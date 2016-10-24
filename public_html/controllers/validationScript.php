@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($response['valid'] === 'yes') {
         $_SESSION['user'] = $_POST['userName'];
         $_SESSION['loggedIn'] = 'true';
+        $_SESSION['userId'] = $response['userId'];
     }
     header('content-type:application/json');
     echo json_encode($response);

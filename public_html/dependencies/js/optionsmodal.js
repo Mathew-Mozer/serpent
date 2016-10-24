@@ -71,8 +71,21 @@
             type: 'post',
             data: {action: 'archive', id: promotionID},
             cache: false,
-            success: function (response) {
+            success: function () {
                 $('.'+promotionID).hide();
+            }
+        });
+    };
+
+    var canDelete = function(casinoId, perm) {
+        $.ajax({
+            url: 'controllers/optionsmodalcontroller.php',
+            type: 'post',
+            data: {action: 'canDelete', id: casinoId, permission: perm},
+            cache: false,
+            success: function (response) {
+                permission = $.parseJSON(response);
+                return permission['permission'];
             }
         });
     };

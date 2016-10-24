@@ -31,6 +31,7 @@ class OptionsModel{
 
         $dbcon = new DbCon();
         $this->conn = $dbcon->update_database();
+
     }
 
     /**

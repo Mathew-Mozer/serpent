@@ -34,6 +34,7 @@
       foreach( $promoResult as $row){
         foreach(str_split($row['permissions']) as $permissionChar){
           $this->permissions[$row['tag']][$row['casinoId']]['permission'][$permissionChar] = true;
+          $this->permissions[$row['tag']]['permission'][$permissionChar] = true;
         }
       }
     }
@@ -69,8 +70,8 @@
     /**
     * Checks to see if the user has permission to create a casino.
     */
-    public function canCreateCasino($casinoId){
-      return $this->hasPermission('casino', $casinoId, 'C');
+    public function canCreateCasino(){
+      return $this->hasPermissionByAccount('casino', 'C');
     }
 
     /**
@@ -90,15 +91,15 @@
     /**
     * Checks to see if the user has permission to delete a casino.
     */
-    public function canDeleteCasino($casinoId){
+    public function canDeleteCasino(){
       return $this->hasPermission('casino', $casinoId, 'D');
     }
 
     /**
     * Checks to see if the user has permission to create a casino.
     */
-    public function canCreateAccount($casinoId){
-      return $this->hasPermission('account', $casinoId, 'C');
+    public function canCreateAccount(){
+      return $this->hasPermissionByAccount('account', 'C');
     }
 
     /**
@@ -128,6 +129,10 @@
     */
     private function hasPermission($tag, $casinoId, $permission){
       return isset($this->permissions[$tag][$casinoId]) && isset($this->permissions[$tag][$casinoId]['permission'][$permission]);
+    }
+
+    private function hasPermissionByAccount($tag, $permission){
+      return isset($this->permissions[$tag]) && isset($this->permissions[$tag]['permission'][$permission]);
     }
   }
   ?>

@@ -2,7 +2,7 @@
             <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image']?>">
             <div class="tile-menu-bar hidden">
                 <?php if ($permission->canUpdateCasinoPromtion($casino['id'])){?>
-                <div class="tile-menu-item settingsBtn" id="<?php echo $row['promo_id']; ?>">
+                <div class="tile-menu-item settingsBtn" id="<?php echo $casino['id'] . '-' . $row['promo_id']; ?>">
                     <span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
                 </div> <?php } ?>
                 <div class="tile-menu-item">
