@@ -51,6 +51,10 @@ class ToolBarModel
         $this->businessClose = $businessClose;
     }
 
+	/**
+	* Insert new casino
+	* @return QueryResult
+	*/
     public function insertCasino(){
         $conn = $this->dbcon->insert_database();
         if(!$conn instanceof PDO){

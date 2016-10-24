@@ -1,3 +1,6 @@
+/**
+* Login Validation Root Function
+*/
 var validateLogin = function () {
 
     //assign variables from form data
@@ -71,6 +74,9 @@ var validateLogin = function () {
 
 };
 
+/**
+* login Modal Window
+*/
 var loginModal = $("#loginModal").dialog({
 
     autoOpen: false,

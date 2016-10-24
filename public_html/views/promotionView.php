@@ -1,7 +1,7 @@
         <div class="tile-body">
             <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image']?>">
             <div class="tile-menu-bar hidden">
-                <div class="tile-menu-item settingsBtn">
+                <div class="tile-menu-item settingsBtn" data-toggle="tooltip" title="<?php echo $row['promo_title'] ?>">
                     <span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
                 </div>
                 <div class="tile-menu-item">
