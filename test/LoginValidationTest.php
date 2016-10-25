@@ -5,7 +5,7 @@
  * Time: 12:25 PM
  */
 
-require('../public_html/loginValidation.php');
+require('../public_html/LoginValidationModel.php');
 
 class LoginValidationTest extends \PHPUnit_Framework_TestCase
 {

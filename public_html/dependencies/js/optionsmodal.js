@@ -38,7 +38,7 @@
         promotionID = id;
         permission = perm;
         $.ajax({
-            url: 'controllers/optionsmodalcontroller.php',
+            url: 'controllers/optionscontroller.php',
             type: 'post',
             data: {action: 'get', id: promotionID},
             cache: false,
@@ -67,7 +67,7 @@
     //archives the promotion
     var deletePromotion = function () {
         $.ajax({
-            url: 'controllers/optionsmodalcontroller.php',
+            url: 'controllers/optionscontroller.php',
             type: 'post',
             data: {action: 'archive', id: promotionID},
             cache: false,
@@ -79,7 +79,7 @@
 
     var canDelete = function(casinoId, perm) {
         $.ajax({
-            url: 'controllers/optionsmodalcontroller.php',
+            url: 'controllers/optionscontroller.php',
             type: 'post',
             data: {action: 'canDelete', id: casinoId, permission: perm},
             cache: false,

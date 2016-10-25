@@ -4,7 +4,7 @@
  * Date: 10/16/16
  * Time: 8:47 PM
  */
-require_once('../models/ToolBarModel.php');
+require_once('../models/CreateCasinoModel.php');
 
 /**
 * Construct toolbar modal

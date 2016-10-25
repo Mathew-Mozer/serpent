@@ -15,7 +15,7 @@ var validateLogin = function () {
 
     $.ajax({
 
-        url: 'controllers/validationScript.php',
+        url: 'controllers/logincontroller.php',
 
         type: 'post',
 
@@ -35,7 +35,7 @@ var validateLogin = function () {
 
                 loginModal.dialog('close');
 
-                $('#page').load('views/mainView.php', {id : json.userId});
+                $('#page').load('views/mainview.php', {id : json.userId});
                 $('#page').show();
 
 

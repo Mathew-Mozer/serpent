@@ -7,7 +7,7 @@
 
   require "../dependencies/php/HelperFunctions.php";
   require getServerPath()."dbcon.php";
-  require "../modals/PromotionModal.php";
+  require "../models/PromotionModel.php";
   $dbcon = NEW DbCon();
 
 //Add the new promotion to the database

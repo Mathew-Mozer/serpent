@@ -1,14 +1,14 @@
 <?php
     require "dependencies/php/header.php";
-    require "modals/PromotionModal.php";
-    require "modals/permissionModal.php";
+    require "models/PromotionModel.php";
+    require "models/PermissionModel.php";
     $promotion = new PromotionModal($dbcon->read_database());
 ?>
 <body>
     <div id="page">
     </div>
     <?php
-      //require "views/mainView.php";
+      //require "views/mainview.php";
      ?>
 <!-- End Casino -->
     
@@ -16,7 +16,7 @@
 
 </div>
 <div id="addPromotion" style="display: none;" title="Promotion">
-  <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
+  <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
     <input type="hidden" name="casinoId" value=""></input>
   <select name="promoId">
   <?php
@@ -140,7 +140,7 @@
 
             } else {
 
-                echo  "$('#page').load('views/mainView.php', {id :".$_SESSION['userId']."});";
+                echo  "$('#page').load('views/mainview.php', {id :".$_SESSION['userId']."});";
 
                 echo "$('#page').show();";
 

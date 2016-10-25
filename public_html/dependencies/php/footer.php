@@ -6,27 +6,33 @@
 *
 * This page controls the footer and closing material for the website
 */
-?>   <script>   $(document).ready(function(){
+?>
+<script>
+    $(document).ready(function(){
 
-        //Load tooltips
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        var toolbar = function() {
+            //Load tooltips
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
 
-        //Show option bar
-        $(".tile-body").hover(function () {
-            $(this).children(".tile-menu-bar").removeClass("hidden");
-        }, function () {
-            $(this).children(".tile-menu-bar").addClass("hidden");
+            //Show option bar
+            $(".tile-body").hover(function () {
+                $(this).children(".tile-menu-bar").removeClass("hidden");
+            }, function () {
+                $(this).children(".tile-menu-bar").addClass("hidden");
 
-        });
-        //highlight option under mouse
-        $(".tile-menu-item").hover(function () {
-            $(this).addClass("tile-menu-item-hover");
-        }, function () {
-            $(this).removeClass("tile-menu-item-hover");
+            });
+            //highlight option under mouse
+            $(".tile-menu-item").hover(function () {
+                $(this).addClass("tile-menu-item-hover");
+            }, function () {
+                $(this).removeClass("tile-menu-item-hover");
 
-		});        
+            });
+        };
+
+        toolbar();
 		
 		/**
 		* This is for click listeners
@@ -112,7 +118,7 @@
                    var casinoId = $('input[name=casinoId]').val();
                //Ajax call to update database with new promotion
                  $.ajax({
-                        url: 'controllers/addPromotion.php',
+                        url: 'controllers/addpromotioncontroller.php',
                         type: 'post',
                         data: {casinoId: casinoId, promotionId: promotionId},
                         cache: false,
@@ -122,6 +128,7 @@
                             //update view with new promotion
                             addPromotion(response.image, casinoId);
                             addPromotionModal.dialog('close');
+                            toolbar();
                         },
                         error: function (xhr, desc, err) {
                             console.log(xhr + "\n" + err);
@@ -174,7 +181,7 @@
             var businessClose = $('#businessHoursClose').val();
 
             $.ajax({
-                url: 'controllers/toolBarController.php',
+                url: 'controllers/toolbarcontroller.php',
                 type: 'post',
                 data: {
                     casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
