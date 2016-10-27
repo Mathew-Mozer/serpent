@@ -4,7 +4,7 @@
  * Date: 10/6/16
  */
 
-include('../public_html/modals/PromotionModal.php');
+include('../public_html/modals/PromotionModel.php');
 
 class PromotionModalTest extends \PHPUnit_Framework_TestCase
 {

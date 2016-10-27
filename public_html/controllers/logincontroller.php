@@ -4,7 +4,7 @@
  * Date: 10/16/16
  * Time: 8:47 PM
  */
-require('../models/loginValidation.php');
+require('../models/LoginValidationModel.php');
 
 //if call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
