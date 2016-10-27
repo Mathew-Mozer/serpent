@@ -6,7 +6,8 @@
  */
 
 //for local test runs
-require ('../../dbcon.php');
+require_once("../dependencies/php/HelperFunctions.php");
+require_once(getServerPath()."dbcon.php");
 
 /**
  * Class OptionsModal that handles the data base queries to show on the settings modal window.

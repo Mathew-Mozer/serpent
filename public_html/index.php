@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
@@ -98,7 +99,7 @@ $promotion = new PromotionModal($dbcon->read_database());
 
     } else {
 
-        echo "$('#page').load('views/mainview.php', {id :" . $_SESSION['userId'] . "});";
+        echo "$('#page').load('views/mainview.php', {id : " . $_SESSION['userId'] . "});";
 
         echo "$('#page').show();";
 
@@ -106,5 +107,3 @@ $promotion = new PromotionModal($dbcon->read_database());
     }
     ?>
 </script>
-
-
