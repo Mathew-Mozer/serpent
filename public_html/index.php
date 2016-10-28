@@ -14,7 +14,10 @@ $promotion = new PromotionModal($dbcon->read_database());
 <div id="settings" style="display: none;" title="Settings">
 
 </div>
+<button id="boxViewBtn">Press for box view</button>
+<div id="boxes">
 
+</div>
 <div id="addPromotion" style="display: none;" title="Promotion">
     <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
         <input type="hidden" name="casinoId" value=""></input>
@@ -88,6 +91,7 @@ $promotion = new PromotionModal($dbcon->read_database());
 <script src="dependencies/js/optionsmodal.js"></script>
 <script src="dependencies/js/addpromotionmodal.js"></script>
 <script src="dependencies/js/createcasino.js"></script>
+<script src="dependencies/js/boxview.js"></script>
 <script>
     <?php
 

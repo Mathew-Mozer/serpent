@@ -61,6 +61,10 @@
         $("#logoutBtn").click(function () {
             logoutUser();
         });
+
+        $('#boxViewBtn').click(function () {
+            getBoxById(1);
+        });
         /**
          * End Click Listeners
          */
