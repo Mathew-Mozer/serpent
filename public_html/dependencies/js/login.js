@@ -61,3 +61,17 @@ var loginModal = $("#loginModal").dialog({
         }
     }
 });
+
+
+//function that calls to php controller, destroys sessions and reloads page
+var logoutUser = function () {
+    $.ajax({
+        url: 'controllers/logincontroller.php',
+        type: 'post',
+        data: {action: 'logout'},
+        cache: false,
+        success: function () {
+            location.reload();
+        }
+    });
+};

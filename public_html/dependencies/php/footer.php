@@ -58,6 +58,9 @@
             createCasinoModal.dialog('open');
         });
 
+        $("#logoutBtn").click(function () {
+            logoutUser();
+        });
         /**
          * End Click Listeners
          */
