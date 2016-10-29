@@ -5,7 +5,8 @@
  * Date: 10/16/16
  * Time: 9:01 PM
  */
-require_once ('../../dbcon.php');
+require '../dependencies/php/HelperFunctions.php';
+require_once (getServerPath().'dbcon.php');
 
 class ToolBarModel
 {
@@ -50,13 +51,17 @@ class ToolBarModel
         $this->businessClose = $businessClose;
     }
 
+	/**
+	* Insert new casino
+	* @return QueryResult
+	*/
     public function insertCasino(){
         $conn = $this->dbcon->insert_database();
         if(!$conn instanceof PDO){
             return 'Failed to connect to db';
         } else {
-            $insert = "INSERT INTO casino(casinoName, parentCompany, assetBundleUrl, assetBundleWindows, assetName, 
-                        defaultSkin, defaultLogo, supportGroup, businessOpen, businessClose) 
+            $insert = "INSERT INTO casino(casinoName, parentCompany, assetBundleUrl, assetBundleWindows, assetName,
+                        defaultSkin, defaultLogo, supportGroup, businessOpen, businessClose)
                         VALUES(:casinoName, :parentCompany, :assetBundleUrl, :assetBundleWindows, :assetName,
                         :defaultSkin, :defaultLogo, :supportGroup, :businessOpen, :businessClose)";
 

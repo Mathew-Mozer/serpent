@@ -1,154 +1,318 @@
 /**************************
+
 * Promotion Tiles
+
 **************************/
 
+
+
 .tile-body{
+
 	max-height: 150px;
+
 	max-width: 150px;
+
 	min-height: 150px;
+
 	min-width: 150px;
-	background-color: gray;
+
+	background-color: #c3cacc;
+
 	/*border-width: 1px;
+
 	border-style: solid;
+
 	border-color: #e6e6e6; */
+
 	-webkit-box-sizing: content-box;
+
 	-moz-box-sizing: content-box;
+
 	box-sizing: content-box;
+
 	margin: 10px;
+
 	display: inline-block;
+
 	box-shadow:2px 2px 5px #969696;
+
 	vertical-align: top;
+
 }
+
+
 
 .tile-icon{
+
 	max-height: 140px;
+
 	max-width: 140px;
+
 	min-height: 140px;
+
 	min-width: 140px;
+
 	margin-left: 5px;
+
 	margin-top: 5px;
+
 }
+
+
 
 .tile-menu-bar{
+
 	max-height: 20px;
+
 	min-height: 20px;
+
 	max-width: 150px;
+
 	min-width: 150px;
+
 	background-color: rgba(179, 179, 179, 0.6);
+
 	/*opacity: 0.40;
+
 	background-color: #e6e6e6; */
+
 	position: relative;
+
 	top: -20px;
+
 	z-index: 1;
+
 	display: flex;
+
 	flex-wrap: wrap;
+
 }
+
+
 
 .tile-menu-item{
+
 	max-height: 20px;
+
 	min-height: 20px;
+
 	max-width: 50px;
+
 	min-width: 50px;
+
 	z-index: 2;
+
 	position: relative;
+
 	display: block;
+
 	text-align: center;
+
 }
+
+
 
 .tile-menu-item-hover{
+
 	background-color: rgba(255, 255, 255, 0.8);
-}
-.glyphicon-menu{
-	clear: both;
-	font-size: 16px;
-	vertical-align: middle;
 
 }
+
+.glyphicon-menu{
+
+	clear: both;
+
+	font-size: 16px;
+
+	vertical-align: middle;
+
+
+
+}
+
+
 
 .glyphicon-new-container{
+
 	position: relative;
+
 	text-align: center;
+
 	top: -90px;
+
 }
 
+
+
 .glyphicon-new-tile{
+
 	clear: both;
+
 	font-size: 30px;
+
 	vertical-align: middle;
+
 }
+
+
 
 .glyphicon-normal{
 
+
+
 }
 
+
+
 .cursor-selectable{
+
 	cursor: pointer;
+
 }
+
+
 
 .glyphicon-hovor{
 
+
+
 }
+
+
 
 .red{
+
 	color: #990000;
+
 	text-shadow: 1px 1px #ff4d4d;
+
 }
+
+
 
 .black{
+
 	color: black;
+
 	text-shadow: 1px 1px #e6e6e6;
+
 }
+
+
 
 .white{
+
 	color: white;
+
 }
+
+
 
 /**************************
+
 * Toolbar Buttons
+
 **************************/
 
+
+
 .button-body{
+
 	max-height: 50px;
+
 	max-width: 50px;
+
 	min-height: 50px;
+
 	min-width: 50px;
-	background-color: gray;
+
+	background-color: #a2acbc;
+
 	/*border-width: 1px;
+
 	border-style: solid;
+
 	border-color: #e6e6e6; */
+
 	-webkit-box-sizing: content-box;
+
 	-moz-box-sizing: content-box;
+
 	box-sizing: content-box;
+
 	margin: 10px;
+
 	display: inline-block;
+
 	box-shadow:2px 2px 5px #969696;
+
 	vertical-align: top;
+
 }
+
+
+
+
+
+.button-body:hover, .tile-body:hover{
+
+	background-color: #00b226;
+
+}
+
+
 
 .button-icon{
+
 	max-height: 40px;
+
 	max-width: 40px;
+
 	min-height: 40px;
+
 	min-width: 40px;
+
 	margin-left: 5px;
+
 	margin-top: 5px;
+
 }
+
+
 
 .tool-glyphicon{
+
 	clear: both;
+
 	font-size: 30px;
+
 	display: block;
+
 	text-align: center;
+
 	vertical-align: middle;
+
 	line-height: 50px;
+
 }
+
+
 
 .toolbar{
+
 	display: inline-block;
 
+
+
 }
+
+
 
 .toolbench{
+
 	text-align: center;
 
+
+
 }
+

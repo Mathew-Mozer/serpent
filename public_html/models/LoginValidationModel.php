@@ -5,7 +5,7 @@
  * Author Chris Barbour
  */
 session_start();
-require_once("../dependencies/php/FactoryFunctions.php");
+require_once("../dependencies/php/HelperFunctions.php");
 require_once(getServerPath()."dbcon.php");
 
 //For local test runs
@@ -32,7 +32,7 @@ class LoginValidation
      * @param $password
      */
     public function __construct($username, $password) {
-        $this->responseMessaging = array('valid' => 'yes', 'row' => 'none', 'errorMessage' => array());
+        $this->responseMessaging = array('valid' => 'yes', 'userId' => '0', 'row' => 'none', 'errorMessage' => array());
         $this->s_userName = $username;
         $this->s_password = $password;
         $this->dbcon = new DbCon();
@@ -101,14 +101,14 @@ class LoginValidation
      */
     private function validateCredentials(){
         $conn = $this->dbcon->read_database();
-        $statement = $conn->prepare("SELECT name, password from account WHERE name = '$this->s_userName'");
+        $statement = $conn->prepare("SELECT id as userId, name, password from account WHERE name = '$this->s_userName'");
 
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
         if($row['name'] != $this->s_userName || $row['password'] != $this->s_password){
             $this->responseMessaging['valid'] = 'no';
             array_push($this->responseMessaging['errorMessage'], 'Invalid username or password');
-        }
+        }          $this->responseMessaging['userId'] = $row['userId'];
     }
 
     /**

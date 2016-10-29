@@ -6,7 +6,8 @@
  */
 
 //for local test runs
-//require ('../../dbcon.php');
+require_once("../dependencies/php/HelperFunctions.php");
+require_once(getServerPath()."dbcon.php");
 
 /**
  * Class OptionsModal that handles the data base queries to show on the settings modal window.
@@ -16,7 +17,7 @@
  * @param $promotionID
  * @param $conn
  */
-class OptionsModal{
+class OptionsModel{
 
     private $promotionID;
     private $conn;
@@ -28,8 +29,10 @@ class OptionsModal{
      */
     public function __construct($promotion) {
         $this->promotionID = $promotion;
+
         $dbcon = new DbCon();
-        $this->conn = $dbcon->read_database();
+        $this->conn = $dbcon->update_database();
+
     }
 
     /**
@@ -40,7 +43,7 @@ class OptionsModal{
      * @return array
      */
     public function getPromotionSettings() {
-        $sql = "SELECT * FROM promotion WHERE id = " . $this->promotionID;
+        $sql = 'SELECT * FROM promotion WHERE id = '. $this->promotionID;
         $statement = $this->conn->prepare($sql);
         $statement->execute();
 
@@ -63,6 +66,22 @@ class OptionsModal{
         $statement->execute();
 
         return $this->getPromotionSettings();
+    }
+
+
+    /**
+     * Archives the promotion by turning the visable field to 'F' in the database and returns whether or not the
+     * update was successful.
+     *
+     * Archives promotion
+     *
+     * @return bool
+     */
+    public function archivePromotion() {
+        $sql = "UPDATE promotion SET visible = 'F' WHERE id = " . $this->promotionID;
+        $statement = $this->conn->prepare($sql);
+
+        return $statement->execute();
     }
 }
 
