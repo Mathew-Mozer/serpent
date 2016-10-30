@@ -12,8 +12,8 @@ session_start();
   /**
   *	Require Hell
   */
-  require "../models/PromotionModel.php";
-  require "../models/PermissionModel.php";
+  require "../modals/PromotionModal.php";
+  require "../modals/permissionModal.php";
   require_once("../dependencies/php/HelperFunctions.php");
   require_once(getServerPath()."dbcon.php");
 
@@ -25,7 +25,7 @@ session_start();
   $permission = new PermissionModal($dbcon->update_database(), $_POST['id']);
 
   //Another require
-  require 'toolbarview.php';
+  require 'toolbar.php';
 
   //Create Casino objects
   $casinoList = $promotion->getPromotionCasinos();
@@ -38,7 +38,7 @@ session_start();
 	//If the permission checks out, print the promotion
 	if($permission->canViewCasinoPromotions($casino['id'])) {
 
-		  include('casinoview.php');
+		  include ('casinoView.php');
 		  $casinoRowIndex++;
 
 		  if($casinoRowIndex < $casinoCount){ ?>
