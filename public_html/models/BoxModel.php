@@ -22,7 +22,7 @@ class BoxModel
         }
     }
 
-    public function getAllBoxesWithCasionID($casionID){
+    public function getAllBoxesWithCasinoId($casinoId){
         //sql statement to get list of boxes with casinoID
     }
 

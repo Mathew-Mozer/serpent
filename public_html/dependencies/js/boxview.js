@@ -5,9 +5,10 @@ var getBoxById = function (id) {
       type: 'post',
       data: {action: 'getSingleBox', boxId: id},
       cache: false,
-      success: function (result) {
-          $('#boxes').append('<h1> Box 1 </h1>');
-          $('#boxes').append(result)
+      success: function (response) {
+         var result = $.parseJSON(response);
+         $('#name').html(result['name']);
+         $('#serial').html(result['serial']);
       }
   });
 };
