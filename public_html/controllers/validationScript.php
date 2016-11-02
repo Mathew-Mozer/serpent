@@ -4,15 +4,13 @@
  * Date: 10/16/16
  * Time: 8:47 PM
  */
-require('../models/LoginValidationModel.php');
+require('../models/LoginValidation.php');
 
 //if call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    //if user is logging out
     if ($_POST['action'] == 'logout') {
         session_destroy();
-    } else {
+    }else {
         $validator = new LoginValidation($_POST['userName'], $_POST['password']);
         $response = $validator->validateLogin();
 

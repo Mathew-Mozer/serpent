@@ -11,9 +11,7 @@
     $(document).ready(function () {
 
         //Load tooltips
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        $('[data-toggle="tooltip"]').tooltip();
 
         //Show option bar
         $(".tile-body").hover(function () {
@@ -58,6 +56,24 @@
             createCasinoModal.dialog('open');
         });
 
+            //Toggle between promotion and display view
+        $(".toggle-display-btn").click(function() {
+            $(this).addClass("hidden");
+            if($(this).attr("id") === "toggle-display"){
+                //code to switch to display view
+                $("#toggle-promotion").removeClass("hidden");
+                $('.promotion-view').addClass("hidden");
+                $('#boxes').removeClass("hidden");
+                getBoxById(1);
+            } else {
+                //code to switch to promotion view
+                $("#toggle-display").removeClass("hidden");
+                $('#boxes').empty();
+                $('#boxes').addClass("hidden");
+                $('.promotion-view').removeClass("hidden");
+            }
+        });
+    
         $("#logoutBtn").click(function () {
             logoutUser();
         });

@@ -94,7 +94,7 @@
     /**
     * Checks to see if the user has permission to delete a casino.
     */
-    public function canDeleteCasino(){
+    public function canDeleteCasino($casinoId){
       return $this->hasPermission('casino', $casinoId, 'D');
     }
 
