@@ -11,9 +11,7 @@
     $(document).ready(function () {
 
         //Load tooltips
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        $('[data-toggle="tooltip"]').tooltip();
 
         //Show option bar
         $(".tile-body").hover(function () {

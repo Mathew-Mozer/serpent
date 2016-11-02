@@ -1,5 +1,6 @@
 
 var getBoxById = function (id) {
+    alert("here");
   $.ajax({
       url: 'http://christopher.greenrivertech.net/public_html/controllers/boxcontroller.php',
       type: 'post',
