@@ -53,6 +53,21 @@ $promotion = new PromotionModel($dbcon->read_database());
 
     </div>
 
+    <div id="editDisplayModal" style="display: none;" title="Edit Display">
+
+        <ul id="errorMessage" hidden></ul>
+
+        <form>
+
+            <?php
+            for($row i){
+
+            }
+            ?>
+            ?>
+
+        </form>
+
     <div id="createCasino" style="display: none;" title="Create Casino">
 
         <form id="casinoForm">
