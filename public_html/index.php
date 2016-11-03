@@ -3,7 +3,7 @@ session_start();
 require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
-$promotion = new PromotionModal($dbcon->read_database());
+$promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
 <div id="page">

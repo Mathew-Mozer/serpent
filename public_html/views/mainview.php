@@ -21,8 +21,8 @@ session_start();
   $dbcon = NEW DbCon();
   
   //Create modal models of the modals
-  $promotion = new PromotionModal($dbcon->read_database());
-  $permission = new PermissionModal($dbcon->update_database(), $_POST['id']);
+  $promotion = new PromotionModel($dbcon->read_database());
+  $permission = new PermissionModel($dbcon->update_database(), $_POST['id']);
 
   //Another require
   require 'toolbarview.php';

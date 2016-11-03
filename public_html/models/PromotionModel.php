@@ -4,7 +4,7 @@
   // author: Alex Onorati
   // This class contains all the legal queries on the database casino_serpent.
 
-  class PromotionModal{
+  class PromotionModel{
 
     protected $db;
 

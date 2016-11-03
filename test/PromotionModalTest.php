@@ -10,7 +10,7 @@ class PromotionModalTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testGetAllPromotions(){
-        $controller = new \PromotionModal(null);
+        $controller = new \PromotionModel(null);
         $response = $controller->getAllPromotions();
         assert($response === null,'Should not be null');
     }
