@@ -19,7 +19,7 @@
     } else if ($_POST['action'] == 'submit') {
         echo "Here";
     } else if ($_POST['action'] == 'canDelete') {
-         $permission = new PermissionModal($conn->read_database(),$_POST['permission']);
+         $permission = new PermissionModel($conn->read_database(),$_POST['permission']);
          echo json_encode(array("permission"=>$permission->canDeleteCasinoPromotion($_POST['id'])));
     }
 

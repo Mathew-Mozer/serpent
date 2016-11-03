@@ -5,7 +5,7 @@
   * author: Alex Onorati
   * This class contains all the permissions for a user to acces and alter casinos and promotions.
 */
-  class PermissionModal{
+  class PermissionModel{
 
     protected $db;
     protected $loginId;
