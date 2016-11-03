@@ -1,6 +1,6 @@
 <?php
 /**
-  * PromotionModal class
+  * PromotionModel class
   *
   * author: Alex Onorati
   * This class contains all the permissions for a user to acces and alter casinos and promotions.

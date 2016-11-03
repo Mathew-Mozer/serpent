@@ -1,8 +1,8 @@
 <?php
 session_start();
 require "dependencies/php/header.php";
-require "models/PromotionModel.php";
-require "models/PermissionModel.php";
+require "modals/promotionmodal.php";
+require "modals/permissionModal.php";
 $promotion = new PromotionModal($dbcon->read_database());
 ?>
 <body>

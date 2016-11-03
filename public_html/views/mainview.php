@@ -12,8 +12,9 @@ session_start();
   /**
   *	Require Hell
   */
-  require "../modals/PromotionModal.php";
+  require "../modals/promotionmodal.php";
   require "../modals/permissionModal.php";
+
   require_once("../dependencies/php/HelperFunctions.php");
   require_once(getServerPath()."dbcon.php");
 
@@ -24,6 +25,8 @@ session_start();
   $promotion = new PromotionModal($dbcon->read_database());
   $permission = new PermissionModal($dbcon->update_database(), $_POST['id']);
 
+  require "../models/BoxModel.php";
+  $box = new BoxModel($dbcon->read_database());
   //Another require
   require 'toolbar.php';
 

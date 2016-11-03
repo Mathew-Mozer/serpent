@@ -10,6 +10,8 @@
 <script>
     $(document).ready(function () {
 
+        $('#boxes').hide();
+
         //Load tooltips
         $('[data-toggle="tooltip"]').tooltip();
 
@@ -62,15 +64,13 @@
             if($(this).attr("id") === "toggle-display"){
                 //code to switch to display view
                 $("#toggle-promotion").removeClass("hidden");
-                $('.promotion-view').addClass("hidden");
-                $('#boxes').removeClass("hidden");
-                getBoxById(1);
+                $('.promotion-view').hide();
+                $('#boxes').show();
             } else {
                 //code to switch to promotion view
                 $("#toggle-display").removeClass("hidden");
-                $('#boxes').empty();
-                $('#boxes').addClass("hidden");
-                $('.promotion-view').removeClass("hidden");
+                $('#boxes').hide();
+                $('.promotion-view').show();
             }
         });
     
