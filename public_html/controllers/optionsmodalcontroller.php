@@ -2,8 +2,8 @@
     /*
      * Controller for the options modal.
      */
-    require "../models/OptionsModel.php";
-    require "../models/PermissionModel.php";
+    require "../models/optionsmodel.php";
+    require "../modals/permissionModal.php";
 
     $conn = new DbCon();
     $optionsModal = new OptionsModel($_POST['id']);
@@ -17,7 +17,7 @@
             throw new PDOException("Error Updating");
         }
     } else if ($_POST['action'] == 'submit') {
-
+        echo "Here";
     } else if ($_POST['action'] == 'canDelete') {
          $permission = new PermissionModel($conn->read_database(),$_POST['permission']);
          echo json_encode(array("permission"=>$permission->canDeleteCasinoPromotion($_POST['id'])));

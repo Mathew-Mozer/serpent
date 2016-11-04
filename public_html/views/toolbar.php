@@ -9,10 +9,13 @@
             <?php
         }
         if($permission->canCreateAccount()){
-            ?>
-            <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Edit User">
-                <span class="glyphicon glyphicon-user tool-glyphicon white" aria-hidden="true"></span>
-            </div>
+
+          ?>
+        <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Edit User">
+            <span class="glyphicon glyphicon-user tool-glyphicon white" aria-hidden="true"></span>
+        </div>
+
+
         <?php } ?>
 
 
@@ -34,8 +37,10 @@
         <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Request Help">
             <span class="glyphicon glyphicon-comment tool-glyphicon white" aria-hidden="true"></span>
         </div>
+
         <div id="logoutBtn" class="button-body tool-button" data-toggle="tooltip" title="Logout">
             <span class="glyphicon glyphicon-log-out tool-glyphicon white" aria-hidden="true"></span>
+
         </div>
     </div>
 </div>

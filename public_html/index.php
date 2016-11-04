@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     require "dependencies/php/header.php";
     require "models/PromotionModel.php";
     require "models/PermissionModel.php";
@@ -7,16 +9,15 @@
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
-    <div id="page">
-    </div>
-    <?php
-      //require "views/mainView.php";
-     ?>
+<div id="page">
+</div>
 <!-- End Casino -->
-    
+
+<!-- Modal Divs -->
 <div id="settings" style="display: none;" title="Settings">
 
 </div>
+
 <div id="addPromotion" style="display: none;" title="Promotion">
   <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
     <input type="hidden" name="casinoId" value=""></input>
@@ -187,14 +188,15 @@ $promotion = new PromotionModel($dbcon->read_database());
 <!-- End Modal Divs -->
 <footer>
 
-   </footer>
+</footer>
 
-  </body>
-  <script src = "dependencies/js/login.js"></script>
-  <script src = "dependencies/js/optionsmodal.js"></script>
-
-  <script>
-          <?php
+</body>
+<script src="dependencies/js/login.js"></script>
+<script src="dependencies/js/optionsmodal.js"></script>
+<script src="dependencies/js/addpromotionmodal.js"></script>
+<script src="dependencies/js/createcasino.js"></script>
+<script>
+    <?php
 
             if($_SESSION['loggedIn'] != 'true') {
 
@@ -214,4 +216,3 @@ $promotion = new PromotionModel($dbcon->read_database());
         ?>
 
   </script>
-

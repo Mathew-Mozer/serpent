@@ -17,7 +17,7 @@
     $promotionList = $promotion->getAllPromotionsByCasino($casino['id']);
     if(count($promotionList)>0){
         foreach($promotionList as $row){
-          include 'promotionview.php';
+          include 'promotionView.php';
         }
       }?>
     <!--End Promotion Tile-->

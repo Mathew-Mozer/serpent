@@ -4,7 +4,9 @@ session_start();
  *	This script builds the entire main page
  *	This needs to be cleaned up and recommented
  *	Several models are mislabeled as modals.
-/*
+ *
+*/
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 /**
  *	Require Hell
@@ -16,7 +18,7 @@ require_once(getServerPath()."dbcon.php");
 //Create database connection object
 $dbcon = NEW DbCon();
 
-//Create modal models of the modals
+//Create models
 $promotion = new PromotionModel($dbcon->read_database());
 $permission = new PermissionModel($dbcon->update_database(), $_POST['id']);
 require "../models/BoxModel.php";
