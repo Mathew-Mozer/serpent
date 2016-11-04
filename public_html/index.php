@@ -1,9 +1,9 @@
 <?php
 session_start();
 require "dependencies/php/header.php";
-require "models/PromotionModel.php";
+
 require "models/PermissionModel.php";
-$promotion = new PromotionModel($dbcon->read_database());
+
 ?>
 <body>
 <div id="page">
@@ -16,19 +16,18 @@ $promotion = new PromotionModel($dbcon->read_database());
 </div>
 
 <div id="addPromotion" style="display: none;" title="Promotion">
-    <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
-        <input type="hidden" name="casinoId" value=""/>
-        <select name="promoId">
-            <?php
-            $promotionTypeList = $promotion->getPromotionTypes();
+  <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
+    <div id="promotion-select">
+      <input type="hidden" name="casinoId" value=""></input>
+            <hr>
+            <div id ="promotion_type_select">
 
-            foreach ($promotionTypeList as $row) {
-                echo '<option value="' . $row['promo_id'] . '">' . $row['promo_title'] . '</option>';
-            }
-            ?>
-        </select>
+            </div>
+      </div>
+        <div id="promotion-details">
+        </div>
+        <script id="add-promotion-function"></script>
     </form>
-</div>
 
 <div id="loginModal" style="display: none;" title="Log In">
     <ul id="errorMessage" hidden></ul>
