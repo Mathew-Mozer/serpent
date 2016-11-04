@@ -17,7 +17,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 
 <div id="addPromotion" style="display: none;" title="Promotion">
     <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
-        <input type="hidden" name="casinoId" value=""></input>
+        <input type="hidden" name="casinoId" value=""/>
         <select name="promoId">
             <?php
             $promotionTypeList = $promotion->getPromotionTypes();
