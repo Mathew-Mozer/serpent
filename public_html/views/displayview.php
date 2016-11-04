@@ -1,6 +1,6 @@
 <div id="boxes">
     <?php
-    require "/home/christopher/public_html/public_html/models/BoxModel.php";
+    require "../models/BoxModel.php";
 
     $boxModel = new BoxModel($dbcon->read_database());
     $displays = $boxModel->getAllBoxesWithCasinoId(1);
