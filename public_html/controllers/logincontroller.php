@@ -4,11 +4,15 @@
  * Date: 10/16/16
  * Time: 8:47 PM
  */
+session_start();
 require('../models/LoginValidationModel.php');
 //if call is sent by post
+echo "here";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //if user is logging out
+
     if ($_POST['action'] == 'logout') {
+        var_dump($_SESSION);
         session_destroy();
     } else {
         $validator = new LoginValidation($_POST['userName'], $_POST['password']);

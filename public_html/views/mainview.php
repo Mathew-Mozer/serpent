@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $permission = new PermissionModel($dbcon->update_database(), $_POST['id']);
 
 //Another require
-    require 'toolbarview.php';
+    require 'toolbar.php';
 //Create Casino objects
     $casinoList = $promotion->getPromotionCasinos();
     $casinoCount = count($casinoList);
