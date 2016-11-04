@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $kick_for_cash->addKickForCash($addPromotion,$_POST['cashPrize'],$_POST['targetNumber']);
 
       $response = array();
-      $response['image'] = $promotion->getPromotionImage($_POST['promotionId']);
+      $response['image'] = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
       $reponse['promotion-id'] = $addPromotion;
       $response['casino-id'] = $_POST['casinoId'];
 

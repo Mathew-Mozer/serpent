@@ -1,5 +1,9 @@
 <div id="boxes">
-    <?php $displays = $box->getAllBoxesWithCasinoId(1);
+    <?php
+    require "/home/christopher/public_html/public_html/models/BoxModel.php";
+
+    $boxModel = new BoxModel($dbcon->read_database());
+    $displays = $boxModel->getAllBoxesWithCasinoId(1);
     foreach ($displays as $display){?>
         <div class="display-outer">
             <div class="display-body container">
