@@ -55,7 +55,7 @@ session_start();
 
 	<!-- TPS Generated Content -->
 	<link href="dependencies/css/tiles.css" rel="stylesheet">
-
+	<link href="dependencies/css/text.css" rel="stylesheet">
     <link href="dependencies/css/displays.css" rel="stylesheet">
 
 	<?php

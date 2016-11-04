@@ -14,7 +14,7 @@
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $promotion = new PromotionModel($dbcon->insert_database());
       $addResponse = $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId']);
-      $response = $promotion->getPromotionImage($_POST['promotionId']);
+      $response = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
 
       header('content-type:application/json');
       echo json_encode($response);

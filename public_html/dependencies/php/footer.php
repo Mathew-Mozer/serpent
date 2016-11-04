@@ -6,54 +6,58 @@
 *
 * This page controls the footer and closing material for the website
 */
+?>   <script>   $(document).ready(function(){
+
 
 ?>
 <script>
     $(document).ready(function () {
         $('#boxes').hide();
         //Load tooltips
-        $('[data-toggle="tooltip"]').tooltip();
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
         //Show option bar
         $(".tile-body").hover(function () {
             $(this).children(".tile-menu-bar").removeClass("hidden");
         }, function () {
             $(this).children(".tile-menu-bar").addClass("hidden");
+
         });
         //highlight option under mouse
         $(".tile-menu-item").hover(function () {
             $(this).addClass("tile-menu-item-hover");
         }, function () {
             $(this).removeClass("tile-menu-item-hover");
-          });
 
-            $("#createCasinoBtn").click( function (){
-                createCasinoModal.dialog('open');
-            });
-
-
-        /*
-         These are the modal windows that can be opened. Note that these need
-         to be moved to their own file. Most likely they should just be aggregated
-         as they are 90% similar.
-         */
-
-        $(".settingsBtn").unbind('click').click(function () {
-            var ids = $(this).attr('id').split('-');
-            <?php echo "var id=" . $_SESSION['userId'] . ";"; ?>
-            var perm = canDelete(ids[0], id);
-            getSettings(ids[1], perm);
+		});        
+		
+		/**
+		* This is for click listeners
+		*/
+		$("#createCasinoBtn").click( function (){
+           createCasinoModal.dialog('open');
         });
 
-
-        $(".add-promotion-btn").unbind('click').click(function () {
-            $('input[name=casinoId]').val(this.id);
-            addPromotionModal.dialog('open');
+       $(".settingsBtn").unbind('click').click(function(){
+           var ids = $(this).attr('id').split('-');
+           <?php echo "var id=".$_SESSION['userId'].";"; ?>
+           var perm = canDelete(ids[0],id);
+           getSettings(ids[1], perm);
         });
+
+       $(".add-promotion-btn").unbind('click').click(function(){
+          $('input[name=casinoId]').val(this.id);
+          addPromotionModal.dialog('open');
+       });
+
         //Open add/remove user panel
         $(".userBtn").unbind('click').click(function () {
             editUsersModal.dialog('open');
         });
-        $("#create-casino-btn").click(function () {
+
+        $("#create-casino-btn").click(function(){
             createCasinoModal.dialog('open');
         });
         //Toggle between promotion and display view
@@ -74,6 +78,12 @@
 
         /**
          * End Click Listeners
+		*/
+
+        /*
+         These are the modal windows that can be opened. Note that these need
+         to be moved to their own file. Most likely they should just be aggregated
+         as they are 90% similar.
          */
 
     });
