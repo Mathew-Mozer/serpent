@@ -6,17 +6,14 @@
 *
 * This page controls the footer and closing material for the website
 */
-?>   <script>   $(document).ready(function(){
-
-
 ?>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function(){
+
         $('#boxes').hide();
+
         //Load tooltips
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        $('[data-toggle="tooltip"]').tooltip();
 
         //Show option bar
         $(".tile-body").hover(function () {
@@ -40,7 +37,7 @@
            createCasinoModal.dialog('open');
         });
 
-       $(".settingsBtn").unbind('click').click(function(){
+        $(".settingsBtn").unbind('click').click(function(){
            var ids = $(this).attr('id').split('-');
            <?php echo "var id=".$_SESSION['userId'].";"; ?>
            var perm = canDelete(ids[0],id);
@@ -49,13 +46,14 @@
 
        $(".add-promotion-btn").unbind('click').click(function(){
           $('input[name=casinoId]').val(this.id);
-          addPromotionModal.dialog('open');
+           $('#promotion_type_select').load("views/addpromotionoptionview.php", {casinoId: this.id});
+           addPromotionModal.dialog('open');
        });
 
-        //Open add/remove user panel
+/*        //Open add/remove user panel
         $(".userBtn").unbind('click').click(function () {
             editUsersModal.dialog('open');
-        });
+        });*/
 
         $("#create-casino-btn").click(function(){
             createCasinoModal.dialog('open');
@@ -74,6 +72,10 @@
                 $('#boxes').hide();
                 $('.promotion-view').show();
             }
+        });
+
+        $("#logoutBtn").click(function () {
+            logoutUser();
         });
 
         /**
