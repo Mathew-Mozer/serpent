@@ -1,8 +1,10 @@
 <?php
     require "dependencies/php/header.php";
-    require "modals/PromotionModal.php";
-    require "modals/permissionModal.php";
-    $promotion = new PromotionModal($dbcon->read_database());
+    require "models/PromotionModel.php";
+    require "models/PermissionModel.php";
+    require "models/DisplayModel.php";
+
+$promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
     <div id="page">
@@ -51,6 +53,26 @@
 
     </div>
 
+    <div id="editDisplayModal" style="display: none;" title="Edit Display">
+
+        <ul id="errorMessage" hidden></ul>
+
+        <?php
+            $displayOptions = new DisplayModel($dbcon->read_Database());
+            $displayPromotions = $displayOptions->getAllPromotionsByCasino(1);
+        ?>
+
+        <form>
+
+                <?php
+                    foreach($displayPromotions as $row){
+                        echo "<input type='checkbox' name='promotion' value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
+                    }
+                ?>
+
+        </form>
+
+    </div>
     <div id="createCasino" style="display: none;" title="Create Casino">
 
         <form id="casinoForm">
@@ -121,6 +143,10 @@
 
     </div>
 
+    <?php
+    include "views/displayView.php"
+
+    ?>
 
    <footer>
 
@@ -129,6 +155,7 @@
   </body>
   <script src = "dependencies/js/login.js"></script>
   <script src = "dependencies/js/optionsmodal.js"></script>
+
   <script>
           <?php
 
