@@ -2,71 +2,30 @@
 
 session_start();
 require "dependencies/php/header.php";
-require "models/PromotionModel.php";
-require "models/PermissionModel.php";
-$promotion = new PromotionModel($dbcon->read_database());
+
+
+
 ?>
 <body>
     <div id="page">
     </div>
-    <?php
-      //require "views/mainView.php";
-     ?>
-<!-- End Casino -->
-    
+
 <div id="settings" style="display: none;" title="Settings">
 
 </div>
 <div id="addPromotion" style="display: none;" title="Promotion">
-  <form id="add-promotion-form" action="controllers/addPromotion.php" method="post">
-    <input type="hidden" name="casinoId" value=""></input>
-  <select name="promoId">
-  <?php
-  $promotionTypeList = $promotion->getPromotionTypes();
+  <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
+    <div id="promotion-select">
+      <input type="hidden" name="casinoId" value=""></input>
+            <hr>
+            <div id ="promotion_type_select">
 
-  foreach($promotionTypeList as $row){
-    echo '<option value="'.$row['promo_id'].'">'.$row['promo_title'].'</option>';
-  }
-  ?>
-  </select>
-</form>
- </div>
- <div id="loginModal" style="display: none;" title="Log In">
-
-        <ul id="errorMessage" hidden></ul>
-
-        <form>
-
-            <input type="text" name="userName" id="userName" placeholder="User Name">
-
-            <br/>
-
-            <br/>
-
-            <input type="password" name="password" id="password" placeholder="Password">
-
-            <br/>
-
-            <br/>
-
-        </form>
-
-    </div>
-
-    <div id="editDisplayModal" style="display: none;" title="Edit Display">
-
-        <ul id="errorMessage" hidden></ul>
-
-        <form>
-
-            <?php
-            for($row i){
-
-            }
-            ?>
-            ?>
-
-        </form>
+            </div>
+      </div>
+        <div id="promotion-details">
+        </div>
+        <script id="add-promotion-function"></script>
+    </form>
 
     <div id="createCasino" style="display: none;" title="Create Casino">
 
@@ -172,7 +131,3 @@ $promotion = new PromotionModel($dbcon->read_database());
         ?>
 
   </script>
-
-<?php
-
-   ?>

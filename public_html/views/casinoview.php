@@ -1,5 +1,5 @@
 
-<div id=<?php echo "\"promotion-list-" . $casino['id'] . "\""; ?>>
+<div class="promotion-view" id=<?php echo "\"promotion-list-" . $casino['id'] . "\""; ?>>
     <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
     <!--New Promotion Title-->
     <?php
