@@ -3,6 +3,7 @@
  * Model to control the box view
  *
  */
+
 class BoxModel
 {
     private $conn;
@@ -41,17 +42,6 @@ class BoxModel
         if($box->getName() != null) {
             array_push($boxes, $box);
         }
-        /*
-        foreach ($result as $box){
-            $getBoxPromotions = "SELECT * FROM promotion_casino WHERE box_id=1;";
-            $promotionStatement = $this->conn->prepare($getBoxPromotions);
-            $promotions = $promotionStatement->fetchAll(PDO::FETCH_ASSOC);
-            echo $box['id'] . '<br/>';
-            var_dump($promotions);
-            echo '<br/>';
-            $box['promotions'] = $promotions;
-            array_push($boxes,$this->createBoxWithValuesSet($box));
-        }*/
         return $boxes;
     }
     public function getBoxWithId($id) {
@@ -71,7 +61,6 @@ class BoxModel
         return $box;
     }
     private function addPromotionToBox($promotion){
-
         array_push($this->promotions,$promotion);
     }
     /**

@@ -15,10 +15,11 @@
                 <hr class="display">
                 <?php
                 $promotions = $display->getPromotions();
-                foreach($promotions as $promotion){
-                    ?>
-                    <div class="promotion-preview-body <?php echo $promotion; //$row['promo_id'];?>">
-                        <img class="promotion-preview-icon" src="dependencies/images/<?php echo "pointsgt.png"; //$row['promo_image']?>">
+                foreach($promotions as $promo){
+                    $image = $promotion->getPromotionImageByPromotionId($promo); ?>
+                    <div class="promotion-preview-body">
+                        <img class="promotion-preview-icon"
+                             src="dependencies/images/<?php echo $image['image'];?>">
                     </div>
                 <?php } ?>
             </div>
