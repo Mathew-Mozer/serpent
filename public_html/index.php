@@ -78,7 +78,6 @@ $promotion = new PromotionModel($dbcon->read_database());
     </form>
 </div>
 <!-- End Modal Divs -->
-
 <footer>
 
 </footer>
