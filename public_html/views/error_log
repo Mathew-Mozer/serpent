@@ -1,0 +1,19 @@
+[03-Nov-2016 16:28:26 America/Chicago] PHP Fatal error:  Call to undefined method PermissionModal::hasPermissionByAccount() in /home/ontopgames/public_html/SerpentFormated/models/PermissionModel.php on line 77
+[03-Nov-2016 18:00:49 America/Chicago] PHP Fatal error:  Class 'PromotionModal' not found in /home/ontopgames/public_html/SerpentFormated/views/mainview.php on line 24
+[03-Nov-2016 18:02:01 America/Chicago] PHP Fatal error:  Class 'PermissionModel' not found in /home/ontopgames/public_html/SerpentFormated/views/mainview.php on line 25
+[03-Nov-2016 20:12:15 America/Chicago] PHP Fatal error:  Class 'PromotionModel' not found in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 3
+[03-Nov-2016 20:13:05 America/Chicago] PHP Warning:  require(models/PromotionModel.php): failed to open stream: No such file or directory in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 3
+[03-Nov-2016 20:13:05 America/Chicago] PHP Warning:  require(models/PromotionModel.php): failed to open stream: No such file or directory in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 3
+[03-Nov-2016 20:13:05 America/Chicago] PHP Fatal error:  require(): Failed opening required 'models/PromotionModel.php' (include_path='.:/opt/php54/lib/php') in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 3
+[03-Nov-2016 20:13:41 America/Chicago] PHP Fatal error:  Call to a member function read_database() on a non-object in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 4
+[03-Nov-2016 20:14:31 America/Chicago] PHP Fatal error:  Call to a member function read_database() on a non-object in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 6
+[03-Nov-2016 20:15:00 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM
+                promotion_type, subscription
+              WHERE
+          ' at line 6' in /home/ontopgames/public_html/SerpentFormated/models/PromotionModel.php:92
+Stack trace:
+#0 /home/ontopgames/public_html/SerpentFormated/models/PromotionModel.php(92): PDOStatement->execute()
+#1 /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php(10): PromotionModel->getPromotionTypes('1')
+#2 {main}
+  thrown in /home/ontopgames/public_html/SerpentFormated/models/PromotionModel.php on line 92
+[03-Nov-2016 20:23:51 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home/ontopgames/public_html/SerpentFormated/views/addPromotionOptionView.php on line 17
