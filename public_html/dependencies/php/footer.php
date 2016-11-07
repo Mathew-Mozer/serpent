@@ -10,7 +10,7 @@
 <script>
     $(document).ready(function(){
 
-        $('#boxes').hide();
+        $('.boxes').hide();
 
         //Load tooltips
         $('[data-toggle="tooltip"]').tooltip();
@@ -65,11 +65,11 @@
                 //code to switch to display view
                 $("#toggle-promotion").removeClass("hidden");
                 $('.promotion-view').hide();
-                $('#boxes').show();
+                $('.boxes').show();
             } else {
                 //code to switch to promotion view
                 $("#toggle-display").removeClass("hidden");
-                $('#boxes').hide();
+                $('.boxes').hide();
                 $('.promotion-view').show();
             }
         });

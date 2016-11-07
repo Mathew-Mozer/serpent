@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $casinoCount = count($casinoList);
     $casinoRowIndex = 0;
 //List all the casinos that the current user has permissions to view
+    require "../models/CasinoBoxes.php";
     foreach ($casinoList as $casino) {
         //If the permission checks out, print the promotion
         if ($permission->canViewCasinoPromotions($casino['id'])) {
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($casinoRowIndex < $casinoCount) { ?>
                 <hr>
             <?php }
+            include 'displayview.php';
         }
     }
 
@@ -44,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h3>You have no access to any casinos.</h3>
         </div>
     <?php }
-    include 'displayview.php';
     include '../dependencies/php/footer.php';
 }
 ?>

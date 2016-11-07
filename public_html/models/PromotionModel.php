@@ -124,7 +124,7 @@
 
     public function getPromotionImageByPromotionId($id){
       $sql = "SELECT image FROM promotion, promotion_type 
-                WHERE promotion.id =" . $id . " AND promotion_type.id = promotion.promotion_type_id";
+                WHERE promotion.id =" .$id. " AND promotion_type.id = promotion.promotion_type_id";
       $result = $this->db->prepare($sql);
       $result->execute();
       $image = $result->fetch(PDO::FETCH_ASSOC);
