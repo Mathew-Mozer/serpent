@@ -16,7 +16,10 @@
         </div>
 
 
-        <?php } ?>
+        <?php }
+
+        if($permission->hasPermissionByAccount("box","R")) {
+        ?>
 
 
         <div id = "toggle-display" class="toggle-display-btn button-body tool-button" data-toggle="tooltip" title="Switch to Display View">
@@ -27,7 +30,9 @@
         <div id = "toggle-promotion" class="toggle-display-btn hidden button-body tool-button" data-toggle="tooltip" title="Switch to Promotion View">
             <span class="glyphicon glyphicon-certificate tool-glyphicon white" aria-hidden="true"></span>
         </div>
-
+        <?php
+        }
+        ?>
 
 
         <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Options">
