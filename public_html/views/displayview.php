@@ -1,4 +1,5 @@
 <div class="boxes">
+    <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
     <?php
     $casinoBox = new CasinoBoxes($dbcon->read_database(), $casino['id']);
     $casinoBoxes = $casinoBox->getBoxes();
