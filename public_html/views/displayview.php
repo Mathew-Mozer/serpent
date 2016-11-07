@@ -1,10 +1,9 @@
-<div id="boxes">
+<div class="boxes">
     <?php
-    require "../models/BoxModel.php";
-
-    $boxModel = new BoxModel($dbcon->read_database());
-    $displays = $boxModel->getAllBoxesWithCasinoId(1);
-    foreach ($displays as $display){?>
+    $casinoBox = new CasinoBoxes($dbcon->read_database(), $casino['id']);
+    $casinoBoxes = $casinoBox->getBoxes();
+    //var_dump($casinoBoxes);
+    foreach ($casinoBoxes as $display){?>
         <div class="display-outer">
             <div class="display-body container">
                 <div class="display-header row">
@@ -19,13 +18,14 @@
                 <hr class="display">
                 <?php
                 $promotions = $display->getPromotions();
-                foreach($promotions as $promo){
-                    $image = $promotion->getPromotionImageByPromotionId($promo); ?>
-                    <div class="promotion-preview-body">
-                        <img class="promotion-preview-icon"
-                             src="dependencies/images/<?php echo $image['image'];?>">
-                    </div>
-                <?php } ?>
+                //var_dump($promotions);
+                    foreach ($promotions as $promo) {
+                        $image = $promotion->getPromotionImageByPromotionId($promo['promotion_id']); ?>
+                        <div class="promotion-preview-body">
+                            <img class="promotion-preview-icon"
+                                 src="dependencies/images/<?php echo $image['image']; ?>">
+                        </div>
+                    <?php } ?>
             </div>
         </div>
     <?php } ?>
