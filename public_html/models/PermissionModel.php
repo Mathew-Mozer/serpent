@@ -128,16 +128,16 @@
 
 
     /**
-    * Base permission test for user.
+    * Base permission test for user. 
     */
-    private function hasPermission($tag, $casinoId, $permission){
+    public function hasPermission($tag, $casinoId, $permission){
       return isset($this->permissions[$tag][$casinoId]) && isset($this->permissions[$tag][$casinoId]['permission'][$permission]);
     }
 
 	/**
 	* Account permissions
 	*/
-    private function hasPermissionByAccount($tag, $permission){
+    public function hasPermissionByAccount($tag, $permission){
       return isset($this->permissions[$tag]) && isset($this->permissions[$tag]['permission'][$permission]);
     }
   }
