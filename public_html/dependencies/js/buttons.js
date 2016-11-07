@@ -22,6 +22,8 @@ $(document).ready(function(){
         createCasinoModal.dialog('open');
     });
 
+
+	
     //Toggle between promotion and display view
     $(".toggle-display-btn").click(function() {
         $(this).addClass("hidden");
