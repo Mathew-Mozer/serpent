@@ -95,11 +95,11 @@
             buttons: {
                 Close: function(){
                     editDisplayModal.dialog('close');
-                }
+                },
 
-                //Update: function(){
-                  //  editDisplayModal.dialog('update');
-                //}
+                Save: function(){
+                    editDisplayModal.dialog('update');
+                }
             }
         });
 		

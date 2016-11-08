@@ -59,6 +59,17 @@ $promotion = new PromotionModel($dbcon->read_database());
             echo "<input type='checkbox' name='promotion' value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
         }
         ?>
+
+
+    </form>
+
+    <hr>
+
+    <form class="form-horizontal" method="post">
+
+            <input type="text" name="displayName" value='Box Name' <p>Display Name</p><br>
+            <input type="text" name="displayID" value="GAC-001" <p>Display ID</p>
+
     </form>
 
 </div>

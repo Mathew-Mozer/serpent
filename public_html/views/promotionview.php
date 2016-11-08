@@ -1,4 +1,4 @@
-        <div class="tile-body <?php echo $row['promo_id'];?>">
+        <div class="tile-body <?php echo $row['promo_id'];?>" data-toggle="tooltip" title="<?php echo $row['promo_title'];?>">
             <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image']?>">
             <div class="tile-menu-bar hidden">
                 <?php if ($permission->canUpdateCasinoPromtion($casino['id'])){?>
