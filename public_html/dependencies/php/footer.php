@@ -82,6 +82,27 @@
          * End Click Listeners
 		*/
 
+			//Open display modal
+	$(".edit-display-btn").unbind('click').click(function () {
+		editDisplayModal.dialog('open');
+	});
+		
+		var editDisplayModal = $("#editDisplayModal").dialog({
+           autoOpen: false,
+            height: 400,
+            width: 350,
+            modal: true,
+            buttons: {
+                Close: function(){
+                    editDisplayModal.dialog('close');
+                }
+
+                //Update: function(){
+                  //  editDisplayModal.dialog('update');
+                //}
+            }
+        });
+		
         /*
          These are the modal windows that can be opened. Note that these need
          to be moved to their own file. Most likely they should just be aggregated
