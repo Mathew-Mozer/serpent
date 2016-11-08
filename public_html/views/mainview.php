@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $casinoRowIndex = 0;
 //List all the casinos that the current user has permissions to view
     require "../models/CasinoBoxes.php";
+    require "unassignedboxview.php";
     foreach ($casinoList as $casino) {
         //If the permission checks out, print the promotion
         if ($permission->canViewCasinoPromotions($casino['id'])) {
