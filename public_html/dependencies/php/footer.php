@@ -41,9 +41,7 @@
 		/**
 		* This is for click listeners
 		*/
-		$("#createCasinoBtn").click( function (){
-           createCasinoModal.dialog('open');
-        });
+		
 
         $(".settingsBtn").unbind('click').click(function(e){
             e.stopPropagation();
