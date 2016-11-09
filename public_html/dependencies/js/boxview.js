@@ -26,7 +26,7 @@ var assignDisplayModal = $("#assign-display").dialog({
 });
 
 var setValuesInModal = function(values) {
-  $('#displayId').html("Index: " + values['id']);
+  $('#displayId').html(values['id']);
   $('#displayName').html("Box ID: " + values['name']);
   $('#displaySerial').html("Box Name: " + values['serial']);
   $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
