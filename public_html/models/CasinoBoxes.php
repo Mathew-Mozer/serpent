@@ -93,13 +93,39 @@ class CasinoBoxes
         $result->execute();
     }
 
-    public function updatePromotionsInDisplay($id, $promotions){
-      /*$sql= "UPDATE box SET name=:current_name, display_location=:display_location WHERE id=:id;";
+    public function updatePromotionsInDisplay($insertConn, $boxId, $casinoId, $promotions){
 
-        $result = $this->conn->prepare($sql);
-        $result->bindValue(':current_name', $name, PDO::PARAM_STR);
-        $result->bindValue(':display_location', $displayLocation, PDO::PARAM_STR);
-           $result->bindValue(':id', $id, PDO::PARAM_STR);
-        $result->execute();*/
+      foreach($promotions as $promotion){
+
+        $sql= "SELECT * FROM promotion_casino WHERE promotion_id=:promotion_id AND casino_id=:casino_id;";
+
+          $result = $this->conn->prepare($sql);
+          $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
+          $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+          $result->execute();
+          if($result->rowCount() > 0){
+            $sql= "UPDATE promotion_casino SET box_id=:box_id WHERE promotion_id=:promotion_id AND casino_id=:casino_id;";
+
+              $result = $this->conn->prepare($sql);
+              if($promotion['checked']=="true"){
+                $result->bindValue(':box_id', $boxId, PDO::PARAM_STR);
+              }else{
+                $result->bindValue(':box_id', 0, PDO::PARAM_STR);
+              }
+              $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
+              $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+              $result->execute();
+          }else if ($promotion['checked']=="true"){
+            $sql= "INSERT promotion_casino (promotion_id, casino_id, box_id)VALUES (:promotion_id, :casinoId, :box_id);";
+
+              $result = $insertConn->prepare($sql);
+              $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
+              $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+              $result->bindValue(':box_id', $boxId, PDO::PARAM_STR);
+              $result->execute();
+          }
+
+      }
+
     }
 }

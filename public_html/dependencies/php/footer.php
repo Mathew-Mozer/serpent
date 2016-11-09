@@ -41,7 +41,7 @@
 		/**
 		* This is for click listeners
 		*/
-		
+
 
         $(".settingsBtn").unbind('click').click(function(e){
             e.stopPropagation();
@@ -121,14 +121,14 @@
                   var displayName = $('input[name=displayName]').val();
                   var displayLocation = $('input[name=displayLocation]').val();
                   var promotions = document.getElementsByClassName('promotions-in-display');
-                  console.log(promotions);
-                  // var promotionsFormatted = [];
-                  //  $.each(promotions, function(index, value){
-                  //    var displayId = value.data("display-id");
-                  //    promotionsFormatted.push({promoId : value.value, displayId : displayId, checked : value.checked});
-                  //  });
-                  //
-                  //    console.log(promotionsFormatted);
+
+                  var promotionsFormatted = [];
+                   $.each(promotions, function(index, value){
+
+                      promotionsFormatted.push({promoId : value.value, displayId : value.dataset.displayId, checked : value.checked});
+                    });
+
+                      //console.log(promotionsFormatted);
                   $.ajax({
 
                       url: 'controllers/displaycontroller.php',
@@ -138,11 +138,12 @@
                           casinoId: casinoId,
                           displayId: displayId,
                           displayName: displayName,
-                          displayLocation: displayLocation
+                          displayLocation: displayLocation,
+                          promotions: promotionsFormatted
                       },
                       cache: false,
                       success: function(response) {
-                          console.log(response);
+                          
 
 
                           editDisplayModal.dialog('close');
