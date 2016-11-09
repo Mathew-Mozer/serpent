@@ -46,7 +46,7 @@
         });
 
         $(".settingsBtn").unbind('click').click(function(e){
-            e.stopPropagation();  
+            e.stopPropagation();
            var ids = $(this).attr('id').split('-');
            <?php echo "var id=".$_SESSION['userId'].";"; ?>
            var perm = canDelete(ids[0],id);
@@ -96,6 +96,10 @@
 
 			//Open display modal
 	$(".edit-display-btn").unbind('click').click(function () {
+    var casinoId = $(this).data("casino-id");
+    var displayId = $(this).data("display-id");
+    console.log(casinoId + displayId);
+    $("#editDisplayModal").load("modals/displaymodalform.php", {casinoId : casinoId, displayId : displayId});
 		editDisplayModal.dialog('open');
 	});
 
@@ -110,7 +114,41 @@
                 },
 
                 Save: function(){
-                    editDisplayModal.dialog('update');
+                  var casinoId = $("#casino-id-form").data("casino-id");
+                  var displayId = $("#display-id-form").data("display-id");
+                  var displayName = $('input[name=displayName]').val();
+                  var displayLocation = $('input[name=displayLocation]').val();
+                  var promotions = document.getElementsByClassName('promotions-in-display');
+                  console.log(promotions);
+                  // var promotionsFormatted = [];
+                  //  $.each(promotions, function(index, value){
+                  //    var displayId = value.data("display-id");
+                  //    promotionsFormatted.push({promoId : value.value, displayId : displayId, checked : value.checked});
+                  //  });
+                  //
+                  //    console.log(promotionsFormatted);
+                  $.ajax({
+
+                      url: 'controllers/displaycontroller.php',
+                      type: 'post',
+                      data: {
+                          action: 'update',
+                          casinoId: casinoId,
+                          displayId: displayId,
+                          displayName: displayName,
+                          displayLocation: displayLocation
+                      },
+                      cache: false,
+                      success: function(response) {
+                          console.log(response);
+
+
+                          editDisplayModal.dialog('close');
+                      },
+                      error: function(xhr, desc, err) {
+                          console.log(xhr + "\n" + err);
+                      }
+                  });
                 }
             }
         });

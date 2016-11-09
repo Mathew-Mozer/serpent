@@ -32,23 +32,6 @@ var addPromotionModal = $("#addPromotion").dialog({
             $("#promotion-select").show();
             $("#promotion-details").hide();
             addPromotionByType(casinoId, currentPromotionType);
-            //Ajax call to update database with new promotion
-            /*$.ajax({
-                url: 'controllers/addpromotioncontroller.php',
-                type: 'post',
-                data: {casinoId: casinoId, promotionId: promotionId},
-                cache: false,
-                success: function (response) {
-                    console.log(response);
-
-                    //update view with new promotion
-                    addPromotion(response.image, casinoId);
-                    addPromotionModal.dialog('close');
-                },
-                error: function (xhr, desc, err) {
-                    console.log(xhr + "\n" + err);
-                }
-            });*/
         }
     }
 });
