@@ -55,7 +55,8 @@ class DisplayModel{
         $sql = "SELECT
                       promotion.id as promo_id,
                       promotion_type.title as promo_title,
-                      promotion_type.image as promo_image
+                      promotion_type.image as promo_image,
+                      promotion_casino.box_id as display_id
                     FROM
                       promotion, promotion_type, promotion_casino, casino
                     WHERE

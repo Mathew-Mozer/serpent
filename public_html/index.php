@@ -4,7 +4,7 @@ session_start();
 require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
-require "models/DisplayModel.php";
+
 
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
@@ -43,34 +43,21 @@ $promotion = new PromotionModel($dbcon->read_database());
         <br/>
     </form>
 </div>
+<div id="assign-display" style="display: none;" title="Assign Display">
+    <p id="displayId"></p>
+    <p id="displayName"></p>
+    <p id="displaySerial"></p>
+    <p id="displayMacAddress"></p>
+    <select id="displayCasinos"></select>
+</div>
+
+<div id=promotion-view-modal data-promo-id="" style="display: none";>
+
+</div>
 
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 
-    <ul id="errorMessage" hidden></ul>
-
-    <?php
-    $displayOptions = new DisplayModel($dbcon->read_Database());
-    $displayPromotions = $displayOptions->getAllPromotionsByCasino(1);
-    ?>
-
-    <form>
-        <?php
-        foreach ($displayPromotions as $row) {
-            echo "<input type='checkbox' name='promotion' value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
-        }
-        ?>
-
-
-    </form>
-
-    <hr>
-
-    <form class="form-horizontal" method="post">
-
-            <input type="text" name="displayName" value='Box Name' <p>Display Name</p><br>
-            <input type="text" name="displayID" value="GAC-001" <p>Display ID</p>
-
-    </form>
+  
 
 </div>
 <div id="createCasino" style="display: none;" title="Create Casino">
@@ -121,6 +108,8 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/optionsmodal.js"></script>
 <script src="dependencies/js/addpromotionmodal.js"></script>
 <script src="dependencies/js/createcasino.js"></script>
+<script src="dependencies/js/boxview.js"></script>
+<script src="dependencies/js/promotionmodal.js"></script>
 <script>
     <?php
 

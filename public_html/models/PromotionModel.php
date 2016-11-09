@@ -50,7 +50,9 @@
             $sql = "SELECT
                       promotion.id as promo_id,
                       promotion_type.title as promo_title,
-                      promotion_type.image as promo_image
+                      promotion_type.image as promo_image,
+                      promotion_casino.box_id as display_id,
+                      promotion_type.file_name as file_name
                     FROM
                       promotion, promotion_type, promotion_casino, casino
                     WHERE
@@ -68,6 +70,8 @@
 
             return $promoResult;
     }
+
+
 
     public function getPromotionTypes($casinoId){
       $sql = "SELECT
@@ -123,7 +127,7 @@
     }
 
     public function getPromotionImageByPromotionId($id){
-      $sql = "SELECT image FROM promotion, promotion_type 
+      $sql = "SELECT image FROM promotion, promotion_type
                 WHERE promotion.id =" .$id. " AND promotion_type.id = promotion.promotion_type_id";
       $result = $this->db->prepare($sql);
       $result->execute();

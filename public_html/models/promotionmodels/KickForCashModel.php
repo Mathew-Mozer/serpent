@@ -30,28 +30,26 @@ class KickForCashModel{
              FROM
                kick_for_cash
                WHERE
-               id=:id;";
+               promotion_id=:id;";
      $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);
      $result->execute();
 
-     $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+     $promoResult = $result->fetch(PDO::FETCH_ASSOC);
 
      return $promoResult;
    }
 
-   public function UpdateKickForCash($id, $promotionId, $cashPrize ,$targetNumber){
+   public function UpdateKickForCash($promotionId, $name ,$targetNumber){
 
-     $sql= "UPDATE kick_for_cash SET promotion_id=? , cash_prize=?, target_number=? , WHERE id=?";
+     $sql= "UPDATE kick_for_cash SET name=:current_name, chosen_number=:chosen_number WHERE promotion_id=:promotion_id;";
 
        $result = $this->db->prepare($sql);
-       $result->bindValue(':cash_prize', $cashPrize, PDO::PARAM_STR);
-       $result->bindValue(':promotion_id', $promotionId, PDO::PARAM_STR);
-       $result->bindValue(':target_number', $targetNumber, PDO::PARAM_STR);
-       $result->bindValue(':id', $id, PDO::PARAM_STR);
+       $result->bindValue(':current_name', $name, PDO::PARAM_STR);
+       $result->bindValue(':chosen_number', $targetNumber, PDO::PARAM_STR);
+          $result->bindValue(':promotion_id', $promotionId, PDO::PARAM_STR);
        $result->execute();
-
-
+       return array("id"=>$promotionId,"name"=>$name,"target_number"=>$targetNumber);
    }
  }
 ?>

@@ -11,6 +11,7 @@
     $(document).ready(function(){
 
         $('.boxes').hide();
+        $('#unassigned-boxes').hide();
 
         //Load tooltips
         $('[data-toggle="tooltip"]').tooltip();
@@ -28,8 +29,15 @@
         }, function () {
             $(this).removeClass("tile-menu-item-hover");
 
-		});        
-		
+		});
+
+    $(".tile-body").unbind('click').click(function(){
+      promotionViewModal.dialog('open');
+      $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
+      $("#promotion-view-modal").load("views/displaypromotionviews/"+$(this).data("promo-type")+"view.php");
+
+    });
+
 		/**
 		* This is for click listeners
 		*/
@@ -37,12 +45,14 @@
            createCasinoModal.dialog('open');
         });
 
-        $(".settingsBtn").unbind('click').click(function(){
+        $(".settingsBtn").unbind('click').click(function(e){
+            e.stopPropagation();
            var ids = $(this).attr('id').split('-');
            <?php echo "var id=".$_SESSION['userId'].";"; ?>
            var perm = canDelete(ids[0],id);
            getSettings(ids[1], perm);
-        });
+         });
+
 
        $(".add-promotion-btn").unbind('click').click(function(){
           $('input[name=casinoId]').val(this.id);
@@ -65,13 +75,19 @@
                 //code to switch to display view
                 $("#toggle-promotion").removeClass("hidden");
                 $('.promotion-view').hide();
+                $('#unassigned-boxes').show();
                 $('.boxes').show();
             } else {
                 //code to switch to promotion view
                 $("#toggle-display").removeClass("hidden");
                 $('.boxes').hide();
+                $('#unassigned-boxes').hide();
                 $('.promotion-view').show();
             }
+        });
+
+        $(".box-options").click(function() {
+            getBoxById(this.id);
         });
 
         $("#logoutBtn").click(function () {
@@ -84,9 +100,13 @@
 
 			//Open display modal
 	$(".edit-display-btn").unbind('click').click(function () {
+    var casinoId = $(this).data("casino-id");
+    var displayId = $(this).data("display-id");
+    console.log(casinoId + displayId);
+    $("#editDisplayModal").load("modals/displaymodalform.php", {casinoId : casinoId, displayId : displayId});
 		editDisplayModal.dialog('open');
 	});
-		
+
 		var editDisplayModal = $("#editDisplayModal").dialog({
            autoOpen: false,
             height: 400,
@@ -98,11 +118,45 @@
                 },
 
                 Save: function(){
-                    editDisplayModal.dialog('update');
+                  var casinoId = $("#casino-id-form").data("casino-id");
+                  var displayId = $("#display-id-form").data("display-id");
+                  var displayName = $('input[name=displayName]').val();
+                  var displayLocation = $('input[name=displayLocation]').val();
+                  var promotions = document.getElementsByClassName('promotions-in-display');
+                  console.log(promotions);
+                  // var promotionsFormatted = [];
+                  //  $.each(promotions, function(index, value){
+                  //    var displayId = value.data("display-id");
+                  //    promotionsFormatted.push({promoId : value.value, displayId : displayId, checked : value.checked});
+                  //  });
+                  //
+                  //    console.log(promotionsFormatted);
+                  $.ajax({
+
+                      url: 'controllers/displaycontroller.php',
+                      type: 'post',
+                      data: {
+                          action: 'update',
+                          casinoId: casinoId,
+                          displayId: displayId,
+                          displayName: displayName,
+                          displayLocation: displayLocation
+                      },
+                      cache: false,
+                      success: function(response) {
+                          console.log(response);
+
+
+                          editDisplayModal.dialog('close');
+                      },
+                      error: function(xhr, desc, err) {
+                          console.log(xhr + "\n" + err);
+                      }
+                  });
                 }
             }
         });
-		
+
         /*
          These are the modal windows that can be opened. Note that these need
          to be moved to their own file. Most likely they should just be aggregated
