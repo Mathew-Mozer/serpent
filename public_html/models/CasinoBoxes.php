@@ -53,6 +53,16 @@ class CasinoBoxes
         return new BoxModel($result);
     }
 
+    public function updateBoxWithId($values) {
+
+        $sql = "UPDATE box SET casino_id = " . $values['casinoId'] . " WHERE id = " . $values['boxId'];
+
+        echo $sql;
+
+        $statement = $this->conn->prepare($sql);
+        return $statement->execute();
+    }
+
     private function getBoxPromotions($box){
         $getPromotions = "SELECT * FROM promotion_casino WHERE promotion_casino.box_id =". $box;
         $statement = $this->conn->prepare($getPromotions);

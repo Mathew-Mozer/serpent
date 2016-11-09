@@ -43,7 +43,15 @@ $promotion = new PromotionModel($dbcon->read_database());
         <br/>
     </form>
 </div>
+<div id="assign-display" style="display: none;" title="Assign Display">
+    <p id="displayId"></p>
+    <p id="displayName"></p>
+    <p id="displaySerial"></p>
+    <p id="displayMacAddress"></p>
+    <select id="displayCasinos">
 
+    </select>
+</div>
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 
     <ul id="errorMessage" hidden></ul>
@@ -121,6 +129,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/optionsmodal.js"></script>
 <script src="dependencies/js/addpromotionmodal.js"></script>
 <script src="dependencies/js/createcasino.js"></script>
+<script src="dependencies/js/boxview.js"></script>
 <script>
     <?php
 

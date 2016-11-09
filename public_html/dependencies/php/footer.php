@@ -77,6 +77,10 @@
             }
         });
 
+        $(".box-options").click(function() {
+            getBoxById(this.id);
+        });
+
         $("#logoutBtn").click(function () {
             logoutUser();
         });
