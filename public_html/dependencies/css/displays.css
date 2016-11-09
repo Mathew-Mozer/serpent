@@ -121,11 +121,11 @@ hr.display{
 .unassigned-display-body{
     max-height: 80px;
 
-    max-width: 80px;
+    max-width: 120px;
 
     min-height: 80px;
 
-    min-width: 80px;
+    min-width: 120px;
 
     background-color: #9e0000;
 
