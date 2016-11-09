@@ -20,7 +20,6 @@ var assignDisplayModal = $("#assign-display").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            //alert($('#displayId').html() +" " + $('#displayCasinos').val());
             updateBox($('#displayId').html(), $('#displayCasinos').val());
         }
     }

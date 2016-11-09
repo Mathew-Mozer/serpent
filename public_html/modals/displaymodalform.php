@@ -10,7 +10,6 @@ $dbcon = new DBCon();
 <?php
 $displayOptions = new DisplayModel($dbcon->read_Database());
 $displayCasinos = new CasinoBoxes($dbcon->read_Database(), $_POST['casinoId']);
-
 $display = $displayCasinos->getBoxWithId($_POST['displayId']);
 $displayPromotions = $displayOptions->getAllPromotionsByCasino($_POST['casinoId']);
 ?>

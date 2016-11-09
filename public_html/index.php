@@ -31,6 +31,7 @@ $promotion = new PromotionModel($dbcon->read_database());
         <script id="add-promotion-function"></script>
     </form>
 </div>
+
 <div id="loginModal" style="display: none;" title="Log In">
 
     <ul id="errorMessage" hidden></ul>
@@ -56,10 +57,10 @@ $promotion = new PromotionModel($dbcon->read_database());
 </div>
 
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
-
-  
-
 </div>
+
+
+
 <div id="createCasino" style="display: none;" title="Create Casino">
 
     <form id="casinoForm">
@@ -110,6 +111,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/createcasino.js"></script>
 <script src="dependencies/js/boxview.js"></script>
 <script src="dependencies/js/promotionmodal.js"></script>
+
 <script>
     <?php
 

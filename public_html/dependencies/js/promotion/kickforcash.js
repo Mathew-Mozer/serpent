@@ -10,6 +10,7 @@ var addPromotionByType = function(casinoId, promotionId) {
             promotionId: promotionId,
             cashPrize: cashPrize,
             targetNumber: targetNumber
+
         },
         cache: false,
         success: function(response) {
@@ -36,11 +37,19 @@ var getModalData = function(promotionId){
       cache: false,
       success: function(response) {
           console.log(response);
+
           $('#cash-amount-modal').html(response.cash_prize);
           $('#winning-number-modal').html(response.target_number);
-            $('#name-modal').val(response.name);
-              $('#chosen-number-modal').val(response.chosen_number);
+          $('#name-modal').val(response.name);
+          $('#chosen-number-modal').val(response.chosen_number);
+          var element = document.getElementById('team1');
+          element.value = response.kfc_team1;
+          element = document.getElementById('vs');
+          element.value = response.kfc_vs;
+          element = document.getElementById('team2');
+          element.value = response.kfc_team2;
 
+          $('#game-label').val(response.kfc_gamelabel);
 
       },
       error: function(xhr, desc, err) {
@@ -52,6 +61,11 @@ var getModalData = function(promotionId){
 var updatePromotion = function(promotionId){
   var name = $('#name-modal').val();
   var chosenNumber = $('#chosen-number-modal').val();
+  var gameLabel = $('#game-label').val();
+  var team1 = document.getElementById('team1').value;
+  var team2 = document.getElementById('team2').value;
+  var vs = document.getElementById('vs').value;
+  console.log(gameLabel);
   $.ajax({
       url: 'controllers/promotioncontrollers/kickforcashcontroller.php',
       type: 'post',
@@ -59,10 +73,15 @@ var updatePromotion = function(promotionId){
           action: 'update',
           promotionId: promotionId,
           name: name,
-          chosenNumber: chosenNumber
+          chosenNumber: chosenNumber,
+          gameLabel: gameLabel,
+          team1: team1,
+          vs: vs,
+          team2: team2
       },
       cache: false,
       success: function(response) {
+        console.log(response);
       },
       error: function(xhr, desc, err) {
           console.log(xhr + "\n" + err);

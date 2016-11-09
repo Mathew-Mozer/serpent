@@ -5,18 +5,35 @@
 <p id="winning-number-modal"></p>
 <label>Name</label>
 <br>
-
-<form>
 <input id="name-modal" name="name" type = "text"></input>
 <br>
 <label>Chosen Number</label>
 <br>
 <input id="chosen-number-modal" name="chosen-number" type="number"></input>
-</form>
+
 <br>
+<label>Game Label</label>
+<br>
+<input id="game-label" name="game-label" type = "text"></input>
+
+<br>
+<label>Team 1   vs   Team 2</label><br>
+
+<select id="team1">
+  <?php include '../citiesview.html';?>
+</select>
+
+<select id="vs">
+  <option>@</option>
+  <option>vs</option>
+</select>
+
+<select id="team2">
+    <?php include '../citiesview.html';?>
+</select>
 
 <script src="dependencies/js/promotion/kickforcash.js"></script>
 <script>
-//$("#promotion-view-modal").data('promo-id')
+
 getModalData($("#promotion-view-modal").data('promo-id'));
 </script>
