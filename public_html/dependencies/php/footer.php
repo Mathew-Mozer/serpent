@@ -143,9 +143,9 @@
                       },
                       cache: false,
                       success: function(response) {
-                          
 
 
+                        location.reload();
                           editDisplayModal.dialog('close');
                       },
                       error: function(xhr, desc, err) {

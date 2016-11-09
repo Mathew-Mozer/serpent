@@ -116,7 +116,7 @@ class CasinoBoxes
               $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
               $result->execute();
           }else if ($promotion['checked']=="true"){
-            $sql= "INSERT promotion_casino (promotion_id, casino_id, box_id)VALUES (:promotion_id, :casinoId, :box_id);";
+            $sql= "INSERT INTO promotion_casino (promotion_id, casino_id, box_id)VALUES (:promotion_id, :casinoId, :box_id);";
 
               $result = $insertConn->prepare($sql);
               $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);

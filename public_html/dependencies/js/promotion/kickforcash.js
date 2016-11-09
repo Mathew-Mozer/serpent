@@ -14,7 +14,7 @@ var addPromotionByType = function(casinoId, promotionId) {
         },
         cache: false,
         success: function(response) {
-            console.log(response);
+          
 
             //update view with new promotion
             addPromotion(response.image, casinoId);
@@ -36,7 +36,7 @@ var getModalData = function(promotionId){
       },
       cache: false,
       success: function(response) {
-          console.log(response);
+
 
           $('#cash-amount-modal').html(response.cash_prize);
           $('#winning-number-modal').html(response.target_number);
@@ -65,7 +65,6 @@ var updatePromotion = function(promotionId){
   var team1 = document.getElementById('team1').value;
   var team2 = document.getElementById('team2').value;
   var vs = document.getElementById('vs').value;
-  console.log(gameLabel);
   $.ajax({
       url: 'controllers/promotioncontrollers/kickforcashcontroller.php',
       type: 'post',
@@ -81,7 +80,7 @@ var updatePromotion = function(promotionId){
       },
       cache: false,
       success: function(response) {
-        console.log(response);
+
       },
       error: function(xhr, desc, err) {
           console.log(xhr + "\n" + err);
