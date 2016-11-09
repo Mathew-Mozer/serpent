@@ -30,21 +30,21 @@ var setValuesInModal = function(values) {
   $('#displayName').html("Box ID: " + values['name']);
   $('#displaySerial').html("Box Name: " + values['serial']);
   $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
-    console.log(values['casinos']);
+
    values['casinos'].forEach(function(casino) {
         $('#displayCasinos').append("<option value='" + casino['casinoId'] +"'>" + casino['casinoName'] + "</option>");
     });
 };
 
 var updateBox = function(boxId,casinoId) {
-    alert(boxId + " " + casinoId);
+
     $.ajax({
         url:'controllers/boxcontroller.php',
         type:'post',
         data:{action:'updateBox',boxId: boxId, casinoId: casinoId},
         cache: false,
         success: function (result) {
-            console.log(result);
+
             if(result['updated'] |= true){
                 console.log(result);
             }
