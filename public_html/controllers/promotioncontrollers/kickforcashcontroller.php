@@ -24,15 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo json_encode($response);
     } else if ($_POST['action'] == 'update'){
       $kick_for_cash = new KickForCashModel($conn->update_database());
-      $kick_for_cash->UpdateKickForCash($_POST['id'],$_POST['cashPrize'],$_POST['targetNumber']);
+      $response = $kick_for_cash->UpdateKickForCash($_POST['promotionId'],$_POST['name'],$_POST['chosenNumber']);
 
       header('content-type:application/json');
       echo json_encode($response);
     } else if($_POST['action'] == 'read'){
-      $kick_for_cash = new KickForCashModel($conn->select_database());
-      $kick_for_cash->getKickForCash($_POST['id']);
+      $kick_for_cash = new KickForCashModel($conn->read_database());
+      $response = $kick_for_cash->getKickForCash($_POST['promotionId']);
 
       header('content-type:application/json');
+
       echo json_encode($response);
     }
 }
