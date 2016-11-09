@@ -19,8 +19,7 @@ $displayPromotions = $displayOptions->getAllPromotionsByCasino($_POST['casinoId'
     <div id="casino-id-form" hidden data-casino-id="<?php echo $_POST['casinoId']; ?>"></div>
     <?php
     foreach ($displayPromotions as $row) {
-        $checked = $row['display_id']==$_POST['displayId'] ? 'checked' : '';
-        echo $row['display_id'] ."==" .$_POST['displayId'];
+        $checked = $row['display_id']==$_POST['displayId'] ? 'checked' : '';  
         echo "<input type='checkbox' class='promotions-in-display' data-display-id='{$row["display_id"]}' name='promotion' $checked value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
     }
     ?>

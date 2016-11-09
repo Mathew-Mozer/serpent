@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo json_encode($response);
     } else if ($_POST['action'] == 'update'){
       $kick_for_cash = new KickForCashModel($conn->update_database());
-      $response = $kick_for_cash->UpdateKickForCash($_POST['promotionId'],$_POST['name'],$_POST['chosenNumber']);
+      $response = $kick_for_cash->UpdateKickForCash($_POST['promotionId'],$_POST['name'],$_POST['chosenNumber'],$_POST['gameLabel'],$_POST['team1'],$_POST['team2'],$_POST['vs']);
 
       header('content-type:application/json');
       echo json_encode($response);
