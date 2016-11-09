@@ -29,8 +29,15 @@
         }, function () {
             $(this).removeClass("tile-menu-item-hover");
 
-		});        
-		
+		});
+
+    $(".tile-body").unbind('click').click(function(){
+      promotionViewModal.dialog('open');
+      $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
+      $("#promotion-view-modal").load("views/displaypromotionviews/"+$(this).data("promo-type")+"view.php");
+
+    });
+
 		/**
 		* This is for click listeners
 		*/
@@ -38,12 +45,14 @@
            createCasinoModal.dialog('open');
         });
 
-        $(".settingsBtn").unbind('click').click(function(){
+        $(".settingsBtn").unbind('click').click(function(e){
+            e.stopPropagation();  
            var ids = $(this).attr('id').split('-');
            <?php echo "var id=".$_SESSION['userId'].";"; ?>
            var perm = canDelete(ids[0],id);
            getSettings(ids[1], perm);
-        });
+         });
+
 
        $(".add-promotion-btn").unbind('click').click(function(){
           $('input[name=casinoId]').val(this.id);
@@ -93,7 +102,7 @@
 	$(".edit-display-btn").unbind('click').click(function () {
 		editDisplayModal.dialog('open');
 	});
-		
+
 		var editDisplayModal = $("#editDisplayModal").dialog({
            autoOpen: false,
             height: 400,
@@ -109,7 +118,7 @@
                 }
             }
         });
-		
+
         /*
          These are the modal windows that can be opened. Note that these need
          to be moved to their own file. Most likely they should just be aggregated

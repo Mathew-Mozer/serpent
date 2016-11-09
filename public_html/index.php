@@ -50,8 +50,10 @@ $promotion = new PromotionModel($dbcon->read_database());
     <p id="displayMacAddress"></p>
     <select id="displayCasinos">
 
-    </select>
+<div id=promotion-view-modal data-promo-id="" style="display: none";>
+
 </div>
+
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 
     <ul id="errorMessage" hidden></ul>
@@ -130,6 +132,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/addpromotionmodal.js"></script>
 <script src="dependencies/js/createcasino.js"></script>
 <script src="dependencies/js/boxview.js"></script>
+<script src="dependencies/js/promotionmodal.js"></script>
 <script>
     <?php
 
