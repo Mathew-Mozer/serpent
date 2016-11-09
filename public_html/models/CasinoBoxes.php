@@ -64,7 +64,7 @@ class CasinoBoxes
     }
 
     private function getBoxPromotions($box){
-        $getPromotions = "SELECT * FROM promotion_casino WHERE promotion_casino.box_id =". $box;
+        $getPromotions = "SELECT * FROM promotion_casino, promotion WHERE promotion_casino.box_id =". $box. " AND promotion_casino.promotion_id = promotion.id AND promotion.visible = 'T';";
         $statement = $this->conn->prepare($getPromotions);
         $statement->execute();
         $boxPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -81,5 +81,25 @@ class CasinoBoxes
     public function getBoxes()
     {
         return $this->boxes;
+    }
+
+    public function updateDisplayWithId($id, $name, $displayLocation){
+      $sql= "UPDATE box SET name=:current_name, display_location=:display_location WHERE id=:id;";
+
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':current_name', $name, PDO::PARAM_STR);
+        $result->bindValue(':display_location', $displayLocation, PDO::PARAM_STR);
+           $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+    }
+
+    public function updatePromotionsInDisplay($id, $promotions){
+      /*$sql= "UPDATE box SET name=:current_name, display_location=:display_location WHERE id=:id;";
+
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':current_name', $name, PDO::PARAM_STR);
+        $result->bindValue(':display_location', $displayLocation, PDO::PARAM_STR);
+           $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();*/
     }
 }

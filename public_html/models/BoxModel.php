@@ -12,6 +12,7 @@ class BoxModel
     private $serial;
     private $macAddress;
     private $promotions = array();
+    private $displayLocation;
 
     public function __construct($values)
     {
@@ -24,6 +25,7 @@ class BoxModel
         $this->setCasinoId($fieldArray['casino_id']);
         $this->setSerial($fieldArray['serial']);
         $this->setMacAddress($fieldArray['mac_address']);
+        $this->setDisplayLocation($fieldArray['display_location']);
     }
 
     /**
@@ -123,5 +125,14 @@ class BoxModel
     public function setPromotions($promotions)
     {
         $this->promotions = $promotions;
+    }
+
+    public function setDisplayLocation($displayLocation)
+    {
+        $this->displayLocation = $displayLocation;
+    }
+
+    public function getDisplayLocation(){
+      return $this->displayLocation;
     }
 }
