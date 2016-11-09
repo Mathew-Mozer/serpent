@@ -9,7 +9,8 @@
     ?>
         <div class="promotion-preview-body promotion-preview-box box-settings">
             Box Id - <?php echo $box->getId(); ?>
-            <span class="glyphicon glyphicon-cog tool-glyphicon white" aria-hidden="true"></span>
+            <span id="<?php echo $box->getId(); ?>"
+                  class="glyphicon glyphicon-cog tool-glyphicon white box-options" aria-hidden="true"></span>
         </div>
         <?php } ?>
 </div>
