@@ -117,3 +117,50 @@ hr.display{
 .box-settings {
     background-color: #969696;
 }
+
+.unassigned-display-body{
+    max-height: 80px;
+
+    max-width: 80px;
+
+    min-height: 80px;
+
+    min-width: 80px;
+
+    background-color: #9e0000;
+
+    /*border-width: 1px;
+
+    border-style: solid;
+
+    border-color: #e6e6e6; */
+
+    -webkit-box-sizing: content-box;
+
+    -moz-box-sizing: content-box;
+
+    box-sizing: content-box;
+
+    margin: 5px;
+
+    display: inline-block;
+
+    box-shadow: 2px 2px 5px #969696;
+
+    vertical-align: top;
+}
+
+p.unassigned-display-box-text{
+    color: white;
+    margin: 0;
+}
+
+.checkbox-image{
+    max-height: 25px;
+
+    max-width: 25px;
+
+    min-height: 25px;
+
+    min-width: 25px;
+}

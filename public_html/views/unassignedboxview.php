@@ -7,11 +7,10 @@
         $unassignedBoxes = $unassigned->getBoxes();
         foreach ($unassignedBoxes as $box) {
     ?>
-        <div class="promotion-preview-body promotion-preview-box box-settings">
-            Box Id - <?php echo $box->getId(); ?>
+        <div class="unassigned-display-body promotion-preview-box box-settings">
+            <p class="unassigned-display-box-text"><?php echo $box->getMacAddress(); ?></p>
             <span id="<?php echo $box->getId(); ?>"
-                  class="glyphicon glyphicon-cog tool-glyphicon white box-options" aria-hidden="true"></span>
+                  class="glyphicon glyphicon-exclamation-sign tool-glyphicon white box-options" aria-hidden="true"></span>
         </div>
         <?php } ?>
 </div>
-

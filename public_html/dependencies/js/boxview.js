@@ -26,12 +26,12 @@ var assignDisplayModal = $("#assign-display").dialog({
 });
 
 var setValuesInModal = function(values) {
-  $('#displayId').html(values['id']);
-  $('#displayName').html(values['name']);
-  $('#displaySerial').html(values['serial']);
-  $('#displayMacAddress').html(values['macAddress']);
+  $('#displayId').html("Index: " + values['id']);
+  $('#displayName').html("Box ID: " + values['name']);
+  $('#displaySerial').html("Box Name: " + values['serial']);
+  $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
     console.log(values['casinos']);
-    values['casinos'].forEach(function(casino) {
+   values['casinos'].forEach(function(casino) {
         $('#displayCasinos').append("<option value='" + casino['casinoId'] +"'>" + casino['casinoName'] + "</option>");
     });
 };
