@@ -20,7 +20,6 @@ var assignDisplayModal = $("#assign-display").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            //alert($('#displayId').html() +" " + $('#displayCasinos').val());
             updateBox($('#displayId').html(), $('#displayCasinos').val());
         }
     }
@@ -32,7 +31,7 @@ var setValuesInModal = function(values) {
   $('#displaySerial').html(values['serial']);
   $('#displayMacAddress').html(values['macAddress']);
     console.log(values['casinos']);
-   values['casinos'].forEach(function(casino) {
+    values['casinos'].forEach(function(casino) {
         $('#displayCasinos').append("<option value='" + casino['casinoId'] +"'>" + casino['casinoName'] + "</option>");
     });
 };
