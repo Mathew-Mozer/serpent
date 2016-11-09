@@ -3,7 +3,7 @@
     <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
     <!--New Promotion Title-->
     <?php
-    if($permission->canCreateCasinoPromotion($casino['id'])){?>
+    if($permission->hasPermission('casino',$casino['id'],'C')){?>
     <div id=<?php echo "\"" . $casino['id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert">
         <img class="tile-icon" src="dependencies/images/clear.png">
         <div class="glyphicon-new-container">
