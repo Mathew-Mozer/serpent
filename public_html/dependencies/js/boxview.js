@@ -50,6 +50,9 @@ var updateBox = function(boxId,casinoId) {
             }
             assignDisplayModal.dialog('close');
             location.reload();
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr + "\n" + err);
         }
     })
 };
