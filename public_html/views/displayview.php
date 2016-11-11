@@ -1,8 +1,8 @@
 <div class="boxes">
     <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
     <?php
-    $casinoBox = new CasinoBoxes($dbcon->read_database(), $casino['id']);
-    $casinoBoxes = $casinoBox->getBoxes();
+    $casinoBox = new CasinoDisplays($dbcon->read_database(), $casino['id']);
+    $casinoBoxes = $casinoBox->getDisplays();
     //var_dump($casinoBoxes);
     foreach ($casinoBoxes as $display){?>
         <div class="display-outer">

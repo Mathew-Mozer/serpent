@@ -1,16 +1,16 @@
 <?php
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
-require "../models/DisplayModel.php";
-require "../models/CasinoBoxes.php";
+require "../models/PromotionModel.php";
+require "../models/CasinoDisplays.php";
 $dbcon = new DBCon();
  ?>
 <ul id="errorMessage" hidden></ul>
 
 <?php
-$displayOptions = new DisplayModel($dbcon->read_Database());
-$displayCasinos = new CasinoBoxes($dbcon->read_Database(), $_POST['casinoId']);
-$display = $displayCasinos->getBoxWithId($_POST['displayId']);
+$displayOptions = new PromotionModel($dbcon->read_Database());
+$displayCasinos = new CasinoDisplays($dbcon->read_Database(), $_POST['casinoId']);
+$display = $displayCasinos->getDisplayWithId($_POST['displayId']);
 $displayPromotions = $displayOptions->getAllPromotionsByCasino($_POST['casinoId']);
 ?>
 

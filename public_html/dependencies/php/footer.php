@@ -84,7 +84,7 @@
             }
         });
 
-        $(".box-options").click(function() {
+        $(".display-options").click(function() {
             getBoxById(this.id);
         });
 

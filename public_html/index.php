@@ -109,7 +109,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/optionsmodal.js"></script>
 <script src="dependencies/js/addpromotionmodal.js"></script>
 <script src="dependencies/js/createcasino.js"></script>
-<script src="dependencies/js/boxview.js"></script>
+<script src="dependencies/js/displayview.js"></script>
 <script src="dependencies/js/promotionmodal.js"></script>
 
 <script>
