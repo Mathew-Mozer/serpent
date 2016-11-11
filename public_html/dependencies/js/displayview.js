@@ -1,5 +1,5 @@
 
-var getBoxById = function (id) {
+var getDisplayById = function (id) {
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
@@ -20,7 +20,7 @@ var assignDisplayModal = $("#assign-display").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            updateBox($('#displayId').html(), $('#displayCasinos').val());
+            updateDisplay($('#displayId').html(), $('#displayCasinos').val());
         }
     }
 });
@@ -36,7 +36,7 @@ var setValuesInModal = function(values) {
     });
 };
 
-var updateBox = function(displayId,casinoId) {
+var updateDisplay = function(displayId, casinoId) {
 
     $.ajax({
         url:'controllers/displaycontroller.php',
