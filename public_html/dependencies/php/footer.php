@@ -10,8 +10,8 @@
 <script>
     $(document).ready(function(){
 
-        $('.boxes').hide();
-        $('#unassigned-boxes').hide();
+        $('.displays').hide();
+        $('#unassigned-displays').hide();
 
         //Load tooltips
         $('[data-toggle="tooltip"]').tooltip();
@@ -73,19 +73,19 @@
                 //code to switch to display view
                 $("#toggle-promotion").removeClass("hidden");
                 $('.promotion-view').hide();
-                $('#unassigned-boxes').show();
-                $('.boxes').show();
+                $('#unassigned-displays').show();
+                $('.displays').show();
             } else {
                 //code to switch to promotion view
                 $("#toggle-display").removeClass("hidden");
-                $('.boxes').hide();
-                $('#unassigned-boxes').hide();
+                $('.displays').hide();
+                $('#unassigned-displays').hide();
                 $('.promotion-view').show();
             }
         });
 
         $(".display-options").click(function() {
-            getBoxById(this.id);
+            getDisplayById(this.id);
         });
 
         $("#logoutBtn").click(function () {

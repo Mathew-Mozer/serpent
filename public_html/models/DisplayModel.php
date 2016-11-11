@@ -1,6 +1,6 @@
 <?php
 /**
- * Model to control the box view
+ * Model to control the display view
  *
  */
 

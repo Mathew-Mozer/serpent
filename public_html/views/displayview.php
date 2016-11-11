@@ -1,10 +1,9 @@
-<div class="boxes">
+<div class="displays">
     <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
     <?php
-    $casinoBox = new CasinoDisplays($dbcon->read_database(), $casino['id']);
-    $casinoBoxes = $casinoBox->getDisplays();
-    //var_dump($casinoBoxes);
-    foreach ($casinoBoxes as $display){?>
+    $casinoDisplay = new CasinoDisplays($dbcon->read_database(), $casino['id']);
+    $casinoDisplays = $casinoDisplay->getDisplays();
+    foreach ($casinoDisplays as $display){?>
         <div class="display-outer">
             <div class="display-body container">
                 <div class="display-header row">
@@ -19,7 +18,6 @@
                 <hr class="display">
                 <?php
                 $promotions = $display->getPromotions();
-                //var_dump($promotions);
                     foreach ($promotions as $promo) {
                         $image = $promotion->getPromotionImageByPromotionId($promo['promotion_id']); ?>
                         <div class="promotion-preview-body">
