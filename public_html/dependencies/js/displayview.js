@@ -1,13 +1,13 @@
 
 var getBoxById = function (id) {
     $.ajax({
-        url: 'controllers/boxcontroller.php',
+        url: 'controllers/displaycontroller.php',
         type: 'post',
-        data: {action: 'getSingleBox', boxId: id},
+        data: {action: 'getSingleDisplay', displayId: id},
         cache: false,
         success: function (response) {
-            var boxValues = $.parseJSON(response);
-            setValuesInModal(boxValues);
+            var displayValues = $.parseJSON(response);
+            setValuesInModal(displayValues);
             assignDisplayModal.dialog('open');
         }
     });
@@ -27,8 +27,8 @@ var assignDisplayModal = $("#assign-display").dialog({
 
 var setValuesInModal = function(values) {
   $('#displayId').html(values['id']);
-  $('#displayName').html("Box ID: " + values['name']);
-  $('#displaySerial').html("Box Name: " + values['serial']);
+  $('#displayName').html("Display ID: " + values['name']);
+  $('#displaySerial').html("Display Name: " + values['serial']);
   $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
 
    values['casinos'].forEach(function(casino) {
@@ -36,12 +36,12 @@ var setValuesInModal = function(values) {
     });
 };
 
-var updateBox = function(boxId,casinoId) {
+var updateBox = function(displayId,casinoId) {
 
     $.ajax({
-        url:'controllers/boxcontroller.php',
+        url:'controllers/displaycontroller.php',
         type:'post',
-        data:{action:'updateBox',boxId: boxId, casinoId: casinoId},
+        data:{action:'assignDisplay', displayId: displayId, casinoId: casinoId},
         cache: false,
         success: function (result) {
 

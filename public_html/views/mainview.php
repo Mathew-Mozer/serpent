@@ -27,16 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $casinoCount = count($casinoList);
     $casinoRowIndex = 0;
 //List all the casinos that the current user has permissions to view
-    require "../models/CasinoBoxes.php";
-    require "unassignedboxview.php";
+    require "../models/CasinoDisplays.php";
+    require "unassigneddisplayview.php";
     foreach ($casinoList as $casino) {
         //If the permission checks out, print the promotion
         if ($permission->canViewCasinoPromotions($casino['id'])) {
             include('casinoview.php');
             $casinoRowIndex++;
-            if ($casinoRowIndex < $casinoCount) { ?>
+            ?>
                 <hr>
-            <?php }
+            <?php
             include 'displayview.php';
         }
     }
