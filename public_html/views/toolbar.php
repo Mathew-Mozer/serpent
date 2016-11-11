@@ -4,7 +4,8 @@
         if($permission->hasPermissionByAccount('casino','C')){
             ?>
             <div id = "create-casino-btn" class="button-body tool-button" data-toggle="tooltip" title="Create New Property">
-                <span class="glyphicon glyphicon-home tool-glyphicon white" aria-hidden="true"></span>
+                <!--<span class="glyphicon icon-glyphicon-new-property tool-glyphicon white" aria-hidden="true"></span>-->
+                <i class="fa fa-sitemap fa-3x"></i>
             </div>
             <?php
         }
