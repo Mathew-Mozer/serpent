@@ -19,7 +19,7 @@
 
         <?php }
 
-        if($permission->hasPermissionByAccount("box","R")) {
+        if($permission->hasPermissionByAccount("display","R")) {
         ?>
 
 

@@ -1,129 +1,138 @@
 <?php
-// PromotionModal class
-//
-// author: Alex Onorati
-// This class contains all the legal queries on the database casino_serpent.
+/**
+ * Model to control the display view
+ *
+ */
 
-class DisplayModel{
+class DisplayModel
+{
+    private $id;
+    private $name;
+    private $casinoId;
+    private $serial;
+    private $macAddress;
+    private $promotions = array();
+    private $displayLocation;
 
-    protected $db;
-
-    public function __construct(PDO $db){
-        $this->db= $db;
-
+    public function __construct($values)
+    {
+        $this->createDisplayWithValuesSet($values);
     }
 
-
-    //This retrives all promotions that are stored.
-    public function getAllPromotions(){
-
-
-        $sql = "SELECT
-                promotion.id as promo_id,
-                promotion_type.title as promo_title,
-                promotion_type.image as promo_image
-              FROM
-                promotion, promotion_type
-              WHERE
-                promotion.promotion_type_id = promotion_type.id;
-              ";
-        $result = $this->db->prepare($sql);
-        $result->execute();
-
-        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
-
-        return $promoResult;
+    private function createDisplayWithValuesSet($fieldArray){
+        $this->setId($fieldArray['id']);
+        $this->setName($fieldArray['name']);
+        $this->setCasinoId($fieldArray['casino_id']);
+        $this->setSerial($fieldArray['serial']);
+        $this->setMacAddress($fieldArray['mac_address']);
+        $this->setDisplayLocation($fieldArray['display_location']);
     }
 
-    public function getPromotionCasinos(){
-        $sql = "SELECT
-                *
-              FROM
-                 casino;
-              ";
-
-        $result = $this->db->prepare($sql);
-        $result->execute();
-
-        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
-
-        return $promoResult;
+    /**
+     * @param mixed $conn
+     */
+    public function setConn($conn)
+    {
+        $this->conn = $conn;
+    }
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+    /**
+     * @param mixed $casinoId
+     */
+    public function setCasinoId($casinoId)
+    {
+        $this->casinoId = $casinoId;
+    }
+    /**
+     * @param mixed $serial
+     */
+    public function setSerial($serial)
+    {
+        $this->serial = $serial;
+    }
+    /**
+     * @param mixed $macAddress
+     */
+    public function setMacAddress($macAddress)
+    {
+        $this->macAddress = $macAddress;
+    }
+    /**
+     * @return PDO|string
+     */
+    public function getConn()
+    {
+        return $this->conn;
+    }
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCasinoId()
+    {
+        return $this->casinoId;
+    }
+    /**
+     * @return mixed
+     */
+    public function getSerial()
+    {
+        return $this->serial;
+    }
+    /**
+     * @return mixed
+     */
+    public function getMacAddress()
+    {
+        return $this->macAddress;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPromotions()
+    {
+        return $this->promotions;
+    }
+    /**
+     * @param mixed $promotions
+     */
+    public function setPromotions($promotions)
+    {
+        $this->promotions = $promotions;
     }
 
-    public function getAllPromotionsByCasino($casinoId){
-
-        $sql = "SELECT
-                      promotion.id as promo_id,
-                      promotion_type.title as promo_title,
-                      promotion_type.image as promo_image,
-                      promotion_casino.box_id as display_id
-                    FROM
-                      promotion, promotion_type, promotion_casino, casino
-                    WHERE
-                      promotion.promotion_type_id = promotion_type.id
-                      AND  promotion.id = promotion_casino.promotion_id
-                      AND casino.id = promotion_casino.casino_id
-                      AND promotion.visible = 'T' AND casino.id = :id;
-                    ";
-
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':id', $casinoId, PDO::PARAM_STR);
-        $result->execute();
-
-        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
-
-        return $promoResult;
+    public function setDisplayLocation($displayLocation)
+    {
+        $this->displayLocation = $displayLocation;
     }
 
-    public function getPromotionTypes(){
-        $sql = "SELECT
-                promotion_type.id as promo_id,
-                promotion_type.title as promo_title,
-                promotion_type.image as promo_image
-              FROM
-                promotion_type;";
-        $result = $this->db->prepare($sql);
-
-        $result->execute();
-
-        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
-
-        return $promoResult;
-    }
-
-    public function addPromotion($promotionTypeId, $casinoId){
-        $sql = "INSERT INTO promotion (promotion_type_id) VALUES (:id);";
-
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':id', $promotionTypeId, PDO::PARAM_STR);
-        $result->execute();
-
-        $promotionId = $this->db->lastInsertId();
-
-
-        $sql = "INSERT INTO promotion_casino (promotion_id, casino_id) VALUES (:promotionId, :casinoId);";
-
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':casinoId', $casinoId, PDO::PARAM_STR);
-        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
-        $result->execute();
-
-
-
-
-
-    }
-
-    public function getPromotionImage($id){
-        $sql = "SELECT image FROM promotion_type WHERE id = :id;";
-
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':id', $id, PDO::PARAM_STR);
-        $result->execute();
-
-        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
-
-        return $promoResult;
+    public function getDisplayLocation(){
+      return $this->displayLocation;
     }
 }
-?>

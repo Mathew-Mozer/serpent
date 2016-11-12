@@ -1,13 +1,13 @@
 
-var getBoxById = function (id) {
+var getDisplayById = function (id) {
     $.ajax({
-        url: 'controllers/boxcontroller.php',
+        url: 'controllers/displaycontroller.php',
         type: 'post',
-        data: {action: 'getSingleBox', boxId: id},
+        data: {action: 'getSingleDisplay', displayId: id},
         cache: false,
         success: function (response) {
-            var boxValues = $.parseJSON(response);
-            setValuesInModal(boxValues);
+            var displayValues = $.parseJSON(response);
+            setValuesInModal(displayValues);
             assignDisplayModal.dialog('open');
         }
     });
@@ -20,31 +20,31 @@ var assignDisplayModal = $("#assign-display").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            updateBox($('#displayId').html(), $('#displayCasinos').val());
+            updateDisplay($('#displayId').html(), $('#displayCasinos').val());
         }
     }
 });
 
 var setValuesInModal = function(values) {
   $('#displayId').html(values['id']);
-  $('#displayName').html("Box ID: " + values['name']);
-  $('#displaySerial').html("Box Name: " + values['serial']);
+  $('#displayName').html("Display ID: " + values['name']);
+  $('#displaySerial').html("Display Name: " + values['serial']);
   $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
-    console.log(values['casinos']);
+
    values['casinos'].forEach(function(casino) {
         $('#displayCasinos').append("<option value='" + casino['casinoId'] +"'>" + casino['casinoName'] + "</option>");
     });
 };
 
-var updateBox = function(boxId,casinoId) {
-    alert(boxId + " " + casinoId);
+var updateDisplay = function(displayId, casinoId) {
+
     $.ajax({
-        url:'controllers/boxcontroller.php',
+        url:'controllers/displaycontroller.php',
         type:'post',
-        data:{action:'updateBox',boxId: boxId, casinoId: casinoId},
+        data:{action:'assignDisplay', displayId: displayId, casinoId: casinoId},
         cache: false,
         success: function (result) {
-            console.log(result);
+
             if(result['updated'] |= true){
                 console.log(result);
             }

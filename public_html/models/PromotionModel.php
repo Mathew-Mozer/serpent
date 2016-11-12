@@ -51,7 +51,7 @@
                       promotion.id as promo_id,
                       promotion_type.title as promo_title,
                       promotion_type.image as promo_image,
-                      promotion_casino.box_id as display_id,
+                      promotion_casino.display_id as display_id,
                       promotion_type.file_name as file_name
                     FROM
                       promotion, promotion_type, promotion_casino, casino
