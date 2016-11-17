@@ -21,7 +21,7 @@ var addPromotionByType = function(casinoId, promotionId) {
         },
         cache: false,
         success: function(response) {
-
+            console.log(response);
 
             //update view with new promotion
             addPromotion(response.image, casinoId);
