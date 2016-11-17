@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $response = array();
       $response['image'] = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
-      $reponse['promotion-id'] = $addPromotion;
+      $response['promotion-id'] = $addPromotion;
       $response['casino-id'] = $_POST['casinoId'];
 
       header('content-type:application/json');
