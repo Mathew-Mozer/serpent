@@ -59,7 +59,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 </div>
 
-
+<div class='uil-ring-css' style='transform:scale(0.99);'><div>
 
 <div id="createCasino" style="display: none;" title="Create Casino">
 
