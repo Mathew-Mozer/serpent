@@ -100,61 +100,10 @@
 	$(".edit-display-btn").unbind('click').click(function () {
     var casinoId = $(this).data("casino-id");
     var displayId = $(this).data("display-id");
-    console.log(casinoId + displayId);
     $("#editDisplayModal").load("modals/displaymodalform.php", {casinoId : casinoId, displayId : displayId});
 		editDisplayModal.dialog('open');
 	});
 
-		var editDisplayModal = $("#editDisplayModal").dialog({
-           autoOpen: false,
-            height: 400,
-            width: 350,
-            modal: true,
-            buttons: {
-                Close: function(){
-                    editDisplayModal.dialog('close');
-                },
-
-                Save: function(){
-                  var casinoId = $("#casino-id-form").data("casino-id");
-                  var displayId = $("#display-id-form").data("display-id");
-                  var displayName = $('input[name=displayName]').val();
-                  var displayLocation = $('input[name=displayLocation]').val();
-                  var promotions = document.getElementsByClassName('promotions-in-display');
-
-                  var promotionsFormatted = [];
-                   $.each(promotions, function(index, value){
-
-                      promotionsFormatted.push({promoId : value.value, displayId : value.dataset.displayId, checked : value.checked});
-                    });
-
-                      //console.log(promotionsFormatted);
-                  $.ajax({
-
-                      url: 'controllers/displaycontroller.php',
-                      type: 'post',
-                      data: {
-                          action: 'update',
-                          casinoId: casinoId,
-                          displayId: displayId,
-                          displayName: displayName,
-                          displayLocation: displayLocation,
-                          promotions: promotionsFormatted
-                      },
-                      cache: false,
-                      success: function(response) {
-
-
-                        location.reload();
-                          editDisplayModal.dialog('close');
-                      },
-                      error: function(xhr, desc, err) {
-                          console.log(xhr + "\n" + err);
-                      }
-                  });
-                }
-            }
-        });
 
         /*
          These are the modal windows that can be opened. Note that these need
