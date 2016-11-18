@@ -23,7 +23,6 @@ $("div.addPromotion").on('click', function(e){
     $("#promotion-details").show();
 
     $("#promotion-details").load("views/addpromotionviews/"+promotionName+"view.php");
-
 });
 
 </script>

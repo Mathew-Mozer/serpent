@@ -1,3 +1,4 @@
+<div id="first-page">
 <br>
 <label>Title Message</label>
 <input id="title-message" name="title-message" type="text"/>
@@ -24,3 +25,15 @@
 <br>
 <br>
 <script src="dependencies/js/promotion/highhand.js"></script>
+</div>
+
+<div id="second-page" hidden>
+    <br>
+    <label>
+        Scene Type
+    </label>
+        <input id="scene-type" name="scene-type" value="1" type="radio">Scene 1</input><br>
+        <input id="scene-type" name="scene-type" value="2" type="radio">Scene 2</input><br>
+        <input id="scene-type" name="scene-type" value="3" type="radio">Scene 3</input><br>
+
+</div>
