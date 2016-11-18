@@ -57,6 +57,7 @@ session_start();
 	<link href="dependencies/css/tiles.css" rel="stylesheet">
 	<link href="dependencies/css/text.css" rel="stylesheet">
     <link href="dependencies/css/displays.css" rel="stylesheet">
+    <link href="dependencies/css/highhandform.css" rel="stylesheet">
 
 	<?php
     require_once("HelperFunctions.php");
