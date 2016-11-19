@@ -1,10 +1,10 @@
-<div class="boxes">
-    <h2 class="casino-title"><?php echo $casino['casinoName'];?></h2>
+<div class="display">
+    <h2 class="property-title"><?php echo $property['propertyName'];?></h2>
     <?php
-    $casinoBox = new CasinoDisplays($dbcon->read_database(), $casino['id']);
-    $casinoBoxes = $casinoBox->getDisplays();
-    //var_dump($casinoBoxes);
-    foreach ($casinoBoxes as $display){?>
+    $propertyDisplay = new PropertyDisplays($dbcon->read_database(), $property['id']);
+    $propertyDisplays = $propertyDisplay->getDisplays();
+    //var_dump($propertyDisplays);
+    foreach ($propertyDisplays as $display){?>
         <div class="display-outer">
             <div class="display-body container">
                 <div class="display-header row">
@@ -13,7 +13,7 @@
                     <div class="col-md-4"><h3 id="location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
-                        <button type="button" data-casino-id="<?php echo $casino['id'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
+                        <button type="button" data-property-id="<?php echo $property['id'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
                     </div>
                 </div>
                 <hr class="display">

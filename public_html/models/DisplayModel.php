@@ -1,6 +1,6 @@
 <?php
 /**
- * Model to control the box view
+ * Model to control the display view
  *
  */
 
@@ -8,7 +8,7 @@ class DisplayModel
 {
     private $id;
     private $name;
-    private $casinoId;
+    private $propertyId;
     private $serial;
     private $macAddress;
     private $promotions = array();
@@ -22,7 +22,7 @@ class DisplayModel
     private function createDisplayWithValuesSet($fieldArray){
         $this->setId($fieldArray['id']);
         $this->setName($fieldArray['name']);
-        $this->setCasinoId($fieldArray['casino_id']);
+        $this->setPropertyId($fieldArray['property_id']);
         $this->setSerial($fieldArray['serial']);
         $this->setMacAddress($fieldArray['mac_address']);
         $this->setDisplayLocation($fieldArray['display_location']);
@@ -50,11 +50,11 @@ class DisplayModel
         $this->name = $name;
     }
     /**
-     * @param mixed $casinoId
+     * @param mixed $propertyId
      */
-    public function setCasinoId($casinoId)
+    public function setPropertyId($propertyId)
     {
-        $this->casinoId = $casinoId;
+        $this->propertyId = $propertyId;
     }
     /**
      * @param mixed $serial
@@ -94,9 +94,9 @@ class DisplayModel
     /**
      * @return mixed
      */
-    public function getCasinoId()
+    public function getPropertyId()
     {
-        return $this->casinoId;
+        return $this->propertyId;
     }
     /**
      * @return mixed

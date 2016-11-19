@@ -1,1 +1,0 @@
-[29-Oct-2016 18:05:09 America/Chicago] PHP Fatal error:  Using $this when not in object context in /home/tps/public_html/casino/views/toolbar.php on line 20

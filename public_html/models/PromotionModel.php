@@ -2,7 +2,7 @@
   // PromotionModal class
   //
   // author: Alex Onorati
-  // This class contains all the legal queries on the database casino_serpent.
+  // This class contains all the legal queries on the database property_serpent.
 
   class PromotionModel{
 
@@ -34,8 +34,8 @@
       return $promoResult;
     }
 
-    public function getPromotionCasinos(){
-      $sql = "SELECT * FROM casino;";
+    public function getPromotionProperties(){
+      $sql = "SELECT * FROM property;";
 
       $result = $this->db->prepare($sql);
       $result->execute();
@@ -45,25 +45,25 @@
       return $promoResult;
     }
 
-    public function getAllPromotionsByCasino($casinoId){
+    public function getAllPromotionsByProperty($propertyId){
 
             $sql = "SELECT
                       promotion.id as promo_id,
                       promotion_type.title as promo_title,
                       promotion_type.image as promo_image,
-                      promotion_casino.display_id as display_id,
+                      promotion_property.display_id as display_id,
                       promotion_type.file_name as file_name
                     FROM
-                      promotion, promotion_type, promotion_casino, casino
+                      promotion, promotion_type, promotion_property, property
                     WHERE
                       promotion.promotion_type_id = promotion_type.id
-                      AND  promotion.id = promotion_casino.promotion_id
-                      AND casino.id = promotion_casino.casino_id
-                      AND promotion.visible = 'T' AND casino.id = :id;
+                      AND  promotion.id = promotion_property.promotion_id
+                      AND property.id = promotion_property.property_id
+                      AND promotion.visible = 'T' AND property.id = :id;
                     ";
 
             $result = $this->db->prepare($sql);
-            $result->bindValue(':id', $casinoId, PDO::PARAM_STR);
+            $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
             $result->execute();
 
             $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -73,7 +73,7 @@
 
 
 
-    public function getPromotionTypes($casinoId){
+    public function getPromotionTypes($propertyId){
       $sql = "SELECT
                promotion_type.id as promo_id,
                promotion_type.title as promo_title,
@@ -83,10 +83,10 @@
                promotion_type, subscription
              WHERE
                promotion_type.id = subscription.promotion_type_id AND
-               subscription.casino_id = :casinoId
+               subscription.property_id = :propertyId
                ;";
       $result = $this->db->prepare($sql);
-      $result->bindValue(':casinoId', $casinoId);
+      $result->bindValue(':propertyId', $propertyId);
       $result->execute();
 
       $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -94,7 +94,7 @@
       return $promoResult;
     }
 
-    public function addPromotion($promotionTypeId, $casinoId){
+    public function addPromotion($promotionTypeId, $propertyId){
       $sql = "INSERT INTO promotion (promotion_type_id) VALUES (:id);";
 
       $result = $this->db->prepare($sql);
@@ -104,10 +104,10 @@
       $promotionId = $this->db->lastInsertId();
 
 
-      $sql = "INSERT INTO promotion_casino (promotion_id, casino_id) VALUES (:promotionId, :casinoId);";
+      $sql = "INSERT INTO promotion_property (promotion_id, property_id) VALUES (:promotionId, :propertyId);";
 
       $result = $this->db->prepare($sql);
-      $result->bindValue(':casinoId', $casinoId, PDO::PARAM_STR);
+      $result->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
       $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
       $result->execute();
 

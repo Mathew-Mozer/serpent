@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $dbcon = new DBCon();
 $promotion = new PromotionModel($dbcon->read_database());
 
-$promotionTypeList = $promotion->getPromotionTypes($_POST['casinoId']);
+$promotionTypeList = $promotion->getPromotionTypes($_POST['propertyId']);
 
 foreach ($promotionTypeList as $row) {
     echo '<div style="background-color: lightgray" data-promotion-name="'.$row['file_name'].'" data-promotion-id="'.$row['promo_id'].'"  id ="'.$row['promo_id'].'"class="addPromotion"> <image class="tile-icon" src="dependencies/images/'.$row['promo_image'].'"><label>'.$row['promo_title'].'<label> </div>';

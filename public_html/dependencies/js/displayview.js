@@ -1,5 +1,5 @@
 
-var getBoxById = function (id) {
+var getDisplayById = function (id) {
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
@@ -20,7 +20,7 @@ var assignDisplayModal = $("#assign-display").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            updateBox($('#displayId').html(), $('#displayCasinos').val());
+            updateDsiplay($('#displayId').html(), $('#displayProperties').val());
         }
     }
 });
@@ -31,17 +31,17 @@ var setValuesInModal = function(values) {
   $('#displaySerial').html("Display Name: " + values['serial']);
   $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
 
-   values['casinos'].forEach(function(casino) {
-        $('#displayCasinos').append("<option value='" + casino['casinoId'] +"'>" + casino['casinoName'] + "</option>");
+   values['property'].forEach(function(property) {
+        $('#displayProperties').append("<option value='" + property['propertyId'] +"'>" + property['propertyName'] + "</option>");
     });
 };
 
-var updateBox = function(displayId,casinoId) {
+var updateDisplay = function(displayId,propertyId) {
 
     $.ajax({
         url:'controllers/displaycontroller.php',
         type:'post',
-        data:{action:'assignDisplay', displayId: displayId, casinoId: casinoId},
+        data:{action:'assignDisplay', displayId: displayId, propertyId: propertyId},
         cache: false,
         success: function (result) {
 

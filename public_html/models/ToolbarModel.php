@@ -11,7 +11,7 @@ require_once (getServerPath().'dbcon.php');
 class ToolBarModel
 {
     private $dbcon;
-    private $casino;
+    private $property;
     private $parentCompanyId;
     private $assetBundleUrl;
     private $assetBundleWindows;
@@ -24,7 +24,7 @@ class ToolBarModel
 
     /**
      * ToolBarModel constructor.
-     * @param $casino
+     * @param $property
      * @param $parentCompanyId
      * @param $assetBundleUrl
      * @param $assetBundleWindows
@@ -35,11 +35,11 @@ class ToolBarModel
      * @param $businessOpen
      * @param $businessClose
      */
-    public function __construct($casino, $parentCompanyId, $assetBundleUrl, $assetBundleWindows, $assetName,
+    public function __construct($property, $parentCompanyId, $assetBundleUrl, $assetBundleWindows, $assetName,
                                 $defaultSkin, $defaultLogo, $supportGroup, $businessOpen, $businessClose)
     {
         $this->dbcon = new DbCon();
-        $this->casino = $casino;
+        $this->property = $property;
         $this->parentCompanyId = $parentCompanyId;
         $this->assetBundleUrl = $assetBundleUrl;
         $this->assetBundleWindows = $assetBundleWindows;
@@ -52,22 +52,22 @@ class ToolBarModel
     }
 
 	/**
-	* Insert new casino
+	* Insert new property
 	* @return QueryResult
 	*/
-    public function insertCasino(){
+    public function insertProperty(){
         $conn = $this->dbcon->insert_database();
         if(!$conn instanceof PDO){
             return 'Failed to connect to db';
         } else {
-            $insert = "INSERT INTO casino(casinoName, parentCompany, assetBundleUrl, assetBundleWindows, assetName,
+            $insert = "INSERT INTO property(propertyName, parentCompany, assetBundleUrl, assetBundleWindows, assetName,
                         defaultSkin, defaultLogo, supportGroup, businessOpen, businessClose)
-                        VALUES(:casinoName, :parentCompany, :assetBundleUrl, :assetBundleWindows, :assetName,
+                        VALUES(:propertyName, :parentCompany, :assetBundleUrl, :assetBundleWindows, :assetName,
                         :defaultSkin, :defaultLogo, :supportGroup, :businessOpen, :businessClose)";
 
             $sqlInsert = $conn->prepare($insert);
 
-            $sqlInsert->bindParam(':casinoName', $this->casino, PDO::PARAM_STR);
+            $sqlInsert->bindParam(':propertyName', $this->property, PDO::PARAM_STR);
             $sqlInsert->bindParam(':parentCompany', $this->parentCompanyId, PDO::PARAM_INT);
             $sqlInsert->bindParam(':assetBundleUrl', $this->assetBundleUrl, PDO::PARAM_STR);
             $sqlInsert->bindParam(':assetBundleWindows', $this->assetBundleWindows, PDO::PARAM_STR);

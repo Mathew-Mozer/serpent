@@ -2,26 +2,26 @@
 
 require 'DisplayModel.php';
 
-class CasinoDisplays
+class PropertyDisplays
 {
     private $conn;
     private $displays = [];
 
     /**
-     * CasinoDisplays constructor.
-     * @param int $casinoId
+     * PropertyDisplays constructor.
+     * @param int $propertyId
      */
-    public function __construct($conn,$casinoId)
+    public function __construct($conn,$propertyId)
     {
         $this->conn = $conn;
-        $this->displays = $this->getAllDisplaysWithCasinoId($casinoId);
+        $this->displays = $this->getAllDisplaysWithPropertyId($propertyId);
     }
 
 
-    private function getAllDisplaysWithCasinoId($casinoId)
+    private function getAllDisplaysWithPropertyId($propertyId)
     {
-        $getDisplays = "SELECT * FROM display WHERE display.casino_id="
-            . $casinoId . " ORDER BY display.id;";
+        $getDisplays = "SELECT * FROM display WHERE display.property_id="
+            . $propertyId . " ORDER BY display.id;";
         $displayStatement = $this->conn->prepare($getDisplays);
         $displayStatement->execute();
         $result = $displayStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -55,7 +55,7 @@ class CasinoDisplays
 
     public function assignDisplayWithId($values) {
 
-        $sql = "UPDATE display SET casino_id = " . $values['casinoId'] . " WHERE id = " . $values['displayId'];
+        $sql = "UPDATE display SET property_id = " . $values['propertyId'] . " WHERE id = " . $values['displayId'];
 
         echo $sql;
 
@@ -64,8 +64,8 @@ class CasinoDisplays
     }
 
     private function getDisplayPromotions($display){
-        $getPromotions = "SELECT * FROM promotion_casino, promotion WHERE promotion_casino.display_id =". $display. " 
-                AND promotion_casino.promotion_id = promotion.id AND promotion.visible = 'T';";
+        $getPromotions = "SELECT * FROM promotion_property, promotion WHERE promotion_property.display_id =". $display. "
+                AND promotion_property.promotion_id = promotion.id AND promotion.visible = 'T';";
         $statement = $this->conn->prepare($getPromotions);
         $statement->execute();
         $displayPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -94,18 +94,18 @@ class CasinoDisplays
         $result->execute();
     }
 
-    public function updatePromotionsInDisplay($insertConn, $displayId, $casinoId, $promotions){
+    public function updatePromotionsInDisplay($insertConn, $displayId, $propertyId, $promotions){
 
       foreach($promotions as $promotion){
 
-        $sql= "SELECT * FROM promotion_casino WHERE promotion_id=:promotion_id AND casino_id=:casino_id;";
+        $sql= "SELECT * FROM promotion_property WHERE promotion_id=:promotion_id AND property_id=:property_id;";
 
           $result = $this->conn->prepare($sql);
           $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
-          $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+          $result->bindValue(':property_id', $propertyId, PDO::PARAM_STR);
           $result->execute();
           if($result->rowCount() > 0){
-            $sql= "UPDATE promotion_casino SET display_id=:display_id WHERE promotion_id=:promotion_id AND casino_id=:casino_id;";
+            $sql= "UPDATE promotion_property SET display_id=:display_id WHERE promotion_id=:promotion_id AND property_id=:property_id;";
 
               $result = $this->conn->prepare($sql);
               if($promotion['checked']=="true"){
@@ -114,14 +114,14 @@ class CasinoDisplays
                 $result->bindValue(':display_id', 0, PDO::PARAM_STR);
               }
               $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
-              $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+              $result->bindValue(':property_id', $propertyId, PDO::PARAM_STR);
               $result->execute();
           }else if ($promotion['checked']=="true"){
-            $sql= "INSERT INTO promotion_casino (promotion_id, casino_id, display_id)VALUES (:promotion_id, :casinoId, :display_id);";
+            $sql= "INSERT INTO promotion_property (promotion_id, property_id, display_id)VALUES (:promotion_id, :propertyId, :display_id);";
 
               $result = $insertConn->prepare($sql);
               $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
-              $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+              $result->bindValue(':property_id', $propertyId, PDO::PARAM_STR);
               $result->bindValue(':display_id', $displayId, PDO::PARAM_STR);
               $result->execute();
           }

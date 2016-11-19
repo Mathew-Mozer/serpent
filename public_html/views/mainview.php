@@ -22,18 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 //Another require
     require 'toolbar.php';
-//Create Casino objects
-    $casinoList = $promotion->getPromotionCasinos();
-    $casinoCount = count($casinoList);
-    $casinoRowIndex = 0;
-//List all the casinos that the current user has permissions to view
-    require "../models/CasinoDisplays.php";
+//Create Property objects
+    $propertyList = $promotion->getPromotionProperties();
+    $propertyCount = count($propertyList);
+    $propertyRowIndex = 0;
+//List all the properties that the current user has permissions to view
+    require "../models/PropertyDisplays.php";
     require "unassigneddisplayview.php";
-    foreach ($casinoList as $casino) {
+    foreach ($propertyList as $property) {
         //If the permission checks out, print the promotion
-        if ($permission->canViewCasinoPromotions($casino['id'])) {
-            include('casinoview.php');
-            $casinoRowIndex++;
+        if ($permission->canViewPropertyPromotions($property['id'])) {
+            include('propertyview.php');
+            $propertyRowIndex++;
             ?>
                 <hr>
             <?php
@@ -41,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-//If they have no permissions to view a casino, let them know.
-    if ($casinoRowIndex == 0) { ?>
+//If they have no permissions to view a property, let them know.
+    if ($propertyRowIndex == 0) { ?>
         <div>
-            <h3>You have no access to any casinos.</h3>
+            <h3>You have no access to any properties.</h3>
         </div>
     <?php }
     include '../dependencies/php/footer.php';
