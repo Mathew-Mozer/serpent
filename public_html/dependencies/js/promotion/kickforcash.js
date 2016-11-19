@@ -87,3 +87,4 @@ var updatePromotion = function(promotionId){
       }
   });
 };
+

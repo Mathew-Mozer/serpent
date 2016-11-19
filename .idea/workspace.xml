@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="387a5a77-39f5-4f38-b5f9-db8c63230e55" name="Default" comment="Fixed footer script">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php" />
     </list>
@@ -26,11 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pointsgt.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pointsgt.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+            <state relative-caret-position="771">
+              <caret line="103" column="43" selection-start-line="103" selection-start-column="43" selection-end-line="103" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pointsgtview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="33" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -70,16 +79,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pointsgtview.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pointsgtview.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/pointsgtview.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -93,8 +92,8 @@
       <file leaf-file-name="kickforcash.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="873">
+              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -156,9 +155,10 @@
         <option value="$PROJECT_DIR$/public_html/dependencies/css/glyphicons.css" />
         <option value="$PROJECT_DIR$/public_html/dependencies/php/header.php" />
         <option value="$PROJECT_DIR$/public_html/views/toolbar.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
         <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" />
         <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
       </list>
     </option>
   </component>
@@ -623,12 +623,12 @@
       <workItem from="1478693402679" duration="3782000" />
       <workItem from="1478814973649" duration="9224000" />
       <workItem from="1479538002952" duration="32000" />
-      <workItem from="1479538067457" duration="2518000" />
+      <workItem from="1479538067457" duration="5299000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57512000" />
+    <option name="totallyTimeSpent" value="60293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -939,14 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/kickforcashcontroller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -959,14 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -991,10 +975,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="873">
+          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="70" selection-start-line="3" selection-start-column="70" selection-end-line="3" selection-end-column="70" />
+        <state relative-caret-position="272">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="103" column="43" selection-start-line="103" selection-start-column="43" selection-end-line="103" selection-end-column="43" />
           <folding />
         </state>
       </provider>

@@ -98,3 +98,14 @@ var updatePromotion = function(promotionId){
         }
     });
 };
+
+
+/**
+ * Show the three instant winner selections
+ */
+    $("#enable-instant-winners").change(function () {
+        if ($(this).is(":checked"))
+            $("#instant-winner-options").removeClass("hidden");
+        else
+            $("#instant-winner-options").addClass("hidden");
+    });
