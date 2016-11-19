@@ -1,14 +1,25 @@
 <?php
+/**
+* Model that represents a Points GT promotion.
+*/
 class PointsGTModel{
 
    protected $db;
 
+   /**
+   * Constructs a new Points GT with a given PDO object.
+   */
    public function __construct(PDO $db){
      $this->db= $db;
 
    }
 
+   /**
+   * Inserts a Points GT record into the database.
+   * @param values
+   */
    public function addPointsGT($values){
+     //Adds Points GT.
      $sql = "INSERT INTO points_gt (
         points_gt_title,
         points_gt_subtitle,
@@ -35,23 +46,24 @@ class PointsGTModel{
         :promotion_id
         );";
 
-     $result = $this->db->prepare($sql);
-     $result->bindValue(':title', $values['title'], PDO::PARAM_STR);
-     $result->bindValue(':subtitle', $values['subtitle'], PDO::PARAM_STR);
-     $result->bindValue(':left_title', $values['left_title'], PDO::PARAM_STR);
-     $result->bindValue(':left_content', $values['left_content'], PDO::PARAM_STR);
-     $result->bindValue(':right_title', $values['right_title'], PDO::PARAM_STR);
-     $result->bindValue(':right_content', $values['right_content'], PDO::PARAM_STR);
-     $result->bindValue(':payout', $values['payout'], PDO::PARAM_STR);
-     $result->bindValue(':race_begin', $values['race_begin'], PDO::PARAM_STR);
-     $result->bindValue(':race_end', $values['race_end'], PDO::PARAM_STR);
-     $result->bindValue(':account_id', $values['account_id'], PDO::PARAM_STR);
-     $result->bindValue(':promotion_id', $values['promotion_id'], PDO::PARAM_STR);
+    $result = $this->db->prepare($sql);
+    $result->bindValue(':title', $values['title'], PDO::PARAM_STR);
+    $result->bindValue(':subtitle', $values['subtitle'], PDO::PARAM_STR);
+    $result->bindValue(':left_title', $values['left_title'], PDO::PARAM_STR);
+    $result->bindValue(':left_content', $values['left_content'], PDO::PARAM_STR);
+    $result->bindValue(':right_title', $values['right_title'], PDO::PARAM_STR);
+    $result->bindValue(':right_content', $values['right_content'], PDO::PARAM_STR);
+    $result->bindValue(':payout', $values['payout'], PDO::PARAM_STR);
+    $result->bindValue(':race_begin', $values['race_begin'], PDO::PARAM_STR);
+    $result->bindValue(':race_end', $values['race_end'], PDO::PARAM_STR);
+    $result->bindValue(':account_id', $values['account_id'], PDO::PARAM_STR);
+    $result->bindValue(':promotion_id', $values['promotion_id'], PDO::PARAM_STR);
 
-     $result->execute();
-     $pointsGTId = $this->db->lastInsertId();
+    $result->execute();
+    $pointsGTId = $this->db->lastInsertId();
 
-      $sql = "INSERT INTO points_gt_instant_winner (
+    //Adds instant winners for Points GT.
+    $sql = "INSERT INTO points_gt_instant_winner (
         pgt_points,
         pgt_winner_amount,
         pgt_color,
@@ -61,26 +73,29 @@ class PointsGTModel{
       (:pgt_points1, :pgt_winner_amount1, :pgt_color1, :pgt_id, :pgt_account_id)
       (:pgt_points2, :pgt_winner_amount2, :pgt_color2, :pgt_id, :pgt_account_id)
       (:pgt_points3, :pgt_winner_amount3, :pgt_color3, :pgt_id, :pgt_account_id);";
-      $result = $this->db->prepare($sql);
+    $result = $this->db->prepare($sql);
 
-      $result->bindValue(':pgt_id', $pointsGTId, PDO::PARAM_STR);
-      $result->bindValue(':pgt_account_id', $values['account_id'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_id', $pointsGTId, PDO::PARAM_STR);
+    $result->bindValue(':pgt_account_id', $values['account_id'], PDO::PARAM_STR);
 
-      $result->bindValue(':pgt_points1', $values['pgt_points1'], PDO::PARAM_STR);
-      $result->bindValue(':pgt_winner_amount1', $values['pgt_winner_amount1'], PDO::PARAM_STR);
-      $result->bindValue(':pgt_color1', $values['pgt_color1'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_points1', $values['pgt_points1'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_winner_amount1', $values['pgt_winner_amount1'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color1', $values['pgt_color1'], PDO::PARAM_STR);
 
-      $result->bindValue(':pgt_points2', $values['pgt_points2'], PDO::PARAM_STR);
-      $result->bindValue(':pgt_winner_amount2', $values['pgt_winner_amount2'], PDO::PARAM_STR);
-      $result->bindValue(':pgt_color2', $values['pgt_color2'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_points2', $values['pgt_points2'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_winner_amount2', $values['pgt_winner_amount2'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color2', $values['pgt_color2'], PDO::PARAM_STR);
 
-      $result->bindValue(':pgt_points3', $values['pgt_points3'], PDO::PARAM_STR);
-      $result->bindValue(':pgt_winner_amount3', $values['pgt_winner_amount3'], PDO::PARAM_STR);
-      $result->bindValue(':pgt_color3', $values['pgt_color3'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_points3', $values['pgt_points3'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_winner_amount3', $values['pgt_winner_amount3'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color3', $values['pgt_color3'], PDO::PARAM_STR);
 
-      $result->execute();
+    $result->execute();
    }
 
+   /**
+   * Gets the most up-to-date record for the Points GT by promtion id (1 record total).
+   */
    public function getPointsGT($id){
 
      $sql = "SELECT
@@ -101,6 +116,9 @@ class PointsGTModel{
      return $promoResult;
    }
 
+   /**
+   * Gets the most up-to-date record for the Points GT instant winners by Points GT id (3 records total).
+   */
    public function getPointsGTInstantWinners($id){
 
      $sql = "SELECT
