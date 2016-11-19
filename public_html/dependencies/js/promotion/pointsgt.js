@@ -46,10 +46,10 @@ var getModalData = function(promotionId){
             promotionId: promotionId
         },
         cache: false,
-        success: function(response) {
+        //success: function(response) {
 
 //references the template in view (by id)
-            $('#cash-amount-modal').html(response.cash_prize);
+       /*     $('#cash-amount-modal').html(response.cash_prize);
             $('#winning-number-modal').html(response.target_number);
             $('#name-modal').val(response.name);
             $('#chosen-number-modal').val(response.chosen_number);
@@ -65,7 +65,7 @@ var getModalData = function(promotionId){
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
-        }
+        }*/
     });
 };
 

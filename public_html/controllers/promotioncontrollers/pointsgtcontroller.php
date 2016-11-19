@@ -29,12 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header('content-type:application/json');
       echo json_encode($response);
     } else if($_POST['action'] == 'read'){
-      $kick_for_cash = new KickForCashModel($conn->read_database());
-      $response = $kick_for_cash->getKickForCash($_POST['promotionId']);
+      //$kick_for_cash = new KickForCashModel($conn->read_database());
+      //$response = $kick_for_cash->getKickForCash($_POST['promotionId']);
 
       header('content-type:application/json');
 
-      echo json_encode($response);
+        $dumb;
+      echo json_encode($dumb);
     }
 }
 
