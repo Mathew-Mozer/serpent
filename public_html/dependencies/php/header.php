@@ -59,6 +59,7 @@ session_start();
 	<link href="dependencies/css/text.css" rel="stylesheet">
     <link href="dependencies/css/displays.css" rel="stylesheet">
     <link href="dependencies/css/glyphicons.css" rel="stylesheet">
+    <link href="dependencies/css/ring.css" rel="stylesheet">
 
 	<?php
     require_once("HelperFunctions.php");
