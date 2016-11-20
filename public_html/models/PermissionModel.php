@@ -3,7 +3,7 @@
   * PromotionModal class
   *
   * author: Alex Onorati
-  * This class contains all the permissions for a user to acces and alter casinos and promotions.
+  * This class contains all the permissions for a user to acces and alter properties and promotions.
 */
   class PermissionModel{
 
@@ -19,7 +19,7 @@
       $this->loginId = $loginId;
 
       $sql = "SELECT
-                account_permissions.casino_id as casinoId, tag.type as `tag`, account_permissions.permissions as permissions
+                account_permissions.property_id as propertyId, tag.type as `tag`, account_permissions.permissions as permissions
               FROM
                 account, account_permissions, tag
               WHERE
@@ -36,102 +36,102 @@
       $this->permissions = array();
       foreach( $promoResult as $row){
         foreach(str_split($row['permissions']) as $permissionChar){
-          $this->permissions[$row['tag']][$row['casinoId']]['permission'][$permissionChar] = true;
+          $this->permissions[$row['tag']][$row['propertyId']]['permission'][$permissionChar] = true;
           $this->permissions[$row['tag']]['permission'][$permissionChar] = true;
         }
       }
     }
 
     /**
-    * Checks to see if the user has permission to create a promtion under a casino.
+    * Checks to see if the user has permission to create a promtion under a property.
     */
-    public function canCreateCasinoPromotion($casinoId){
-      return $this->hasPermission('promotion', $casinoId, 'C');
+    public function canCreatePropertyPromotion($propertyId){
+      return $this->hasPermission('promotion', $propertyId, 'C');
     }
 
     /**
-    * Checks to see if the user has permission to view a promotion under a casino.
+    * Checks to see if the user has permission to view a promotion under a property.
     */
-    public function canViewCasinoPromotions($casinoId){
-      return $this->hasPermission('promotion', $casinoId, 'R');
+    public function canViewPropertyPromotions($propertyId){
+      return $this->hasPermission('promotion', $propertyId, 'R');
     }
 
     /**
-    * Checks to see if the user has permission to update a promotion under a casino.
+    * Checks to see if the user has permission to update a promotion under a property.
     */
-    public function canUpdateCasinoPromtion($casinoId){
-      return $this->hasPermission('promotion', $casinoId, 'U');
+    public function canUpdatePropertyPromtion($propertyId){
+      return $this->hasPermission('promotion', $propertyId, 'U');
     }
 
     /**
-    * Checks to see if the user has permission to delete a promotion under a casino.
+    * Checks to see if the user has permission to delete a promotion under a property.
     */
-    public function canDeleteCasinoPromotion($casinoId){
-      return $this->hasPermission('promotion', $casinoId, 'D');
+    public function canDeletePropertyPromotion($propertyId){
+      return $this->hasPermission('promotion', $propertyId, 'D');
     }
 
     /**
-    * Checks to see if the user has permission to create a casino.
+    * Checks to see if the user has permission to create a property.
     */
-    public function canCreateCasino(){
-      return $this->hasPermissionByAccount('casino', 'C');
+    public function canCreateProperty(){
+      return $this->hasPermissionByAccount('property', 'C');
     }
 
     /**
-    * Checks to see if the user has permission to view a casino.
+    * Checks to see if the user has permission to view a property.
     */
-    public function canViewCasino($casinoId){
-      return $this->hasPermission('casino', $casinoId, 'R');
+    public function canViewProperty($propertyId){
+      return $this->hasPermission('property', $propertyId, 'R');
     }
 
     /**
-    * Checks to see if the user has permission to update a casino.
+    * Checks to see if the user has permission to update a property.
     */
-    public function canUpdateCasino($casinoId){
-      return $this->hasPermission('casino', $casinoId, 'U');
+    public function canUpdateProperty($propertyId){
+      return $this->hasPermission('property', $propertyId, 'U');
     }
 
     /**
-    * Checks to see if the user has permission to delete a casino.
+    * Checks to see if the user has permission to delete a property.
     */
-    public function canDeleteCasino(){
-      return $this->hasPermission('casino', $casinoId, 'D');
+    public function canDeleteCProperty(){
+      return $this->hasPermission('property', $propertyId, 'D');
     }
 
     /**
-    * Checks to see if the user has permission to create a casino.
+    * Checks to see if the user has permission to create a property.
     */
     public function canCreateAccount(){
       return $this->hasPermissionByAccount('account', 'C');
     }
 
     /**
-    * Checks to see if the user has permission to view a casino.
+    * Checks to see if the user has permission to view a property.
     */
-    public function canViewAccount($casinoId){
-      return $this->hasPermission('account', $casinoId, 'R');
+    public function canViewAccount($propertyId){
+      return $this->hasPermission('account', $propertyId, 'R');
     }
 
     /**
-    * Checks to see if the user has permission to update a casino.
+    * Checks to see if the user has permission to update a property.
     */
-    public function canUpdateAccount($casinoId){
-      return $this->hasPermission('account', $casinoId, 'U');
+    public function canUpdateAccount($propertyId){
+      return $this->hasPermission('account', $propertyId, 'U');
     }
 
     /**
-    * Checks to see if the user has permission to delete a casino.
+    * Checks to see if the user has permission to delete a property.
     */
-    public function canDeleteAccount($casinoId){
-      return $this->hasPermission('account', $casinoId, 'D');
+    public function canDeleteAccount($propertyId){
+      return $this->hasPermission('account', $propertyId, 'D');
     }
 
 
     /**
-    * Base permission test for user. 
+    * Base permission test for user.
     */
-    public function hasPermission($tag, $casinoId, $permission){
-      return isset($this->permissions[$tag][$casinoId]) && isset($this->permissions[$tag][$casinoId]['permission'][$permission]);
+    public function hasPermission($tag, $propertyId, $permission){
+      return isset($this->permissions[$tag][$propertyId]) && isset($this->permissions[$tag][$propertyId]['permission'][$permission]);
     }
 
 	/**

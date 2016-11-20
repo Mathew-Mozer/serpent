@@ -1,7 +1,7 @@
 <?php
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
-require "../models/CasinoDisplays.php";
+require "../models/PropertyDisplays.php";
 require "../models/PromotionModel.php";
 
 $dbcon = NEW DbCon();
@@ -10,36 +10,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if ($_POST['action'] == 'getSingleDisplay') {
-        $casinoDisplayModel = new CasinoDisplays($dbcon->read_database(),0);
-        $result = $casinoDisplayModel->getDisplayWithId($_POST['displayId']);
-        $array = array('id' => $result->getId(), 'name' => $result->getName(), 'casinoId' => $result->getCasinoId(),
+        $propertyDisplayModel = new PropertyDisplays($dbcon->read_database(),0);
+        $result = $propertyDisplayModel->getDisplayWithId($_POST['displayId']);
+        $array = array('id' => $result->getId(), 'name' => $result->getName(), 'propertyId' => $result->getPropertyId(),
             'serial' => $result->getSerial(), 'macAddress' => $result->getMacAddress());
 
         $promotionModel = new PromotionModel($dbcon->read_database());
-        $casinoList = $promotionModel->getPromotionCasinos();
-        $casinos = [];
-        foreach ($casinoList as $casino){
-            $casinoInfo = [];
-            $casinoInfo['casinoId'] = $casino['id'];
-            $casinoInfo['casinoName'] = $casino['casinoName'];
-            array_push($casinos,$casinoInfo);
+        $propertyList = $promotionModel->getPromotionProperties();
+        $properties = [];
+        foreach ($propertyList as $property){
+            $propertyInfo = [];
+            $propertyInfo['propertyId'] = $property['id'];
+            $propertyInfo['propertyName'] = $property['propertyName'];
+            array_push($properties,$propertyInfo);
         }
-        $array['casinos'] = $casinos;
+        $array['properties'] = $properties;
         echo json_encode($array);
     } else if ($_POST['action'] == 'assignDisplay'){
-        $casinoDisplayModel = new CasinoDisplays($dbcon->update_database(),0);
+        $propertyDisplayModel = new PropertyDisplays($dbcon->update_database(),0);
         $updated['updated'] = false;
         $values = [];
         $values['displayId'] = $_POST['displayId'];
-        $values['casinoId'] = $_POST['casinoId'];
-        if($casinoDisplayModel->assignDisplayWithId($values)){
+        $values['propertyId'] = $_POST['propertyId'];
+        if($propertyDisplayModel->assignDisplayWithId($values)){
             $updated['updated'] = true;
         }
         return json_encode($updated);
     } else if ($_POST['action'] == 'update') {
-        $displayCasinos = new CasinoDisplays($dbcon->update_database(), $_POST['casinoId']);
-        $displayCasinos->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
-        $displayCasinos->updatePromotionsInDisplay($dbcon->insert_database(),$_POST['displayId'],$_POST['casinoId'], $_POST['promotions']);
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), $_POST['propertyId']);
+        $displayProperties->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
+        $displayProperties->updatePromotionsInDisplay($dbcon->insert_database(),$_POST['displayId'],$_POST['propertyId'], $_POST['promotions']);
         header('content-type:application/json');
         echo json_encode(array("success"=>"updated diplay"));
     }

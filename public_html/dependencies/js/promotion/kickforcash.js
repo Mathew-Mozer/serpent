@@ -1,4 +1,4 @@
-var addPromotionByType = function(casinoId, promotionId) {
+var addPromotionByType = function(propertyId, promotionId) {
     var cashPrize = $('input[name=cash-prize]').val();
     var targetNumber = $('input[name=target-number]').val();
     $.ajax({
@@ -6,7 +6,7 @@ var addPromotionByType = function(casinoId, promotionId) {
         type: 'post',
         data: {
             action: 'add',
-            casinoId: casinoId,
+            propertyId: propertyId,
             promotionId: promotionId,
             cashPrize: cashPrize,
             targetNumber: targetNumber
@@ -14,10 +14,10 @@ var addPromotionByType = function(casinoId, promotionId) {
         },
         cache: false,
         success: function(response) {
-          
+
 
             //update view with new promotion
-            addPromotion(response.image, casinoId);
+            addPromotion(response.image, propertyId);
             addPromotionModal.dialog('close');
         },
         error: function(xhr, desc, err) {

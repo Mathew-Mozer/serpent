@@ -1,11 +1,10 @@
 <div class="toolbench">
     <div class="toolbar">
         <?php
-        if($permission->hasPermissionByAccount('casino','C')){
+        if($permission->hasPermissionByAccount('property','C')){
             ?>
-            <div id = "create-casino-btn" class="button-body tool-button" data-toggle="tooltip" title="Create New Property">
-                <!--<span class="glyphicon icon-glyphicon-new-property tool-glyphicon white" aria-hidden="true"></span>-->
-                <i class="fa fa-sitemap fa-3x"></i>
+            <div id = "create-property-btn" class="button-body tool-button" data-toggle="tooltip" title="Create New Property">
+                <span class="glyphicon glyphicon-home tool-glyphicon white" aria-hidden="true"></span>
             </div>
             <?php
         }

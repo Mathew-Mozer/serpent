@@ -8,7 +8,11 @@
 */
 ?>
 <script>
+$('.displays').hide();
+console.log("hide unassigned-displays");
+$('#unassigned-displays').hide();
     $(document).ready(function(){
+        console.log("hide displays");
 
         $('.displays').hide();
         $('#unassigned-displays').hide();
@@ -53,8 +57,8 @@
 
 
        $(".add-promotion-btn").unbind('click').click(function(){
-          $('input[name=casinoId]').val(this.id);
-           $('#promotion_type_select').load("views/addpromotionoptionview.php", {casinoId: this.id});
+          $('input[name=propertyId]').val(this.id);
+           $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
            addPromotionModal.dialog('open');
        });
 
@@ -63,8 +67,8 @@
             editUsersModal.dialog('open');
         });*/
 
-        $("#create-casino-btn").click(function(){
-            createCasinoModal.dialog('open');
+        $("#create-property-btn").click(function(){
+            createPropertyModal.dialog('open');
         });
         //Toggle between promotion and display view
         $(".toggle-display-btn").click(function() {
@@ -98,10 +102,10 @@
 
 			//Open display modal
 	$(".edit-display-btn").unbind('click').click(function () {
-    var casinoId = $(this).data("casino-id");
+    var propertyId = $(this).data("property-id");
     var displayId = $(this).data("display-id");
-    console.log(casinoId + displayId);
-    $("#editDisplayModal").load("modals/displaymodalform.php", {casinoId : casinoId, displayId : displayId});
+    //console.log(propertyId + displayId);
+    $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId : propertyId, displayId : displayId});
 		editDisplayModal.dialog('open');
 	});
 
@@ -116,7 +120,7 @@
                 },
 
                 Save: function(){
-                  var casinoId = $("#casino-id-form").data("casino-id");
+                  var propertyId = $("#property-id-form").data("property-id");
                   var displayId = $("#display-id-form").data("display-id");
                   var displayName = $('input[name=displayName]').val();
                   var displayLocation = $('input[name=displayLocation]').val();
@@ -135,7 +139,7 @@
                       type: 'post',
                       data: {
                           action: 'update',
-                          casinoId: casinoId,
+                          propertyId: propertyId,
                           displayId: displayId,
                           displayName: displayName,
                           displayLocation: displayLocation,
