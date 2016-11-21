@@ -19,7 +19,9 @@ require_once(getServerPath()."dbcon.php");
  */
 class OptionsModel{
 
+    const HIGHHANDID = 1;
     const KICKFORCASHID = 11;
+
 
     private $promotionID;
     private $conn;
@@ -90,6 +92,8 @@ class OptionsModel{
         $sql = '';
         if($promotionType == self::KICKFORCASHID) {
             $sql = 'SELECT cash_prize,target_number FROM kick_for_cash WHERE promotion_id = '. $this->promotionID;
+        } else if ($promotionType == self::HIGHHANDID) {
+            $sql = 'SELECT * from high_hand WHERE promotion_id =' . $this->promotionID;
         }
         return $sql;
     }
@@ -98,6 +102,8 @@ class OptionsModel{
         $sql = '';
         if($promotionType == self::KICKFORCASHID) {
             $sql = 'UPDATE kick_for_cash SET cash_prize = '. $cashPrize .', target_number = '. $targetNumber.' WHERE promotion_id = ' . $this->promotionID;
+        } else if ($promotionType == self::HIGHHANDID) {
+            $sql = 'UPDATE HIGHHAND';
         }
         echo $sql;
         return $sql;

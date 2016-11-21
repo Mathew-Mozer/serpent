@@ -23,10 +23,6 @@
         Ranked Hands <input class="high-hand-radio" value="2" name="multiple-hands" type = "radio"/> <br/>
     <br>
     <br>
-    <label class="high-hand-label">Show Previous Winners</label>
-    <input class="high-hand-checkbox" id="show-previous-winners" name="show-previous-winners" type="checkbox"/>
-    <br>
-    <br>
     <label class="high-hand-label">High Hand Gold</label>
     <input class="high-hand-checkbox" id="high-hand-gold" name="high-hand-gold" type = "checkbox"/>
     <br>

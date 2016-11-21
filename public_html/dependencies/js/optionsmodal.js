@@ -52,9 +52,57 @@
             data: {action: 'get', id: promotionID, typeId: promoType},
             cache: false,
             success: function (response) {
-                var row;
                 var jsonData = $.parseJSON(response);
-                if(promoType == 11){
+                if(promoType == 1) {
+                    $('#settings').html(
+                        '<form> '+
+                        '<br> <label>Title Message</label>'+
+                        '<input id="title-message" name="title-message" type="text" value="' +
+                            jsonData['title_message'] + '"/>' +
+                        '<br> <br> '+
+                        '<label>Horn Timer</label>' +
+                        '<input id="horn-timer" name="horn-timer" type = "number" value="'+
+                            jsonData['horn_timer'] +'"/>' +
+                        '<br> <br>' +
+                        '<label>Payout Value</label>' +
+                        '<input id="payout-value" name="payout-value" type = "number" value="' +
+                        jsonData['payout_value'] + '"/>' +
+                        '<br> <br>'+
+                        '<label>Session Timer</label>'+
+                        '<input id="session-timer" name="session-timer" type = "number" value="'+
+                        jsonData['session_timer'] + '"/>'+
+                        '<br> <br>'+
+                        '<label>Show Multiple Hands</label> <br>'+
+                        '<span class="high-hand-span">Disabled</span> <input id="disabled" class="high-hand-radio" ' +
+                        'value="0" name="multiple-hands" type = "radio"/>  <br/>' +
+                        'Previous Winners <input id="previous" class="high-hand-radio" ' +
+                        'value="1" name="multiple-hands" type = "radio"/> <br/>' +
+                        'Ranked Hands <input id="ranked" class="high-hand-radio" ' +
+                        'value="2" name="multiple-hands" type = "radio"/> <br/>' +
+                        '<br> <br>' +
+                        '<label class="high-hand-label">High Hand Gold</label>' +
+                        '<input class="high-hand-checkbox" id="high-hand-gold" ' +
+                        'name="high-hand-gold" type = "checkbox"/>' +
+                        '<br> <br>' +
+                        '<label class="high-hand-label">Use Joker</label>' +
+                        '<input class="high-hand-checkbox" id="use-joker" ' +
+                        'name="use-joker" type = "checkbox"/>' +
+                        '</form>');
+                        var multipleHands = String(jsonData['multiple_hands']);
+                        if(multipleHands == 0){
+                            $(":radio[value='0']").prop("checked", true);
+                        } else if (multipleHands == 1) {
+                            $(":radio[value='1']").prop("checked", true);
+                        } else {
+                            $(":radio[value='2']").prop("checked", true);
+                        }
+                        if(jsonData['use_joker'] == 1) {
+                            $("#use-joker").prop('checked', true);
+                        }
+                        if(jsonData['high_hand_gold'] == 1) {
+                            $("#high-hand-gold").prop('checked', true);
+                        }
+                }else if(promoType == 11){
                     $('#settings').html('<br><label>Target Number</label><br>' +
                         '<input id="target-number" name="target-number" type="number" value="'+ jsonData['target_number'] + '"/> <br> ' +
                         '<label>Cash Prize </label> <br> ' +

@@ -1,7 +1,7 @@
 var addPromotionByType = function(casinoId, promotionId) {
     var titleMessage = $('input[name=title-message]').val();
-    var useJoker = $('input[name=use-joker]').val();
-    var highHandGold = $('input[name=high-hand-gold]').val();
+    var useJoker = $('input[name=use-joker]').prop('checked');
+    var highHandGold = $('input[name=high-hand-gold]').prop('checked');
     var hornTimer = $('input[name=horn-timer]').val();
     var payoutValue = $('input[name=payout-value]').val();
     var sessionTimer = $('input[name=session-timer]').val();
