@@ -5,6 +5,7 @@ var addPromotionByType = function(casinoId, promotionId) {
     var hornTimer = $('input[name=horn-timer]').val();
     var payoutValue = $('input[name=payout-value]').val();
     var sessionTimer = $('input[name=session-timer]').val();
+    var multipleHands = $("input:radio[name='multiple-hands']:checked").val();
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
@@ -17,7 +18,8 @@ var addPromotionByType = function(casinoId, promotionId) {
             highHandGold: highHandGold,
             hornTimer: hornTimer,
             payoutValue: payoutValue,
-            sessionTimer: sessionTimer
+            sessionTimer: sessionTimer,
+            multipleHands: multipleHands
         },
         cache: false,
         success: function(response) {
