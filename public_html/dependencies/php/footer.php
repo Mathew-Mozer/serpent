@@ -48,7 +48,7 @@
            var ids = $(this).attr('id').split('-');
            <?php echo "var id=".$_SESSION['userId'].";"; ?>
            var perm = canDelete(ids[0],id);
-           getSettings(ids[1], perm);
+           getSettings(ids[1],ids[2], perm);
          });
 
 

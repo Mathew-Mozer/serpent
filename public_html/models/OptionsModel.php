@@ -19,6 +19,8 @@ require_once(getServerPath()."dbcon.php");
  */
 class OptionsModel{
 
+    const KICKFORCASHID = 11;
+
     private $promotionID;
     private $conn;
 
@@ -39,11 +41,11 @@ class OptionsModel{
      * Queries the database table promotion and returns all fields if an id match is found.
      *
      * Returns setting for specific promotion
-     *
+     * @param $promotionType int
      * @return array
      */
-    public function getPromotionSettings() {
-        $sql = 'SELECT * FROM promotion WHERE id = '. $this->promotionID;
+    public function getPromotionSettings($promotionType) {
+        $sql = $this->getSelectPromotionTypeSql($promotionType);
         $statement = $this->conn->prepare($sql);
         $statement->execute();
 
@@ -56,16 +58,17 @@ class OptionsModel{
      *
      * Updates database
      *
-     * @param $settings
-     * @return array
+     * @param $promotionType
+     * @param $cashPrize
+     * @param $targetNumber
+     *
+     * @return boolean
      */
-    public function updatePromotionSettings($settings) {
-
-        $sql = "UPDATE promotion SET settings = " . $settings . "WHERE id= " . $this->promotionID;
+    public function updatePromotionSettings($promotionType,$cashPrize,$targetNumber) {
+        $sql = $this->getUpdatePromotionTypeSql($promotionType,$cashPrize,$targetNumber);
         $statement = $this->conn->prepare($sql);
-        $statement->execute();
-
-        return $this->getPromotionSettings();
+        $completed = $statement->execute();
+        return $completed;
     }
 
 
@@ -80,8 +83,24 @@ class OptionsModel{
     public function archivePromotion() {
         $sql = "UPDATE promotion SET visible = 'F' WHERE id = " . $this->promotionID;
         $statement = $this->conn->prepare($sql);
-
         return $statement->execute();
+    }
+
+    private function getSelectPromotionTypeSql ($promotionType) {
+        $sql = '';
+        if($promotionType == self::KICKFORCASHID) {
+            $sql = 'SELECT cash_prize,target_number FROM kick_for_cash WHERE promotion_id = '. $this->promotionID;
+        }
+        return $sql;
+    }
+
+    private function getUpdatePromotionTypeSql ($promotionType, $cashPrize, $targetNumber) {
+        $sql = '';
+        if($promotionType == self::KICKFORCASHID) {
+            $sql = 'UPDATE kick_for_cash SET cash_prize = '. $cashPrize .', target_number = '. $targetNumber.' WHERE promotion_id = ' . $this->promotionID;
+        }
+        echo $sql;
+        return $sql;
     }
 }
 
