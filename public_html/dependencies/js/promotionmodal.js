@@ -3,6 +3,7 @@ var promotionViewModal = $("#promotion-view-modal").dialog({
     height: 400,
     width: 350,
     modal: true,
+    cache: false,
     buttons: {
         Update: function () {
             updatePromotion($("#promotion-view-modal").data('promo-id'));

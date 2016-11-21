@@ -1,6 +1,6 @@
 //sets settingsModal variable to the described modal window
 
-    var promotionID;
+    var promotionId;
     var permission;
     var promotionType;
 
@@ -22,14 +22,29 @@
 
         Submit: function () {
             var settings = [];
-            settings['promotionType'] = promotionType;
-            settings['cashPrize'] = $('#cash-prize').val();
-            settings['targetNumber'] = $('#target-number').val();
-            console.log(settings);
-            updateSettings(settings);
-            settingsModal.dialog('close');
-            //resets div to blank
-            $('#settings').empty();
+            if(promotionType == 1){
+                settings[0] = promotionType;
+                settings[1] = $('input[name=title-message]').val();
+                settings[2] = $('input[name=use-joker]').prop('checked');
+                settings[3] = $('input[name=high-hand-gold]').prop('checked');
+                settings[4] = $('input[name=horn-timer]').val();
+                settings[5] = $('input[name=payout-value]').val();
+                settings[6] = $('input[name=session-timer]').val();
+                settings[7] = $("input:radio[name='multiple-hands']:checked").val();
+                updateHighHandSettings(settings);
+                settingsModal.dialog('close');
+                //resets div to blank
+                $('#settings').empty();
+            }
+            if(promotionType == 11) {
+                settings[0] = promotionType;
+                settings[1] = $('#cash-prize').val();
+                settings[2] = $('#target-number').val();
+                updateKickForCashSettings(settings);
+                settingsModal.dialog('close');
+                //resets div to blank
+                $('#settings').empty();
+            }
         }
     };
 
@@ -42,14 +57,14 @@
 
     //returns the settings stored in the database
     var getSettings = function (id, promoType, perm) {
-        promotionID = id;
+        promotionId = id;
         permission = perm;
         promotionType = promoType;
 
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
-            data: {action: 'get', id: promotionID, typeId: promoType},
+            data: {action: 'get', id: promotionId, typeId: promoType},
             cache: false,
             success: function (response) {
                 var jsonData = $.parseJSON(response);
@@ -103,7 +118,7 @@
                             $("#high-hand-gold").prop('checked', true);
                         }
                 }else if(promoType == 11){
-                    $('#settings').html('<br><label>Target Number</label><br>' +
+                   $('#settings').html('<br><label>Target Number</label><br>' +
                         '<input id="target-number" name="target-number" type="number" value="'+ jsonData['target_number'] + '"/> <br> ' +
                         '<label>Cash Prize </label> <br> ' +
                         '<input id="cash-prize" name="cash-prize" type = "number" value="'+ jsonData['cash_prize'] + '"/> <br>');
@@ -127,10 +142,10 @@
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
-            data: {action: 'archive', id: promotionID},
+            data: {action: 'archive', id: promotionId},
             cache: false,
             success: function () {
-                $('.'+promotionID).hide();
+                $('.'+promotionId).hide();
             }
         });
     };
@@ -148,11 +163,21 @@
         });
     };
 
-    var updateSettings = function (updatedSettings) {
+    var updateKickForCashSettings = function (updatedSettings) {
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
-            data: {action: 'update', id: promotionID, typeId: promotionType, cashPrize: updatedSettings['cashPrize'], targetNumber: updatedSettings['targetNumber']},
+            data: {action: 'update', id: promotionId, typeId: promotionType, settings: updatedSettings},
             cache: false
         })
     };
+
+    var updateHighHandSettings = function (updatedSettings) {
+    $.ajax({
+        url: 'controllers/optionsmodalcontroller.php',
+        type: 'post',
+        data: {action: 'update', id: promotionId, typeId: promotionType, settings: updatedSettings},
+        cache: false
+    })
+};
+

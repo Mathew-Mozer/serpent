@@ -24,5 +24,22 @@ class HighHandModel{
         $result->execute();
     }
 
+    public function getHighHand($id){
+
+        $sql = "SELECT
+               *
+             FROM
+               high_hand
+             WHERE
+               promotion_id=:id;";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+
+        return $promoResult;
+    }
+
 
 }

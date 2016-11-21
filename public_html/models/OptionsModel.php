@@ -61,13 +61,12 @@ class OptionsModel{
      * Updates database
      *
      * @param $promotionType
-     * @param $cashPrize
-     * @param $targetNumber
+     * @param $promotionSettings
      *
      * @return boolean
      */
-    public function updatePromotionSettings($promotionType,$cashPrize,$targetNumber) {
-        $sql = $this->getUpdatePromotionTypeSql($promotionType,$cashPrize,$targetNumber);
+    public function updatePromotionSettings($promotionType, $promotionSettings) {
+        $sql = $this->getUpdatePromotionTypeSql($promotionType, $promotionSettings);
         $statement = $this->conn->prepare($sql);
         $completed = $statement->execute();
         return $completed;
@@ -98,12 +97,18 @@ class OptionsModel{
         return $sql;
     }
 
-    private function getUpdatePromotionTypeSql ($promotionType, $cashPrize, $targetNumber) {
+    private function getUpdatePromotionTypeSql ($promotionType, $promotionSettings) {
         $sql = '';
         if($promotionType == self::KICKFORCASHID) {
-            $sql = 'UPDATE kick_for_cash SET cash_prize = '. $cashPrize .', target_number = '. $targetNumber.' WHERE promotion_id = ' . $this->promotionID;
+            $cashPrize = $promotionSettings[1];
+            $targetNumber = $promotionSettings[2];
+            $sql = 'UPDATE kick_for_cash SET cash_prize = '. $cashPrize .', target_number = '. $targetNumber.
+                        ' WHERE promotion_id = ' . $this->promotionID;
         } else if ($promotionType == self::HIGHHANDID) {
-            $sql = 'UPDATE HIGHHAND';
+            $sql = 'UPDATE high_hand SET title_message = "'.$promotionSettings[1].'", use_joker='.$promotionSettings[2].
+                ', high_hand_gold='.$promotionSettings[3].',horn_timer='.$promotionSettings[4].
+                ', payout_value='.$promotionSettings[5].', session_timer='.$promotionSettings[6].
+                ', multiple_hands='.$promotionSettings[7].' WHERE promotion_id=' . $this->promotionID;
         }
         echo $sql;
         return $sql;

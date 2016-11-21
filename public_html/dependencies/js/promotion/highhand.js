@@ -32,3 +32,24 @@ var addPromotionByType = function(casinoId, promotionId) {
         }
     });
 };
+
+var getHighHandData = function(promotionId) {
+    $.ajax({
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        type: 'post',
+        data: {
+            action: 'read',
+            promotionId: promotionId
+        },
+        cache: false,
+        success: function (response) {
+            $('#title-message-modal').attr('value',response.title_message);
+            $('#use-joker-modal').prop('checked', response.use_joker);
+            $('#high-hand-gold-modal').prop('checked',response.high_hand_gold);
+
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+};
