@@ -49,6 +49,7 @@
 
             $sql = "SELECT
                       promotion.id as promo_id,
+                      promotion.promotion_type_id as type_id,
                       promotion_type.title as promo_title,
                       promotion_type.image as promo_image,
                       promotion_casino.display_id as display_id,

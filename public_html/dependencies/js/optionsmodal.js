@@ -2,6 +2,8 @@
 
     var promotionID;
     var permission;
+    var promotionType;
+
     //variable for the modal window
     var settingsModal = $("#settings").dialog({
         autoOpen: false,
@@ -19,7 +21,12 @@
     var modalButtons = {
 
         Submit: function () {
-            //submit changes to db through options modal class
+            var settings = [];
+            settings['promotionType'] = promotionType;
+            settings['cashPrize'] = $('#cash-prize').val();
+            settings['targetNumber'] = $('#target-number').val();
+            console.log(settings);
+            updateSettings(settings);
             settingsModal.dialog('close');
             //resets div to blank
             $('#settings').empty();
@@ -34,23 +41,26 @@
     };
 
     //returns the settings stored in the database
-    var getSettings = function (id, perm) {
+    var getSettings = function (id, promoType, perm) {
         promotionID = id;
         permission = perm;
+        promotionType = promoType;
+
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
-            data: {action: 'get', id: promotionID},
+            data: {action: 'get', id: promotionID, typeId: promoType},
             cache: false,
             success: function (response) {
                 var row;
                 var jsonData = $.parseJSON(response);
+                if(promoType == 11){
+                    $('#settings').html('<br><label>Target Number</label><br>' +
+                        '<input id="target-number" name="target-number" type="number" value="'+ jsonData['target_number'] + '"/> <br> ' +
+                        '<label>Cash Prize </label> <br> ' +
+                        '<input id="cash-prize" name="cash-prize" type = "number" value="'+ jsonData['cash_prize'] + '"/> <br>');
+                }
 
-                //appends resulting rows to settings div
-                $.each(jsonData, function(key,value) {
-                   row = key + " = " + value + "<br/>";
-                    $('#settings').append(row);
-                });
                 if(permission) {
                     modalButtons["Delete"] = function () {
                         deletePromotion();
@@ -88,4 +98,13 @@
                 return permission['permission'];
             }
         });
+    };
+
+    var updateSettings = function (updatedSettings) {
+        $.ajax({
+            url: 'controllers/optionsmodalcontroller.php',
+            type: 'post',
+            data: {action: 'update', id: promotionID, typeId: promotionType, cashPrize: updatedSettings['cashPrize'], targetNumber: updatedSettings['targetNumber']},
+            cache: false
+        })
     };
