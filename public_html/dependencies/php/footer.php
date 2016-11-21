@@ -63,6 +63,13 @@
             editUsersModal.dialog('open');
         });*/
 
+
+        /*
+         These are the modal windows that can be opened. Note that these need
+         to be moved to their own file. Most likely they should just be aggregated
+         as they are 90% similar.
+         */
+
         $("#create-casino-btn").click(function(){
             createCasinoModal.dialog('open');
         });
@@ -156,11 +163,7 @@
             }
         });
 
-        /*
-         These are the modal windows that can be opened. Note that these need
-         to be moved to their own file. Most likely they should just be aggregated
-         as they are 90% similar.
-         */
+
 
     });
 </script>

@@ -59,7 +59,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 </div>
 
-<?php include "thinkingdonut.php"; ?>
+<?php include "views/thinkingdonut.php"; ?>
 
 <div id="createCasino" style="display: none;" title="Create Casino">
 
