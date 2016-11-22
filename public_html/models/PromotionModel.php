@@ -64,7 +64,7 @@
                       AND casino.id = promotion_casino.casino_id
                       AND promotion.visible = 'T' AND casino.id = :id;
                     ";
-      
+
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $casinoId, PDO::PARAM_STR);
       $result->execute();
