@@ -98,11 +98,11 @@ class CasinoDisplays
 
       foreach($promotions as $promotion){
 
-        $sql= "SELECT * FROM promotion_casino WHERE promotion_id=:promotion_id AND casino_id=:casino_id;";
+        $sql= "SELECT * FROM promotion_casino WHERE promotion_id=:promotion_id AND display_id=:display_id;";
 
           $result = $this->conn->prepare($sql);
           $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
-          $result->bindValue(':casino_id', $casinoId, PDO::PARAM_STR);
+          $result->bindValue(':display_id', $displayId, PDO::PARAM_STR);
           $result->execute();
 
           if($result->rowCount() > 0){
@@ -121,7 +121,7 @@ class CasinoDisplays
               $result->execute();
           }else if ($promotion['checked']=="true"){
             $sql= "INSERT INTO promotion_casino (promotion_id, casino_id, display_id, scene_duration)
-                        VALUES (:promotion_id, :casinoId, :display_id, :scene_duration);";
+                        VALUES (:promotion_id, :casino_id, :display_id, :scene_duration);";
 
               $result = $insertConn->prepare($sql);
               $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
