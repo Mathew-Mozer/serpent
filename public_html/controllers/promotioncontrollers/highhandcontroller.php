@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'add') {
         $promotion = new PromotionModel($conn->insert_database());
         $highHand = new HighHandModel($conn->insert_database());
-        $addPromotion = $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId']);
+        $addPromotion = $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId'], $_POST['sceneType']);
         $highHand->addHighHand($addPromotion, $_POST['titleMessage'], $_POST['useJoker'],
             $_POST['highHandGold'], $_POST['hornTimer'], $_POST['payoutValue'], $_POST['sessionTimer'],
             $_POST['multipleHands']);
