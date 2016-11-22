@@ -60,7 +60,6 @@ $promotion = new PromotionModel($dbcon->read_database());
 </div>
 
 
-
 <div id="createCasino" style="display: none;" title="Create Casino">
 
     <form id="casinoForm">

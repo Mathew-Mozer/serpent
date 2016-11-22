@@ -48,7 +48,8 @@ session_start();
 	 <!-- Metis Menu Plugin JavaScript -->
     <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>
 
-
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="dependencies/fontawesome/css/font-awesome.min.css">
 
     <!-- Custom Theme JavaScript -->
     <script src="startbootstrap-admin/dist/js/sb-admin-2.js"></script>
@@ -58,6 +59,8 @@ session_start();
 	<link href="dependencies/css/text.css" rel="stylesheet">
     <link href="dependencies/css/displays.css" rel="stylesheet">
     <link href="dependencies/css/highhandform.css" rel="stylesheet">
+    <link href="dependencies/css/glyphicons.css" rel="stylesheet">
+    <link href="dependencies/css/ring.css" rel="stylesheet">
 
 	<?php
     require_once("HelperFunctions.php");

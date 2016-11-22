@@ -1,0 +1,16 @@
+/*
+*   This stores all the custom glyphicons in use
+*/
+
+.icon-glyphicon-new-property {
+    background-image: url("../glyphicons/glyphicons-620-industrial-zone.png");
+    background-position: center center;
+}
+
+/*
+*   For font awesome
+*/
+.font-awesome-toolbar{
+    margin-top: 4px;
+    color: white;
+}

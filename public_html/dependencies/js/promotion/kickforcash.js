@@ -85,3 +85,4 @@ var updatePromotion = function(promotionId){
       }
   });
 };
+
