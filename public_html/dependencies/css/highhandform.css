@@ -1,0 +1,23 @@
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+input {
+    width: 160px;
+}
+
+.high-hand-span{
+    width: 150px !important;
+}
+
+.high-hand-radio {
+    width: 25px;
+}
+
+.high-hand-checkbox {
+    width: 25px !important;
+    position: relative;
+    vertical-align: middle;
+}

@@ -59,7 +59,6 @@ $promotion = new PromotionModel($dbcon->read_database());
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 </div>
 
-<?php include "views/thinkingdonut.php"; ?>
 
 <div id="createCasino" style="display: none;" title="Create Casino">
 
@@ -111,6 +110,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/createcasino.js"></script>
 <script src="dependencies/js/displayview.js"></script>
 <script src="dependencies/js/promotionmodal.js"></script>
+<script src="dependencies/js/editdisplay.js"></script>
 
 <script>
     <?php
