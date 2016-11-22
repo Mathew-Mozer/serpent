@@ -17,9 +17,8 @@
             throw new PDOException("Error Updating");
         }
     } else if ($_POST['action'] == 'update') {
-        $updated = $optionsModal->updatePromotionSettings($_POST['typeId'],$_POST['cashPrize'],$_POST['targetNumber']);
+        $updated = $optionsModal->updatePromotionSettings($_POST['typeId'], $_POST['settings']);
         return $updated;
-
     } else if ($_POST['action'] == 'canDelete') {
          $permission = new PermissionModel($conn->read_database(),$_POST['permission']);
          echo json_encode(array("permission"=>$permission->canDeleteCasinoPromotion($_POST['id'])));

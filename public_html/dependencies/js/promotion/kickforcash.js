@@ -36,8 +36,6 @@ var getModalData = function(promotionId){
       },
       cache: false,
       success: function(response) {
-
-
           $('#cash-amount-modal').html(response.cash_prize);
           $('#winning-number-modal').html(response.target_number);
           $('#name-modal').val(response.name);

@@ -35,5 +35,5 @@
 <script src="dependencies/js/promotion/kickforcash.js"></script>
 <script>
 
-getModalData($("#promotion-view-modal").data('promo-id'));
+  getModalData($("#promotion-view-modal").data('promo-id'));
 </script>
