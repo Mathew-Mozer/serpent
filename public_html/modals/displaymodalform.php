@@ -22,10 +22,10 @@ $displayPromotions = $displayOptions->getAllPromotionsByCasino($_POST['casinoId'
 
         $checked = $row['display_id']==$_POST['displayId'] ? 'checked' : '';
         echo '<img class=checkbox-image src="dependencies/images/' . $row['promo_image'] . '"> &nbsp';
-        echo "<input type='checkbox' class='promotions-in-display' data-display-id='{$row["display_id"]}' name='promotion' $checked value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
+        echo "<input type='checkbox' class='promotions-in-display' data-display-id='{$row["display_id"]}' 
+                name='promotion' $checked value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
     }
     ?>
-
 
 </form>
 

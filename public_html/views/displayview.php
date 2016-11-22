@@ -12,7 +12,9 @@
                     <div class="col-md-4"><h3 id="location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
-                        <button type="button" data-casino-id="<?php echo $casino['id'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
+                        <button type="button" data-casino-id="<?php echo $casino['id'];?>"
+                                data-display-id="<?php echo $display->getId();?>"
+                                class="btn btn-info btn-lg edit-display-btn">EDIT</button>
                     </div>
                 </div>
                 <hr class="display">
