@@ -39,9 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($_POST['action'] == 'update') {
         $displayCasinos = new CasinoDisplays($dbcon->update_database(), $_POST['casinoId']);
         $displayCasinos->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
-        $displayCasinos->updatePromotionsInDisplay($dbcon->insert_database(),$_POST['displayId'],$_POST['casinoId'], $_POST['promotions']);
+        $displayCasinos->updatePromotionsInDisplay($dbcon->insert_database(),
+            $_POST['displayId'],$_POST['casinoId'], $_POST['promotions']);
         header('content-type:application/json');
-        echo json_encode(array("success"=>"updated diplay"));
+        echo json_encode(array("success"=>"updated display"));
     }
 
 }

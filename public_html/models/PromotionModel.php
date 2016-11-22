@@ -54,7 +54,8 @@
                       promotion_casino.display_id as display_id,
                       promotion_type.file_name as file_name,
                       promotion_casino.casino_id as casino_id,
-                      promotion.artifact as artifact
+                      promotion.artifact as artifact,
+                      promotion_casino.scene_duration as scene_duration
                     FROM
                       promotion, promotion_type, promotion_casino, casino
                     WHERE
