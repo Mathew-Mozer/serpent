@@ -19,12 +19,20 @@ $displayPromotions = $displayOptions->getAllPromotionsByCasino($_POST['casinoId'
     <div id="casino-id-form" hidden data-casino-id="<?php echo $_POST['casinoId']; ?>"></div>
     <?php
     foreach ($displayPromotions as $row) {
-
-        $checked = $row['display_id']==$_POST['displayId'] ? 'checked' : '';
-        echo '<img class=checkbox-image src="dependencies/images/' . $row['promo_image'] . '"> &nbsp';
-        echo "<input type='checkbox' class='promotions-in-display' data-display-id='{$row["display_id"]}' 
-                name='promotion' $checked value='{$row["promo_id"]}'>{$row["promo_title"]} <br>";
-    }
+    ?>
+        <div class="form-group">
+            <?php
+            $checked = $row['display_id']==$_POST['displayId'] ? 'checked' : '';
+            echo '<img class=checkbox-image src="dependencies/images/' . $row['promo_image'] . '"> &nbsp';
+            echo "<input type='checkbox'  class='promotions-in-display' data-display-id='{$row["display_id"]}' 
+                    name='promotion' $checked value='{$row["promo_id"]}'> 
+                    <label class='display-modal-checkbox'>{$row["promo_title"]} </label>";
+            ?>
+            <label class="display-modal-label">Scene Duration </label>
+            <input class="display-modal-scene-input" type="number"
+                   id="<?php echo 'scene-duration-'.$row['promo_id'];?>" value="<?php echo $row['scene_duration']?>">
+        </div>
+    <?php }
     ?>
 
 </form>

@@ -1,0 +1,16 @@
+.display-modal-scene-input {
+    width: 40px;
+    margin-right: 3px;
+}
+
+.display-modal-label {
+    font-weight: normal;
+}
+
+.display-scene-input-group {
+    float:right;
+ }
+
+.display-modal-checkbox {
+    width: 150px;
+}
