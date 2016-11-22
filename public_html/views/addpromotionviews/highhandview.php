@@ -21,6 +21,11 @@
     </label>
     <br>
     <br>
+    <label>Scene Type
+    <input id="scene-type" name="scene-type" type="number">
+    </label>
+    <br>
+    <br>
     <label>Show Multiple Hands</label> <br>
         <label><span class="high-hand-span">Disabled</span> <input class="high-hand-radio" value="0"
                                                                    name="multiple-hands" type = "radio"/>  </label><br/>
