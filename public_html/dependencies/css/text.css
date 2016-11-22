@@ -20,6 +20,7 @@
 
 .font-awesome{
     font-family: FontAwesome;
-    font-size: 10px;
-
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: center;
 }

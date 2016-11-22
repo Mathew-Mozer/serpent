@@ -1,0 +1,11 @@
+.card{
+    height: 69px;
+    width: 50px;
+    box-shadow: 2px 2px 5px #969696;
+    margin: 3px;
+}
+
+.card-index-highlight{
+
+    box-shadow: 2px 2px 5px #6e94d1;
+}

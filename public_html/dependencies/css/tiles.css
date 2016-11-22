@@ -114,20 +114,21 @@
 .tile-promotion-artifact{
 
     clear: both;
-    max-height: 20px;
-    min-height: 20px;
-    min-width: 20px;
-    max-width: 20px;
+    max-height: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    max-width: 30px;
 
     position: relative;
     top: -140px;
 
     z-index: 4;
-    text-align: center;
-    vertical-align: middle;
     background-color: green;
     margin-left : 5px;
     color: white;
+    border-radius: 25px;
+    padding-left: 8px;
+    padding-top: 5px;
 }
 
 .tile-menu-item-hover{
