@@ -1,8 +1,8 @@
 
 var editDisplayModal = $("#editDisplayModal").dialog({
     autoOpen: false,
-    height: 400,
-    width: 350,
+    height: 450,
+    width: 500,
     modal: true,
     buttons: {
         Close: function(){
@@ -18,7 +18,10 @@ var editDisplayModal = $("#editDisplayModal").dialog({
 
             var promotionsFormatted = [];
             $.each(promotions, function(index, value){
-                promotionsFormatted.push({promoId : value.value, displayId : value.dataset.displayId, checked : value.checked});
+                promotionId = value.value;
+                var sceneDuration = $('#scene-duration-'+promotionId).val();
+                promotionsFormatted.push({promoId : value.value, displayId : value.dataset.displayId,
+                    checked : value.checked, sceneDuration: sceneDuration});
             });
 
             $.ajax({
@@ -35,7 +38,7 @@ var editDisplayModal = $("#editDisplayModal").dialog({
                 },
                 cache: false,
                 success: function(response) {
-                    location.reload();
+                    //location.reload();
                     editDisplayModal.dialog('close');
                 },
                 error: function(xhr, desc, err) {

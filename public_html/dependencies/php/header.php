@@ -63,6 +63,7 @@ session_start();
     <link href="dependencies/css/ring.css" rel="stylesheet">
     <link href="dependencies/css/cards.css" rel="stylesheet">
     <link href="dependencies/css/styling.css" rel="stylesheet">
+    <link href="dependencies/css/displaymodal.css" rel="stylesheet">
 
 	<?php
     require_once("HelperFunctions.php");

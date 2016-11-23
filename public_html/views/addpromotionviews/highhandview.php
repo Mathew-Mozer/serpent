@@ -15,6 +15,15 @@
     <input id="session-timer" name="session-timer" type = "number" placeholder="Session Timer"/>
 
     <br>
+    <label>Scene Type
+    <input id="scene-type" name="scene-type" type="number">
+    </label>
+    <br>
+    <br>
+    <label>Show Multiple Hands</label> <br>
+        <label><span class="high-hand-span">Disabled</span> <input class="high-hand-radio" value="0" name="multiple-hands" type = "radio"/>  </label><br/>
+        <label>Previous Winners <input class="high-hand-radio" value="1" name="multiple-hands" type = "radio"/> </label><br/>
+        <label>Ranked Hands <input class="high-hand-radio" value="2" name="multiple-hands" type = "radio"/> </label><br/>
     <br>
         <label>Show Multiple Hands</label> <br>
         <div class="option-group">
