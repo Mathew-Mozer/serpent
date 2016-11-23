@@ -2,15 +2,15 @@
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../models/PromotionModel.php";
-require "../models/CasinoDisplays.php";
+require "../models/PropertyDisplays.php";
 $dbcon = new DBCon();
  ?>
 <ul id="errorMessage" hidden></ul>
 
 <?php
 $displayOptions = new PromotionModel($dbcon->read_Database());
-$displayCasinos = new CasinoDisplays($dbcon->read_Database(), $_POST['casinoId']);
-$display = $displayCasinos->getDisplayWithId($_POST['displayId']);
+$displayProperties = new PropertyDisplays($dbcon->read_Database(), $_POST['propertyId']);
+$display = $displayProperties->getDisplayWithId($_POST['displayId']);
 $assignedPromotions = $displayOptions->getPromotionsByDisplayId($_POST['displayId']);
 $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['displayId']);
 foreach ($assignedPromotions as $assignedPromotion){
@@ -26,7 +26,7 @@ foreach ($assignedPromotions as $assignedPromotion){
 
 <form>
     <div id="display-id-form" hidden data-display-id="<?php echo $_POST['displayId']; ?>"></div>
-    <div id="casino-id-form" hidden data-casino-id="<?php echo $_POST['casinoId']; ?>"></div>
+    <div id="property-id-form" hidden data-property-id="<?php echo $_POST['propertyId']; ?>"></div>
     <?php
     foreach ($assignedPromotions as $row) {
     ?>
@@ -34,8 +34,8 @@ foreach ($assignedPromotions as $assignedPromotion){
             <?php
             $checked = $row['display_id']==$_POST['displayId'] ? 'checked' : '';
             echo '<img class=checkbox-image src="dependencies/images/' . $row['image'] . '"> &nbsp';
-            echo "<input type='checkbox'  class='promotions-in-display' id='{$row['promo_id']}' data-display-id='{$row["display_id"]}' 
-                    name='promotion' $checked value='{$row["promo_id"]}'> 
+            echo "<input type='checkbox'  class='promotions-in-display' id='{$row['promo_id']}' data-display-id='{$row["display_id"]}'
+                    name='promotion' $checked value='{$row["promo_id"]}'>
                     <label class='display-modal-checkbox'>{$row["title"]} </label>";
             ?>
             <span id="<?php echo 'scene-input-'.$row['promo_id'] ?>" <?php if($checked != 'checked'){ echo 'hidden';} ?>>
@@ -53,8 +53,8 @@ foreach ($assignedPromotions as $assignedPromotion){
     <div class="form-group">
             <?php
             echo '<img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['image'] . '"> &nbsp';
-            echo "<input type='checkbox'  class='promotions-in-display' id='{$unassignedPromotion['promotion_id']}' data-display-id='{$unassignedPromotion["display_id"]}' 
-                    name='promotion' value='{$unassignedPromotion["promotion_id"]}'> 
+            echo "<input type='checkbox'  class='promotions-in-display' id='{$unassignedPromotion['promotion_id']}' data-display-id='{$unassignedPromotion["display_id"]}'
+                    name='promotion' value='{$unassignedPromotion["promotion_id"]}'>
                     <label class='display-modal-checkbox'>{$unassignedPromotion["title"]} </label>";
             ?>
     <span id="<?php echo 'scene-input-'.$unassignedPromotion['promotion_id'] ?>" hidden >

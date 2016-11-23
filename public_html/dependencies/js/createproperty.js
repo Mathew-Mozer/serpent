@@ -1,20 +1,20 @@
-//Construct the create casino modal
-var createCasinoModal = $('#createCasino').dialog({
+//Construct the create property modal
+var createPropertyModal = $('#createProperty').dialog({
     autoOpen: false,
     height: 610,
     width: 350,
     modal: true,
     buttons: {
         Submit: function () {
-            createCasino();
-            createCasinoModal.dialog('close');
+            createProperty();
+            createPropertyModal.dialog('close');
         }
     }
 });
 
-//Generate fields for initial casino properties
-var createCasino = function () {
-    var casinoName = $('#casinoName').val();
+//Generate fields for initial property properties
+var createProperty = function () {
+    var propertyName = $('#propertyName').val();
     var parentCompany = $('#parentCompany').val();
     var assetBundleUrl = $('#assetBundleUrl').val();
     var assetBundleWindows = $('#assetBundleWindows').val();
@@ -29,7 +29,7 @@ var createCasino = function () {
         url: 'controllers/toolbarcontroller.php',
         type: 'post',
         data: {
-            casinoName: casinoName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
+            propertyName: propertyName, parentCompany: parentCompany, assetBundleUrl: assetBundleUrl,
             assetBundleWindows: assetBundleWindows, assetName: assetName, defaultSkin: defaultSkin,
             defaultLogo: defaultLogo, supportGroup: supportGroup, businessOpen: businessOpen,
             businessClose: businessClose
@@ -38,9 +38,9 @@ var createCasino = function () {
         success: function (json) {
             var result = JSON.parse(json);
             if (result.error === 'none') {
-                alert("Casino Created!");
+                alert("Property Created!");
             } else {
-                alert("Error creating casino");
+                alert("Error creating property");
             }
         },
         error: function () {

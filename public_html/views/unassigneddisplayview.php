@@ -2,8 +2,8 @@
 <div class="display-outer" id="unassigned-displays">
     <h3> Unassigned Displays </h3>
     <?php
-        //uses default casino id which is 0
-        $unassigned = new CasinoDisplays($dbcon->read_database(), 0);
+        //uses default property id which is 0
+        $unassigned = new PropertyDisplays($dbcon->read_database(), 0);
         $unassignedDisplays = $unassigned->getDisplays();
         foreach ($unassignedDisplays as $display) {
     ?>

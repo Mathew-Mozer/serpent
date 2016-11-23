@@ -14,7 +14,6 @@ var validateLogin = function () {
         data: {userName: s_name, password: s_password},
         cache: false,
         success: function (json) {
-            console.log(json);
             if (json.valid === "yes") {
                 $("#errorMessage").empty();
                 $("#errorMessage").hide();
