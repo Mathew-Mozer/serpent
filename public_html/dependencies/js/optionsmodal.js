@@ -150,11 +150,11 @@
         });
     };
 
-    var canDelete = function(casinoId, perm) {
+    var canDelete = function(propertyId, perm) {
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
-            data: {action: 'canDelete', id: casinoId, permission: perm},
+            data: {action: 'canDelete', id: propertyId, permission: perm},
             cache: false,
             success: function (response) {
                 permission = $.parseJSON(response);

@@ -1,6 +1,6 @@
 //Adds a new tile to the view with the image that is passed into the function
-var addPromotion = function (image, casinoId) {
-    $('#promotion-list-' + casinoId).append(
+var addPromotion = function (image, propertyId) {
+    $('#promotion-list-' + propertyId).append(
         '<div class="tile-body">' +
         '<img class="tile-icon" src="dependencies/images/' + image + '">' +
         '<div class="tile-menu-bar hidden">' +
@@ -27,11 +27,15 @@ var addPromotionModal = $("#addPromotion").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            var promotionId = $('select[name=promoId]').val();
-            var casinoId = $('input[name=casinoId]').val();
+            var promotionTypeId = $("#promotion-details").data("promotion-id");
+            var propertyId = $('input[name=propertyId]').val();
+            var promotionType = $('input[name=promotionType]').val();
+
+            alert(promotionTypeId);
+            var accountId = 1;
             $("#promotion-select").show();
             $("#promotion-details").hide();
-            addPromotionByType(casinoId, currentPromotionType);
+            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId);
         }
     }
 });

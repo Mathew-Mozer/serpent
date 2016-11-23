@@ -2,21 +2,21 @@
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../models/PromotionModel.php";
-require "../models/CasinoDisplays.php";
+require "../models/PropertyDisplays.php";
 $dbcon = new DBCon();
  ?>
 <ul id="errorMessage" hidden></ul>
 
 <?php
 $displayOptions = new PromotionModel($dbcon->read_Database());
-$displayCasinos = new CasinoDisplays($dbcon->read_Database(), $_POST['casinoId']);
-$display = $displayCasinos->getDisplayWithId($_POST['displayId']);
-$displayPromotions = $displayOptions->getAllPromotionsByCasino($_POST['casinoId']);
+$displayProperties = new PropertyDisplays($dbcon->read_Database(), $_POST['propertyId']);
+$display = $displayProperties->getDisplayWithId($_POST['displayId']);
+$displayPromotions = $displayOptions->getAllPromotionsByProperty($_POST['propertyId']);
 ?>
 
 <form>
     <div id="display-id-form" hidden data-display-id="<?php echo $_POST['displayId']; ?>"></div>
-    <div id="casino-id-form" hidden data-casino-id="<?php echo $_POST['casinoId']; ?>"></div>
+    <div id="property-id-form" hidden data-property-id="<?php echo $_POST['propertyId']; ?>"></div>
     <?php
     foreach ($displayPromotions as $row) {
     ?>

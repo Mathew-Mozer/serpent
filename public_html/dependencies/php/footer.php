@@ -8,7 +8,12 @@
 */
 ?>
 <script>
+
     $(document).ready(function(){
+
+      $('.displays').hide();
+
+      $('#unassigned-displays').hide();
 
         $('.displays').hide();
         $('#unassigned-displays').hide();
@@ -34,7 +39,8 @@
     $(".tile-body").unbind('click').click(function(){
       promotionViewModal.dialog('open');
       $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
-      $("#promotion-view-modal").load("views/displaypromotionviews/"+$(this).data("promo-type")+"view.php");
+      $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
+      $("#promotion-view-modal").load("views/displaypromotionviews/display"+$(this).data("promo-type")+"view.php");
 
     });
 
@@ -53,8 +59,8 @@
 
 
        $(".add-promotion-btn").unbind('click').click(function(){
-          $('input[name=casinoId]').val(this.id);
-           $('#promotion_type_select').load("views/addpromotionoptionview.php", {casinoId: this.id});
+          $('input[name=propertyId]').val(this.id);
+           $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
            addPromotionModal.dialog('open');
        });
 
@@ -63,15 +69,8 @@
             editUsersModal.dialog('open');
         });*/
 
-
-        /*
-         These are the modal windows that can be opened. Note that these need
-         to be moved to their own file. Most likely they should just be aggregated
-         as they are 90% similar.
-         */
-
-        $("#create-casino-btn").click(function(){
-            createCasinoModal.dialog('open');
+        $("#create-property-btn").click(function(){
+            createPropertyModal.dialog('open');
         });
         //Toggle between promotion and display view
         $(".toggle-display-btn").click(function() {
@@ -105,9 +104,9 @@
 
 			//Open display modal
 	$(".edit-display-btn").unbind('click').click(function () {
-    var casinoId = $(this).data("casino-id");
+    var propertyId = $(this).data("property-id");
     var displayId = $(this).data("display-id");
-    $("#editDisplayModal").load("modals/displaymodalform.php", {casinoId : casinoId, displayId : displayId});
+    $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId : propertyId, displayId : displayId});
 		editDisplayModal.dialog('open');
 	});
 

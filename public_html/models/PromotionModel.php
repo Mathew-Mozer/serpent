@@ -2,7 +2,7 @@
   // PromotionModal class
   //
   // author: Alex Onorati
-  // This class contains all the legal queries on the database casino_serpent.
+  // This class contains all the legal queries on the database property_serpent.
 
   class PromotionModel {
 
@@ -16,7 +16,7 @@
     //This retrives all promotions that are stored.
     public function getAllPromotions() {
       $sql = "SELECT
-                promotion.id as promo_id,
+                promotion.promotion_id as promo_id,
                 promotion_type.title as promo_title,
                 promotion_type.image as promo_image
               FROM
@@ -32,8 +32,8 @@
       return $promoResult;
     }
 
-    public function getPromotionCasinos() {
-      $sql = "SELECT * FROM casino;";
+    public function getPromotionProperties(){
+      $sql = "SELECT * FROM property;";
 
       $result = $this->db->prepare($sql);
       $result->execute();
@@ -43,30 +43,36 @@
       return $promoResult;
     }
 
-    public function getAllPromotionsByCasino($casinoId) {
+    public function getPromtionModelName($promtionTypeId){
+      $sql = "SELECT * FROM promotion_type WHERE promotion_type_id = :id";
+      $result = $this->db->prepare($sql);
+      $result->bindValue(':id', $promtionTypeId, PDO::PARAM_STR);
+      $result->execute();
+      $promoResult = $result->fetch();
+      return $promoResult['promotion_type_class_name'];
+    }
 
-      $sql = "SELECT
-                      promotion.id as promo_id,
-                      promotion.promotion_type_id as type_id,
-                      promotion_type.title as promo_title,
-                      promotion_type.image as promo_image,
-                      promotion_casino.display_id as display_id,
-                      promotion_type.file_name as file_name,
-                      promotion_casino.casino_id as casino_id,
-                      promotion.artifact as artifact,
-                      promotion_casino.scene_duration as scene_duration
+    public function getAllPromotionsByProperty($propertyId){
+
+            $sql = "SELECT
+                      promotion.promotion_id as promo_id,
+                      promotion_type.promotion_type_id as promo_type_id,
+                      promotion_type.promotion_type_title as promo_title,
+                      promotion_type.promotion_type_image as promo_image,
+                      promotion_property.display_id as display_id,
+                      promotion_type.promotion_type_file_name as file_name
                     FROM
-                      promotion, promotion_type, promotion_casino, casino
+                      promotion, promotion_type, promotion_property, property
                     WHERE
-                      promotion.promotion_type_id = promotion_type.id
-                      AND  promotion.id = promotion_casino.promotion_id
-                      AND casino.id = promotion_casino.casino_id
-                      AND promotion.visible = 'T' AND casino.id = :id;
+                      promotion.promotion_type_id = promotion_type.promotion_type_id
+                      AND  promotion.promotion_id = promotion_property.promotion_id
+                      AND property.property_id = promotion_property.property_id
+                      AND promotion.promotion_visible = 1 AND property.property_id = :id;
                     ";
 
-      $result = $this->db->prepare($sql);
-      $result->bindValue(':id', $casinoId, PDO::PARAM_STR);
-      $result->execute();
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+            $result->execute();
 
       $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
 
@@ -74,20 +80,21 @@
     }
 
 
-    public function getPromotionTypes($casinoId) {
+
+    public function getPromotionTypes($propertyId){
       $sql = "SELECT
-               promotion_type.id as promo_id,
-               promotion_type.title as promo_title,
-               promotion_type.image as promo_image,
-               promotion_type.file_name as file_name
+               promotion_type.promotion_type_id as promo_id,
+               promotion_type.promotion_type_title as promo_title,
+               promotion_type.promotion_type_image as promo_image,
+               promotion_type.promotion_type_file_name as file_name
              FROM
                promotion_type, subscription
              WHERE
-               promotion_type.id = subscription.promotion_type_id AND
-               subscription.casino_id = :casinoId
+               promotion_type.promotion_type_id = subscription.promotion_type_id AND
+               subscription.property_id = :propertyId
                ;";
       $result = $this->db->prepare($sql);
-      $result->bindValue(':casinoId', $casinoId);
+      $result->bindValue(':propertyId', $propertyId);
       $result->execute();
 
       $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -95,7 +102,7 @@
       return $promoResult;
     }
 
-    public function addPromotion($promotionTypeId, $casinoId, $sceneId) {
+    public function addPromotion($promotionTypeId, $propertyId, $sceneId) {
       $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid) VALUES (:id, :artifact, :sceneId);";
 
       $artifact = $this->getRandomFontAwesome();
@@ -109,18 +116,18 @@
       $promotionId = $this->db->lastInsertId();
 
 
-      $sql = "INSERT INTO promotion_casino (promotion_id, casino_id) VALUES (:promotionId, :casinoId);";
+      $sql = "INSERT INTO promotion_property (promotion_id, property_id) VALUES (:promotionId, :propertyId);";
 
       $result = $this->db->prepare($sql);
-      $result->bindValue(':casinoId', $casinoId, PDO::PARAM_STR);
+      $result->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
       $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
       $result->execute();
 
       return $promotionId;
     }
 
-    public function getPromotionImageByPromotionType($id) {
-      $sql = "SELECT image FROM promotion_type WHERE id = :id;";
+    public function getPromotionImageByPromotionType($id){
+      $sql = "SELECT promotion_type_image as image FROM promotion_type WHERE promotion_type_id = :id;";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -131,9 +138,9 @@
       return $promoResult['image'];
     }
 
-    public function getPromotionImageByPromotionId($id) {
-      $sql = "SELECT image FROM promotion, promotion_type
-                WHERE promotion.id =" . $id . " AND promotion_type.id = promotion.promotion_type_id";
+    public function getPromotionImageByPromotionId($id){
+      $sql = "SELECT promotion_type_image as image FROM promotion, promotion_type
+                WHERE promotion.promotion_id =" .$id. " AND promotion_type.promotion_type_id = promotion.promotion_type_id";
       $result = $this->db->prepare($sql);
       $result->execute();
       $image = $result->fetch(PDO::FETCH_ASSOC);

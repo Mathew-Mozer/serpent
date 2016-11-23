@@ -82,7 +82,7 @@ class OptionsModel{
      * @return bool
      */
     public function archivePromotion() {
-        $sql = "UPDATE promotion SET visible = 'F' WHERE id = " . $this->promotionID;
+        $sql = "UPDATE promotion SET promotion_visible = 'F' WHERE promotion_id = " . $this->promotionID;
         $statement = $this->conn->prepare($sql);
         return $statement->execute();
     }

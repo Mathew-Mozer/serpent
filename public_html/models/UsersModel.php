@@ -1,5 +1,5 @@
 <?php
-require_once ('/home/casino/dbcon.php');
+//require_once ('/home/property/dbcon.php');
 
 /**
  * Class UsersModal
@@ -36,4 +36,3 @@ class UsersModal{
 }
 
 ?>
-

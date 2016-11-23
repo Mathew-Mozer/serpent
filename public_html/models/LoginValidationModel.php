@@ -101,11 +101,11 @@ class LoginValidation
      */
     private function validateCredentials(){
         $conn = $this->dbcon->read_database();
-        $statement = $conn->prepare("SELECT id as userId, name, password from account WHERE name = '$this->s_userName'");
+        $statement = $conn->prepare("SELECT account_id as userId, account_name, account_password from account WHERE account_name = '$this->s_userName'");
 
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
-        if($row['name'] != $this->s_userName || $row['password'] != $this->s_password){
+        if($row['account_name'] != $this->s_userName || $row['account_password'] != $this->s_password){
             $this->responseMessaging['valid'] = 'no';
             array_push($this->responseMessaging['errorMessage'], 'Invalid username or password');
         }          $this->responseMessaging['userId'] = $row['userId'];
