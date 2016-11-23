@@ -61,7 +61,8 @@
                       promotion.promotion_type_id = promotion_type.id
                       AND  promotion.id = promotion_casino.promotion_id
                       AND casino.id = promotion_casino.casino_id
-                      AND promotion.visible = 'T' AND casino.id = :id;
+                      AND promotion.visible = 'T' AND casino.id = :id
+                      GROUP BY promotion.id ORDER BY promotion_casino.id;
                     ";
 
       $result = $this->db->prepare($sql);
@@ -154,40 +155,46 @@
 
     public function getPromotionsByDisplayId($displayId){
 
-      $sql = "SELECT
+      $sql1 = "SELECT
                       promotion.id as promo_id,
-                      promotion_type.image as promo_image,
-                      scenes.display_id as display_id,
-                      promotion_type.file_name as file_name,
-                      promotion_casino.casino_id as casino_id,
-                      scenes.scene_duration as scene_duration
+                      promotion_type.image,
+                      promotion_type.file_name,
+                      promotion_casino.casino_id,
+                      promotion_casino.display_id,
+                      promotion_casino.scene_duration,
+                      promotion_casino.skin_id,
+                      promotion_type.title
                     FROM
-                      promotion, promotion_type, promotion_casino, scenes
+                      promotion, promotion_type, promotion_casino, casino
                     WHERE
                       promotion.promotion_type_id = promotion_type.id
                       AND  promotion.id = promotion_casino.promotion_id
                       AND casino.id = promotion_casino.casino_id
-                      AND promotion.visible = 'T' AND (promotion_casino.display_id = :id OR promotion_casino.display_id = 0);
+                      AND promotion.visible = 'T' AND promotion_casino.display_id = :id 
+                      GROUP BY promotion.id ORDER BY promotion_casino.display_id;
                     ";
-      $result = $this->db->prepare($sql);
+      $result = $this->db->prepare($sql1);
       $result->bindValue(':id', $displayId);
       $result->execute();
 
-      $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
-      $promotions= [];
-      $add = true;
-      foreach($promoResult as $row){
-        $promotionId = $row['promo_id'];
-        foreach ($promotions as $promotion){
-          if($promotion['promo_id'] == $promotionId && $promotion['display_id'] == $displayId){
-            $add = false;
-          }
-        }
-        if ($add){
-          array_push($promotions,$row);
-        }
-      }
-      return $promotions;
+      $assignedpromotions = $result->fetchAll(PDO::FETCH_ASSOC);
+
+      return $assignedpromotions;
+    }
+
+    public function getUnassignedPromotions($displayId){
+      $sql = "SELECT * FROM promotion, promotion_type, promotion_casino WHERE promotion_casino.display_id = 0 
+              AND promotion.id = promotion_casino.promotion_id AND promotion.promotion_type_id = promotion_type.id
+              AND promotion.visible = 'T' ;";
+
+      $result = $this->db->prepare($sql);
+      $result->bindValue(':display_id', $displayId);
+      $result->execute();
+
+      $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);
+
+      return $unassignedPromotions;
+
     }
   }
 ?>
