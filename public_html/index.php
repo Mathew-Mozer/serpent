@@ -11,7 +11,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <body>
 <div id="page">
 </div>
-<!-- End Casino -->
+<!-- End property -->
 
 <!-- Modal Divs -->
 <div id="settings" style="display: none;" title="Settings">
@@ -21,7 +21,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <div id="addPromotion" style="display: none;" title="Promotion">
     <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
         <div id="promotion-select">
-            <input type="hidden" name="casinoId" value=""/>
+            <input type="hidden" name="propertyId" value=""/>
             <hr>
             <div id ="promotion_type_select">
             </div>
@@ -45,11 +45,11 @@ $promotion = new PromotionModel($dbcon->read_database());
     </form>
 </div>
 <div id="assign-display" style="display: none;" title="Assign Display">
-    <p>Index: <span id="displayId"></span><p> 
+    <p>Index: <span id="displayId"></span><p>
     <p id="displayName"></p>
     <p id="displaySerial"></p>
     <p id="displayMacAddress"></p>
-    <select id="displayCasinos"></select>
+    <select id="displayProperties"></select>
 </div>
 
 <div id=promotion-view-modal data-promo-id="" style="display: none";>
@@ -60,11 +60,11 @@ $promotion = new PromotionModel($dbcon->read_database());
 </div>
 
 
-<div id="createCasino" style="display: none;" title="Create Casino">
+<div id="createProperty" style="display: none;" title="Create Property">
 
-    <form id="casinoForm">
+    <form id="propertyForm">
 
-        <input type="text" id="casinoName" name="casinoName" placeholder="Casino Name">
+        <input type="text" id="propertyName" name="propertyName" placeholder="Property Name">
         <br/>
         <br/>
         <input type="number" id="parentCompany" name="parentCompany" placeholder="Parent Company">
@@ -107,7 +107,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/login.js"></script>
 <script src="dependencies/js/optionsmodal.js"></script>
 <script src="dependencies/js/addpromotionmodal.js"></script>
-<script src="dependencies/js/createcasino.js"></script>
+<script src="dependencies/js/createproperty.js"></script>
 <script src="dependencies/js/displayview.js"></script>
 <script src="dependencies/js/promotionmodal.js"></script>
 <script src="dependencies/js/editdisplay.js"></script>
