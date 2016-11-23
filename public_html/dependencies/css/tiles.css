@@ -78,7 +78,7 @@
 
 	position: relative;
 
-	top: -40px;
+	top: -50px;
 
 	z-index: 1;
 
@@ -127,8 +127,13 @@
     margin-left : 5px;
     color: white;
     border-radius: 25px;
-    padding-left: 8px;
-    padding-top: 5px;
+
+	padding-top: 4px;
+
+	vertical-align: middle;
+	text-align: center;
+	display: inline-block;
+	box-shadow: 2px 2px 5px #969696;
 }
 
 .tile-menu-item-hover{

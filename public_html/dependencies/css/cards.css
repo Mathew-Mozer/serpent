@@ -1,11 +1,22 @@
 .card{
     height: 69px;
     width: 50px;
-    box-shadow: 2px 2px 5px #969696;
     margin: 3px;
+}
+
+.standard-card{
+    box-shadow: 2px 2px 5px #969696;
+}
+
+.gold-card{
+    box-shadow: 2px 2px 5px #f9d716;
 }
 
 .card-index-highlight{
 
-    box-shadow: 2px 2px 5px #6e94d1;
+    box-shadow: 3px 3px 7px #6e94d1;
 }
+
+
+
+
