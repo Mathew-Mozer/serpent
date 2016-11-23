@@ -20,7 +20,7 @@
 
     } else if ($_POST['action'] == 'canDelete') {
          $permission = new PermissionModel($conn->read_database(),$_POST['permission']);
-         echo json_encode(array("permission"=>$permission->canDeletePropertyPromotion($_POST['id'])));
+         echo json_encode(array("permission"=>$permission->hasPermissionById('promotion',$_POST['id'],'D')));
     }
 
 ?>

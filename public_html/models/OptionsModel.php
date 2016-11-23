@@ -43,7 +43,7 @@ class OptionsModel{
      * @return array
      */
     public function getPromotionSettings() {
-        $sql = 'SELECT * FROM promotion WHERE id = '. $this->promotionID;
+        $sql = 'SELECT * FROM promotion WHERE promotion_id = '. $this->promotionID;
         $statement = $this->conn->prepare($sql);
         $statement->execute();
 
@@ -61,7 +61,7 @@ class OptionsModel{
      */
     public function updatePromotionSettings($settings) {
 
-        $sql = "UPDATE promotion SET settings = " . $settings . "WHERE id= " . $this->promotionID;
+        $sql = "UPDATE promotion SET promotion_settings = " . $settings . "WHERE promotion_id= " . $this->promotionID;
         $statement = $this->conn->prepare($sql);
         $statement->execute();
 
@@ -78,7 +78,7 @@ class OptionsModel{
      * @return bool
      */
     public function archivePromotion() {
-        $sql = "UPDATE promotion SET visible = 'F' WHERE id = " . $this->promotionID;
+        $sql = "UPDATE promotion SET promotion_visible = 'F' WHERE promotion_id = " . $this->promotionID;
         $statement = $this->conn->prepare($sql);
 
         return $statement->execute();

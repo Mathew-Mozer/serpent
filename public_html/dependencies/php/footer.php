@@ -8,11 +8,12 @@
 */
 ?>
 <script>
-$('.displays').hide();
-console.log("hide unassigned-displays");
-$('#unassigned-displays').hide();
+
     $(document).ready(function(){
-        console.log("hide displays");
+
+      $('.displays').hide();
+
+      $('#unassigned-displays').hide();
 
         $('.displays').hide();
         $('#unassigned-displays').hide();
@@ -38,7 +39,8 @@ $('#unassigned-displays').hide();
     $(".tile-body").unbind('click').click(function(){
       promotionViewModal.dialog('open');
       $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
-      $("#promotion-view-modal").load("views/displaypromotionviews/"+$(this).data("promo-type")+"view.php");
+      $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
+      $("#promotion-view-modal").load("views/displaypromotionviews/display"+$(this).data("promo-type")+"view.php");
 
     });
 
@@ -104,7 +106,6 @@ $('#unassigned-displays').hide();
 	$(".edit-display-btn").unbind('click').click(function () {
     var propertyId = $(this).data("property-id");
     var displayId = $(this).data("display-id");
-    //console.log(propertyId + displayId);
     $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId : propertyId, displayId : displayId});
 		editDisplayModal.dialog('open');
 	});
@@ -132,12 +133,11 @@ $('#unassigned-displays').hide();
                       promotionsFormatted.push({promoId : value.value, displayId : value.dataset.displayId, checked : value.checked});
                     });
 
-                      //console.log(promotionsFormatted);
                   $.ajax({
 
                       url: 'controllers/displaycontroller.php',
                       type: 'post',
-                      data: {
+                      data: {  
                           action: 'update',
                           propertyId: propertyId,
                           displayId: displayId,

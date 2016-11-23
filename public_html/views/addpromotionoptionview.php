@@ -18,12 +18,12 @@ foreach ($promotionTypeList as $row) {
 $("div.addPromotion").on('click', function(e){
 
   e.preventDefault();
-  currentPromotionType = $(this).data('promotion-id');
+  $("#promotion-details").data("promotion-id", $(this).data('promotion-id'));
   promotionName = $(this).data('promotion-name');
   $("#promotion-select").hide();
   $("#promotion-details").show();
 
-  $("#promotion-details").load("views/addpromotionviews/"+promotionName+"view.php");
+  $("#promotion-details").load("views/addpromotionviews/add"+promotionName+"view.php");
 
 });
 </script>

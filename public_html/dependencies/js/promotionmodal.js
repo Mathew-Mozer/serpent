@@ -5,7 +5,8 @@ var promotionViewModal = $("#promotion-view-modal").dialog({
     modal: true,
     buttons: {
         Update: function () {
-            updatePromotion($("#promotion-view-modal").data('promo-id'));
+          alert($("#promotion-view-modal").data('promo-id')+" "+$("#promotion-view-modal").data('promo-type-id'))
+            updatePromotion($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('promo-type-id'),0);
             $("#promotion-view-modal").dialog('close');
           }
         }

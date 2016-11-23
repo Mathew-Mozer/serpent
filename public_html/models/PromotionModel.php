@@ -18,7 +18,7 @@
     //This retrives all promotions that are stored.
     public function getAllPromotions(){
       $sql = "SELECT
-                promotion.id as promo_id,
+                promotion.promotion_id as promo_id,
                 promotion_type.title as promo_title,
                 promotion_type.image as promo_image
               FROM
@@ -45,21 +45,31 @@
       return $promoResult;
     }
 
+    public function getPromtionModelName($promtionTypeId){
+      $sql = "SELECT * FROM promotion_type WHERE promotion_type_id = :id";
+      $result = $this->db->prepare($sql);
+      $result->bindValue(':id', $promtionTypeId, PDO::PARAM_STR);
+      $result->execute();
+      $promoResult = $result->fetch();
+      return $promoResult['promotion_type_class_name'];
+    }
+
     public function getAllPromotionsByProperty($propertyId){
 
             $sql = "SELECT
-                      promotion.id as promo_id,
-                      promotion_type.title as promo_title,
-                      promotion_type.image as promo_image,
+                      promotion.promotion_id as promo_id,
+                      promotion_type.promotion_type_id as promo_type_id,
+                      promotion_type.promotion_type_title as promo_title,
+                      promotion_type.promotion_type_image as promo_image,
                       promotion_property.display_id as display_id,
-                      promotion_type.file_name as file_name
+                      promotion_type.promotion_type_file_name as file_name
                     FROM
                       promotion, promotion_type, promotion_property, property
                     WHERE
-                      promotion.promotion_type_id = promotion_type.id
-                      AND  promotion.id = promotion_property.promotion_id
-                      AND property.id = promotion_property.property_id
-                      AND promotion.visible = 'T' AND property.id = :id;
+                      promotion.promotion_type_id = promotion_type.promotion_type_id
+                      AND  promotion.promotion_id = promotion_property.promotion_id
+                      AND property.property_id = promotion_property.property_id
+                      AND promotion.promotion_visible = 1 AND property.property_id = :id;
                     ";
 
             $result = $this->db->prepare($sql);
@@ -75,14 +85,14 @@
 
     public function getPromotionTypes($propertyId){
       $sql = "SELECT
-               promotion_type.id as promo_id,
-               promotion_type.title as promo_title,
-               promotion_type.image as promo_image,
-               promotion_type.file_name as file_name
+               promotion_type.promotion_type_id as promo_id,
+               promotion_type.promotion_type_title as promo_title,
+               promotion_type.promotion_type_image as promo_image,
+               promotion_type.promotion_type_file_name as file_name
              FROM
                promotion_type, subscription
              WHERE
-               promotion_type.id = subscription.promotion_type_id AND
+               promotion_type.promotion_type_id = subscription.promotion_type_id AND
                subscription.property_id = :propertyId
                ;";
       $result = $this->db->prepare($sql);
@@ -115,7 +125,7 @@
     }
 
     public function getPromotionImageByPromotionType($id){
-      $sql = "SELECT image FROM promotion_type WHERE id = :id;";
+      $sql = "SELECT promotion_type_image as image FROM promotion_type WHERE promotion_type_id = :id;";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -127,8 +137,8 @@
     }
 
     public function getPromotionImageByPromotionId($id){
-      $sql = "SELECT image FROM promotion, promotion_type
-                WHERE promotion.id =" .$id. " AND promotion_type.id = promotion.promotion_type_id";
+      $sql = "SELECT promotion_type_image as image FROM promotion, promotion_type
+                WHERE promotion.promotion_id =" .$id. " AND promotion_type.promotion_type_id = promotion.promotion_type_id";
       $result = $this->db->prepare($sql);
       $result->execute();
       $image = $result->fetch(PDO::FETCH_ASSOC);

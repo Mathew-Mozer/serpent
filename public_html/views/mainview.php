@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require "unassigneddisplayview.php";
     foreach ($propertyList as $property) {
         //If the permission checks out, print the promotion
-        if ($permission->canViewPropertyPromotions($property['id'])) {
+        if ($permission->hasPermissionById('property', $property['property_id'],'R')) {  
             include('propertyview.php');
             $propertyRowIndex++;
             ?>

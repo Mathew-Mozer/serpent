@@ -21,7 +21,7 @@ class PropertyDisplays
     private function getAllDisplaysWithPropertyId($propertyId)
     {
         $getDisplays = "SELECT * FROM display WHERE display.property_id="
-            . $propertyId . " ORDER BY display.id;";
+            . $propertyId . " ORDER BY display.display_id;";
         $displayStatement = $this->conn->prepare($getDisplays);
         $displayStatement->execute();
         $result = $displayStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -46,7 +46,7 @@ class PropertyDisplays
     }
 
     public function getDisplayWithId($id) {
-        $sql = "SELECT * FROM display WHERE id=" . $id;
+        $sql = "SELECT * FROM display WHERE display_id=" . $id;
         $statement = $this->conn->prepare($sql);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -55,7 +55,7 @@ class PropertyDisplays
 
     public function assignDisplayWithId($values) {
 
-        $sql = "UPDATE display SET property_id = " . $values['propertyId'] . " WHERE id = " . $values['displayId'];
+        $sql = "UPDATE display SET property_id = " . $values['propertyId'] . " WHERE display_id = " . $values['displayId'];
 
         echo $sql;
 
@@ -65,7 +65,7 @@ class PropertyDisplays
 
     private function getDisplayPromotions($display){
         $getPromotions = "SELECT * FROM promotion_property, promotion WHERE promotion_property.display_id =". $display. "
-                AND promotion_property.promotion_id = promotion.id AND promotion.visible = 'T';";
+                AND promotion_property.promotion_id = promotion.promotion_id AND promotion.promotion_visible = 1;";
         $statement = $this->conn->prepare($getPromotions);
         $statement->execute();
         $displayPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -85,7 +85,7 @@ class PropertyDisplays
     }
 
     public function updateDisplayWithId($id, $name, $displayLocation){
-      $sql= "UPDATE display SET name=:current_name, display_location=:display_location WHERE id=:id;";
+      $sql= "UPDATE display SET display_name=:current_name, display_location=:display_location WHERE display_id=:id;";
 
         $result = $this->conn->prepare($sql);
         $result->bindValue(':current_name', $name, PDO::PARAM_STR);

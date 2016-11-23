@@ -27,11 +27,15 @@ var addPromotionModal = $("#addPromotion").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            var promotionId = $('select[name=promoId]').val();
+            var promotionTypeId = $("#promotion-details").data("promotion-id");
             var propertyId = $('input[name=propertyId]').val();
+            var promotionType = $('input[name=promotionType]').val();
+
+            alert(promotionTypeId);
+            var accountId = 1;
             $("#promotion-select").show();
             $("#promotion-details").hide();
-            addPromotionByType(propertyId, currentPromotionType);
+            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId);
         }
     }
 });

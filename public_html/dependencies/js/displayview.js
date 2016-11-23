@@ -45,9 +45,7 @@ var updateDisplay = function(displayId,propertyId) {
         cache: false,
         success: function (result) {
 
-            if(result['updated'] |= true){
-                console.log(result);
-            }
+            
             assignDisplayModal.dialog('close');
             location.reload();
         },

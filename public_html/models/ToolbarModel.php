@@ -60,8 +60,8 @@ class ToolBarModel
         if(!$conn instanceof PDO){
             return 'Failed to connect to db';
         } else {
-            $insert = "INSERT INTO property(propertyName, parentCompany, assetBundleUrl, assetBundleWindows, assetName,
-                        defaultSkin, defaultLogo, supportGroup, businessOpen, businessClose)
+            $insert = "INSERT INTO property (property_name, parent_property, property_asset_bundle_url, property_asset_bundle_windows, property_asset_name,
+                        property_default_skin, property_default_logo, property_support_group, property_business_open, property_business_close)
                         VALUES(:propertyName, :parentCompany, :assetBundleUrl, :assetBundleWindows, :assetName,
                         :defaultSkin, :defaultLogo, :supportGroup, :businessOpen, :businessClose)";
 
