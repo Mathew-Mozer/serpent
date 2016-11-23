@@ -39,7 +39,7 @@
  ?>
 
 
-        <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Options">
+        <div id = "options-btn" class="button-body tool-button" data-toggle="tooltip" title="Options">
             <!--<span class="glyphicon glyphicon-cog tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-cog fa-3x"></i>
         </div>
