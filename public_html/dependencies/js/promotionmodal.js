@@ -1,7 +1,7 @@
 var promotionViewModal = $("#promotion-view-modal").dialog({
     autoOpen: false,
-    height: 400,
-    width: 350,
+    height: 800,
+    width: 850,
     modal: true,
     cache: false,
     buttons: {

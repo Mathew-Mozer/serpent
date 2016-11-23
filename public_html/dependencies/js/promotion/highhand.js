@@ -55,3 +55,41 @@ var getHighHandData = function(promotionId) {
         }
     });
 };
+
+
+
+var updatePromotion = function(promotionId){
+    var name = $('#name-modal').val();
+   // var cards = $('#chosen-number-modal').val();
+
+    $.ajax({
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        type: 'post',
+        data: {
+            action: 'update',
+            promotionId: promotionId,
+            name: name
+        },
+        cache: false,
+        success: function(response) {
+
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+};
+
+/**
+ * Get the user selected card ID
+ * @type {Array}
+ */
+var cards = [];
+var handIndex = 0;
+var addCards = function(clicked_id){
+    if(handIndex > 8) {
+        cards[handIndex] = clicked_id
+        alert.(handIndex);
+    }
+    handIndex++;
+}
