@@ -56,6 +56,7 @@
 
             $sql = "SELECT
                       promotion.promotion_id as promo_id,
+                      promotion.artifact as artifact,
                       promotion_type.promotion_type_id as promo_type_id,
                       promotion_type.promotion_type_title as promo_title,
                       promotion_type.promotion_type_image as promo_image,

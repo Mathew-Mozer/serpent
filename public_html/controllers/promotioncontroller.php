@@ -5,7 +5,7 @@ require "../models/PromotionModel.php";
 $conn = new DbCon();
 //if call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    $sceneId= 11;
     if ($_POST['action'] == 'add') {
 
       $promotion = new PromotionModel($conn->insert_database());
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
       require '../models/promotionmodels/'.$className.'.php';
 
-      $addPromotion= $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId']);
+      $addPromotion= $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $sceneId);
       $_POST['promotionId'] = $addPromotion;
 
       $r = new ReflectionClass($className);
