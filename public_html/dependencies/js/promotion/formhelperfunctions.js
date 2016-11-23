@@ -91,7 +91,13 @@ var getFormData = function(formId){
   var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
 
   for(var i = 0; i < formDataInput.length; i++){
+    if(formDataInput[i].type == 'RADIO'){
+      if(formDataInput[i].checked){
+        data[formDataInput[i].name] = formDataInput[i].value;
+      }
+    }else{
       data[formDataInput[i].name] = formDataInput[i].value;
+    }
   }
   for(var i = 0; i < formDataSelect.length; i++){
       data[formDataSelect[i].name] = formDataSelect[i].value;
@@ -104,8 +110,15 @@ var setFormData = function(formId, data){
   var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
 
   for(var i = 0; i < formDataInput.length; i++){
-    if(data[formDataInput[i].name]){
+      if(data[formDataInput[i].name]){
+    if(formDataInput[i].type == 'RADIO'){
+      if(data[formDataInput[i].name] == formDataInput[i].value){
+        formDataInput[i].checked = true;
+      }
+      }else{
+
       formDataInput[i].value = data[formDataInput[i].name];
+    }
     }
   }
   for(var i = 0; i < formDataSelect.length; i++){

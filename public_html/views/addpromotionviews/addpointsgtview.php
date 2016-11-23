@@ -48,8 +48,12 @@
     </div>
 
 </div>
+<input type="hidden" name="scene_id" value="11"></input>
 </div>
 <script src="dependencies/js/promotion/formhelperfunctions.js"></script>
-<script>
-  getModalData($("#promotion-view-modal").data('promo-id'),11);
-</script>
+<?php
+  if($_POST['promotion_settings']){
+    echo "<script>getModalData(".$_POST['promotion_id'].",".$_POST['promotion_type'].");</script>";
+  }
+
+ ?>

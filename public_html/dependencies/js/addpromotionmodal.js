@@ -31,7 +31,7 @@ var addPromotionModal = $("#addPromotion").dialog({
             var propertyId = $('input[name=propertyId]').val();
             var promotionType = $('input[name=promotionType]').val();
 
-            alert(promotionTypeId);
+          
             var accountId = 1;
             $("#promotion-select").show();
             $("#promotion-details").hide();

@@ -13,7 +13,7 @@
         closeOnEscape: false,
         create: function (){
             //removes the x button on the top right corner
-            $(this).dialog("widget").find('.ui-dialog-titlebar-close').remove();
+            //$(this).dialog("widget").find('.ui-dialog-titlebar-close').remove();
         }
     });
 
@@ -21,30 +21,8 @@
     var modalButtons = {
 
         Submit: function () {
-            var settings = [];
-            if(promotionType == 1){
-                settings[0] = promotionType;
-                settings[1] = $('input[name=title-message]').val();
-                settings[2] = $('input[name=use-joker]').prop('checked');
-                settings[3] = $('input[name=high-hand-gold]').prop('checked');
-                settings[4] = $('input[name=horn-timer]').val();
-                settings[5] = $('input[name=payout-value]').val();
-                settings[6] = $('input[name=session-timer]').val();
-                settings[7] = $("input:radio[name='multiple-hands']:checked").val();
-                updateHighHandSettings(settings);
-                settingsModal.dialog('close');
-                //resets div to blank
-                $('#settings').empty();
-            }
-            if(promotionType == 11) {
-                settings[0] = promotionType;
-                settings[1] = $('#cash-prize').val();
-                settings[2] = $('#target-number').val();
-                updateKickForCashSettings(settings);
-                settingsModal.dialog('close');
-                //resets div to blank
-                $('#settings').empty();
-            }
+          updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
+          $("#settings").dialog('close');
         }
     };
 
@@ -180,4 +158,3 @@
         cache: false
     })
 };
-
