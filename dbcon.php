@@ -17,6 +17,8 @@ class DbCon
   private $readPw = 'icDEpbatf57l';
   private $createUser = 'casino_insert';
   private $createPw = 'b@iHw53J-K+r';
+  private $deleteUser ='casino_delete';
+  private $deletePw = 'PtdTO#NW-o*c ';
 
   protected function createConnection($username, $password){
     try {
@@ -39,6 +41,10 @@ class DbCon
 
   public function update_database(){
     return $this->createConnection($this->updateUser,$this->updatePw);
+  }
+
+  public function delete_database(){
+    return $this->createConnection($this->deleteUser, $this->deletePw);
   }
 }
 ?>

@@ -7,8 +7,6 @@ require "../models/PromotionModel.php";
 $dbcon = NEW DbCon();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
-
     if ($_POST['action'] == 'getSingleDisplay') {
         $casinoDisplayModel = new CasinoDisplays($dbcon->read_database(),0);
         $result = $casinoDisplayModel->getDisplayWithId($_POST['displayId']);
@@ -39,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($_POST['action'] == 'update') {
         $displayCasinos = new CasinoDisplays($dbcon->update_database(), $_POST['casinoId']);
         $displayCasinos->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
-        $displayCasinos->updatePromotionsInDisplay($dbcon->insert_database(),
+        $displayCasinos->updatePromotionsInDisplay($dbcon->delete_database(), $dbcon->insert_database(),
             $_POST['displayId'],$_POST['casinoId'], $_POST['promotions']);
         header('content-type:application/json');
         echo json_encode(array("success"=>"updated display"));

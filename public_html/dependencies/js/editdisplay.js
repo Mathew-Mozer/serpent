@@ -1,8 +1,8 @@
 
 var editDisplayModal = $("#editDisplayModal").dialog({
     autoOpen: false,
-    height: 410,
-    width: 445,
+    height: 450,
+    width: 500,
     modal: true,
     buttons: {
         Close: function(){
