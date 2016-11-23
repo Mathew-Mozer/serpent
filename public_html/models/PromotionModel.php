@@ -13,7 +13,6 @@
 
     }
 
-
     //This retrives all promotions that are stored.
     public function getAllPromotions() {
       $sql = "SELECT
@@ -95,14 +94,15 @@
       return $promoResult;
     }
 
-    public function addPromotion($promotionTypeId, $casinoId) {
-      $sql = "INSERT INTO promotion (promotion_type_id, artifact) VALUES (:id, :artifact);";
+    public function addPromotion($promotionTypeId, $casinoId, $sceneId) {
+      $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid) VALUES (:id, :artifact, :sceneId);";
 
       $artifact = $this->getRandomFontAwesome();
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':id', $promotionTypeId, PDO::PARAM_STR);
       $result->bindValue(':artifact', $artifact, PDO::PARAM_STR);
+      $result->bindValue(':sceneId', $sceneId, PDO::PARAM_STR);
       $result->execute();
 
       $promotionId = $this->db->lastInsertId();

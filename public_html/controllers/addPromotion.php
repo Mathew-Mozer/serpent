@@ -13,7 +13,7 @@
 //Add the new promotion to the database
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $promotion = new PromotionModel($dbcon->insert_database());
-      $addResponse = $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId']);
+      $addResponse = $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId'], $_POST['sceneType']);
       $response = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
 
       header('content-type:application/json');

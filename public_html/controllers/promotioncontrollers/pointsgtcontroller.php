@@ -9,10 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if ($_POST['action'] == 'add') {
+        $sceneType = 4;
       $promotion = new PromotionModel($conn->insert_database());
       $kick_for_cash = new KickForCashModel($conn->insert_database());
 
-      $addPromotion= $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId']);
+      $addPromotion= $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId'], $sceneType);
       $kick_for_cash->addKickForCash($addPromotion,$_POST['cashPrize'],$_POST['targetNumber']);
 
       $response = array();
