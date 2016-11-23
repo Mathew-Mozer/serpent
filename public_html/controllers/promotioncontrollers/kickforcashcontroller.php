@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $promotion = new PromotionModel($conn->insert_database());
       $kick_for_cash = new KickForCashModel($conn->insert_database());
 
-      $addPromotion= $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId'],$sceneType );
+      $addPromotion= $promotion->addPromotion($_POST['promotionId'], $_POST['propertyId'],$sceneType);
       $kick_for_cash->addKickForCash($addPromotion,$_POST['cashPrize'],$_POST['targetNumber']);
 
       $response = array();
       $response['image'] = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
-      $response['promotion-id'] = $addPromotion;
-      $response['casino-id'] = $_POST['casinoId'];
+      $reponse['promotion-id'] = $addPromotion;
+      $response['property-id'] = $_POST['propertyId'];
 
       header('content-type:application/json');
       echo json_encode($response);

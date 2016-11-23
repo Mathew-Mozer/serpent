@@ -8,7 +8,12 @@
 */
 ?>
 <script>
-    $(document).ready(function () {
+
+    $(document).ready(function(){
+
+      $('.displays').hide();
+
+      $('#unassigned-displays').hide();
 
         $('.displays').hide();
         $('#unassigned-displays').hide();
@@ -45,33 +50,31 @@
 
         $(".settingsBtn").unbind('click').click(function (e) {
             e.stopPropagation();
-            var ids = $(this).attr('id').split('-');
-            <?php echo "var id=" . $_SESSION['userId'] . ";"; ?>
-            var perm = canDelete(ids[0], id);
-            getSettings(ids[1], ids[2], perm);
-        });
+           var ids = $(this).attr('id').split('-');
+           <?php echo "var id=".$_SESSION['userId'].";"; ?>
+           var perm = canDelete(ids[0],id);
+           //getSettings(ids[1],ids[2], perm);
+           $("#settings").data('promo-id', $(this).data("promo-id"));
+           $("#settings").data('promo-type-id', $(this).data("promo-type-id"));
+           $("#settings").load("views/addpromotionviews/add"+$(this).data("promo-type")+"view.php",{promotion_settings:true, promotion_id:$(this).data("promo-id"), promotion_type:$(this).data("promo-type-id")});
+
+           openSettingsModal();
+         });
 
 
-        $(".add-promotion-btn").unbind('click').click(function () {
-            $('input[name=casinoId]').val(this.id);
-            $('#promotion_type_select').load("views/addpromotionoptionview.php", {casinoId: this.id});
-            addPromotionModal.dialog('open');
-        });
+       $(".add-promotion-btn").unbind('click').click(function(){
+          $('input[name=propertyId]').val(this.id);
+           $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
+           addPromotionModal.dialog('open');
+       });
 
         /*        //Open add/remove user panel
          $(".userBtn").unbind('click').click(function () {
          editUsersModal.dialog('open');
          });*/
 
-
-        /*
-         These are the modal windows that can be opened. Note that these need
-         to be moved to their own file. Most likely they should just be aggregated
-         as they are 90% similar.
-         */
-
-        $("#create-casino-btn").click(function () {
-            createCasinoModal.dialog('open');
+        $("#create-property-btn").click(function(){
+            createPropertyModal.dialog('open');
         });
         //Toggle between promotion and display view
         $(".toggle-display-btn").click(function () {
@@ -101,15 +104,18 @@
 
         /**
          * End Click Listeners
-         */
+		*/
 
-        //Open display modal
-        $(".edit-display-btn").unbind('click').click(function () {
-            var casinoId = $(this).data("casino-id");
-            var displayId = $(this).data("display-id");
-            $("#editDisplayModal").load("modals/displaymodalform.php", {casinoId: casinoId, displayId: displayId});
-            editDisplayModal.dialog('open');
-        });
+			//Open display modal
+	$(".edit-display-btn").unbind('click').click(function () {
+    var propertyId = $(this).data("property-id");
+    var displayId = $(this).data("display-id");
+    $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId : propertyId, displayId : displayId});
+		editDisplayModal.dialog('open');
+	});
+
+
+      
 
         $("#options-btn").click(function () {
             alert('toolbar options');

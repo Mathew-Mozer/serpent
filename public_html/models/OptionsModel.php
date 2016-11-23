@@ -82,7 +82,7 @@ class OptionsModel{
      * @return bool
      */
     public function archivePromotion() {
-        $sql = "UPDATE promotion SET visible = 'F' WHERE id = " . $this->promotionID;
+        $sql = "UPDATE promotion SET promotion_visible = 0 WHERE promotion_id = " . $this->promotionID;
         $statement = $this->conn->prepare($sql);
         return $statement->execute();
     }
@@ -90,7 +90,7 @@ class OptionsModel{
     private function getSelectPromotionTypeSql ($promotionType) {
         $sql = '';
         if($promotionType == self::KICKFORCASHID) {
-            $sql = 'SELECT cash_prize,target_number FROM kick_for_cash WHERE promotion_id = '. $this->promotionID;
+            $sql = 'SELECT cash_prize,target_number FROM kick_for_cash WHERE kfc_promotion_id = '. $this->promotionID;
         } else if ($promotionType == self::HIGHHANDID) {
             $sql = 'SELECT * from high_hand WHERE promotion_id =' . $this->promotionID;
         }

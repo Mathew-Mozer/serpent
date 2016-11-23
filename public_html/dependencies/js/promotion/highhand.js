@@ -1,63 +1,3 @@
-var addPromotionByType = function(casinoId, promotionId) {
-    var titleMessage = $('input[name=title-message]').val();
-    var useJoker = $('input[name=use-joker]').prop('checked');
-    var highHandGold = $('input[name=high-hand-gold]').prop('checked');
-    var hornTimer = $('input[name=horn-timer]').val();
-    var payoutValue = $('input[name=payout-value]').val();
-    var sessionTimer = $('input[name=session-timer]').val();
-    var multipleHands = $("input:radio[name='multiple-hands']:checked").val();
-    var sceneType = $('input[name=scene-type]').val();
-    var template = $('input[name=template]').prop('checked');
-    alert(template);
-    $.ajax({
-        url: 'controllers/promotioncontrollers/highhandcontroller.php',
-        type: 'post',
-        cache: false,
-        data: {
-            action: 'add',
-            casinoId: casinoId,
-            promotionId: promotionId,
-            titleMessage: titleMessage,
-            useJoker: useJoker,
-            highHandGold: highHandGold,
-            hornTimer: hornTimer,
-            payoutValue: payoutValue,
-            sessionTimer: sessionTimer,
-            multipleHands: multipleHands,
-            sceneType : sceneType,
-            isTemplate : template
-        },
-        success: function(response) {
-            //update view with new promotion
-            if(template != true){
-                addPromotion(response.image, casinoId);
-            }
-            addPromotionModal.dialog('close');
-        },
-        error: function(xhr, desc, err) {
-            console.log(xhr + "\n" + err);
-        }
-    });
-};
-
-var getHighHandData = function(promotionId) {
-    $.ajax({
-        url: 'controllers/promotioncontrollers/highhandcontroller.php',
-        type: 'post',
-        data: {
-            action: 'read',
-            promotionId: promotionId
-        },
-        cache: false,
-        success: function (response) {
-            $('#title-message-modal').attr('value',response.title_message);
-        },
-        error: function (xhr, desc, err) {
-            console.log(xhr + "\n" + err);
-        }
-    });
-};
-
 var getTemplate = function() {
     $.ajax({
        url: 'controllers/promotioncontrollers/highhandcontroller.php',
@@ -79,3 +19,17 @@ var getTemplate = function() {
         }
     });
 };
+
+/**
+ * Get the user selected card ID
+ * @type {Array}
+ */
+var cards = [];
+var handIndex = 0;
+var addCards = function(clicked_id){
+    if(handIndex > 8) {
+        cards[handIndex] = clicked_id
+        alert(handIndex);
+    }
+    handIndex++;
+}
