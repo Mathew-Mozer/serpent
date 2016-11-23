@@ -41,7 +41,15 @@
     <label class="high-hand-label">Use Joker
     <input class="high-hand-checkbox" id="use-joker" name="use-joker" type = "checkbox"/>
     </label>
+    <br>
+    <br>
+    <label class="high-hand-label">Template
+    <input class="high-hand-checkbox" id="template" name="template" type = "checkbox"/>
+    </label>
     </form>
 </div>
 
 <script src="dependencies/js/promotion/highhand.js"></script>
+<script>
+    getTemplate();
+</script>

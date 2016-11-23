@@ -7,6 +7,8 @@ var addPromotionByType = function(casinoId, promotionId) {
     var sessionTimer = $('input[name=session-timer]').val();
     var multipleHands = $("input:radio[name='multiple-hands']:checked").val();
     var sceneType = $('input[name=scene-type]').val();
+    var template = $('input[name=template]').prop('checked');
+    alert(template);
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
@@ -22,11 +24,14 @@ var addPromotionByType = function(casinoId, promotionId) {
             payoutValue: payoutValue,
             sessionTimer: sessionTimer,
             multipleHands: multipleHands,
-            sceneType : sceneType
+            sceneType : sceneType,
+            isTemplate : template
         },
         success: function(response) {
             //update view with new promotion
-            addPromotion(response.image, casinoId);
+            if(template != true){
+                addPromotion(response.image, casinoId);
+            }
             addPromotionModal.dialog('close');
         },
         error: function(xhr, desc, err) {
@@ -46,9 +51,6 @@ var getHighHandData = function(promotionId) {
         cache: false,
         success: function (response) {
             $('#title-message-modal').attr('value',response.title_message);
-            $('#use-joker-modal').prop('checked', response.use_joker);
-            $('#high-hand-gold-modal').prop('checked',response.high_hand_gold);
-
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -56,6 +58,7 @@ var getHighHandData = function(promotionId) {
     });
 };
 
+<<<<<<< HEAD
 
 /**
  * Update the database with the selected high hand
@@ -142,3 +145,25 @@ function moveHighlightToNextCard(clicked_id){
         $("#hh_index1").addClass("card-index-highlight");
     }
 }
+
+var getTemplate = function() {
+    $.ajax({
+       url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        type: 'post',
+        data: {
+            action: 'template',
+        },
+        cache: false,
+        success: function (response) {
+            $('#title-message').attr('value',response.title_message);
+            $('#horn-timer').attr('value',response.horn_timer);
+            $('#payout-value').attr('value',response.payout_value);
+            $('#session-timer').attr('value',response.session_timer);
+            $('#scene-type').attr('value',2);
+            $('#multiple-hands').attr('value',response.multiple_hand);
+            $('#use-joker').prop('checked', response.use_joker);
+            $('#high-hand').prop('checked',response.high_hand_gold);
+
+        }
+    });
+};
