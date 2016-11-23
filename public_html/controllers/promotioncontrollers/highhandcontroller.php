@@ -33,6 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $highHand->getTemplate();
         header('content-type:application/json');
         echo json_encode($response);
+    }else if($_POST['action'] == 'update'){
+        $highHand = new HighHandModel($conn->insert_database());
+        $highHand->updateHighHand($_POST['promotionId'], $_POST['name'], $_POST['card1'], $_POST['card2'],
+            $_POST['card3'], $_POST['card4'], $_POST['card5'], $_POST['card6'], $_POST['card7'],
+            $_POST['card8']);
+        header('content-type:application/json');
+        echo json_encode($response);
+
     }
 }
 

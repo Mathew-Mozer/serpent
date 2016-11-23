@@ -78,7 +78,7 @@
 
 	position: relative;
 
-	top: -40px;
+	top: -50px;
 
 	z-index: 1;
 
@@ -114,20 +114,26 @@
 .tile-promotion-artifact{
 
     clear: both;
-    max-height: 20px;
-    min-height: 20px;
-    min-width: 20px;
-    max-width: 20px;
+    max-height: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    max-width: 30px;
 
     position: relative;
     top: -140px;
 
     z-index: 4;
-    text-align: center;
-    vertical-align: middle;
     background-color: green;
     margin-left : 5px;
     color: white;
+    border-radius: 25px;
+
+	padding-top: 5px;
+
+	vertical-align: middle;
+	text-align: center;
+	display: inline-block;
+	box-shadow: 2px 2px 5px #969696;
 }
 
 .tile-menu-item-hover{

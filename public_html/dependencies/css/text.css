@@ -18,8 +18,16 @@
   color:white;
 }
 
+/*
+* Font Awesome Icons
+*/
+
+
+
+
 .font-awesome{
     font-family: FontAwesome;
-    font-size: 10px;
+    font-size: 18px;
+
 
 }
