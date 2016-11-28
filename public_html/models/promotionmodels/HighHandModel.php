@@ -17,7 +17,7 @@ class HighHandModel{
     public function add($values) {
 
       $sql = "";
-      if($template == 'true') {
+      if($values['templete'] == 'true') {
           $oldTemplate = $this->getTemplate();
           if($oldTemplate){
               $id = $oldTemplate['id'];

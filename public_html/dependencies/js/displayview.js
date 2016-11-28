@@ -20,18 +20,18 @@ var assignDisplayModal = $("#assign-display").dialog({
     modal: true,
     buttons: {
         Submit: function () {
-            updateDsiplay($('#displayId').html(), $('#displayProperties').val());
+            updateDisplay($('#displayId').html(), $('#displayProperties').val());
         }
     }
 });
 
 var setValuesInModal = function(values) {
   $('#displayId').html(values['id']);
-  $('#displayName').html("Display ID: " + values['name']);
-  $('#displaySerial').html("Display Name: " + values['serial']);
+  $('#displayName').html("Display ID: " + values['serial']);
+  $('#displaySerial').html("Display Name: " + values['name']);
   $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
 
-   values['property'].forEach(function(property) {
+   values['properties'].forEach(function(property) {
         $('#displayProperties').append("<option value='" + property['propertyId'] +"'>" + property['propertyName'] + "</option>");
     });
 };
@@ -45,7 +45,7 @@ var updateDisplay = function(displayId,propertyId) {
         cache: false,
         success: function (result) {
 
-            
+
             assignDisplayModal.dialog('close');
             location.reload();
         },

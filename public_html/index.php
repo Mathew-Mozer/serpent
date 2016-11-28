@@ -43,6 +43,8 @@ $promotion = new PromotionModel($dbcon->read_database());
         <br/>
         <br/>
     </form>
+
+
 </div>
 <div id="assign-display" style="display: none;" title="Assign Display">
     <p>Index: <span id="displayId"></span><p>
@@ -111,6 +113,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/displayview.js"></script>
 <script src="dependencies/js/promotionmodal.js"></script>
 <script src="dependencies/js/editdisplay.js"></script>
+<script src="dependencies/js/promotion.js"></script>
 
 <script>
     <?php

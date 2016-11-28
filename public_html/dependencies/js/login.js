@@ -53,6 +53,12 @@ var loginModal = $("#loginModal").dialog({
     }
 });
 
+$('#password').keypress(function(e) {
+    if(e.which == 13) {
+        validateLogin();
+    }
+});
+
 //function that calls to php controller, destroys sessions and reloads page
 var logoutUser = function () {
     $.ajax({

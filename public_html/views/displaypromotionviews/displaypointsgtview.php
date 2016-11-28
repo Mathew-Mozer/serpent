@@ -88,5 +88,5 @@ function myHandler() {
 
      }
 
-getModalData($("#promotion-view-modal").data('promo-id'),5);
+getModalData($("#promotion-view-modal").data('promo-id'),4);
 </script>

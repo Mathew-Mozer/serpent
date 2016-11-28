@@ -4,7 +4,7 @@
     <!--New Promotion Title-->
     <?php
     if($permission->hasPermissionById('promotion',$property['property_id'],'C')){?>
-    <div id=<?php echo "\"" . $property['property_id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert">
+    <div title="New Promotion"  data-toggle="tooltip"  id=<?php echo "\"" . $property['property_id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert">
         <img class="tile-icon" src="dependencies/images/clear.png">
         <div class="glyphicon-new-container">
             <span class="glyphicon glyphicon-plus-sign glyphicon-new-tile white" aria-hidden="true"></span>
@@ -17,6 +17,7 @@
     $promotionList = $promotion->getAllPromotionsByProperty($property['property_id']);
     if(count($promotionList)>0){
         foreach($promotionList as $row){
+
           include 'promotionview.php';
         }
       }?>
