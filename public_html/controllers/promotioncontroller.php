@@ -13,23 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
       require '../models/promotionmodels/'.$className.'.php';
 
-      $addPromotion= $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $_POST['scene_id']);
-      $_POST['promotionId'] = $addPromotion;
+      $addedPromotion= $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $_POST['scene_id']);
+      $_POST['promotionId'] = $addedPromotion['promo_id'];
 
       $r = new ReflectionClass($className);
       $classReference = $r->newInstanceArgs(array($conn->insert_database()));
       $classReference->add($_POST);
 
-      $response = array();
-      $response['image'] = $promotion->getPromotionImageByPromotionType($_POST['promotionTypeId']);
-      $reponse['promotion-id'] = $addPromotion;
-      $response['property-id'] = $_POST['propertyId'];
+      $response = $addedPromotion;
 
       header('content-type:application/json');
       echo json_encode($response);
     } else if ($_POST['action'] == 'update'){
       $promotion = new PromotionModel($conn->insert_database());
-
       $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
       require '../models/promotionmodels/'.$className.'.php';
 

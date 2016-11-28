@@ -1,21 +1,21 @@
 //Adds a new tile to the view with the image that is passed into the function
-var addPromotion = function (image, propertyId) {
-    $('#promotion-list-' + propertyId).append(
-        '<div class="tile-body">' +
-        '<img class="tile-icon" src="dependencies/images/' + image + '">' +
-        '<div class="tile-menu-bar hidden">' +
-        '<div class="tile-menu-item settingsBtn">' +
-        '<span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>' +
-        '</div>' +
-        '<div class="tile-menu-item">' +
-        '<span class="glyphicon glyphicon-pause glyphicon-menu black" aria-hidden="true"></span>' +
-        '</div>' +
-        '<div class="tile-menu-item">' +
-        '<span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>' +
-        '</div>' +
-        '</div>' +
-        '</div>'
-    );
+var addPromotion = function (data) {
+    data['append_promotion']=true;
+    $.ajax({
+        url: 'views/promotionview.php',
+        type:'post',
+        data:data,
+        cache:false,
+        success: function(html) {
+            $("#promotion-list-" + data['property_id']).append(html);
+            $("#tile-"+data['promo_id']).unbind('click').click(tileBodyClick);
+            $("#tile-"+data['promo_id'] + " div div.settingsBtn").unbind('click').click(settingsButtonClick);
+
+            $("#tile-"+data['promo_id'] + " div.tile-menu-item").hover(highlightCurrentOption, dehighlightCurrentOption);
+            $("#tile-"+data['promo_id']).hover(showOptionsBar,hideOptionsBar);
+            $("#tile-"+data['promo_id']).tooltip();
+        }
+    });
 };
 
 

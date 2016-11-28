@@ -10,17 +10,18 @@ var editDisplayModal = $("#editDisplayModal").dialog({
         },
 
         Save: function(){
-            var casinoId = $("#casino-id-form").data("casino-id");
-            var displayId = $("#display-id-form").data("display-id");
+            var propertyId = $("#property-id-form").data("propertyId");
+            var displayId = $("#display-id-form").data("displayId");
             var displayName = $('input[name=displayName]').val();
             var displayLocation = $('input[name=displayLocation]').val();
             var promotions = document.getElementsByClassName('promotions-in-display');
 
             var promotionsFormatted = [];
             $.each(promotions, function(index, value){
-                promotionId = value.value;
+                var promotionId = value.value;
                 var sceneDuration = $('#scene-duration-'+promotionId).val();
-                promotionsFormatted.push({promoId : value.value, displayId : value.dataset.displayId,
+
+                promotionsFormatted.push({promotionId : value.value, displayId : value.dataset.displayId,
                     checked : value.checked, sceneDuration: sceneDuration});
             });
 
@@ -30,7 +31,7 @@ var editDisplayModal = $("#editDisplayModal").dialog({
                 type: 'post',
                 data: {
                     action: 'update',
-                    casinoId: casinoId,
+                    propertyId: propertyId,
                     displayId: displayId,
                     displayName: displayName,
                     displayLocation: displayLocation,
