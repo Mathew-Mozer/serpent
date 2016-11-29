@@ -1,4 +1,4 @@
-<div id="first-page">
+<div id="new-hand">
     <form>
 
         <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
@@ -83,7 +83,18 @@
         <img src="dependencies/images/cards/QS.png" class="card standard-card" id="QS">
         <img src="dependencies/images/cards/KS.png" class="card standard-card" id="KS">
     </div>
+
+    <br>
+    <br>
+    <button id="view-hands-btn"> View Hands </button>
 </div>
 
 </div>
+<div id="view-hands">
+    Data Table Here
+    <br>
+    <br>
+    <button id="create-new-hand"> Create New Hand </button>
+</div>
+
 <script src="dependencies/js/promotion/highhand.js"></script>
