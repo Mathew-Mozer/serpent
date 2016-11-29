@@ -1,3 +1,5 @@
+$('#new-hand').hide();
+
 var getTemplate = function() {
     $.ajax({
        url: 'controllers/promotioncontrollers/highhandcontroller.php',
@@ -119,3 +121,13 @@ var getTemplate = function() {
         }
     });
 };
+
+$('#create-new-hand').click(function(){
+    $('#view-hands').hide();
+    $('#new-hand').show();
+});
+
+$('#view-hands-btn').click(function () {
+    $('#new-hand').hide();
+    $('#view-hands').show();
+});
