@@ -1,15 +1,15 @@
 $('#new-hand').hide();
 
-var getTemplate = function() {
+var getTemplate = function () {
     $.ajax({
-       url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
         data: {
             action: 'template',
         },
         cache: false,
         success: function (response) {
-            $('#title-message-modal').attr('value',response.title_message);
+            $('#title-message-modal').attr('value', response.title_message);
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -21,10 +21,9 @@ var getTemplate = function() {
  * Update the database with the selected high hand
  * @param promotionId
  */
-var updatePromotion = function(promotionId){
+var updatePromotion = function (promotionId) {
 
     var name = $('#player-name-modal').val();
-
 
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
@@ -43,7 +42,7 @@ var updatePromotion = function(promotionId){
             card8: cards[8]
         },
         cache: false,
-        success: function(response) {
+        success: function (response) {
 
         }
     });
@@ -56,20 +55,20 @@ var updatePromotion = function(promotionId){
 
 var cards = ['CB', 'CB', 'CB', 'CB', 'CB', 'CB', 'CB', 'CB'];
 var handIndex = 1;
-function addCards(clicked_id){
+function addCards(clicked_id) {
 
-    if(handIndex < 9) {
+    if (handIndex < 9) {
         cards[handIndex] = clicked_id;
 
 
-    }else if(handIndex >= 9){
+    } else if (handIndex >= 9) {
         handIndex = 1;
         addCards(clicked_id);
         return;
     }
 
     $("#hh_index" + handIndex).removeClass("card-index-highlight");
-    $("#hh_index" + handIndex).attr('src', 'dependencies/images/cards/' + clicked_id +".png");
+    $("#hh_index" + handIndex).attr('src', 'dependencies/images/cards/' + clicked_id + ".png");
     handIndex++;
     moveHighlightToNextCard(clicked_id);
 }
@@ -78,12 +77,12 @@ function addCards(clicked_id){
  * Lock used card so duplicates can't be used
  * @param clicked_id
  */
-function flagUsedCard(clicked_id){
+function flagUsedCard(clicked_id) {
 
     $("#" + clicked_id).attr('src', 'dependencies/images/cards/CB.png');
 }
 
-$(".card" ).click(function() {
+$(".card").click(function () {
     //flagUsedCard(this.id);
     addCards(this.id);
 });
@@ -92,37 +91,98 @@ $(".card" ).click(function() {
  * Highlight the card that will be modified
  * @param clicked_id
  */
-function moveHighlightToNextCard(clicked_id){
-    if(handIndex < 9){
+function moveHighlightToNextCard(clicked_id) {
+    if (handIndex < 9) {
         $("#hh_index" + (handIndex)).addClass("card-index-highlight");
-    }else if(handIndex >= 9){
+    } else if (handIndex >= 9) {
         $("#hh_index1").addClass("card-index-highlight");
     }
 }
 
-var getTemplate = function() {
+var getTemplate = function () {
     $.ajax({
-       url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
         data: {
-            action: 'template',
+            action: 'template'
         },
         cache: false,
         success: function (response) {
-            $('#title-message').attr('value',response.title_message);
-            $('#horn-timer').attr('value',response.horn_timer);
-            $('#payout-value').attr('value',response.payout_value);
-            $('#session-timer').attr('value',response.session_timer);
-            $('#scene-type').attr('value',2);
-            $('#multiple-hands').attr('value',response.multiple_hand);
+            $('#title-message').attr('value', response.title_message);
+            $('#horn-timer').attr('value', response.horn_timer);
+            $('#payout-value').attr('value', response.payout_value);
+            $('#session-timer').attr('value', response.session_timer);
+            $('#scene-type').attr('value', 2);
+            $('#multiple-hands').attr('value', response.multiple_hand);
             $('#use-joker').prop('checked', response.use_joker);
-            $('#high-hand').prop('checked',response.high_hand_gold);
+            $('#high-hand').prop('checked', response.high_hand_gold);
 
         }
     });
 };
 
-$('#create-new-hand').click(function(){
+var customPayout = false;
+var getAllHands = function (id) {
+    $.ajax({
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        type: 'post',
+        data: {
+            action: 'view',
+            highHandSession: id
+        },
+        cache: false,
+        success: function (response) {
+            console.log(response);
+            $.each(response, function (index, element) {
+                var promotionID = element.high_hand_session;
+                var handID = element.high_hand_record_id;
+                var handCards1 = element.high_hand_card1;
+                var handCards2 = element.high_hand_card2;
+                var handCards3 = element.high_hand_card3;
+                var handCards4 = element.high_hand_card4;
+                var handCards5 = element.high_hand_card5;
+                var handCards6 = element.high_hand_card6;
+                var handCards7 = element.high_hand_card7;
+                var handCards8 = element.high_hand_card8;
+                var handName = element.high_hand_name;
+                var handDate = element.high_hand_timestamp;
+                var handWinner = element.high_hand_isWinner;
+                customPayout = element.high_hand_custom_payout;
+
+                $('#high_hand_table > tbody:last-child').append('<tr>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handID + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handDate + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handName + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards1 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards2 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards3 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards4 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards5 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards6 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards7 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + handCards8 + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td> <input class="is-winner-checkbox" ' +
+                    'id="is-winner-' + promotionID + '" name="is-winner" type="checkbox"></td>');
+
+                $('#high_hand_table > tbody:last-child ').append('</tr>');
+
+                if (handWinner == 1) {
+                    $('#is-winner-' + promotionID).prop('checked', true);
+                }
+            });
+
+            $("#high_hand_table").DataTable();
+
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+
+        }
+    });
+};
+
+
+$('#create-new-hand').click(function () {
     $('#view-hands').hide();
     $('#new-hand').show();
 });
