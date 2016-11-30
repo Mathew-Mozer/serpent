@@ -91,10 +91,36 @@
 
 </div>
 <div id="view-hands">
-    Data Table Here
+    <table id="high_hand_table" class="high_hand">
+        <thead>
+        <tr>
+            <th> Hand ID</th>
+            <th>Date</th>
+            <th> Name</th>
+            <th> Card 1</th>
+            <th> Card 2</th>
+            <th> Card 3</th>
+            <th> Card 4</th>
+            <th> Card 5</th>
+            <th> Card 6</th>
+            <th> Card 7</th>
+            <th> Card 8</th>
+            <th> Winner</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
     <br>
     <br>
     <button id="create-new-hand"> Create New Hand </button>
 </div>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 
 <script src="dependencies/js/promotion/highhand.js"></script>
+<script>
+
+    getAllHands($("#promotion-view-modal").data('promo-id'));
+</script>

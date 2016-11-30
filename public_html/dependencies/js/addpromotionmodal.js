@@ -22,8 +22,9 @@ var addPromotion = function (data) {
 //Construct the add promotion modal
 var addPromotionModal = $("#addPromotion").dialog({
     autoOpen: false,
-    height: 400,
-    width: 350,
+    height: 'auto',
+    width: 'auto',
+    position: 'center',
     modal: true,
     buttons: {
         Submit: function () {
