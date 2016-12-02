@@ -11,16 +11,24 @@
             <input id="payout-value" name="payout_value" type="number" placeholder="Default Payout"/>
             <br>
             <br>
-            <input id="session-timer" name="session_timer" type="number" placeholder="Session Timer"/>
+            <label>Session Timer</label> <br/>
+            <div class="option-group">
+                <label><input class="high-hand-radio" value="0" name="session_timer" type="radio"/> 15 min
+                </label><br/>
+                <label><input class="high-hand-radio" value="1" name="session_timer" type="radio"/> 30 min
+                </label><br/>
+                <label><input class="high-hand-radio" value="2" name="session_timer" type="radio"/> 1 hr
+                </label><br/>
+            </div>
             <br>
             <br>
             <label>Show Multiple Hands</label> <br>
             <div class="option-group">
-                <label><input class="high-hand-radio" value="0" name="multiple-hands" type="radio"/> Disabled
+                <label><input class="high-hand-radio" value="0" name="multiple_hands" type="radio"/> Text Only
                 </label><br/>
-                <label><input class="high-hand-radio" value="1" name="multiple-hands" type="radio"/> Previous Winners
+                <label><input class="high-hand-radio" value="1" name="multiple_hands" type="radio"/> Previous Winners
                 </label><br/>
-                <label><input class="high-hand-radio" value="2" name="multiple-hands" type="radio"/> Ranked Hands
+                <label><input class="high-hand-radio" value="2" name="multiple_hands" type="radio"/> Ranked Hands
                 </label><br/>
             </div>
             <br>
@@ -33,12 +41,8 @@
             <input type="hidden" name="scene_id" value="2"/>
             <br>
             <br>
-            <label class="high-hand-label">Template</label>
-            <input class="high-hand-checkbox" id="template" name="template" type="checkbox"/>
-            <br>
-            <br>
             <label class="high-hand-label">Custom Payout</label>
-            <input class="high-hand-checkbox" id="custom-payout" name="custom-payout" type="checkbox"/>
+            <input class="high-hand-checkbox" id="custom_payout" name="custom_payout" type="checkbox"/>
         </form>
     </div>
 </div>
