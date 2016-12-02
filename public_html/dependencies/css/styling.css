@@ -2,3 +2,12 @@
 
      border: 1px solid #c3cacc;
  }
+
+.playerForms{
+    margin: 3px;
+}
+
+.center{
+    margin: auto;
+    width: 60%
+}
