@@ -41,6 +41,9 @@ class PropertyDisplays
                 $display->setPromotions($this->getDisplayPromotions($display->getId()));
                 array_push($displays, $display);
             }
+            if($propertyId == 0){
+                array_push($displays, $display);
+            }
         }
         return $displays;
     }
