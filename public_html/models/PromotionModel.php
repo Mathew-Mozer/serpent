@@ -61,14 +61,17 @@
                       promotion_type.promotion_type_title as promo_title,
                       promotion_type.promotion_type_image as promo_image,
                       promotion_property.display_id as display_id,
-                      promotion_type.promotion_type_file_name as file_name
+                      promotion_type.promotion_type_file_name as file_name,
+                      promotion_property.property_id as property_id
                     FROM
                       promotion, promotion_type, promotion_property, property
                     WHERE
                       promotion.promotion_type_id = promotion_type.promotion_type_id
                       AND  promotion.promotion_id = promotion_property.promotion_id
                       AND property.property_id = promotion_property.property_id
-                      AND promotion.promotion_visible = 1 AND property.property_id = :id;
+                      AND promotion.promotion_visible = 1 AND property.property_id = :id
+                    GROUP BY 
+                      promotion_property.promotion_id;
                     ";
 
             $result = $this->db->prepare($sql);
@@ -124,8 +127,34 @@
       $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
       $result->execute();
 
-      return $promotionId;
+      $sql = "SELECT
+                      promotion.promotion_id as promo_id,
+                      promotion.artifact as artifact,
+                      promotion_type.promotion_type_id as promo_type_id,
+                      promotion_type.promotion_type_title as promo_title,
+                      promotion_type.promotion_type_image as promo_image,
+                      promotion_property.display_id as display_id,
+                      promotion_type.promotion_type_file_name as file_name,
+                      promotion_property.property_id as property_id
+                    FROM
+                      promotion, promotion_type, promotion_property, property
+                    WHERE
+                      promotion.promotion_type_id = promotion_type.promotion_type_id
+                      AND  promotion.promotion_id = promotion_property.promotion_id
+                      AND property.property_id = promotion_property.property_id
+                      AND promotion.promotion_visible = 1 AND promotion.promotion_id = :id;
+                      LIMIT 1;
+                    ";
+
+      $result = $this->db->prepare($sql);
+      $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
+      $result->execute();
+
+      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+
+      return $promoResult;
     }
+
 
     public function getPromotionImageByPromotionType($id){
       $sql = "SELECT promotion_type_image as image FROM promotion_type WHERE promotion_type_id = :id;";
@@ -164,22 +193,24 @@
     public function getPromotionsByDisplayId($displayId){
 
       $sql1 = "SELECT
-                      promotion.id as promo_id,
-                      promotion_type.image,
-                      promotion_type.file_name,
-                      promotion_casino.casino_id,
-                      promotion_casino.display_id,
-                      promotion_casino.scene_duration,
-                      promotion_casino.skin_id,
-                      promotion_type.title
+                      promotion.promotion_id as promo_id,
+                      promotion_type.promotion_type_image,
+                      promotion_type.promotion_type_file_name,
+                      promotion_property.property_id,
+                      promotion_property.display_id,
+                      promotion_property.scene_duration,
+                      promotion_property.skin_id,
+                      promotion_type.promotion_type_title
                     FROM
-                      promotion, promotion_type, promotion_casino, casino
+                      promotion, promotion_type, promotion_property, property
                     WHERE
-                      promotion.promotion_type_id = promotion_type.id
-                      AND  promotion.id = promotion_casino.promotion_id
-                      AND casino.id = promotion_casino.casino_id
-                      AND promotion.visible = 'T' AND promotion_casino.display_id = :id
-                      GROUP BY promotion.id ORDER BY promotion_casino.display_id;
+                      promotion.promotion_type_id = promotion_type.promotion_type_id
+                      AND  promotion.promotion_id = promotion_property.promotion_id
+                      AND property.property_id = promotion_property.property_id
+                      AND promotion.promotion_visible = 1
+                      AND promotion_property.active = 1
+                      AND promotion_property.display_id = :id
+                      GROUP BY promotion.promotion_id ORDER BY promotion_property.display_id;
                     ";
       $result = $this->db->prepare($sql1);
       $result->bindValue(':id', $displayId);
@@ -191,9 +222,11 @@
     }
 
     public function getUnassignedPromotions($displayId){
-      $sql = "SELECT * FROM promotion, promotion_type, promotion_casino WHERE promotion_casino.display_id = 0
-              AND promotion.id = promotion_casino.promotion_id AND promotion.promotion_type_id = promotion_type.id
-              AND promotion.visible = 'T' ;";
+      $sql = "SELECT * FROM promotion, promotion_type, promotion_property WHERE promotion_property.display_id = 0
+              AND promotion.promotion_id = promotion_property.promotion_id AND promotion.promotion_type_id = promotion_type.promotion_type_id
+              AND promotion.promotion_visible = 1
+              AND promotion_property.active = 0 
+              GROUP BY promotion_property.promotion_id;";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':display_id', $displayId);

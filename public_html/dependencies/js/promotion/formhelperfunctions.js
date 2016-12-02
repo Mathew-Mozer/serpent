@@ -13,7 +13,7 @@ var addPromotionByType = function(propertyId, promotionTypeId, promotionType, ac
         cache: false,
         success: function(response) {
             //update view with new promotion
-            addPromotion(response.image, propertyId);
+            addPromotion(response);
             addPromotionModal.dialog('close');
         },
         error: function(xhr, desc, err) {
@@ -26,6 +26,7 @@ var updatePromotion = function(promotionId, promotionTypeId, accountId) {
   var data = getFormData('add-promotion');
   data['action'] = 'update';
   data['promotionTypeId'] = promotionTypeId;
+    console.log(promotionTypeId);
   data['promotionId'] = promotionId;
   data['accountId'] = accountId;
   $.ajax({

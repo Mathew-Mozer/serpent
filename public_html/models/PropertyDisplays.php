@@ -30,7 +30,7 @@ class PropertyDisplays
         $display = null;
         foreach ($result as $array) {
             $display = new DisplayModel($array);
-            if ($display->getName() != $array['name']) {
+            if ($display->getName() != $array['display_name']) {
                 if ($count != 0) {
                     $display->setPromotions($this->getDisplayPromotions($display->getId()));
                     array_push($displays, $display);
@@ -65,8 +65,8 @@ class PropertyDisplays
     }
 
     private function getDisplayPromotions($display){
-        $getPromotions = "SELECT * FROM promotion_property, promotion WHERE promotion_property.display_id =". $display. "
-                AND promotion_property.promotion_id = promotion.promotion_id AND promotion.promotion_visible = 1;";
+        $getPromotions = "SELECT * FROM promotion_property, promotion WHERE active= 1 AND promotion_property.display_id =". $display. "
+                AND promotion_property.promotion_id = promotion.promotion_id AND promotion.promotion_visible = 1 GROUP BY promotion_property.promotion_id;";
         $statement = $this->conn->prepare($getPromotions);
         $statement->execute();
         $displayPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -95,21 +95,22 @@ class PropertyDisplays
         $result->execute();
     }
 
-    public function updatePromotionsInDisplay($dbdelete, $dbinsert, $displayId, $casinoId, $promotions)
+    public function updatePromotionsInDisplay($dbdelete, $dbinsert, $displayId, $propertyId, $promotions)
     {
-
         foreach ($promotions as $promotion) {
 
-            $sql = "SELECT * FROM promotion_property WHERE promotion_id=:promotion_id AND display_id=:display_id;";
+            $sql = "SELECT * FROM promotion_property WHERE promotion_property.promotion_id=:promotion_id AND display_id=:display_id;";
 
             $result = $this->conn->prepare($sql);
-            $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
+
+            $result->bindValue(':promotion_id', $promotion['promotionId'], PDO::PARAM_STR);
             $result->bindValue(':display_id', $displayId, PDO::PARAM_STR);
             $result->execute();
 
             if ($result->rowCount() > 0) {
+
                 if ($promotion['checked'] == "true") {
-                    $sql = "UPDATE promotion_property SET scene_duration = :scene_duration, skin_id = :skin_id
+                    $sql = "UPDATE promotion_property SET active = 1, scene_duration = :scene_duration, skin_id = :skin_id
                       WHERE promotion_property.promotion_id = :promotion_id AND display_id = :display_id;";
 
                     $result = $this->conn->prepare($sql);
@@ -117,22 +118,28 @@ class PropertyDisplays
                     $result->bindValue(':skin_id', $promotion['skinId'], PDO::PARAM_INT);
 
                 } else {
-                    $sql = "DELETE FROM `promotion_casino`
-                      WHERE promotion_id = :promotion_id AND display_id = :display_id";
-                    $result = $dbdelete->prepare($sql);
+
+                    $sql = "UPDATE promotion_property SET active = 0
+                      WHERE promotion_property.promotion_id = :promotion_id AND display_id = :display_id;";
+
+                    $result = $this->conn->prepare($sql);
+
+//                    $sql = "DELETE FROM `promotion_property`
+//                      WHERE promotion_property.promotion_id = :promotion_id AND display_id = :display_id";
+//                    $result = $dbdelete->prepare($sql);
                 }
 
                 $result->bindValue(':display_id', $displayId, PDO::PARAM_STR);
-                $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
+                $result->bindValue(':promotion_id', $promotion['promotionId'], PDO::PARAM_STR);
 
                 $result->execute();
             } else if ($promotion['checked'] == "true") {
-                $sql = "INSERT INTO promotion_property (promotion_id, property_id, display_id, scene_duration)
-                        VALUES (:promotion_id, :property_id, :display_id, :scene_duration);";
+                $sql = "INSERT INTO promotion_property (promotion_id, property_id, display_id, scene_duration, active)
+                        VALUES (:promotion_id, :property_id, :display_id, :scene_duration, 1);";
 
                 $result = $dbinsert->prepare($sql);
-                $result->bindValue(':promotion_id', $promotion['promoId'], PDO::PARAM_STR);
-                $result->bindValue(':property_id', $casinoId, PDO::PARAM_STR);
+                $result->bindValue(':promotion_id', $promotion['promotionId'], PDO::PARAM_STR);
+                $result->bindValue(':property_id', $propertyId, PDO::PARAM_STR);
                 $result->bindValue(':display_id', $displayId, PDO::PARAM_STR);
                 $result->bindValue(':scene_duration', $promotion['sceneDuration'], PDO::PARAM_INT);
 

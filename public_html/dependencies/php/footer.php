@@ -22,44 +22,22 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         //Show option bar
-        $(".tile-body").hover(function () {
-            $(this).children(".tile-menu-bar").removeClass("hidden");
-        }, function () {
-            $(this).children(".tile-menu-bar").addClass("hidden");
-
-        });
+        $(".tile-body").hover(showOptionsBar,hideOptionsBar);
         //highlight option under mouse
-        $(".tile-menu-item").hover(function () {
-            $(this).addClass("tile-menu-item-hover");
-        }, function () {
-            $(this).removeClass("tile-menu-item-hover");
+        $(".tile-menu-item").hover(highlightCurrentOption, dehighlightCurrentOption);
 
-        });
 
-        $(".tile-body").unbind('click').click(function () {
-            promotionViewModal.dialog('open');
-            $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
-            $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php");
 
-        });
+
+
+        $(".tile-body").unbind('click').click(tileBodyClick);
 
         /**
          * This is for click listeners
          */
 
 
-        $(".settingsBtn").unbind('click').click(function (e) {
-            e.stopPropagation();
-           var ids = $(this).attr('id').split('-');
-           <?php echo "var id=".$_SESSION['userId'].";"; ?>
-           var perm = canDelete(ids[0],id);
-           //getSettings(ids[1],ids[2], perm);
-           $("#settings").data('promo-id', $(this).data("promo-id"));
-           $("#settings").data('promo-type-id', $(this).data("promo-type-id"));
-           $("#settings").load("views/addpromotionviews/add"+$(this).data("promo-type")+"view.php",{promotion_settings:true, promotion_id:$(this).data("promo-id"), promotion_type:$(this).data("promo-type-id")});
-
-           openSettingsModal();
-         });
+        $(".settingsBtn").unbind('click').click(settingsButtonClick);
 
 
        $(".add-promotion-btn").unbind('click').click(function(){

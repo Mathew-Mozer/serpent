@@ -17,7 +17,7 @@ class HighHandModel{
     public function add($values) {
 
       $sql = "";
-      if($template == 'true') {
+      if($values['templete'] == 'true') {
           $oldTemplate = $this->getTemplate();
           if($oldTemplate){
               $id = $oldTemplate['id'];
@@ -29,8 +29,9 @@ class HighHandModel{
       } if($sql == ''){
 
         $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_gold,
-            horn_timer, payout_value, session_timer, multiple_hands, template)
-            VALUES (:promotionId,:title_message,:use_joker,:high_hand_gold,:horn_timer,:payout_value,:session_timer,:multiple_hands, :template);";
+            horn_timer, payout_value, session_timer, multiple_hands, template, High_hand_custom_payout)
+            VALUES (:promotionId,:title_message,:use_joker,:high_hand_gold,:horn_timer,:payout_value,
+                    :session_timer,:multiple_hands, :template, :customPayout);";
           }
         $result = $this->conn->prepare($sql);
         $result->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
@@ -84,7 +85,7 @@ class HighHandModel{
     public function updateHighHand($promotionID, $playerName, $card1, $card2, $card3, $card4, $card5, $card6, $card7, $card8){
 
         $sql ='INSERT INTO high_hand_records(
-                hand_promotionID,
+                high_hand_session,
                 high_hand_name,
                 high_hand_card1,
                 high_hand_card2,
@@ -122,6 +123,20 @@ class HighHandModel{
 
         $template = $result->fetch(PDO::FETCH_ASSOC);
         return $template;
+    }
+
+    public function getAllHands($id){
+       $sql = "SELECT * FROM high_hand,high_hand_records
+                WHERE high_hand_records.high_hand_session = :id
+                AND high_hand.promotion_id = high_hand_records.high_hand_session";
+        $result = $this->conn->prepare($sql);
+
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+
+        $response = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $response;
+
     }
 
 

@@ -20,12 +20,12 @@ class DisplayModel
     }
 
     private function createDisplayWithValuesSet($fieldArray){
-        $this->setId($fieldArray['property_id']);
-        $this->setName($fieldArray['property_name']);
+        $this->setId($fieldArray['display_id']);
+        $this->setName($fieldArray['display_name']);
         $this->setPropertyId($fieldArray['property_id']);
-        $this->setSerial($fieldArray['property_serial']);
-        $this->setMacAddress($fieldArray['property_mac_address']);
-        $this->setDisplayLocation($fieldArray['property_display_location']);
+        $this->setSerial($fieldArray['display_serial']);
+        $this->setMacAddress($fieldArray['display_mac_address']);
+        $this->setDisplayLocation($fieldArray['display_location']);
     }
 
     /**

@@ -1,4 +1,4 @@
-<div id="first-page">
+<div id="new-hand">
     <form>
 
         <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
@@ -83,7 +83,44 @@
         <img src="dependencies/images/cards/QS.png" class="card standard-card" id="QS">
         <img src="dependencies/images/cards/KS.png" class="card standard-card" id="KS">
     </div>
+
+    <br>
+    <br>
+    <button id="view-hands-btn"> View Hands </button>
 </div>
 
 </div>
+<div id="view-hands">
+    <table id="high_hand_table" class="high_hand">
+        <thead>
+        <tr>
+            <th> Hand ID</th>
+            <th>Date</th>
+            <th> Name</th>
+            <th> Card 1</th>
+            <th> Card 2</th>
+            <th> Card 3</th>
+            <th> Card 4</th>
+            <th> Card 5</th>
+            <th> Card 6</th>
+            <th> Card 7</th>
+            <th> Card 8</th>
+            <th> Winner</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <button id="create-new-hand"> Create New Hand </button>
+</div>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
 <script src="dependencies/js/promotion/highhand.js"></script>
+<script>
+
+    getAllHands($("#promotion-view-modal").data('promo-id'));
+</script>

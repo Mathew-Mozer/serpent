@@ -47,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h3>You have no access to any properties.</h3>
         </div>
     <?php }
+
+
+
     include '../dependencies/php/footer.php';
 }
 ?>
