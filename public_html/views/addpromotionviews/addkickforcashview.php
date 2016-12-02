@@ -1,6 +1,5 @@
 <div id="add-promotion">
-    <label for=""
-<input type="hidden" name="kfc_promotionType" value="kickforcash"></input>
+<input type="hidden" name="kfc_promotionType" value="kickforcash">
 <br>
 <br>
 

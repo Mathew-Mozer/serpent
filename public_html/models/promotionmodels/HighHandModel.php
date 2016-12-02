@@ -15,24 +15,11 @@ class HighHandModel{
     }
 
     public function add($values) {
-
-      $sql = "";
-      if($values['templete'] == 'true') {
-          $oldTemplate = $this->getTemplate();
-          if($oldTemplate){
-              $id = $oldTemplate['id'];
-              $sql = 'UPDATE high_hand SET promotion_id=:promotionId,title_message=:title_message
-                  ,use_joker=:use_joker,high_hand_gold=:high_hand_gold,horn_timer=:horn_timer,payout_value=:payout_value,session_timer=:session_timer,multiple_hands=:multiple_hands,template=:template
-                  WHERE id ='.$id;
-
-          }
-      } if($sql == ''){
-
-        $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_gold,
-            horn_timer, payout_value, session_timer, multiple_hands, template, High_hand_custom_payout)
+        $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_attachmc,
+            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout)
             VALUES (:promotionId,:title_message,:use_joker,:high_hand_gold,:horn_timer,:payout_value,
-                    :session_timer,:multiple_hands, :template, :customPayout);";
-          }
+                    :session_timer,:multiple_hands, :customPayout);";
+
         $result = $this->conn->prepare($sql);
         $result->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
         $result->bindValue(':title_message', $values['title_message'], PDO::PARAM_STR);
@@ -41,8 +28,8 @@ class HighHandModel{
         $result->bindValue(':horn_timer', $values['horn_timer'], PDO::PARAM_STR);
         $result->bindValue(':payout_value', $values['payout_value'], PDO::PARAM_STR);
         $result->bindValue(':session_timer', $values['session_timer'], PDO::PARAM_STR);
-        $result->bindValue(':multiple_hands', $values['multiple_hands'], PDO::PARAM_STR);
-        $result->bindValue(':template', $values['templete'], PDO::PARAM_STR);
+        $result->bindValue(':multiple_hands', $values['multiple_hands'], PDO::PARAM_INT);
+        $result->bindValue(':customPayout', $values['custom_payout'], PDO::PARAM_STR);
         $result->execute();
     }
 
