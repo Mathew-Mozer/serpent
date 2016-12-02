@@ -1,14 +1,11 @@
 <div id="add-promotion">
-<input id="name-modal" name="kfc_name" type = "text"></input>
+<input id="name-modal" name="kfc_name" placeholder="Name" type = "text">
 <br>
-<label>Chosen Number</label>
-<br>
-<input id="chosen-number-modal" name="kfc_chosen_number" type="number"></input>
+<input id="chosen-number-modal" name="kfc_chosen_number" placeholder="Chosen Number" type="number">
 
 <br>
-<label>Game Label</label>
-<br>
-<input id="game-label" name="kfc_gamelabel" type = "text"></input>
+
+<input id="game-label" name="kfc_gamelabel" placeholder="Game Label" type = "text">
 
 <br>
 <label>Team 1   vs   Team 2</label><br>
