@@ -1,22 +1,42 @@
 <div id="add-promotion">
 <input type="hidden" name="promotionType" value="poinstgt"></input>
-<input id="top-title-box" name="pgt_title" type="text" placeholder="Promotion Title"></input>
+
+
+<input id="top-title-box" name="pgt_title" type="text" placeholder="Top Title"></input>
+    <label for="top-title-box">Top Title</label>
+    <br><br>
+
+    <textarea id="top-content-box" name="pgt_subtitle" placeholder="Top Content"></textarea>
+    <label for="top-content-box">Top Content</label>
 <br><br>
-<input id="left-title-box" name="pgt_left_title" type="text" placeholder="Information Title"></input>
+
+<input id="left-title-box" name="pgt_left_title" type="text" placeholder="Left Title"></input>
+    <label for="left-title-box">Left Title</label>
+    <br><br>
+
+    <textarea id="left-content-box" name="pgt_left_content" placeholder="Left Content"></textarea>
+    <label for="left-content-box">Left Content</label>
 <br><br>
-<input id="right-title-box" name="pgt_right_title" type="text" placeholder="Rules Title"></input>
+
+<input id="right-title-box" name="pgt_right_title" type="text" placeholder="Right Title"></input>
+    <label for="right-title-box">Right Title</label>
 <br><br>
-<input id="top-content-box" name="pgt_subtitle" type="text" placeholder="Promotion Text"></input>
+
+<textarea id="right-content-box" name="pgt_right_content" type="text" placeholder="Right Content"></textarea>
+    <label for="right-content-box">Right Text</label>
+
 <br><br>
-<input id="right-content-box" name="pgt_right_content" type="text" placeholder="Rules Text"></input>
-<br><br>
-<input id="left-content-box" name="pgt_left_content" type="text" placeholder="Information Text"></input>
-<br><br>
+
 <input id="payout" name="pgt_payout" type="text" placeholder="Payout"></input>
+    <label for="payout">Payout Value</label>
 <br><br>
+
 <input id="start-date" name="pgt_race_begin" type="date"></input>
+    <label for="start-date">Start Date</label>
 <br><br>
+
 <input id="end-date" name="pgt_race_end" type="date"></input>
+    <label for="end-date">End Date</label>
 <br><br>
 <input id="enable-instant-winners" name="enable-instant-winners" type="checkbox">Allow Instant Winners?</input>
 <br><br>
