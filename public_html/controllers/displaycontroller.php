@@ -34,19 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $updated['updated'] = true;
         }
         return json_encode($updated);
-    } else if ($_POST['action'] == 'updateDisplaySettings') {
+    } else if ($_POST['action'] == 'update') {
         $displayProperties = new PropertyDisplays($dbcon->update_database(), $_POST['propertyId']);
         $displayProperties->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
-    } else if ($_POST['action'] == 'addPromotion'){
-        $displayProperties = new PropertyDisplays($dbcon->insert_database(), null);
-        $displayProperties->addPromotionToDisplay();
-    } else if ($_POST['action'] == 'removePromotion'){
-        $displayProperties = new PropertyDisplays($dbcon->delete_database(), null);
-        $displayProperties->removePromotionFromDisplay($_POST['promotionId'],$_POST['displayId']);
-    }else if ($_POST['action'] == 'updatePromotionDisplaySettings'){
-        $displayProperties = new PropertyDisplays($dbcon->delete_database(), null);
-        $displayProperties->updatePromotionDisplaySettings(
-            $_POST['promotionId'],$_POST['displayId'],$_POST['sceneDuration'],$_POST['skinId']);
+        $displayProperties->updatePromotionsInDisplay($dbcon->delete_database(),$dbcon->insert_database(),$_POST['displayId'],$_POST['propertyId'], $_POST['promotions']);
+        header('content-type:application/json');
+        echo json_encode(array("success"=>"updated display"));
     }
+
 }
 ?>

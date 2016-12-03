@@ -54,17 +54,3 @@ var updateDisplay = function(displayId,propertyId) {
         }
     })
 };
-
-
-var editDisplayModal = $("#editDisplayModal").dialog({
-    autoOpen: false,
-    height: 450,
-    width: 500,
-    modal: true,
-    buttons: {
-        Close: function(){
-            editDisplayModal.dialog('close');
-        }
-
-    }
-});

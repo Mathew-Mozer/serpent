@@ -37,7 +37,6 @@ var addPromotionModal = $("#addPromotion").dialog({
             $("#promotion-select").show();
             $("#promotion-details").hide();
             addPromotionByType(propertyId, promotionTypeId, promotionType, accountId);
-            location.reload();
         }
     }
 });
