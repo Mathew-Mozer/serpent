@@ -65,9 +65,10 @@ class PropertyDisplays
     }
 
     private function getDisplayPromotions($display){
-        $getPromotions = "SELECT * FROM promotion_property, promotion WHERE active= 1 AND promotion_property.display_id =". $display. "
-                AND promotion_property.promotion_id = promotion.promotion_id AND promotion.promotion_visible = 1 GROUP BY promotion_property.promotion_id;";
+        $getPromotions = "SELECT * FROM `promotion_property` WHERE display_id =:display";
         $statement = $this->conn->prepare($getPromotions);
+
+        $statement->bindValue(':display',$display, PDO::PARAM_STR);
         $statement->execute();
         $displayPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
         $temp = [];
@@ -98,7 +99,6 @@ class PropertyDisplays
     public function updatePromotionsInDisplay($dbdelete, $dbinsert, $displayId, $propertyId, $promotions)
     {
         foreach ($promotions as $promotion) {
-
             $sql = "SELECT * FROM promotion_property WHERE promotion_property.promotion_id=:promotion_id AND display_id=:display_id;";
 
             $result = $this->conn->prepare($sql);
