@@ -30,18 +30,23 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
             echo "<label class='display-modal-checkbox'>" . $assignedPromotions["promotion_type_title"] . '</label>';
             echo "<button type='button'  class='remove-from-display' id='{$row['promo_id']}' name='promotion'> Remove </button>";
             ?>
-            <span id="<?php echo 'scene-input-' . $row['promo_id'] ?>">
             <label class="display-modal-label"><?php echo $row['promotion_type_scene_verbage']; ?> </label>
-            <input class="display-modal-scene-input" type="number"
+            <input class="scene-duration" type="number"
                    id="<?php echo 'scene-duration-' . $row['promo_id']; ?>"
+                   name="<?php echo $row['promo_id'];?>"
                    value="<?php echo $row['scene_duration'] ?>">
             <label class="display-modal-label">Skin Id </label>
-            <select>
+            <select class="skin-id" id="skin-id-<?php echo $row['promo_id']; ?>" name="<?php echo $row['promo_id'];?>">
                 <?php foreach ($skins as $skin){
-                    echo '<option value="'.$skin['skin_id'].'">'.$skin['skin_name'].'</option>';
+                    if($row['skin_id'] == $skin['skin_id']){
+                        echo '<option value="'.$skin['skin_id'].'" selected>'.$skin['skin_name'].'</option>';
+                    } else {
+                        echo '<option value="' . $skin['skin_id'] . '">' . $skin['skin_name'] . '</option>';
+                    }
                 }?>
             </select>
-            </span>
+            <input type="button" class='save-btn' id="save-btn-<?php echo $row['promo_id'];?>"
+                   name="<?php echo $row['promo_id'];?>" value="Save" hidden/>
         </div>
     <?php }
     foreach ($unassignedPromotions as $unassignedPromotion) {
@@ -74,13 +79,5 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 
 </form>
 <script src="dependencies/js/editdisplay.js"></script>
-<script>
-    $('.promotions-in-display').click(function () {
-        if (this.checked) {
-            $('#scene-input-' + this.id).show();
-        } else {
-            $('#scene-input-' + this.id).hide();
-        }
-    });
 
-</script>
+
