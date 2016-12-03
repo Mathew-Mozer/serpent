@@ -60,18 +60,15 @@
                       promotion_type.promotion_type_id as promo_type_id,
                       promotion_type.promotion_type_title as promo_title,
                       promotion_type.promotion_type_image as promo_image,
-                      promotion_property.display_id as display_id,
                       promotion_type.promotion_type_file_name as file_name,
-                      promotion_property.property_id as property_id
+                      promo_property.promo_property_property_id as property_id
                     FROM
-                      promotion, promotion_type, promotion_property, property
+                      promotion, promotion_type, promo_property, property
                     WHERE
                       promotion.promotion_type_id = promotion_type.promotion_type_id
-                      AND  promotion.promotion_id = promotion_property.promotion_id
-                      AND property.property_id = promotion_property.property_id
-                      AND promotion.promotion_visible = 1 AND property.property_id = :id
-                    GROUP BY 
-                      promotion_property.promotion_id;
+                      AND  promotion.promotion_id = promo_property.promo_property_promo_id
+                      AND property.property_id = promo_property.promo_property_property_id
+                      AND promotion.promotion_visible = 1 AND property.property_id =  :id;
                     ";
 
             $result = $this->db->prepare($sql);
@@ -120,39 +117,13 @@
       $promotionId = $this->db->lastInsertId();
 
 
-      $sql = "INSERT INTO promotion_property (promotion_id, property_id) VALUES (:promotionId, :propertyId);";
+      $sql = "INSERT INTO promo_property (promo_property_property_id, promo_property_promo_id) VALUES (:propertyId,:promotionId);";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
       $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
       $result->execute();
 
-      $sql = "SELECT
-                      promotion.promotion_id as promo_id,
-                      promotion.artifact as artifact,
-                      promotion_type.promotion_type_id as promo_type_id,
-                      promotion_type.promotion_type_title as promo_title,
-                      promotion_type.promotion_type_image as promo_image,
-                      promotion_property.display_id as display_id,
-                      promotion_type.promotion_type_file_name as file_name,
-                      promotion_property.property_id as property_id
-                    FROM
-                      promotion, promotion_type, promotion_property, property
-                    WHERE
-                      promotion.promotion_type_id = promotion_type.promotion_type_id
-                      AND  promotion.promotion_id = promotion_property.promotion_id
-                      AND property.property_id = promotion_property.property_id
-                      AND promotion.promotion_visible = 1 AND promotion.promotion_id = :id;
-                      LIMIT 1;
-                    ";
-
-      $result = $this->db->prepare($sql);
-      $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
-      $result->execute();
-
-      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
-
-      return $promoResult;
     }
 
 
@@ -221,15 +192,17 @@
       return $assignedpromotions;
     }
 
-    public function getUnassignedPromotions($displayId){
-      $sql = "SELECT * FROM promotion, promotion_type, promotion_property WHERE promotion_property.display_id = 0
-              AND promotion.promotion_id = promotion_property.promotion_id AND promotion.promotion_type_id = promotion_type.promotion_type_id
-              AND promotion.promotion_visible = 1
-              AND promotion_property.active = 0 
-              GROUP BY promotion_property.promotion_id;";
+    public function getUnassignedPromotions($displayId, $propertyID){
+      $sql = "SELECT * FROM promo_property p, promotion_type, promotion WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
+              WHERE d.promotion_id = p.promo_property_promo_id AND d.display_id=:display_id ) 
+			  AND promotion.promotion_id = p.promo_property_promo_id
+              AND p.promo_property_property_id=:property_id 
+              AND promotion.promotion_type_id = promotion_type.promotion_type_id
+			  GROUP BY p.promo_property_promo_id;";
 
       $result = $this->db->prepare($sql);
       $result->bindValue(':display_id', $displayId);
+      $result->bindValue(':property_id', $propertyID);
       $result->execute();
 
       $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);

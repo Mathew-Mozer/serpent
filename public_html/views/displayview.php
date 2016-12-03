@@ -3,7 +3,6 @@
     <?php
     $propertyDisplay = new PropertyDisplays($dbcon->read_database(), $property['property_id']);
     $propertyDisplays = $propertyDisplay->getDisplays();
-    //var_dump($propertyDisplays);
     foreach ($propertyDisplays as $display){?>
         <div class="display-outer">
             <div class="display-body container">
@@ -13,7 +12,9 @@
                     <div class="col-md-4"><h3 id="location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
-                        <button type="button" data-property-id="<?php echo $property['property_id'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
+                        <button type="button" data-property-id="<?php echo $property['property_id'];?>"
+                                data-display-id="<?php echo $display->getId();?>"
+                                class="btn btn-info btn-lg edit-display-btn">EDIT</button>
                     </div>
                 </div>
                 <hr class="display">
