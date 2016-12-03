@@ -38,9 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $displayProperties = new PropertyDisplays($dbcon->update_database(), $_POST['propertyId']);
         $displayProperties->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
     } else if ($_POST['action'] == 'addPromotion'){
-
+        $displayProperties = new PropertyDisplays($dbcon->insert_database(), null);
+        $displayProperties->addPromotionToDisplay();
     } else if ($_POST['action'] == 'removePromotion'){
-
+        $displayProperties = new PropertyDisplays($dbcon->delete_database(), null);
+        $displayProperties->removePromotionFromDisplay($_POST['promotionId'],$_POST['displayId']);
     }
 
 }
