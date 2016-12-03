@@ -25,7 +25,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
             <?php
             echo '<img class=checkbox-image src="dependencies/images/' . $row['promotion_type_image'] . '"> &nbsp';
             echo "<label class='display-modal-checkbox'>" . $assignedPromotions["promotion_type_title"] .'</label>';
-            echo "<button type='button'  class='promotions-in-display' id='{$assignedPromotions['promotion_id']}' 
+            echo "<button type='button'  class='remove-from-display' id='{$assignedPromotions['promotion_id']}' 
                     data-display-id='{$assignedPromotions["display_id"]}'
                     name='promotion' value='{$assignedPromotions["promotion_id"]}'> Remove </button>";
             ?>
@@ -45,7 +45,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
             <?php
             echo '<img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['promotion_type_image'] . '"> &nbsp';
             echo "<label class='display-modal-checkbox'>" . $unassignedPromotion["promotion_type_title"] .'</label>';
-            echo "<button type='button'  class='promotions-in-display' id='{$unassignedPromotion['promotion_id']}' 
+            echo "<button type='button'  class='add-to-display' id='{$unassignedPromotion['promotion_id']}' 
                     data-display-id='{$unassignedPromotion["display_id"]}'
                     name='promotion' value='{$unassignedPromotion["promotion_id"]}'> Add </button>";
 
@@ -58,6 +58,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 <hr>
 
 <form class="form-horizontal" method="post">
+        <input type="hidden" id="property-id" value="<?php echo $_POST['propertyId'];?>"><br>
         <input type="hidden" id="display-id" value="<?php echo $_POST['displayId'];?>"><br>
         <input type="text" id="display-name" name="displayName" value='<?php echo $display->getName() ?>'>
         <p>Display Name</p><br>

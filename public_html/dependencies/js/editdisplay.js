@@ -1,27 +1,13 @@
 
-var editDisplayModal = $("#editDisplayModal").dialog({
-    autoOpen: false,
-    height: 450,
-    width: 500,
-    modal: true,
-    buttons: {
-        Close: function(){
-            editDisplayModal.dialog('close');
-        }
-
-    }
-});
 
 var saveDisplayOptions = function () {
-    alert($('#display-id').val());
-    alert($('#display-name').val());
-    alert($('#display-location').val());
+
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
         data: {
             action: 'update',
-            propertyId: propertyId,
+            propertyId: $('#property-id').val(),
             displayId: $('#display-id').val(),
             displayName: $('#display-name').val(),
             displayLocation: $('#display-location').val()
@@ -41,4 +27,6 @@ $('#update-display-btn').click(function() {
     alert('Clicked');
     saveDisplayOptions();
 });
+
+$('');
 
