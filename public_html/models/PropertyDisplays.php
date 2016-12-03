@@ -130,4 +130,17 @@ class PropertyDisplays
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function updatePromotionDisplaySettings($promotionId, $displayId, $sceneDuration, $skinId) {
+        $sql = 'UPDATE promotion_property SET skin_id=:skinId, scene_duration=:sceneDuration
+                WHERE promotion_property.promotion_id = :promotionId AND promotion_property.display_id = :displayId';
+        $statement = $this->conn->prepare($sql);
+
+        $statement->bindValue(':promotionId',$promotionId, PDO::PARAM_STR);
+        $statement->bindValue(':displayId',$displayId, PDO::PARAM_STR);
+        $statement->bindValue(':skinId',$skinId, PDO::PARAM_STR);
+        $statement->bindValue(':sceneDuration',$sceneDuration, PDO::PARAM_STR);
+        $statement->execute();
+
+    }
 }
