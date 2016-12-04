@@ -19,17 +19,6 @@ class DisplayModel
         $this->createDisplayWithValuesSet($values);
     }
 
-    public function removePromotionFromDisplay($promotionId,$displayId){
-        $sql =  'DELETE FROM `promotion_property` 
-                WHERE promotion_property.promotion_id = :promotionId 
-                AND promotion_property.display_id = :displayId';
-        $statement = $this->conn->prepare($sql);
-
-        $statement->bindValue(':promotionId',$promotionId, PDO::PARAM_STR);
-        $statement->bindValue(':displayId',$displayId, PDO::PARAM_STR);
-        $statement->execute();
-    }
-
     private function createDisplayWithValuesSet($fieldArray){
         $this->setId($fieldArray['display_id']);
         $this->setName($fieldArray['display_name']);

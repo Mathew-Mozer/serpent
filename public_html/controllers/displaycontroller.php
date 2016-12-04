@@ -57,6 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $displayProperties = new PropertyDisplays($dbcon->delete_database(), null);
         $displayProperties->updatePromotionDisplaySettings(
             $_POST['promotionId'],$_POST['displayId'],$_POST['sceneDuration'],$_POST['skinId']);
+
+    } 
+
+    else if ($_POST['action'] == 'update') {
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), $_POST['propertyId']);
+        $displayProperties->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);
+        $displayProperties->updatePromotionsInDisplay($dbcon->delete_database(),$dbcon->insert_database(),$_POST['displayId'],$_POST['propertyId'], $_POST['promotions']);
+        header('content-type:application/json');
+        echo json_encode(array("success"=>"updated display"));
     }
+
 }
 ?>
