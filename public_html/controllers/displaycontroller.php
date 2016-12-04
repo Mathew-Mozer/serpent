@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //This adds a promotion to a display
     else if ($_POST['action'] == 'addPromotion'){
         $displayProperties = new PropertyDisplays($dbcon->insert_database(), null);
-        $displayProperties->addPromotionToDisplay();
+        $displayProperties->addPromotionToDisplay($_POST);
     }
 
     //This removes a promotion from a display
