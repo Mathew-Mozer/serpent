@@ -1,5 +1,6 @@
 <?php
 /**
+ * DELETE
  * This toolbar is meant to be extensible and dynamic. It will only show tools available
  * based on user permissions.
  *

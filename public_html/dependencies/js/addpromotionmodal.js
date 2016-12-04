@@ -1,4 +1,11 @@
-//Adds a new tile to the view with the image that is passed into the function
+/**
+ * This file adds new promotion tiles.
+ */
+
+/**
+ * This adds a new tile to the tile view with the proper image
+ * @param data
+ */
 var addPromotion = function (data) {
     data['append_promotion']=true;
     $.ajax({
@@ -19,7 +26,10 @@ var addPromotion = function (data) {
 };
 
 
-//Construct the add promotion modal
+/**
+ * Construct the modal
+ * @type {any}
+ */
 var addPromotionModal = $("#addPromotion").dialog({
     autoOpen: false,
     height: 'auto',

@@ -1,7 +1,10 @@
 <?php
+
 /**
-* Model that represents a Points GT promotion.
-*/
+ * Class PointsGTModel
+ * This file contains the SQL statements required to define
+ * the pointsGT
+ */
 class PointsGTModel{
 
    protected $db;
@@ -149,6 +152,10 @@ class PointsGTModel{
      return $result;
    }
 
+    /**
+     * Update the data
+     * @param $values
+     */
    public function update($values){
      $this->add($values);
 
@@ -204,6 +211,12 @@ class PointsGTModel{
      return $this->formatRowWithNumberIndex($promoResult);
    }
 
+    /**
+     * This keeps track of all the instant winners and players by
+     * assigning them numbers
+     * @param $rows
+     * @return array
+     */
    public function formatRowWithNumberIndex($rows){
      $result = array();
      $i = 1;

@@ -1,6 +1,10 @@
 /**
-* Login Validation Root Function
+* This file controls login validation
 */
+
+/**
+ * Login Validation Root Function
+ */
 var validateLogin = function () {
 
     //assign variables from form data
@@ -53,13 +57,18 @@ var loginModal = $("#loginModal").dialog({
     }
 });
 
+/**
+ * Bind return key to the login button
+ */
 $('#password').keypress(function(e) {
     if(e.which == 13) {
         validateLogin();
     }
 });
 
-//function that calls to php controller, destroys sessions and reloads page
+/**
+ * Logout the user
+ */
 var logoutUser = function () {
     $.ajax({
         url: 'controllers/logincontroller.php',

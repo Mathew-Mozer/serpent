@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class HighHandModel
+ * This file contains the SQL statements required to define
+ * the high hand data
+ */
 
 class HighHandModel{
 
@@ -14,6 +19,10 @@ class HighHandModel{
         $this->conn = $conn;
     }
 
+    /**
+     * Add high hand
+     * @param $values
+     */
     public function add($values) {
         $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_attachmc,
             horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout)
@@ -33,10 +42,19 @@ class HighHandModel{
         $result->execute();
     }
 
+    /**
+     * Updates high hand
+     * @param $values
+     */
     public function update($values){
       $this->add($values);
     }
 
+    /**
+     * Gets high hand
+     * @param $id
+     * @return mixed
+     */
     public function get($id){
 
         $sql = "SELECT
@@ -102,6 +120,10 @@ class HighHandModel{
         $result->execute();
 }
 
+    /**
+     * This will be refactored for all promotions
+     * @return mixed
+     */
     public function getTemplate(){
 
         $sql = "SELECT * FROM high_hand WHERE template=1";
@@ -112,6 +134,11 @@ class HighHandModel{
         return $template;
     }
 
+    /**
+     * This retrieves all hands assigned to the promotion ID
+     * @param $id
+     * @return array
+     */
     public function getAllHands($id){
        $sql = "SELECT * FROM high_hand,high_hand_records
                 WHERE high_hand_records.high_hand_session = :id
@@ -125,7 +152,4 @@ class HighHandModel{
         return $response;
 
     }
-
-
-
 }

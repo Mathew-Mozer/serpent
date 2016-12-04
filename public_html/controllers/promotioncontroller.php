@@ -1,11 +1,19 @@
 <?php
+
+/**
+ * This controller CRUDs promotions
+ *
+ * TODO - Get rid of magic $r
+ */
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../models/PromotionModel.php";
 $conn = new DbCon();
-//if call is sent by post
+
+//If call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+  //Add new promotion
     if ($_POST['action'] == 'add') {
 
       $promotion = new PromotionModel($conn->insert_database());
@@ -24,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       header('content-type:application/json');
       echo json_encode($response);
+
+      //Update the promotion
     } else if ($_POST['action'] == 'update'){
       $promotion = new PromotionModel($conn->insert_database());
       $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
@@ -38,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       header('content-type:application/json');
       echo json_encode($response);
+
+      //Gets promotion
     } else if($_POST['action'] == 'read'){
       $promotion = new PromotionModel($conn->insert_database());
 

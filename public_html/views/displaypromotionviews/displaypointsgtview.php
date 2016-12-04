@@ -1,3 +1,9 @@
+<?php
+/**
+ * This is the update pointsGT form
+ */
+?>
+
 <label for="add-promotion">Edit Player Points</label>
 <div id="add-promotion">
   <div class="playerForms">&nbsp;1 &nbsp; <input type="text" id="txtName1" name="pgt_player_name1"></input><input id="txtPoints1" type="number" name="pgt_current_points1"></input></div>

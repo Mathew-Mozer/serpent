@@ -1,3 +1,8 @@
+/*************************************
+* This file controls formatting for
+* high hand and other promotions
+* that display cards.
+*************************************/
 .card{
     height: 69px;
     width: 50px;
@@ -16,7 +21,3 @@
 
     box-shadow: 3px 3px 7px #6e94d1;
 }
-
-
-
-

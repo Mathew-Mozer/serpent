@@ -1,3 +1,9 @@
+<?php
+/**
+ * This is the update high hand form
+ */
+?>
+
 <div id="new-hand">
     <form>
 

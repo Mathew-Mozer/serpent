@@ -1,11 +1,13 @@
 <?php
+/**
+ * This is the add promotion form
+ */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once("../dependencies/php/HelperFunctions.php");
     require_once(getServerPath()."dbcon.php");
     require "../models/PromotionModel.php";
     $dbcon = new DBCon();
     $promotion = new PromotionModel($dbcon->read_database());
-
 
 $promotionTypeList = $promotion->getPromotionTypes($_POST['propertyId']);
 

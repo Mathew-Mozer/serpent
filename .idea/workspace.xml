@@ -3,6 +3,68 @@
   <component name="ChangeListManager">
     <list default="true" id="387a5a77-39f5-4f38-b5f9-db8c63230e55" name="Default" comment="Fixed footer script">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbcon.php" afterPath="$PROJECT_DIR$/dbcon.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/displaycontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/displaycontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/logincontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/logincontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/optionsmodalcontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/optionsmodalcontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/promotioncontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/promotioncontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/toolbarcontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/toolbarcontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/validationScript.php" afterPath="$PROJECT_DIR$/public_html/controllers/validationScript.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/cards.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/cards.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/displaymodal.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/displaymodal.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/displays.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/displays.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/highhandform.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/highhandform.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/login.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/login.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/ring.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/ring.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/styling.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/styling.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/text.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/text.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/buttons.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/buttons.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/createproperty.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/createproperty.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/displayview.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/displayview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/login.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/HelperFunctions.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/HelperFunctions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/Toolbar.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/Toolbar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/footer.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/header.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/index.php" afterPath="$PROJECT_DIR$/public_html/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/modals/displaymodalform.php" afterPath="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/modals/promotionModalView.php" afterPath="$PROJECT_DIR$/public_html/modals/promotionModalView.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/DisplayModel.php" afterPath="$PROJECT_DIR$/public_html/models/DisplayModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/LoginValidationModel.php" afterPath="$PROJECT_DIR$/public_html/models/LoginValidationModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/OptionsModel.php" afterPath="$PROJECT_DIR$/public_html/models/OptionsModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/PermissionModel.php" afterPath="$PROJECT_DIR$/public_html/models/PermissionModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/PromotionModel.php" afterPath="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" afterPath="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/ToolbarModel.php" afterPath="$PROJECT_DIR$/public_html/models/ToolbarModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/UsersModel.php" afterPath="$PROJECT_DIR$/public_html/models/UsersModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/KickForCashModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/KickForCashModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/testmodel.php" afterPath="$PROJECT_DIR$/public_html/models/testmodel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionoptionview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionoptionview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/addhighhandview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addhighhandview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/addkickforcashview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addkickforcashview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaykickforcashview.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaykickforcashview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displayview.php" afterPath="$PROJECT_DIR$/public_html/views/displayview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/mainview.php" afterPath="$PROJECT_DIR$/public_html/views/mainview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/promotionview.php" afterPath="$PROJECT_DIR$/public_html/views/promotionview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/propertyview.php" afterPath="$PROJECT_DIR$/public_html/views/propertyview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/thinkingdonut.php" afterPath="$PROJECT_DIR$/public_html/views/thinkingdonut.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/toolbar.php" afterPath="$PROJECT_DIR$/public_html/views/toolbar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/unassigneddisplayview.php" afterPath="$PROJECT_DIR$/public_html/views/unassigneddisplayview.php" />
     </list>
     <ignored path="serpent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,12 +85,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="boxstatuscheck.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public_html/controllers/boxstatuscheck.php">
+      <file leaf-file-name="unassigneddisplayview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/unassigneddisplayview.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+            <state relative-caret-position="340">
+              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+              <folding>
+                <element signature="e#7#79#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="957">
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/mainview.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dbcon.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dbcon.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1207">
+              <caret line="71" column="44" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
+              <folding>
+                <element signature="e#7#58#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,48 +150,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="&lt;e2d76aa3-42d8-4e35-b00d-d6d700867ad6&gt;/dependencies/php/footer.php" />
-        <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/dependencies/css/tiles.css" />
-        <option value="$PROJECT_DIR$/dependencies/php/footer.php" />
-        <option value="$PROJECT_DIR$/public_html/views/promotionView.php" />
-        <option value="$PROJECT_DIR$/public_html/models/optionsmodel.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/validationScript.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js" />
-        <option value="$PROJECT_DIR$/public_html/modals/permissionModal.php" />
-        <option value="$PROJECT_DIR$/public_html/views/mainView.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/optionscontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/addpromotioncontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/views/displayView.php" />
-        <option value="$PROJECT_DIR$/public_html/views/displayview.php" />
-        <option value="$PROJECT_DIR$/public_html/views/mainview.php" />
-        <option value="$PROJECT_DIR$/public_html/views/casinoview.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/createcasion.js" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/createcasino.js" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" />
-        <option value="$PROJECT_DIR$/public_html/controllers/addPromotion.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/optionsmodalcontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/logincontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/kickforcashcontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/login.js" />
-        <option value="$PROJECT_DIR$/public_html/views/promotionview.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
-        <option value="$PROJECT_DIR$/public_html/modals/displaysModal.php" />
-        <option value="$PROJECT_DIR$/public_html/index.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/boxview.js" />
-        <option value="$PROJECT_DIR$/public_html/views/citiesview.html" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/css/displays.css" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/css/glyphicons.css" />
-        <option value="$PROJECT_DIR$/public_html/views/toolbar.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/ring.css" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/styling.css" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/text.css" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/buttons.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/createproperty.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/displayview.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/login.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/php/header.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/css/styling.css" />
-        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/highhandview.php" />
-        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/php/HelperFunctions.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/php/Toolbar.php" />
+        <option value="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
+        <option value="$PROJECT_DIR$/public_html/modals/promotionModalView.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/KickForCashModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/DisplayModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/LoginValidationModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/OptionsModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/PermissionModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" />
+        <option value="$PROJECT_DIR$/public_html/models/testmodel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/ToolbarModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/UsersModel.php" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addhighhandview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addkickforcashview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaykickforcashview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionoptionview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displayview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/promotionview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/propertyview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/thinkingdonut.php" />
+        <option value="$PROJECT_DIR$/public_html/views/toolbar.php" />
+        <option value="$PROJECT_DIR$/public_html/views/unassigneddisplayview.php" />
+        <option value="$PROJECT_DIR$/public_html/index.php" />
+        <option value="$PROJECT_DIR$/public_html/views/mainview.php" />
+        <option value="$PROJECT_DIR$/dbcon.php" />
       </list>
     </option>
   </component>
@@ -109,8 +214,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1040" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -285,69 +390,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="modals" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="dependencies" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dependencies" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dependencies" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -366,28 +409,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="promotioncontrollers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -515,17 +536,18 @@
       <workItem from="1479538067457" duration="5299000" />
       <workItem from="1479895822650" duration="6609000" />
       <workItem from="1480808912294" duration="65000" />
+      <workItem from="1480810714821" duration="7666000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66967000" />
+    <option name="totallyTimeSpent" value="74633000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1890625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19726562" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -563,283 +585,511 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fixed footer script" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public_html/models/CreateCasinoModel.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/models/PermissionModel.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/models/UsersModel.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/models/OptionsModel.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/ring.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/LoginValidationModel.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/views/toolbarview.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/optionscontroller.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/addpromotioncontroller.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/views/casinoview.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/modals/promotionmodal.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/addPromotion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/modals/promotionModalView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="34">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/UsersModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/PermissionModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/optionsmodalcontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/logincontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/buttons.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/createcasino.js" />
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="63" selection-start-line="33" selection-start-column="63" selection-end-line="33" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/DisplayModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/modals/displaysModal.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/views/citiesview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/boxview.js" />
-    <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/BoxModel.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/displays.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="160" column="20" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/index.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="86" column="32" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/toolbar.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/glyphicons.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/pointsgtview.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="354">
+          <caret line="198" column="39" selection-start-line="198" selection-start-column="39" selection-end-line="198" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="788">
-          <caret line="104" column="3" selection-start-line="104" selection-start-column="3" selection-end-line="104" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/highhandview.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/kickforcashview.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/pointsgtview.php" />
-    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state relative-caret-position="17">
+          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/styling.css">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        <state relative-caret-position="303">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/buttons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/text.css">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/createproperty.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="130">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/displayview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="69" column="18" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="179" column="9" selection-start-line="179" selection-start-column="9" selection-end-line="179" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/tiles.css">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="456">
+          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/promotionview.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="85">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="103" column="29" selection-start-line="103" selection-start-column="29" selection-end-line="103" selection-end-column="29" />
+          <folding>
+            <element signature="e#6#80#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="830">
+        <state relative-caret-position="430">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/HelperFunctions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1480808809187" expanded="true" signature="256:601" ph="INSERT INTO high_hand... " />
-            <marker date="1480808809187" expanded="true" signature="1580:1749" ph="SELECT * FRO... high_hand" />
-            <marker date="1480808809187" expanded="true" signature="2406:2895" ph="INSERT INTO high_hand_records... " />
-            <marker date="1480808809187" expanded="true" signature="3681:3721" ph="SELECT * FRO... high_hand" />
-            <marker date="1480808809187" expanded="true" signature="3939:4125" ph="SELECT * FRO... high_hand" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/kickforcashcontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        <state relative-caret-position="51">
+          <caret line="3" column="71" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/mainview.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/Toolbar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+        <state relative-caret-position="34">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="e#952#1017#0#PHP" expanded="true" />
+            <marker date="1480815248461" expanded="true" signature="3255:3426" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/modals/promotionModalView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/KickForCashModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="872">
+          <caret line="120" column="2" selection-start-line="120" selection-start-column="2" selection-end-line="120" selection-end-column="2" />
+          <folding>
+            <marker date="1480815556521" expanded="true" signature="433:591" ph="INSERT INTO kick_for_cash... " />
+            <marker date="1480815556521" expanded="true" signature="1035:1343" ph="INSERT INTO kick_for_cash... " />
+            <marker date="1480815556521" expanded="true" signature="2347:2550" ph="SELECT * FRO... kick_for_cash" />
+            <marker date="1480815556521" expanded="true" signature="2895:3233" ph="UPDATE kick_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="21" />
+          <folding>
+            <marker date="1480815435555" expanded="true" signature="428:773" ph="INSERT INTO high_hand... " />
+            <marker date="1480815435555" expanded="true" signature="1892:2061" ph="SELECT * FRO... high_hand" />
+            <marker date="1480815435555" expanded="true" signature="2718:3207" ph="INSERT INTO high_hand_records... " />
+            <marker date="1480815435555" expanded="true" signature="4080:4120" ph="SELECT * FRO... high_hand" />
+            <marker date="1480815435555" expanded="true" signature="4454:4640" ph="SELECT * FRO... high_hand" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="231" column="2" selection-start-line="231" selection-start-column="2" selection-end-line="231" selection-end-column="2" />
+          <folding>
+            <marker date="1480815696358" expanded="true" signature="536:935" ph="INSERT INTO points_gt_instant_winner... " />
+            <marker date="1480815696358" expanded="true" signature="1933:2093" ph="INSERT INTO points_gt_players... " />
+            <marker date="1480815696358" expanded="true" signature="2875:3452" ph="INSERT INTO points_gt... " />
+            <marker date="1480815696358" expanded="true" signature="4635:4833" ph="SELECT * FRO... points_gt" />
+            <marker date="1480815696358" expanded="true" signature="5600:5726" ph="SELECT * FRO... points_gt_instant_winner" />
+            <marker date="1480815696358" expanded="true" signature="6259:6378" ph="SELECT * FRO... points_gt_players" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/BoxCheckModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="3" />
+          <folding>
+            <element signature="e#6#16#0#PHP" expanded="true" />
+            <marker date="1480810697061" expanded="true" signature="460:499" ph="SELECT displ... display" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/DisplayModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="886">
+          <caret line="161" column="27" selection-start-line="161" selection-start-column="27" selection-end-line="161" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/LoginValidationModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="6" />
+          <folding>
+            <marker date="1480816058809" expanded="true" signature="2816:2929" ph="SELECT accou... account" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/OptionsModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+          <folding>
+            <marker date="1480816080333" expanded="true" signature="2093:2157" ph="UPDATE promo... " />
+            <marker date="1480816080333" expanded="true" signature="2432:2508" ph="SELECT cash_... kick_for_cash" />
+            <marker date="1480816080333" expanded="true" signature="2608:2652" ph="SELECT * fro... high_hand" />
+            <marker date="1480816080333" expanded="true" signature="2990:3127" ph="UPDATE kick_... " />
+            <marker date="1480816080333" expanded="true" signature="3228:3602" ph="UPDATE high_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/PermissionModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+          <folding>
+            <marker date="1480816146507" expanded="true" signature="457:856" ph="SELECT accou... account" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/PropertyDisplays.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2805">
+          <caret line="165" column="40" selection-start-line="165" selection-start-column="40" selection-end-line="165" selection-end-column="40" />
+          <folding>
+            <marker date="1480817159741" expanded="true" signature="753:860" ph="SELECT * FRO... display" />
+            <marker date="1480817159741" expanded="true" signature="1988:2027" ph="SELECT * FRO... display" />
+            <marker date="1480817159741" expanded="true" signature="2395:2477" ph="UPDATE displ... " />
+            <marker date="1480817159741" expanded="true" signature="2815:2876" ph="SELECT * FRO... promotion_property" />
+            <marker date="1480817159741" expanded="true" signature="3597:3699" ph="UPDATE displ... " />
+            <marker date="1480817159741" expanded="true" signature="4101:4243" ph="INSERT INTO `promotion_property`... " />
+            <marker date="1480817159741" expanded="true" signature="4529:4665" ph="DELETE FROM " />
+            <marker date="1480817159741" expanded="true" signature="5054:5159" ph="SELECT skin.... skin" />
+            <marker date="1480817159741" expanded="true" signature="5687:5864" ph="UPDATE promo... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/controllers/displaycontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+          <folding>
+            <element signature="e#6#41#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="238" column="31" selection-start-line="238" selection-start-column="31" selection-end-line="238" selection-end-column="31" />
+          <folding>
+            <element signature="e#7#117#0#PHP" expanded="true" />
+            <marker date="1480816389481" expanded="true" signature="436:744" ph="SELECT promo... promotion" />
+            <marker date="1480816389481" expanded="true" signature="1060:1082" ph="SELECT * FRO... property" />
+            <marker date="1480816389481" expanded="true" signature="1424:1482" ph="SELECT * FRO... promotion_type" />
+            <marker date="1480816389481" expanded="true" signature="1904:3005" ph="SELECT promo... promotion" />
+            <marker date="1480816389481" expanded="true" signature="3429:3918" ph="SELECT promo... promotion_type" />
+            <marker date="1480816389481" expanded="true" signature="4382:4486" ph="INSERT INTO promotion... " />
+            <marker date="1480816389481" expanded="true" signature="4871:4964" ph="INSERT INTO promotion_property... " />
+            <marker date="1480816389481" expanded="true" signature="5194:6213" ph="SELECT promo... promotion" />
+            <marker date="1480816389481" expanded="true" signature="6671:6757" ph="SELECT promo... promotion_type" />
+            <marker date="1480816389481" expanded="true" signature="7158:7348" ph="SELECT promo... promotion" />
+            <marker date="1480816389481" expanded="true" signature="16836:17941" ph="SELECT promo... promotion" />
+            <marker date="1480816389481" expanded="true" signature="18354:18749" ph="SELECT * FRO... promotion" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/testmodel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/ToolbarModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding>
+            <marker date="1480817372115" expanded="true" signature="1775:2260" ph="INSERT INTO property... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/UsersModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addhighhandview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="2" />
+          <folding>
+            <element signature="e#6#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addkickforcashview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="2" />
+          <folding>
+            <element signature="e#6#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaykickforcashview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionoptionview.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state relative-caret-position="294">
+          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <folding>
+            <element signature="e#6#47#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/citiesview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/boxstatuscheck.php">
+    <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#41#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/promotionview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/propertyview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#42#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/thinkingdonut.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#209#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/toolbar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="86" selection-start-line="2" selection-start-column="86" selection-end-line="2" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/unassigneddisplayview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding>
+            <element signature="e#7#79#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/mainview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbcon.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="44" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
+          <folding>
+            <element signature="e#7#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

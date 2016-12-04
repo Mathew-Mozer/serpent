@@ -1,9 +1,8 @@
 <?php
 
 /**
- * User: Christopher Barbour
- * Date: 10/16/16
- * Time: 9:01 PM
+ * Hodgepodge of nothingness
+ *
  */
 require '../dependencies/php/HelperFunctions.php';
 require_once (getServerPath().'dbcon.php');

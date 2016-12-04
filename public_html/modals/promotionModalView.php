@@ -1,4 +1,4 @@
-
+<!--DESTROY-->
 <div id="promtionModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 

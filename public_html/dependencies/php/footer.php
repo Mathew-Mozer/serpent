@@ -1,9 +1,5 @@
 <?php
 /*
-* Footer
-* Author: Stephen King
-* Version 2016.10.5.3
-*
 * This page controls the footer and closing material for the website
 */
 ?>
@@ -14,7 +10,6 @@
       $('.displays').hide();
 
       $('#unassigned-displays').hide();
-
         $('.displays').hide();
         $('#unassigned-displays').hide();
 
@@ -23,23 +18,22 @@
 
         //Show option bar
         $(".tile-body").hover(showOptionsBar,hideOptionsBar);
+
         //highlight option under mouse
         $(".tile-menu-item").hover(highlightCurrentOption, dehighlightCurrentOption);
 
-
-
-
-
+        //Register tile click
         $(".tile-body").unbind('click').click(tileBodyClick);
 
         /**
          * This is for click listeners
          */
-
-
         $(".settingsBtn").unbind('click').click(settingsButtonClick);
 
 
+        /**
+         * Register add promotion tile click
+         */
        $(".add-promotion-btn").unbind('click').click(function(){
           $('input[name=propertyId]').val(this.id);
            $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
@@ -51,10 +45,16 @@
          editUsersModal.dialog('open');
          });*/
 
+        /**
+         * Opens the property modal
+         */
         $("#create-property-btn").click(function(){
             createPropertyModal.dialog('open');
         });
-        //Toggle between promotion and display view
+
+        /**
+         * Toggles display and promotion view
+         */
         $(".toggle-display-btn").click(function () {
             $(this).addClass("hidden");
             if ($(this).attr("id") === "toggle-display") {
@@ -72,10 +72,16 @@
             }
         });
 
+        /**
+         * Opens the display modal
+         */
         $(".display-options").click(function () {
             getDisplayById(this.id);
         });
 
+        /**
+         * Logeth Outeth
+         */
         $("#logoutBtn").click(function () {
             logoutUser();
         });
@@ -84,7 +90,9 @@
          * End Click Listeners
 		*/
 
-			//Open display modal
+    /**
+     * Open the edit display modal
+     */
 	$(".edit-display-btn").unbind('click').click(function () {
     var propertyId = $(this).data("property-id");
     var displayId = $(this).data("display-id");
@@ -92,12 +100,12 @@
 		editDisplayModal.dialog('open');
 	});
 
-
-
-
-        $("#options-btn").click(function () {
-            alert('toolbar options');
-        });
+    /**
+     * Open the options modal
+     */
+    $("#options-btn").click(function () {
+        alert('toolbar options');
+    });
 
     });
 </script>

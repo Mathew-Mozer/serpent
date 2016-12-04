@@ -1,3 +1,9 @@
+<?php
+/**
+ * This is the update kick for cash form
+ */
+?>
+
 <div id="add-promotion">
 <input id="name-modal" name="kfc_name" type="text" placeholder="Name"></input>
   <label for="name-modal">Name</label>

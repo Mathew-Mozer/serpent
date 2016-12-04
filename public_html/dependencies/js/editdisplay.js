@@ -1,4 +1,11 @@
+/**
+ * This file controls the edit display modal
+ */
 
+/**
+ * Create the edit display modal
+ * @type {any}
+ */
 var editDisplayModal = $("#editDisplayModal").dialog({
     autoOpen: false,
     height: 450,

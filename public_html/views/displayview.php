@@ -1,9 +1,14 @@
+<?php
+/**
+ * This is the display tile
+ */
+?>
 <div class="displays">
     <h2 class="property-title"><?php echo $property['property_name'];?></h2>
     <?php
     $propertyDisplay = new PropertyDisplays($dbcon->read_database(), $property['property_id']);
     $propertyDisplays = $propertyDisplay->getDisplays();
-    //var_dump($propertyDisplays);
+
     foreach ($propertyDisplays as $display){?>
         <div class="display-outer">
             <div class="display-body container">
