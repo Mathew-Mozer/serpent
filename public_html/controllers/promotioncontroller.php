@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
       require '../models/promotionmodels/'.$className.'.php';
 
-      $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $_POST['scene_id']);
+      $addedPromotion = $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $_POST['scene_id']);
       $_POST['promotionId'] = $addedPromotion['promo_id'];
 
       $r = new ReflectionClass($className);
