@@ -14,6 +14,7 @@ var addPromotionByType = function(propertyId, promotionTypeId, promotionType, ac
         success: function(response) {
             //update view with new promotion
             addPromotion(response);
+            $("#promotion-details").innerHTML("");
             addPromotionModal.dialog('close');
         },
         error: function(xhr, desc, err) {
@@ -90,12 +91,19 @@ var getFormData = function(formId){
   var data = {};
   var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
   var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
+    var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
 
   for(var i = 0; i < formDataInput.length; i++){
     if(formDataInput[i].type == 'RADIO'){
       if(formDataInput[i].checked){
         data[formDataInput[i].name] = formDataInput[i].value;
       }
+    }else if(formDataInput[i].type == 'CHECKBOX'){
+        if(formDataInput[i].checked){
+            data[formDataInput[i].name]=1;
+        }else{
+            data[formDataInput[i].name]=0;
+        }
     }else{
       data[formDataInput[i].name] = formDataInput[i].value;
     }
@@ -103,20 +111,30 @@ var getFormData = function(formId){
   for(var i = 0; i < formDataSelect.length; i++){
       data[formDataSelect[i].name] = formDataSelect[i].value;
   }
+    for(var i = 0; i < formDataTextArea.length; i++){
+        data[formDataTextArea[i].name] = formDataTextArea[i].value;
+    }
   return data;
 };
 
 var setFormData = function(formId, data){
   var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
   var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
+    var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
 
   for(var i = 0; i < formDataInput.length; i++){
       if(data[formDataInput[i].name]){
     if(formDataInput[i].type == 'RADIO'){
-      if(data[formDataInput[i].name] == formDataInput[i].value){
-        formDataInput[i].checked = true;
-      }
-      }else{
+        if(data[formDataInput[i].name] == formDataInput[i].value){
+            formDataInput[i].checked = true;
+        }
+    }else if(formDataInput[i].type == 'CHECKBOX'){
+        if(data[formDataInput[i].name]==1){
+            formDataInput[i].checked = true;
+        }else{
+            formDataInput[i].checked = false;
+        }
+    }else{
 
       formDataInput[i].value = data[formDataInput[i].name];
     }
@@ -127,4 +145,10 @@ var setFormData = function(formId, data){
       formDataSelect[i].value = data[formDataSelect[i].name];
     }
   }
+    for(var i = 0; i < formDataTextArea.length; i++){
+        if(data[formDataTextArea[i].name]){
+            formDataTextArea[i].value = data[formDataTextArea[i].name];
+        }
+    }
+
 }

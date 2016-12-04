@@ -17,6 +17,10 @@
         }
     });
 
+    $('#settings').dialog("widget").find('.ui-dialog-titlebar-close').onclick(function(){
+
+    });
+
     //buttons for the modal
     var modalButtons = {
 

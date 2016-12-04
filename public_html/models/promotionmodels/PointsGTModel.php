@@ -117,8 +117,10 @@ class PointsGTModel{
     $result->bindValue(':add_race_end', $values['pgt_race_end'], PDO::PARAM_STR);
     $result->bindValue(':add_account_id', $values['accountId'], PDO::PARAM_STR);
     $result->bindValue(':add_promotion_id', $values['promotionId'], PDO::PARAM_STR);
+       $result->execute();
 
-    $result->execute();
+
+
     return $this->db->lastInsertId();
    }
 
@@ -139,7 +141,11 @@ class PointsGTModel{
      $result->bindValue(':id', $id, PDO::PARAM_STR);
      $result->execute();
 
-     $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+       $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+       $timestamp = strtotime($promoResult['pgt_race_begin']);
+       $promoResult['pgt_race_begin'] = date("Y-m-d", $timestamp);
+       $timestamp = strtotime($promoResult['pgt_race_end']);
+       $promoResult['pgt_race_end'] = date("Y-m-d", $timestamp);
      $result->closeCursor();
      $instantWinners = $this->getPointsGTInstantWinners($promoResult['pgt_id']);
 
