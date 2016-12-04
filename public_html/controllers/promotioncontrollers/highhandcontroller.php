@@ -1,4 +1,5 @@
 <?php
+//Delete this file
 require "../../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../../models/PromotionModel.php";

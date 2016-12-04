@@ -1,10 +1,17 @@
 <?php
+
+/**
+ * This file retrieves and updates display information
+ */
+
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../models/PropertyDisplays.php";
 require "../models/PromotionModel.php";
 
 $dbcon = NEW DbCon();
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'getSingleDisplay') {
@@ -24,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         $array['properties'] = $properties;
         echo json_encode($array);
+
     } else if ($_POST['action'] == 'assignDisplay'){
         $propertyDisplayModel = new PropertyDisplays($dbcon->update_database(),0);
         $updated['updated'] = false;
@@ -34,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $updated['updated'] = true;
         }
         return json_encode($updated);
+
     } else if ($_POST['action'] == 'update') {
         $displayProperties = new PropertyDisplays($dbcon->update_database(), $_POST['propertyId']);
         $displayProperties->updateDisplayWithId($_POST['displayId'],$_POST['displayName'], $_POST['displayLocation']);

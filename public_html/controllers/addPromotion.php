@@ -1,5 +1,5 @@
 <?php
-
+//Delete this file
 /**
 * This adds a promotion when a user with permission
 * uses the add promotion button.
