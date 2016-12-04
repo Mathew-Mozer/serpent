@@ -1,11 +1,5 @@
-/**
- * This file helps generate the display view
- */
+//TODO COMMENT!!!!
 
-/**
- * Get display by ID
- * @param id
- */
 var getDisplayById = function (id) {
     $.ajax({
         url: 'controllers/displaycontroller.php',
@@ -20,10 +14,6 @@ var getDisplayById = function (id) {
     });
 };
 
-/**
- * This creates the assign display modal
- * @type {any}
- */
 var assignDisplayModal = $("#assign-display").dialog({
     autoOpen: false,
     height: 400,
@@ -36,26 +26,17 @@ var assignDisplayModal = $("#assign-display").dialog({
     }
 });
 
-/**
- * Set the values of the modal
- * @param values
- */
 var setValuesInModal = function(values) {
-  $('#displayId').html(values['id']);
-  $('#displayName').html("Display ID: " + values['serial']);
-  $('#displaySerial').html("Display Name: " + values['name']);
-  $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
+    $('#displayId').html(values['id']);
+    $('#displayName').html("Display ID: " + values['serial']);
+    $('#displaySerial').html("Display Name: " + values['name']);
+    $('#displayMacAddress').html("MAC Address: " + values['macAddress']);
 
-   values['properties'].forEach(function(property) {
+    values['properties'].forEach(function(property) {
         $('#displayProperties').append("<option value='" + property['propertyId'] +"'>" + property['propertyName'] + "</option>");
     });
 };
 
-/**
- * Update the display information
- * @param displayId
- * @param propertyId
- */
 var updateDisplay = function(displayId,propertyId) {
 
     $.ajax({
@@ -74,3 +55,17 @@ var updateDisplay = function(displayId,propertyId) {
         }
     })
 };
+
+
+var editDisplayModal = $("#editDisplayModal").dialog({
+    autoOpen: false,
+    height: 450,
+    width: 500,
+    modal: true,
+    buttons: {
+        Close: function(){
+            editDisplayModal.dialog('close');
+        }
+
+    }
+});
