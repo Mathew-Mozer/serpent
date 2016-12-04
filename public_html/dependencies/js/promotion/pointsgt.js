@@ -1,3 +1,9 @@
+/**
+ * Delete
+ * @param casinoId
+ * @param promotionId
+ */
+
 var addPromotionByType = function(casinoId, promotionId) {
    // var cashPrize = $('input[name=cash-prize]').val();
 

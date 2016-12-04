@@ -1,4 +1,9 @@
 
+<?php
+/**
+ * This defines all the displays that have not yet been defined.
+ */
+?>
 <div class="display-outer" id="unassigned-displays">
     <h3> Unassigned Displays </h3>
     <?php

@@ -1,3 +1,6 @@
+/**
+ * Delete THIS
+ */
 $(document).ready(function(){
 
     /**
@@ -7,7 +10,9 @@ $(document).ready(function(){
         createPropertyModal.dialog('open');
     });
 
-
+    /**
+     *
+     */
     $(".add-promotion-btn").unbind('click').click(function(){
         $('input[name=propertyId]').val(this.id);
         addPromotionModal.dialog('open');

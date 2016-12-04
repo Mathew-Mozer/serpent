@@ -1,9 +1,9 @@
 <?php
-/**
- * Model to control the display view
- *
- */
 
+/**
+ * Class DisplayModel
+ * This class generates a display object used by properties
+ */
 class DisplayModel
 {
     private $id;
@@ -14,11 +14,19 @@ class DisplayModel
     private $promotions = array();
     private $displayLocation;
 
+    /**
+     * DisplayModel constructor.
+     * @param $values
+     */
     public function __construct($values)
     {
         $this->createDisplayWithValuesSet($values);
     }
 
+    /**
+     * This creates a display with the value set
+     * @param $fieldArray
+     */
     private function createDisplayWithValuesSet($fieldArray){
         $this->setId($fieldArray['display_id']);
         $this->setName($fieldArray['display_name']);
@@ -29,6 +37,7 @@ class DisplayModel
     }
 
     /**
+     * This sets the connection
      * @param mixed $conn
      */
     public function setConn($conn)
@@ -36,6 +45,7 @@ class DisplayModel
         $this->conn = $conn;
     }
     /**
+     * This sets the ID
      * @param mixed $id
      */
     public function setId($id)
@@ -43,6 +53,7 @@ class DisplayModel
         $this->id = $id;
     }
     /**
+     * This sets the name
      * @param mixed $name
      */
     public function setName($name)
@@ -50,6 +61,7 @@ class DisplayModel
         $this->name = $name;
     }
     /**
+     * This sets the propertyID
      * @param mixed $propertyId
      */
     public function setPropertyId($propertyId)
@@ -57,6 +69,7 @@ class DisplayModel
         $this->propertyId = $propertyId;
     }
     /**
+     * This sets the serial
      * @param mixed $serial
      */
     public function setSerial($serial)
@@ -64,6 +77,7 @@ class DisplayModel
         $this->serial = $serial;
     }
     /**
+     * This sets the mac address
      * @param mixed $macAddress
      */
     public function setMacAddress($macAddress)
@@ -71,6 +85,7 @@ class DisplayModel
         $this->macAddress = $macAddress;
     }
     /**
+     * This gets the connection
      * @return PDO|string
      */
     public function getConn()
@@ -78,6 +93,7 @@ class DisplayModel
         return $this->conn;
     }
     /**
+     * This gets the id
      * @return mixed
      */
     public function getId()
@@ -85,6 +101,7 @@ class DisplayModel
         return $this->id;
     }
     /**
+     * This gets the name
      * @return mixed
      */
     public function getName()
@@ -92,6 +109,7 @@ class DisplayModel
         return $this->name;
     }
     /**
+     * Get property ID
      * @return mixed
      */
     public function getPropertyId()
@@ -99,6 +117,7 @@ class DisplayModel
         return $this->propertyId;
     }
     /**
+     * Get serial
      * @return mixed
      */
     public function getSerial()
@@ -106,6 +125,7 @@ class DisplayModel
         return $this->serial;
     }
     /**
+     * Get mac address
      * @return mixed
      */
     public function getMacAddress()
@@ -113,6 +133,7 @@ class DisplayModel
         return $this->macAddress;
     }
     /**
+     * Get promotions
      * @return mixed
      */
     public function getPromotions()
@@ -120,6 +141,7 @@ class DisplayModel
         return $this->promotions;
     }
     /**
+     * Set promotions
      * @param mixed $promotions
      */
     public function setPromotions($promotions)
@@ -127,11 +149,19 @@ class DisplayModel
         $this->promotions = $promotions;
     }
 
+    /**
+     * Get display location
+     * @param $displayLocation
+     */
     public function setDisplayLocation($displayLocation)
     {
         $this->displayLocation = $displayLocation;
     }
 
+    /**
+     * Get display location
+     * @return mixed
+     */
     public function getDisplayLocation(){
       return $this->displayLocation;
     }

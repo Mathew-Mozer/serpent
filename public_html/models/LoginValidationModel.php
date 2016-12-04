@@ -1,17 +1,5 @@
 <?php
 /**
- * File that contains LoginValidation Class
- *
- * Author Chris Barbour
- */
-session_start();
-require_once("../dependencies/php/HelperFunctions.php");
-require_once(getServerPath()."dbcon.php");
-
-//For local test runs
-//include('../dbcon.php');
-
-/**
  * LoginValidation class that verifies a users login and password
  *
  * Login validation for login form
@@ -20,6 +8,14 @@ require_once(getServerPath()."dbcon.php");
  * @param $s_username
  * @param $s_password
  */
+session_start();
+require_once("../dependencies/php/HelperFunctions.php");
+require_once(getServerPath()."dbcon.php");
+
+//For local test runs
+//include('../dbcon.php');
+
+
 class LoginValidation
 {
     private $responseMessaging;
@@ -58,9 +54,7 @@ class LoginValidation
     }
     /**
      * Tests login credentials for empty input
-     *
      * Empty input check
-     *
      * @return string
      */
     private function testFotEmptyCredentials() {
@@ -80,9 +74,7 @@ class LoginValidation
     /**
      * Uses built in php functions to
      * strip characters from form data
-     *
      * Input formatting
-     *
      * @param $data
      * @return string
      */
@@ -95,7 +87,6 @@ class LoginValidation
 
     /**
      * Queries the database to verify that the user name is a user and that the password matches the stored value.
-     *
      * Queries database for matching credentials
      *
      */
@@ -113,9 +104,7 @@ class LoginValidation
 
     /**
      * Getter for the response messaging field
-     *
      * Returns the response messaging field
-     *
      * @return array
      */
     public function getResponseMessaging() {

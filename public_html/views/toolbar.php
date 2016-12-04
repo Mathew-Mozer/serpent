@@ -1,3 +1,8 @@
+<?php
+/**
+ * This is the toolbar that defines what options a user has based on their permissions
+ */
+?>
 <div class="toolbench">
     <div class="toolbar">
         <?php

@@ -1,3 +1,10 @@
+<?php
+/**
+ * This is the kick for cash form
+ */
+?>
+
+
 <div id="add-promotion">
 <input type="hidden" name="kfc_promotionType" value="kickforcash">
 <br>

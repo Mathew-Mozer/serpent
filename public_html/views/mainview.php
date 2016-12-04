@@ -2,7 +2,7 @@
 session_start();
 /**
  *	This script builds the entire main page
- *	This needs to be cleaned up and recommented
+ *	This needs to be cleaned up and recommended
  *	Several models are mislabeled as modals.
  *
 */
@@ -13,20 +13,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require "../models/PermissionModel.php";
     require_once("../dependencies/php/HelperFunctions.php");
     require_once(getServerPath() . "dbcon.php");
-//Create database connection object
+
+    //Create database connection object
     $dbcon = NEW DbCon();
 
-//Create models
+    //Create models
     $promotion = new PromotionModel($dbcon->read_database());
     $permission = new PermissionModel($dbcon->update_database(), $_POST['id']);
 
-//Another require
+    //Another require
     require 'toolbar.php';
-//Create Property objects
+
+    //Create Property objects
     $propertyList = $promotion->getPromotionProperties();
     $propertyCount = count($propertyList);
     $propertyRowIndex = 0;
-//List all the properties that the current user has permissions to view
+
+    //List all the properties that the current user has permissions to view
     require "../models/PropertyDisplays.php";
     require "unassigneddisplayview.php";
     foreach ($propertyList as $property) {
@@ -41,14 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-//If they have no permissions to view a property, let them know.
+    //If they have no permissions to view a property, let them know.
     if ($propertyRowIndex == 0) { ?>
         <div>
             <h3>You have no access to any properties.</h3>
         </div>
     <?php }
-
-
 
     include '../dependencies/php/footer.php';
 }

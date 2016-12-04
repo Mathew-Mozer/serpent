@@ -1,13 +1,27 @@
 <?php
+
+/**
+ * Class KickForCashModel
+ * This file contains the SQL statements required to define
+ * the kick for cash data
+ */
 class KickForCashModel{
 
    protected $db;
 
+    /**
+     * KickForCashModel constructor.
+     * @param PDO $db
+     */
    public function __construct(PDO $db){
      $this->db= $db;
 
    }
 
+    /**
+     * Add new kick for cash data
+     * @param $values
+     */
    public function add($values){
      $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number)
                                  VALUES (:promotion_id, :cash, :target_number);";
@@ -23,6 +37,10 @@ class KickForCashModel{
 
    }
 
+    /**
+     * Update kick for cash
+     * @param $values
+     */
    public function update($values){
      $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number, kfc_name, kfc_chosen_number, kfc_failedattempts, kfc_gamelabel, kfc_team1,kfc_team2,kfc_vs)
             VALUES (:promotion_id, :cash, :target_number,:current_name,:failedattempts, :chosen_number, :gamelabel, :team1, :team2, :vs);";
@@ -42,6 +60,11 @@ class KickForCashModel{
      $result->execute();
    }
 
+    /**
+     * Get kicked for cash
+     * @param $id
+     * @return mixed
+     */
    public function get($id){
 
      $sql = "SELECT
@@ -62,6 +85,11 @@ class KickForCashModel{
      return $promoResult;
    }
 
+    /**
+     * DELETE
+     * @param $values
+     * @return array
+     */
    public function updateExcess($values){
 
      $sql=

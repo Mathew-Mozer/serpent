@@ -1,5 +1,12 @@
+/**
+ * This file contains functions to create and update High Hand promotions
+ */
+
 $('#new-hand').hide();
 
+/**
+ * Delete this
+ */
 var getTemplate = function () {
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
@@ -99,6 +106,9 @@ function moveHighlightToNextCard(clicked_id) {
     }
 }
 
+/**
+ * Delete this
+ */
 var getTemplate = function () {
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
@@ -121,6 +131,10 @@ var getTemplate = function () {
     });
 };
 
+/**
+ * This gets all hands assigned to a high hand promotion
+ * @type {boolean}
+ */
 var customPayout = false;
 var getAllHands = function (id) {
     $.ajax({
@@ -181,12 +195,17 @@ var getAllHands = function (id) {
     });
 };
 
-
+/**
+ * This toggles the view to create hand inside an update high hand modal
+ */
 $('#create-new-hand').click(function () {
     $('#view-hands').hide();
     $('#new-hand').show();
 });
 
+/**
+ * This toggles the view to view hand in an update high hand modal
+ */
 $('#view-hands-btn').click(function () {
     $('#new-hand').hide();
     $('#view-hands').show();

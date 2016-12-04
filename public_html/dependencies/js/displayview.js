@@ -1,4 +1,11 @@
+/**
+ * This file helps generate the display view
+ */
 
+/**
+ * Get display by ID
+ * @param id
+ */
 var getDisplayById = function (id) {
     $.ajax({
         url: 'controllers/displaycontroller.php',
@@ -13,6 +20,10 @@ var getDisplayById = function (id) {
     });
 };
 
+/**
+ * This creates the assign display modal
+ * @type {any}
+ */
 var assignDisplayModal = $("#assign-display").dialog({
     autoOpen: false,
     height: 400,
@@ -25,6 +36,10 @@ var assignDisplayModal = $("#assign-display").dialog({
     }
 });
 
+/**
+ * Set the values of the modal
+ * @param values
+ */
 var setValuesInModal = function(values) {
   $('#displayId').html(values['id']);
   $('#displayName').html("Display ID: " + values['serial']);
@@ -36,6 +51,11 @@ var setValuesInModal = function(values) {
     });
 };
 
+/**
+ * Update the display information
+ * @param displayId
+ * @param propertyId
+ */
 var updateDisplay = function(displayId,propertyId) {
 
     $.ajax({

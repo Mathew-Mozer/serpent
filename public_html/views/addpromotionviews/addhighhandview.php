@@ -1,3 +1,9 @@
+<?php
+/**
+ * This is the create high hand form
+ */
+?>
+
 <div id="add-promotion">
     <div id="first-page">
         <form>

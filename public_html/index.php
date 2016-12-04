@@ -1,19 +1,20 @@
 <?php
-
 session_start();
 require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
 
+/**
+ * This is the main page that finds them, bring them all and in the darkness
+ * bind them.
+ */
 
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
 <div id="page">
 </div>
-<!-- End property -->
 
-<!-- Modal Divs -->
 <div id="settings" style="display: none;" title="Settings">
 
 </div>
@@ -100,11 +101,11 @@ $promotion = new PromotionModel($dbcon->read_database());
     </form>
 </div>
 
-    <!-- End Modal Divs -->
+
     <footer>
 
     </footer>
-<!--Test Merge-->
+
 </body>
 <script src="dependencies/js/login.js"></script>
 <script src="dependencies/js/optionsmodal.js"></script>

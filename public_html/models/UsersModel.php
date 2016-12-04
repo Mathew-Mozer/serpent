@@ -3,9 +3,6 @@
 
 /**
  * Class UsersModal
- * @author Stephen King
- * @Date 10/11/2016
- * @Version 1.0
  *
  * This class creates a modal object that can be used to
  * add, remove and modify users. This includes access
