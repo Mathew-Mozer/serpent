@@ -125,7 +125,7 @@ class PropertyDisplays
     /**
      * Add promotion to display
      */
-    public function addPromotionToDisplay() {
+    public function addPromotionToDisplay($values) {
         $sql = "INSERT INTO `promotion_property`(`promotion_id`, `property_id`, `skin_id`, `display_id`, `scene_duration`, `active`)
         VALUES (:promotionId,:propertyId,:skinId,:display,:sceneDuration,:active)";
         $statement = $this->conn->prepare($sql);

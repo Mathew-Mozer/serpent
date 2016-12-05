@@ -31,7 +31,7 @@ class PromotionModel {
         $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-    public function getPromtionModelName($promtionTypeId){
+    public function getPromotionModelName($promtionTypeId){
         $sql = "SELECT * FROM promotion_type WHERE promotion_type_id = :id";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $promtionTypeId, PDO::PARAM_STR);

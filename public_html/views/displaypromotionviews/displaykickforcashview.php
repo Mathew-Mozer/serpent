@@ -5,7 +5,7 @@
 ?>
 
 <div id="add-promotion">
-<input id="name-modal" name="kfc_name" type="text" placeholder="Name"></input>
+<input id="name-modal" name="kfc_name" type="text" placeholder="Name">
   <label for="name-modal">Name</label>
 <br>
 <br>
@@ -16,7 +16,7 @@
 <br>
 <br>
   <label for="game-label"></label>
-<input id="game-label" name="kfc_gamelabel" type="text" placeholder="Game Label"></input>
+<input id="game-label" name="kfc_gamelabel" type="text" placeholder="Game Label">
 <label for="game-label">Game Label</label>
 <br>
   <br>

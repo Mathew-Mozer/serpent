@@ -7,7 +7,7 @@ $conn = new DbCon();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'add') {
         $promotion = new PromotionModel($conn->insert_database());
-        $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
+        $className = $promotion->getPromotionModelName($_POST['promotionTypeId']);
         require '../models/promotionmodels/'.$className.'.php';
         $addedPromotion = $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $_POST['scene_id']);
         $_POST['promotionId'] = $addedPromotion['promo_id'];
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode($response);
     } else if ($_POST['action'] == 'update'){
         $promotion = new PromotionModel($conn->insert_database());
-        $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
+        $className = $promotion->getPromotionModelName($_POST['promotionTypeId']);
         require '../models/promotionmodels/'.$className.'.php';
         $r = new ReflectionClass($className);
         $classReference = $r->newInstanceArgs(array($conn->insert_database()));
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode($response);
     } else if($_POST['action'] == 'read'){
         $promotion = new PromotionModel($conn->insert_database());
-        $className = $promotion->getPromtionModelName($_POST['promotionTypeId']);
+        $className = $promotion->getPromotionModelName($_POST['promotionTypeId']);
         require '../models/promotionmodels/'.$className.'.php';
         $r = new ReflectionClass($className);
         $classReference = $r->newInstanceArgs(array($conn->insert_database()));

@@ -25,7 +25,7 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         success: function (response) {
             //update view with new promotion
             addPromotion(response);
-            $("#promotion-details").innerHTML("");
+            $("#promotion-details").empty();
             addPromotionModal.dialog('close');
         },
         error: function (xhr, desc, err) {
@@ -143,6 +143,7 @@ var getFormData = function (formId) {
     for(var i = 0; i < formDataTextArea.length; i++){
         data[formDataTextArea[i].name] = formDataTextArea[i].value;
     }
+    console.log(data);
   return data;
 };
 
@@ -151,9 +152,7 @@ var getFormData = function (formId) {
  * @param formId
  * @param data
  */
-var setFormData = function (formId, data) {
-    var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
-    var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
+
 var setFormData = function(formId, data){
   var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
   var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
@@ -188,4 +187,4 @@ var setFormData = function(formId, data){
         }
     }
 
-}
+};

@@ -22,12 +22,12 @@ var settingsModal = $("#settings").dialog({
         }
     });
 
-    $('#settings').dialog("widget").find('.ui-dialog-titlebar-close').onclick(function(){
-
-    });
+    // $('#settings').dialog("widget").find('.ui-dialog-titlebar-close').click(function(){
+    //
+    // });
 
     //buttons for the modal
-    var modalButtons = {
+   // var modalButtons = {
 /**
  * DELETE
  * @type {{Submit: modalButtons.Submit}}
@@ -41,11 +41,11 @@ var settingsModal = $("#settings").dialog({
 //     };
 
 /**
- * DELETE
+ * Opens the settings modal
  */
 var openSettingsModal = function() {
         //include buttons
-        settingsModal.dialog('option','buttons',modalButtons);
+        // settingsModal.dialog('option');
         settingsModal.dialog('open');
     };
 

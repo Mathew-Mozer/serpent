@@ -42,6 +42,7 @@ class KickForCashModel{
      * @param $values
      */
    public function update($values){
+
      $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number, kfc_name, kfc_chosen_number, kfc_failedattempts, kfc_gamelabel, kfc_team1,kfc_team2,kfc_vs)
             VALUES (:promotion_id, :cash, :target_number,:current_name,:failedattempts, :chosen_number, :gamelabel, :team1, :team2, :vs);";
 
