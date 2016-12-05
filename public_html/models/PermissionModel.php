@@ -1,8 +1,6 @@
 <?php
 /**
   * PromotionModal class
-  *
-  * author: Alex Onorati
   * This class contains all the permissions for a user to acces and alter properties and promotions.
 */
   class PermissionModel{
@@ -11,9 +9,11 @@
     protected $loginId;
     protected $permissions;
 
-	/**
-	* Get Constructor
-	*/
+    /**
+     * PermissionModel constructor.
+     * @param PDO $db
+     * @param $loginId
+     */
     public function __construct(PDO $db, $loginId){
       $this->db = $db;
       $this->loginId = $loginId;

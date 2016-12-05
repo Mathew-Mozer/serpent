@@ -1,6 +1,6 @@
 <?php
     /*
-     * Controller for the options modal.
+     * Delete me
      */
     require "../models/OptionsModel.php";
     require "../models/PermissionModel.php";

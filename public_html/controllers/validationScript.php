@@ -1,8 +1,6 @@
 <?php
 /**
- * User: Christopher Barbour
- * Date: 10/16/16
- * Time: 8:47 PM
+ * Delete Me
  */
 require('../models/LoginValidationModel.php');
 

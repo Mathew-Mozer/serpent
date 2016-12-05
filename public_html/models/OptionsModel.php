@@ -1,5 +1,6 @@
 <?php
 /**
+ * SMITE
  * File the contains the OptionsModal Class
  *
  * Author Chris Barbour

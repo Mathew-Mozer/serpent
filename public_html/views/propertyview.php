@@ -1,7 +1,11 @@
-
+<?php
+/**
+ * This is the property view
+ */
+?>
 <div class="promotion-view" id=<?php echo "\"promotion-list-" . $property['property_id'] . "\""; ?>>
     <h2 class="property-title"><?php echo $property['property_name'];?></h2>
-    <!--New Promotion Title-->
+
     <?php
     if($permission->hasPermissionById('promotion',$property['property_id'],'C')){?>
     <div title="New Promotion"  data-toggle="tooltip"  id=<?php echo "\"" . $property['property_id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert">
@@ -10,8 +14,7 @@
             <span class="glyphicon glyphicon-plus-sign glyphicon-new-tile white" aria-hidden="true"></span>
         </div>
     </div>
-    <!--End New Promotion Tile-->
-    <!--Promotion Title-->
+
     <?php
   }
     $promotionList = $promotion->getAllPromotionsByProperty($property['property_id']);
@@ -21,5 +24,5 @@
           include 'promotionview.php';
         }
       }?>
-    <!--End Promotion Tile-->
+
 </div>

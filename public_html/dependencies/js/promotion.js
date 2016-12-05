@@ -1,3 +1,10 @@
+/**
+ * This file controls promotion javascript
+ */
+
+/**
+ * When a tile is clicked, open the edit modal
+ */
 var tileBodyClick = function () {
     promotionViewModal.dialog('open');
     $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
@@ -7,6 +14,10 @@ var tileBodyClick = function () {
 
 };
 
+/**
+ * Open the settings modal
+ * @param e
+ */
 var settingsButtonClick = function (e) {
     e.stopPropagation();
     var ids = $(this).attr('id').split('-');
@@ -20,19 +31,31 @@ var settingsButtonClick = function (e) {
     openSettingsModal();
 };
 
+/**
+ * Show option bar
+ */
 var showOptionsBar = function () {
     $(this).children(".tile-menu-bar").removeClass("hidden");
 };
 
+/**
+ * Hide option bar
+ */
 var hideOptionsBar =  function () {
     $(this).children(".tile-menu-bar").addClass("hidden");
 
 };
 
+/**
+ * Highlight current options
+ */
 var highlightCurrentOption = function () {
     $(this).addClass("tile-menu-item-hover");
 };
 
+/**
+ * Remove highlight from current option
+ */
 var dehighlightCurrentOption = function () {
     $(this).removeClass("tile-menu-item-hover");
 

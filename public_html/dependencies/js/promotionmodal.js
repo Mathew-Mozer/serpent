@@ -1,3 +1,11 @@
+/**
+ * This file defines the update promotion modal
+ */
+
+/**
+ * Create the update promotion modal
+ * @type {any}
+ */
 var promotionViewModal = $("#promotion-view-modal").dialog({
     autoOpen: false,
     height: 'auto',

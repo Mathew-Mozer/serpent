@@ -1,4 +1,7 @@
 <?php
+/**
+ * This is the promotion tile
+ */
 if($_POST['append_promotion'] == true){
     $row = $_POST;
     $canUpdate = true;

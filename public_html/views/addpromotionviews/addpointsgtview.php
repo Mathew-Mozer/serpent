@@ -1,3 +1,10 @@
+<?php
+/**
+ * This is the pointsGT form
+ */
+?>
+
+
 <div id="add-promotion">
 <input type="hidden" name="promotionType" value="poinstgt">
 

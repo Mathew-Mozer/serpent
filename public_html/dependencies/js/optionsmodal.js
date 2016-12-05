@@ -1,11 +1,16 @@
-//sets settingsModal variable to the described modal window
+/**
+ * This file controls the promotion settings modal
+ */
 
     var promotionId;
     var permission;
     var promotionType;
 
-    //variable for the modal window
-    var settingsModal = $("#settings").dialog({
+/**
+ * Creates the modal
+ * @type {any}
+ */
+var settingsModal = $("#settings").dialog({
         autoOpen: false,
         height: 400,
         width: 350,
@@ -23,22 +28,34 @@
 
     //buttons for the modal
     var modalButtons = {
+/**
+ * DELETE
+ * @type {{Submit: modalButtons.Submit}}
+ */
+// var modalButtons = {
+//
+//         Submit: function () {
+//           updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
+//           $("#settings").dialog('close');
+//         }
+//     };
 
-        Submit: function () {
-          updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
-          $("#settings").dialog('close');
-        }
-    };
-
-    //when the settings icon is clicked on the promotion tile
-    var openSettingsModal = function() {
+/**
+ * DELETE
+ */
+var openSettingsModal = function() {
         //include buttons
         settingsModal.dialog('option','buttons',modalButtons);
         settingsModal.dialog('open');
     };
 
-    //returns the settings stored in the database
-    var getSettings = function (id, promoType, perm) {
+/**
+ * Gets the settings for the promotion
+ * @param id
+ * @param promoType
+ * @param perm
+ */
+var getSettings = function (id, promoType, perm) {
         promotionId = id;
         permission = perm;
         promotionType = promoType;
@@ -119,8 +136,10 @@
         });
     };
 
-    //archives the promotion
-    var deletePromotion = function () {
+/**
+ * Deletes the promotion
+ */
+var deletePromotion = function () {
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
@@ -132,7 +151,12 @@
         });
     };
 
-    var canDelete = function(propertyId, perm) {
+/**
+ * This validates whether a user is able to delete a promotion
+ * @param propertyId
+ * @param perm
+ */
+var canDelete = function(propertyId, perm) {
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
@@ -145,7 +169,11 @@
         });
     };
 
-    var updateKickForCashSettings = function (updatedSettings) {
+/**
+ * DELETE
+ * @param updatedSettings
+ */
+var updateKickForCashSettings = function (updatedSettings) {
         $.ajax({
             url: 'controllers/optionsmodalcontroller.php',
             type: 'post',
@@ -154,7 +182,11 @@
         })
     };
 
-    var updateHighHandSettings = function (updatedSettings) {
+/**
+ * DELETE
+ * @param updatedSettings
+ */
+var updateHighHandSettings = function (updatedSettings) {
     $.ajax({
         url: 'controllers/optionsmodalcontroller.php',
         type: 'post',

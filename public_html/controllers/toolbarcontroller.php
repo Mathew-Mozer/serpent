@@ -1,19 +1,16 @@
 <?php
 /**
- * User: Christopher Barbour
- * Date: 10/16/16
- * Time: 8:47 PM
+ * This file will manage toolbar functionality
  */
 require_once('../models/ToolBarModel.php');
 
-/**
-* Construct toolbar modal
-*/
+//Construct toolbar model
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $toolBarModel = new ToolBarModel($_POST['propertyName'], $_POST['parentCompany'], $_POST['assetBundleUrl'],
         $_POST['assetBundleWindows'], $_POST['assetName'], $_POST['defaultSkin'], $_POST['defaultLogo'],
         $_POST['supportGroup'], $_POST['businessOpen'], $_POST['businessClose']);
 
+    //Creates new property
     if ($toolBarModel->insertProperty()) {
         echo json_encode(array("error" => "none"));
     } else {

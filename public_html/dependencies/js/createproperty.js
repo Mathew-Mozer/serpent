@@ -1,4 +1,11 @@
-//Construct the create property modal
+/**
+ * This file creates the new property
+ */
+
+/**
+ * Create the property modal
+ * @type {any}
+ */
 var createPropertyModal = $('#createProperty').dialog({
     autoOpen: false,
     height: 610,
@@ -12,7 +19,9 @@ var createPropertyModal = $('#createProperty').dialog({
     }
 });
 
-//Generate fields for initial property properties
+/**
+ * Generate initial fields for property properties
+ */
 var createProperty = function () {
     var propertyName = $('#propertyName').val();
     var parentCompany = $('#parentCompany').val();

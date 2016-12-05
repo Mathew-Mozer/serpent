@@ -1,3 +1,9 @@
+<?php
+/**
+ * This is the update pointsGT form
+ */
+?>
+
 <label for="add-promotion">Edit Player Points</label>
 <div id="add-promotion">
   <?php

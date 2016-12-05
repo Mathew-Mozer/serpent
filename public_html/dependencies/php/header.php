@@ -45,8 +45,8 @@ session_start();
 	 <!-- Bootstrap Core JavaScript -->
     <script src="startbootstrap-admin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	 <!-- Metis Menu Plugin JavaScript -->
-    <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>
+	 <!-- Metis Menu Plugin JavaScript
+    <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>-->
 
     <!--Font Awesome-->
     <link rel="stylesheet" href="dependencies/fontawesome/css/font-awesome.min.css">
@@ -69,7 +69,7 @@ session_start();
     require_once("HelperFunctions.php");
     require_once(getServerPath()."dbcon.php");
     $dbcon = NEW DbCon();
-   ?>
+    ?>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
