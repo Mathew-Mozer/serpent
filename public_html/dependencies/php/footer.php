@@ -17,7 +17,7 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         //Show option bar
-        //$(".tile-body").hover(showOptionsBar,hideOptionsBar);
+        $(".tile-body").hover(showOptionsBar,hideOptionsBar);
 
         //highlight option under mouse
         $(".tile-menu-item").hover(highlightCurrentOption, dehighlightCurrentOption);

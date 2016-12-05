@@ -46,7 +46,8 @@ var addPromotionToDisplay = function () {
         url: 'controllers/displaycontroller.php',
         type: 'post',
         data: {
-            action: 'addPromotion'
+            action: 'addPromotion',
+
         },
         cache: false,
         success: function() {

@@ -22,24 +22,30 @@ var settingsModal = $("#settings").dialog({
         }
     });
 
+    // $('#settings').dialog("widget").find('.ui-dialog-titlebar-close').click(function(){
+    //
+    // });
+
+    //buttons for the modal
+   // var modalButtons = {
 /**
  * DELETE
  * @type {{Submit: modalButtons.Submit}}
  */
-var modalButtons = {
-
-        Submit: function () {
-          updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
-          $("#settings").dialog('close');
-        }
-    };
+// var modalButtons = {
+//
+//         Submit: function () {
+//           updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
+//           $("#settings").dialog('close');
+//         }
+//     };
 
 /**
- * DELETE
+ * Opens the settings modal
  */
 var openSettingsModal = function() {
         //include buttons
-        settingsModal.dialog('option','buttons',modalButtons);
+        // settingsModal.dialog('option');
         settingsModal.dialog('open');
     };
 

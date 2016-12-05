@@ -10,14 +10,12 @@ class PropertyDisplays
 {
     private $conn;
     private $displays = [];
-
     /**
      * PropertyDisplays constructor.
      * @param $conn
      * @param $propertyId
      */
-    public function __construct($conn, $propertyId)
-    {
+    public function __construct($conn, $propertyId){
         $this->conn = $conn;
         if ($propertyId != null) {
             $this->displays = $this->getAllDisplaysWithPropertyId($propertyId);
@@ -29,8 +27,7 @@ class PropertyDisplays
      * @param $propertyId
      * @return array
      */
-    private function getAllDisplaysWithPropertyId($propertyId)
-    {
+        private function getAllDisplaysWithPropertyId($propertyId){
         $getDisplays = "SELECT * FROM display WHERE display.property_id="
             . $propertyId . " ORDER BY display.display_id;";
         $displayStatement = $this->conn->prepare($getDisplays);
@@ -64,8 +61,7 @@ class PropertyDisplays
      * @param $id
      * @return DisplayModel
      */
-    public function getDisplayWithId($id)
-    {
+    public function getDisplayWithId($id) {
         $sql = "SELECT * FROM display WHERE display_id=" . $id;
         $statement = $this->conn->prepare($sql);
         $statement->execute();
@@ -78,8 +74,7 @@ class PropertyDisplays
      * @param $values
      * @return mixed
      */
-    public function assignDisplayWithId($values)
-    {
+    public function assignDisplayWithId($values) {
         $sql = "UPDATE display SET property_id = " . $values['propertyId'] . " WHERE display_id = " . $values['displayId'];
         echo $sql;
         $statement = $this->conn->prepare($sql);
@@ -91,11 +86,11 @@ class PropertyDisplays
      * @param $display
      * @return array
      */
-    private function getDisplayPromotions($display)
-    {
+    private function getDisplayPromotions($display) {
         $getPromotions = "SELECT * FROM `promotion_property` WHERE display_id =:display";
         $statement = $this->conn->prepare($getPromotions);
-        $statement->bindValue(':display', $display, PDO::PARAM_STR);
+        $statement->bindValue(':display',$display, PDO::PARAM_STR);
+        
         $statement->execute();
         $displayPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
         $temp = [];
@@ -104,13 +99,11 @@ class PropertyDisplays
         }
         return $temp;
     }
-
     /**
      * Get displays
      * @return array
      */
-    public function getDisplays()
-    {
+    public function getDisplays() {
         return $this->displays;
     }
 
@@ -120,8 +113,7 @@ class PropertyDisplays
      * @param $name
      * @param $displayLocation
      */
-    public function updateDisplayWithId($id, $name, $displayLocation)
-    {
+    public function updateDisplayWithId($id, $name, $displayLocation) {
         $sql = "UPDATE display SET display_name=:current_name, display_location=:display_location WHERE display_id=:id;";
         $result = $this->conn->prepare($sql);
         $result->bindValue(':current_name', $name, PDO::PARAM_STR);
@@ -133,8 +125,7 @@ class PropertyDisplays
     /**
      * Add promotion to display
      */
-    public function addPromotionToDisplay($values)
-    {
+    public function addPromotionToDisplay($values) {
         $sql = "INSERT INTO `promotion_property`(`promotion_id`, `property_id`, `skin_id`, `display_id`, `scene_duration`, `active`)
         VALUES (:promotionId,:propertyId,:skinId,:display,:sceneDuration,:active)";
         $statement = $this->conn->prepare($sql);
@@ -154,12 +145,10 @@ class PropertyDisplays
      * @param $promotionId
      * @param $displayId
      */
-    public function removePromotionFromDisplay($promotionId, $displayId)
-    {
+    public function removePromotionFromDisplay($promotionId, $displayId) {
         $sql = 'DELETE FROM `promotion_property` 
-        WHERE promotion_property.promotion_id = :promotionId 
-        AND promotion_property.display_id = :displayId';
-
+ WHERE promotion_property.promotion_id = :promotionId 
+ AND promotion_property.display_id = :displayId';
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $statement->bindValue(':displayId', $displayId, PDO::PARAM_STR);
@@ -171,8 +160,7 @@ class PropertyDisplays
      * @param $propertyId
      * @return mixed
      */
-    public function getSkinTypes($propertyId)
-    {
+    public function getSkinTypes($propertyId) {
         $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
@@ -188,11 +176,9 @@ class PropertyDisplays
      * @param $sceneDuration
      * @param $skinId
      */
-    public function updatePromotionDisplaySettings($promotionId, $displayId, $sceneDuration, $skinId)
-    {
+    public function updatePromotionDisplaySettings($promotionId, $displayId, $sceneDuration, $skinId) {
         $sql = 'UPDATE promotion_property SET skin_id=:skinId, scene_duration=:sceneDuration
-        WHERE promotion_property.promotion_id = :promotionId AND promotion_property.display_id = :displayId';
-
+ WHERE promotion_property.promotion_id = :promotionId AND promotion_property.display_id = :displayId';
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $statement->bindValue(':displayId', $displayId, PDO::PARAM_STR);

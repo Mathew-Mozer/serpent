@@ -35,14 +35,14 @@ var settingsButtonClick = function (e) {
  * Show option bar
  */
 var showOptionsBar = function () {
-    $(this).children(".tile-menu-bar").removeClass("hidden");
+    $(this).children(".tile-menu-bar").show();
 };
 
 /**
  * Hide option bar
  */
 var hideOptionsBar =  function () {
-    $(this).children(".tile-menu-bar").addClass("hidden");
+    $(this).children(".tile-menu-bar").hide();
 
 };
 
