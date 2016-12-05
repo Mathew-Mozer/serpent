@@ -40,14 +40,19 @@ var removePromotionFromDisplay = function (promotionId) {
     });
 };
 
-var addPromotionToDisplay = function () {
+var addPromotionToDisplay = function (promotionId) {
 
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
         data: {
             action: 'addPromotion',
-
+            displayId:  $('#display-id').val(),
+            propertyId: $('#property-id').val(),
+            skinId: $('#default-skin').val(),
+            sceneDuration: $('#default-scene-duration').val(),
+            promotionId: promotionId,
+            active: 1
         },
         cache: false,
         success: function() {
@@ -91,8 +96,7 @@ $('.remove-from-display').click(function () {
 });
 
 $('.add-to-display').click(function () {
-    alert('add clicked');
-    addPromotionToDisplay();
+    addPromotionToDisplay(this.id);
 });
 
 $('.scene-duration').change(function (){

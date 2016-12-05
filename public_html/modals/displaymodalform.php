@@ -33,7 +33,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
             <?php
                 echo '<img class=checkbox-image src="dependencies/images/' . $row['promotion_type_image'] . '"> &nbsp';
                 echo "<label class='display-modal-checkbox'>" . $assignedPromotions["promotion_type_title"] . '</label>';
-                echo "<button type='button'  class='remove-from-display' id='{$row['promo_id']}' name='promotion'> Remove </button>";
+                echo "<button type='button'  class='remove-from-display' id='{$row['promo_id']}' name='remove-promotion'> Remove </button>";
             ?>
             <label class="display-modal-label"><?php echo $row['promotion_type_scene_verbage']; ?> </label>
 
@@ -70,16 +70,15 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
      * Displays the unassigned promotions
      */
     foreach ($unassignedPromotions as $unassignedPromotion) {
-
+        //var_dump($unassignedPromotion);
         ?>
 
         <div class="form-group">
             <?php
             echo '<img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['promotion_type_image'] . '"> &nbsp';
             echo "<label class='display-modal-checkbox'>" . $unassignedPromotion["promotion_type_title"] . '</label>';
-            echo "<button type='button' class='add-to-display' id='{$unassignedPromotion['promotion_id']}'
-                   data-display-id='{$unassignedPromotion["display_id"]}'
-                   name='promotion' value='{$unassignedPromotion["promotion_id"]}'> Add </button>";
+            echo "<button type='button'  class='add-to-display' id='{$unassignedPromotion['promo_property_promo_id']}' 
+                    name='add-promotion'> Add </button>";
             ?>
 
         </div>
@@ -92,14 +91,17 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 </form>
 <hr>
 <form class="form-horizontal" method="post">
-    <input type="hidden" id="property-id" value="<?php echo $_POST['propertyId']; ?>"><br>
-    <input type="hidden" id="display-id" value="<?php echo $_POST['displayId']; ?>"><br>
     <input type="text" id="display-name" name="displayName" value='<?php echo $display->getName() ?>'>
     <p>Display Name</p><br>
     <input type="text" id="display-location" name="displayLocation"
            value='<?php echo $display->getDisplayLocation() ?>'>
     <p>Display Location</p><br>
     <button type="button" id="update-display-btn">Save</button>
+
+    <input type="hidden" id="property-id" value="<?php echo $_POST['propertyId']; ?>">
+    <input type="hidden" id="display-id" value="<?php echo $_POST['displayId']; ?>">
+    <input type="hidden" id="default-skin" value="0">
+    <input type="hidden" id="default-scene-duration" value="1">
 </form>
 
 <script src="dependencies/js/editdisplay.js"></script>
