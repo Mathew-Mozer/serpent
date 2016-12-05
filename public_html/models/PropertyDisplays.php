@@ -6,8 +6,8 @@ require 'DisplayModel.php';
  * This class manages the sql statements for updating editing and assigning promotions
  * to displays.
  */
-
-class PropertyDisplays {
+class PropertyDisplays
+{
     private $conn;
     private $displays = [];
     /**
@@ -15,7 +15,7 @@ class PropertyDisplays {
      * @param $conn
      * @param $propertyId
      */
-    public function __construct($conn, $propertyId) {
+    public function __construct($conn, $propertyId){
         $this->conn = $conn;
         if ($propertyId != null) {
             $this->displays = $this->getAllDisplaysWithPropertyId($propertyId);
@@ -127,8 +127,16 @@ class PropertyDisplays {
      */
     public function addPromotionToDisplay() {
         $sql = "INSERT INTO `promotion_property`(`promotion_id`, `property_id`, `skin_id`, `display_id`, `scene_duration`, `active`)
- VALUES (308,14,0,16,1,1)";
+        VALUES (:promotionId,:propertyId,:skinId,:display,:sceneDuration,:active)";
         $statement = $this->conn->prepare($sql);
+
+        $statement->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
+        $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
+        $statement->bindValue(':skinId', $values['skinId'], PDO::PARAM_STR);
+        $statement->bindValue(':display', $values['displayId'], PDO::PARAM_STR);
+        $statement->bindValue(':sceneDuration', $values['sceneDuration'], PDO::PARAM_STR);
+        $statement->bindValue(':active', $values['active'], PDO::PARAM_STR);
+
         $statement->execute();
     }
 
