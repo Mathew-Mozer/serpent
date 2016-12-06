@@ -13,6 +13,9 @@ var saveDisplayOptions = function () {
             displayLocation: $('#display-location').val()
         },
         cache: false,
+        success: function () {
+          $('#update-display-btn').hide();
+        },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
         }
@@ -32,7 +35,7 @@ var removePromotionFromDisplay = function (promotionId) {
         cache: false,
         success: function() {
             editDisplayModal.dialog('close');
-            //location.reload();
+            editDisplayModal.dialog('open');
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -99,12 +102,20 @@ $('.add-to-display').click(function () {
     addPromotionToDisplay(this.id);
 });
 
-$('.scene-duration').change(function (){
+$('.scene-duration').bind("keyup change",function (){
     $('#save-btn-'+this.name).show();
 });
 
 $('select').change(function (){
     $('#save-btn-'+this.name).show();
+});
+
+$('#display-name').bind("keyup change",function (){
+    $('#update-display-btn').show();
+});
+
+$('#display-location').bind("keyup change",function (){
+    $('#update-display-btn').show();
 });
 
 $('.save-btn').click(function () {
