@@ -13,6 +13,9 @@ var saveDisplayOptions = function () {
             displayLocation: $('#display-location').val()
         },
         cache: false,
+        success: function () {
+          $('#update-display-btn').hide();
+        },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
         }
@@ -32,7 +35,7 @@ var removePromotionFromDisplay = function (promotionId) {
         cache: false,
         success: function() {
             editDisplayModal.dialog('close');
-            //location.reload();
+            editDisplayModal.dialog('open');
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -40,14 +43,19 @@ var removePromotionFromDisplay = function (promotionId) {
     });
 };
 
-var addPromotionToDisplay = function () {
+var addPromotionToDisplay = function (promotionId) {
 
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
         data: {
             action: 'addPromotion',
-
+            displayId:  $('#display-id').val(),
+            propertyId: $('#property-id').val(),
+            skinId: $('#default-skin').val(),
+            sceneDuration: $('#default-scene-duration').val(),
+            promotionId: promotionId,
+            active: 1
         },
         cache: false,
         success: function() {
@@ -91,16 +99,23 @@ $('.remove-from-display').click(function () {
 });
 
 $('.add-to-display').click(function () {
-    alert('add clicked');
-    addPromotionToDisplay();
+    addPromotionToDisplay(this.id);
 });
 
-$('.scene-duration').change(function (){
+$('.scene-duration').bind("keyup change",function (){
     $('#save-btn-'+this.name).show();
 });
 
 $('select').change(function (){
     $('#save-btn-'+this.name).show();
+});
+
+$('#display-name').bind("keyup change",function (){
+    $('#update-display-btn').show();
+});
+
+$('#display-location').bind("keyup change",function (){
+    $('#update-display-btn').show();
 });
 
 $('.save-btn').click(function () {
