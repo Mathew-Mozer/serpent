@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="043b684b-2bbb-489c-ba52-0e9db06de247" name="MyTech" url="http://christopher.greenrivertech.net/">
+        <fileTransfer host="christopher.greenrivertech.net" port="2222" rootFolder="/home/christopher" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
