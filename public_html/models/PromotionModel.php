@@ -105,7 +105,7 @@ class PromotionModel {
         $result->execute();
 
         $sql = "SELECT promotion_type.promotion_type_id as promo_type_id, 
-                      promotion_type.promotion_type_title as promo_type_id, 
+                      promotion_type.promotion_type_title as promo_title, 
                       promotion_type.promotion_type_image as promo_image, 
                       promotion.artifact, promotion_type.promotion_type_file_name as file_name
                 FROM promotion, promotion_type 

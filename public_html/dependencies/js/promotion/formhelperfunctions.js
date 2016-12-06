@@ -123,11 +123,15 @@ var getFormData = function (formId) {
     var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
 
     for (var i = 0; i < formDataInput.length; i++) {
-        if (formDataInput[i].type == 'RADIO') {
-            if (formDataInput[i].checked) {
-                data[formDataInput[i].name] = formDataInput[i].value;
+        if (formDataInput[i].type.toLowerCase() == 'radio') {
+            var radioButtons = document.getElementsByName(formDataInput[i].name);
+
+            for(var r = 0; r < radioButtons.length; r++){
+                if(radioButtons[r].checked){
+                    data[formDataInput[i].name] = radioButtons[r].value;
+                }
             }
-        } else if (formDataInput[i].type == 'CHECKBOX') {
+        } else if (formDataInput[i].type.toLowerCase() == 'checkbox') {
             if (formDataInput[i].checked) {
                 data[formDataInput[i].name] = 1;
             } else {
@@ -157,14 +161,20 @@ var setFormData = function (formId, data) {
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
     var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
-
+    console.log(data);
     for (var i = 0; i < formDataInput.length; i++) {
         if (data[formDataInput[i].name]) {
-            if (formDataInput[i].type == 'RADIO') {
-                if (data[formDataInput[i].name] == formDataInput[i].value) {
-                    formDataInput[i].checked = true;
+            if (formDataInput[i].type.toLowerCase() == 'radio') {
+                var radioButtons = document.getElementsByName(formDataInput[i].name);
+
+                for(var r = 0; r < radioButtons.length; r++){
+
+                    if(data[formDataInput[i].name] == radioButtons[r].value){
+                        radioButtons[r].checked = true;
+                    }
                 }
-            } else if (formDataInput[i].type == 'CHECKBOX') {
+            } else if (formDataInput[i].type.toLowerCase() == 'checkbox') {
+                console.log(formDataInput[i].name+":"+ data[formDataInput[i].name]);
                 if (data[formDataInput[i].name] == 1) {
                     formDataInput[i].checked = true;
                 } else {

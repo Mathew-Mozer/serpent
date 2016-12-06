@@ -58,7 +58,7 @@
             </div>
             <br>
 
-            <input class="high-hand-checkbox" id="high-hand-gold" name="high_hand_gold" type="checkbox"/>
+            <input class="high-hand-checkbox" id="high-hand-gold" name="high_hand_attachmc" type="checkbox"/>
             <label class="high-hand-label">High Hand Gold</label>
             <br>
 
@@ -67,7 +67,7 @@
             <input type="hidden" name="scene_id" value="2"/>
             <br>
 
-            <input class="high-hand-checkbox" id="custom-payout" name="custom_payout" type="checkbox"/>
+            <input class="high-hand-checkbox" id="custom-payout" name="high_hand_custom_payout" type="checkbox"/>
             <label class="high-hand-label">Custom Payout</label>
         </form>
     </div>
