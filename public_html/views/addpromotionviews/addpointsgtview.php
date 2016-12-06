@@ -47,7 +47,7 @@
 <br><br>
 <input id="enable-instant-winners" name="enable-instant-winners" type="checkbox"><label>Allow Instant Winners?</label>
 <br><br>
-<script src="dependencies/js/jscolor.js"></script>
+    <script src="dependencies/js/jscolor.js"></script>
 <div id="instant-winner-options" style="display: none">
     <input id="enable-instant-winner1" name="enable-instant-winner1" type="checkbox"><label>Enable Instant Winner 1</label>
     <br><br>

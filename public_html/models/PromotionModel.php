@@ -95,28 +95,20 @@ class PromotionModel {
         $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $result->execute();
 
-        $sql = "SELECT
-                      promotion.promotion_id as promo_id,
-                      promotion.artifact as artifact,
-                      promotion_type.promotion_type_id as promo_type_id,
-                      promotion_type.promotion_type_title as promo_title,
-                      promotion_type.promotion_type_image as promo_image,
-                      promotion_property.display_id as display_id,
-                      promotion_type.promotion_type_file_name as file_name,
-                      promo_property.promo_property_property_id as property_id
-                    FROM
-                      promotion, promotion_type, promotion_property, property, promo_property
-                    WHERE
-                      promotion.promotion_type_id = promotion_type.promotion_type_id
-                      AND  promotion.promotion_id = promo_property.promo_property_promo_id
-                      AND property.property_id = promo_property.promo_property_property_id
-                      AND promotion.promotion_visible = 1 AND promotion.promotion_id = :id;
-                      LIMIT 1;
+        $sql = "SELECT promotion_type.promotion_type_id as promo_type_id, 
+                      promotion_type.promotion_type_title as promo_type_id, 
+                      promotion_type.promotion_type_image as promo_image, 
+                      promotion.artifact, promotion_type.promotion_type_file_name as file_name
+                FROM promotion, promotion_type 
+                WHERE promotion_type.promotion_type_id = promotion.promotion_type_id 
+                AND promotion.promotion_id = :id;
                     ";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
         $result->execute();
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        $promoResult['promo_id'] = $promotionId;
+        $promoResult['property_id'] =$propertyId;
         return $promoResult;
     }
     public function getPromotionImageByPromotionType($id){
