@@ -31,7 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //List all the properties that the current user has permissions to view
     require "../models/PropertyDisplays.php";
-    require "unassigneddisplayview.php";
+    if ($permission->hasPermissionByAccount('display','U')) {
+        require "unassigneddisplayview.php";
+    }
     foreach ($propertyList as $property) {
         //If the permission checks out, print the promotion
         if ($permission->hasPermissionById('property', $property['property_id'],'R')) {  
