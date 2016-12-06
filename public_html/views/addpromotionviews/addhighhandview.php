@@ -30,12 +30,15 @@
             <br>
             <label>Show Multiple Hands</label> <br>
             <div class="option-group">
-                <label><input class="high-hand-radio" value="0" name="multiple_hands" type="radio"/> Disabled
-                </label><br/>
-                <label><input class="high-hand-radio" value="1" name="multiple_hands" type="radio"/> Previous Winners
-                </label><br/>
-                <label><input class="high-hand-radio" value="2" name="multiple_hands" type="radio"/> Ranked Hands
-                </label><br/>
+                <input class="high-hand-radio" value="0" name="multiple_hands" id="disabled" type="radio" checked/>
+                <label for="disabled"> Disabled </label>
+                <br/>
+                <input class="high-hand-radio" value="1" name="multiple_hands" id="previous" type="radio"/>
+                <label for="previous"> Previous Winners </label>
+                <br/>
+                <input class="high-hand-radio" value="2" name="multiple_hands" id="ranked" type="radio"/>
+                <label for="ranked"> Ranked Hands </label>
+                <br/>
             </div>
             <br>
 

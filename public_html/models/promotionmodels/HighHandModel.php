@@ -62,9 +62,8 @@ class HighHandModel{
              FROM
                high_hand
              WHERE
-               promotion_id=:id
-               ORDER BY
-               created DESC;";
+               promotion_id=:id;
+              ";
         $result = $this->conn->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
