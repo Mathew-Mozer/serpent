@@ -12,7 +12,14 @@
 
 <input id="chosen-number-modal" name="kfc_chosen_number" type="number" min="0" placeholder="Chosen Number">
   <label for="chosen-number-modal">Chosen Number</label>
-
+    <button type="button" id="player-update-btn">Save</button>
+  <script src="dependencies/js/promotion/kickforcash.js"></script>
+<script>
+  $('#player-update-btn').click(function(e){
+    e.preventDefault();
+    updatePlayer($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('promo-type-id'),1);
+  });
+</script>
 <br>
 <br>
   <label for="game-label"></label>

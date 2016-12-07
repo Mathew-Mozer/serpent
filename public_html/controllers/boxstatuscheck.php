@@ -1,16 +1,18 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: sking
- * Date: 12/3/2016
- * Time: 12:49 PM
+ * This file controls checking box up/down status
  */
 
 require "../dependencies/php/HelperFunctions.php";
-require getServerPath()."dbcon.php";
+require_once getServerPath()."dbcon.php";
 require "../models/BoxCheckModel.php";
 $dbcon = NEW DbCon();
 
-$promotion = new PromotionModel($dbcon->read_database());
+$statusCheck = new BoxCheckModel($dbcon->read_database());
+
+
+$result = $statusCheck->checkDownTime();
+
+echo json_encode($result);
 
 ?>

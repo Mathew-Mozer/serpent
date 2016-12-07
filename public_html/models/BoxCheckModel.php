@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * This checks assigned boxes to see if they are down
  */
 
 class BoxCheckModel {
@@ -14,33 +14,35 @@ class BoxCheckModel {
     public function __construct(PDO $conn)
     {
         $this->conn = $conn;
-        date_default_timezone_set("America/Los_Angeles");
     }
 
     /**
      * Return difference of current datetime to last check-in
-     * @param $datetime
-     * @return false|string
      */
     public function checkDownTime(){
 
-        $sql="SELECT display_lastcheckin FROM display";
+        $sql="SELECT display_id, (TO_SECONDS(NOW()) - TO_SECONDS(display_lastcheckin)) AS seconds, display_monitor_threshold_red, display_monitor_threshold_yellow, display_uptimestart 
+              FROM display";
 
         $result = $this->conn->prepare($sql);
 
         $result->execute();
 
-        $dateResult = $result->fetch(PDO::FETCH_ASSOC);
+        $dateResult = $result->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach($dateResult as $row){
+      //  foreach($dateResult as $row){
 
-            echo "<script>console.log(date('Y-m-d H:i:s') - " . $row['display_lastcheckin'] . ")</script>";
-           // if(date("Y-m-d H:i:s") - $row['display_lastcheckin'] > 120){
+        //    if($row['seconds'] >= $row['display_monitor_threshold_red']){
+                //echo "Box : " . $row['display_id'] . " is down! Last Check-in was " . $row['seconds'] . " seconds ago <br>";
+                // "<script> setDisplayDownAlert(" . $row['display_id'] . ") </script>";
 
-           // }
-        }
-        return  - $datetime;
+                return $dateResult;
+        //    }
+       // }
+
+
         
     }
 
 }
+?>
