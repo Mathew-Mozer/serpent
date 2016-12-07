@@ -113,10 +113,16 @@
             alert('toolbar options');
         });
 
+        /**
+         * Check for box problems every 5 seconds
+         */
         window.setInterval(function () {
             checkDowntime();
         }, 5000);
 
+        /**
+         * Check to see if a box is down or recovered
+         */
        function checkDowntime(){
 
             $.ajax({
@@ -126,26 +132,25 @@
                 cache: false,
                 success: function (response){
 
-                    //var jsonResponse = responseJSON;
-                    //var displays = JSON.parse(response);
-                    console.log(response);
-                 //  for(var key in response){
-                    $.each(response, function(index, value)
-                    {
-                        //  if(response.hasOwnProperty(key)) {
+                    $.each(response, function(index, value) {
 
-                        console.log(value["display_id"]);
-                        //  if (response[key]["seconds"] >= response[key]["display_monitor_threshold_red"]) {
+                        //console.log("seconds:" + value["seconds"] + " Threshold: " + value["display_monitor_threshold_red"]);
 
-                        //         setDisplayDownAlert(response[key]["display_id"]);
-                        //  }
-                        //     }
+                          if (value["seconds"] >= value["display_monitor_threshold_red"]) {
+
+                              setDisplayDownAlert(value["display_id"]);
+                          }else if(value["seconds"] >= value["display_monitor_threshold_yellow"] && value["seconds"] < value["display_monitor_threshold_red"]){
+                              setDisplayRecoveringAlert(value["display_id"]);
+                          }else if(value["seconds"] < value["display_monitor_threshold_yellow"] && value["seconds"] < value["display_monitor_threshold_red"]){
+                              setDisplayNormal(value["display_id"])
+                          }
+
+
+
                         });
-                       // });
+
                 }
             });
-
-
 
        }
 
@@ -154,7 +159,6 @@
     function setDisplayDownAlert(displayID){
 
         clearBoxState(displayID);
-        console.log("trying to alert user!");
         $("#display-box-id-" + displayID).addClass("display-background-down");
     }
 
@@ -163,7 +167,7 @@
         $("#display-box-id-" + displayID).addClass("display-background-recovering");
     }
 
-    function setDisplayNormal(){
+    function setDisplayNormal(displayID){
         clearBoxState(displayID);
         $("#display-box-id-" + displayID).addClass("display-background-normal");
     }
