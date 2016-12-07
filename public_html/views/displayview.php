@@ -13,9 +13,9 @@
         <div class="display-outer">
             <div class="display-body display-background-normal container" id="<?php echo "display-box-id-" . $display->getId(); ?>">
                 <div class="display-header row">
-                    <div class="col-md-4"><h3 id="name" class="header-text display-friendly-name display-font">
+                    <div class="col-md-4"><h3 id="display-name" class="header-text display-friendly-name display-font">
                             <?php echo $display->getName();?></h3></div>
-                    <div class="col-md-4"><h3 id="location" class="header-text display-font">
+                    <div class="col-md-4"><h3 id="display-location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
                         <button type="button" data-property-id="<?php echo $property['property_id'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
