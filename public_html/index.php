@@ -112,6 +112,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script src="dependencies/js/editdisplay.js"></script>
 <script src="dependencies/js/promotion.js"></script>
 
+
 <script>
     <?php
 

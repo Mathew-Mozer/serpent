@@ -8,6 +8,7 @@
     <form>
 
         <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
+        <label for="player-name-modal"> Player Name </label>
         <br>
         <br>
 

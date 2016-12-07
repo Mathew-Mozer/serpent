@@ -1,58 +1,125 @@
-/**
- * This file controls the edit display modal
- */
+//TODO  COMMENT!!!!!!!!!!!!!
 
-/**
- * Create the edit display modal
- * @type {any}
- */
-var editDisplayModal = $("#editDisplayModal").dialog({
-    autoOpen: false,
-    height: 450,
-    width: 500,
-    modal: true,
-    buttons: {
-        Close: function(){
-            editDisplayModal.dialog('close');
+var saveDisplayOptions = function () {
+
+    $.ajax({
+        url: 'controllers/displaycontroller.php',
+        type: 'post',
+        data: {
+            action: 'updateDisplaySettings',
+            propertyId: $('#property-id').val(),
+            displayId: $('#display-id').val(),
+            displayName: $('#display-name').val(),
+            displayLocation: $('#display-location').val()
         },
-
-        Save: function(){
-            var propertyId = $("#property-id-form").data("propertyId");
-            var displayId = $("#display-id-form").data("displayId");
-            var displayName = $('input[name=displayName]').val();
-            var displayLocation = $('input[name=displayLocation]').val();
-            var promotions = document.getElementsByClassName('promotions-in-display');
-
-            var promotionsFormatted = [];
-            $.each(promotions, function(index, value){
-                var promotionId = value.value;
-                var sceneDuration = $('#scene-duration-'+promotionId).val();
-
-                promotionsFormatted.push({promotionId : value.value, displayId : value.dataset.displayId,
-                    checked : value.checked, sceneDuration: sceneDuration});
-            });
-
-            $.ajax({
-
-                url: 'controllers/displaycontroller.php',
-                type: 'post',
-                data: {
-                    action: 'update',
-                    propertyId: propertyId,
-                    displayId: displayId,
-                    displayName: displayName,
-                    displayLocation: displayLocation,
-                    promotions: promotionsFormatted
-                },
-                cache: false,
-                success: function(response) {
-                    //location.reload();
-                    editDisplayModal.dialog('close');
-                },
-                error: function(xhr, desc, err) {
-                    console.log(xhr + "\n" + err);
-                }
-            });
+        cache: false,
+        success: function () {
+          $('#update-display-btn').hide();
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr + "\n" + err);
         }
-    }
+    });
+};
+
+var removePromotionFromDisplay = function (promotionId) {
+
+    $.ajax({
+        url: 'controllers/displaycontroller.php',
+        type: 'post',
+        data: {
+            action: 'removePromotion',
+            promotionId: promotionId,
+            displayId: $('#display-id').val()
+        },
+        cache: false,
+        success: function() {
+            editDisplayModal.dialog('close');
+            editDisplayModal.dialog('open');
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+};
+
+var addPromotionToDisplay = function (promotionId) {
+
+    $.ajax({
+        url: 'controllers/displaycontroller.php',
+        type: 'post',
+        data: {
+            action: 'addPromotion',
+            displayId:  $('#display-id').val(),
+            propertyId: $('#property-id').val(),
+            skinId: $('#default-skin').val(),
+            sceneDuration: $('#default-scene-duration').val(),
+            promotionId: promotionId,
+            active: 1
+        },
+        cache: false,
+        success: function() {
+            editDisplayModal.dialog('close');
+            //location.reload();
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+};
+
+var savePromotionDisplaySettings = function (promotionId,sceneDuration,skinId) {
+    $.ajax({
+        url: 'controllers/displaycontroller.php',
+        type: 'post',
+        data: {
+            action: 'updatePromotionDisplaySettings',
+            promotionId: promotionId,
+            displayId: $('#display-id').val(),
+            sceneDuration: sceneDuration,
+            skinId: skinId
+        },
+        cache: false,
+        success: function() {
+            $('#save-btn-'+promotionId).hide();
+        },
+        error: function(xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+
+};
+
+$('#update-display-btn').click(function() {
+    saveDisplayOptions();
+});
+
+$('.remove-from-display').click(function () {
+    removePromotionFromDisplay(this.id);
+});
+
+$('.add-to-display').click(function () {
+    addPromotionToDisplay(this.id);
+});
+
+$('.scene-duration').bind("keyup change",function (){
+    $('#save-btn-'+this.name).show();
+});
+
+$('select').change(function (){
+    $('#save-btn-'+this.name).show();
+});
+
+$('#display-name').bind("keyup change",function (){
+    $('#update-display-btn').show();
+});
+
+$('#display-location').bind("keyup change",function (){
+    $('#update-display-btn').show();
+});
+
+$('.save-btn').click(function () {
+    var sceneDuration = $('#scene-duration-'+this.name).val();
+    var skinId = $('#skin-id-'+this.name).val();
+    savePromotionDisplaySettings(this.name,sceneDuration,skinId);
 });

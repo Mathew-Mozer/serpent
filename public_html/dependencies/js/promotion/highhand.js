@@ -210,3 +210,16 @@ $('#view-hands-btn').click(function () {
     $('#new-hand').hide();
     $('#view-hands').show();
 });
+
+$('#hr').click(function(){
+    $('#hr-option').show();
+});
+
+$('#15').click(function() {
+    $('#hr-option').hide();
+});
+
+$('#30').click(function() {
+    $('#hr-option').hide();
+});
+

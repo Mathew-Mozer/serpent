@@ -54,6 +54,11 @@ var loginModal = $("#loginModal").dialog({
         Submit: function () {
             validateLogin();
         }
+    },
+    closeOnEscape: false,
+    create: function (){
+        //removes the x button on the top right corner
+        $(this).dialog("widget").find('.ui-dialog-titlebar-close').remove();
     }
 });
 

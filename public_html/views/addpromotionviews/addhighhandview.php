@@ -23,23 +23,42 @@
             <label for="payout-value">Default Payout</label>
             <br>
             <br>
-
-            <input id="session-timer" name="session_timer" type="number" placeholder="Session Timer"/>
-            <label for="session-timer">Session Timer</label>
+            <label>Session Timer</label>
+            <div class="option-group" id="session-timer">
+                <input class="high-hand-radio" value="2" name="session_timer" id="15" type="radio" checked/>
+                <label for="15">15 min</label>
+                <br>
+                <input class="high-hand-radio" value="3" name="session_timer" id="30" type="radio"/>
+                <label for="30">30 min</label>
+                <br>
+                <input class="high-hand-radio" value="1" name="session_timer" id="hr" type="radio"/>
+                <label for="hr">1 hr</label>
+                <br>
+                <div id="hr-option" hidden>
+                    <input class="high-hand-radio" value="0" name="isodd" id="odd" type="radio" checked/>
+                    <label for="odd">Odd</label>
+                    <br>
+                    <input class="high-hand-radio" value="1" name="isodd" id="even" type="radio"/>
+                    <label for="even">Even</label>
+                </div>
+            </div>
             <br>
             <br>
             <label>Show Multiple Hands</label> <br>
             <div class="option-group">
-                <label><input class="high-hand-radio" value="0" name="multiple-hands" type="radio"/> Disabled
-                </label><br/>
-                <label><input class="high-hand-radio" value="1" name="multiple-hands" type="radio"/> Previous Winners
-                </label><br/>
-                <label><input class="high-hand-radio" value="2" name="multiple-hands" type="radio"/> Ranked Hands
-                </label><br/>
+                <input class="high-hand-radio" value="0" name="multiple_hands" id="disabled" type="radio" checked/>
+                <label for="disabled"> Disabled </label>
+                <br/>
+                <input class="high-hand-radio" value="1" name="multiple_hands" id="previous" type="radio"/>
+                <label for="previous"> Previous Winners </label>
+                <br/>
+                <input class="high-hand-radio" value="2" name="multiple_hands" id="ranked" type="radio"/>
+                <label for="ranked"> Ranked Hands </label>
+                <br/>
             </div>
             <br>
 
-            <input class="high-hand-checkbox" id="high-hand-gold" name="high_hand_gold" type="checkbox"/>
+            <input class="high-hand-checkbox" id="high-hand-gold" name="high_hand_attachmc" type="checkbox"/>
             <label class="high-hand-label">High Hand Gold</label>
             <br>
 
@@ -48,11 +67,7 @@
             <input type="hidden" name="scene_id" value="2"/>
             <br>
 
-            <input class="high-hand-checkbox" id="template" name="template" type="checkbox"/>
-            <label class="high-hand-label">Template</label>
-            <br>
-
-            <input class="high-hand-checkbox" id="custom-payout" name="custom-payout" type="checkbox"/>
+            <input class="high-hand-checkbox" id="custom-payout" name="high_hand_custom_payout" type="checkbox"/>
             <label class="high-hand-label">Custom Payout</label>
         </form>
     </div>

@@ -25,20 +25,21 @@ class HighHandModel{
      */
     public function add($values) {
         $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_attachmc,
-            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout)
+            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout, high_hand_isodd)
             VALUES (:promotionId,:title_message,:use_joker,:high_hand_gold,:horn_timer,:payout_value,
-                    :session_timer,:multiple_hands, :customPayout);";
+                    :session_timer,:multiple_hands, :custom_payout, :is_odd);";
 
         $result = $this->conn->prepare($sql);
         $result->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
         $result->bindValue(':title_message', $values['title_message'], PDO::PARAM_STR);
         $result->bindValue(':use_joker', $values['use_joker'], PDO::PARAM_STR);
-        $result->bindValue(':high_hand_gold', $values['high_hand_gold'], PDO::PARAM_STR);
+        $result->bindValue(':high_hand_gold', $values['high_hand_attachmc'], PDO::PARAM_STR);
         $result->bindValue(':horn_timer', $values['horn_timer'], PDO::PARAM_STR);
         $result->bindValue(':payout_value', $values['payout_value'], PDO::PARAM_STR);
         $result->bindValue(':session_timer', $values['session_timer'], PDO::PARAM_STR);
         $result->bindValue(':multiple_hands', $values['multiple_hands'], PDO::PARAM_INT);
-        $result->bindValue(':customPayout', $values['custom_payout'], PDO::PARAM_STR);
+        $result->bindValue(':custom_payout', $values['high_hand_custom_payout'], PDO::PARAM_STR);
+        $result->bindValue(':is_odd', $values['isodd'], PDO::PARAM_STR);
         $result->execute();
     }
 
@@ -62,9 +63,8 @@ class HighHandModel{
              FROM
                high_hand
              WHERE
-               promotion_id=:id
-               ORDER BY
-               created DESC;";
+               promotion_id=:id;
+              ";
         $result = $this->conn->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();

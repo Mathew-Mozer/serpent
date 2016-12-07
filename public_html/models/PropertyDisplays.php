@@ -6,17 +6,16 @@ require 'DisplayModel.php';
  * This class manages the sql statements for updating editing and assigning promotions
  * to displays.
  */
-
-class PropertyDisplays {
+class PropertyDisplays
+{
     private $conn;
     private $displays = [];
-
     /**
      * PropertyDisplays constructor.
      * @param $conn
      * @param $propertyId
      */
-    public function __construct($conn, $propertyId) {
+    public function __construct($conn, $propertyId){
         $this->conn = $conn;
         if ($propertyId != null) {
             $this->displays = $this->getAllDisplaysWithPropertyId($propertyId);
@@ -28,7 +27,7 @@ class PropertyDisplays {
      * @param $propertyId
      * @return array
      */
-    private function getAllDisplaysWithPropertyId($propertyId) {
+        private function getAllDisplaysWithPropertyId($propertyId){
         $getDisplays = "SELECT * FROM display WHERE display.property_id="
             . $propertyId . " ORDER BY display.display_id;";
         $displayStatement = $this->conn->prepare($getDisplays);
@@ -90,7 +89,8 @@ class PropertyDisplays {
     private function getDisplayPromotions($display) {
         $getPromotions = "SELECT * FROM `promotion_property` WHERE display_id =:display";
         $statement = $this->conn->prepare($getPromotions);
-        $statement->bindValue(':display', $display, PDO::PARAM_STR);
+        $statement->bindValue(':display',$display, PDO::PARAM_STR);
+        
         $statement->execute();
         $displayPromotions = $statement->fetchAll(PDO::FETCH_ASSOC);
         $temp = [];
@@ -99,7 +99,6 @@ class PropertyDisplays {
         }
         return $temp;
     }
-
     /**
      * Get displays
      * @return array
@@ -126,10 +125,18 @@ class PropertyDisplays {
     /**
      * Add promotion to display
      */
-    public function addPromotionToDisplay() {
+    public function addPromotionToDisplay($values) {
         $sql = "INSERT INTO `promotion_property`(`promotion_id`, `property_id`, `skin_id`, `display_id`, `scene_duration`, `active`)
- VALUES (308,14,0,16,1,1)";
+        VALUES (:promotionId,:propertyId,:skinId,:display,:sceneDuration,:active)";
         $statement = $this->conn->prepare($sql);
+
+        $statement->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
+        $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
+        $statement->bindValue(':skinId', $values['skinId'], PDO::PARAM_STR);
+        $statement->bindValue(':display', $values['displayId'], PDO::PARAM_STR);
+        $statement->bindValue(':sceneDuration', $values['sceneDuration'], PDO::PARAM_STR);
+        $statement->bindValue(':active', $values['active'], PDO::PARAM_STR);
+
         $statement->execute();
     }
 

@@ -25,6 +25,7 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         success: function (response) {
             //update view with new promotion
             addPromotion(response);
+            $("#promotion-details").empty();
             addPromotionModal.dialog('close');
         },
         error: function (xhr, desc, err) {
@@ -119,11 +120,22 @@ var getFormData = function (formId) {
     var data = {};
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
+    var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
 
     for (var i = 0; i < formDataInput.length; i++) {
-        if (formDataInput[i].type == 'RADIO') {
+        if (formDataInput[i].type.toLowerCase() == 'radio') {
+            var radioButtons = document.getElementsByName(formDataInput[i].name);
+
+            for(var r = 0; r < radioButtons.length; r++){
+                if(radioButtons[r].checked){
+                    data[formDataInput[i].name] = radioButtons[r].value;
+                }
+            }
+        } else if (formDataInput[i].type.toLowerCase() == 'checkbox') {
             if (formDataInput[i].checked) {
-                data[formDataInput[i].name] = formDataInput[i].value;
+                data[formDataInput[i].name] = 1;
+            } else {
+                data[formDataInput[i].name] = 0;
             }
         } else {
             data[formDataInput[i].name] = formDataInput[i].value;
@@ -132,6 +144,10 @@ var getFormData = function (formId) {
     for (var i = 0; i < formDataSelect.length; i++) {
         data[formDataSelect[i].name] = formDataSelect[i].value;
     }
+    for (var i = 0; i < formDataTextArea.length; i++) {
+        data[formDataTextArea[i].name] = formDataTextArea[i].value;
+    }
+    console.log(data);
     return data;
 };
 
@@ -140,15 +156,29 @@ var getFormData = function (formId) {
  * @param formId
  * @param data
  */
+
 var setFormData = function (formId, data) {
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
-
+    var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
+    console.log(data);
     for (var i = 0; i < formDataInput.length; i++) {
         if (data[formDataInput[i].name]) {
-            if (formDataInput[i].type == 'RADIO') {
-                if (data[formDataInput[i].name] == formDataInput[i].value) {
+            if (formDataInput[i].type.toLowerCase() == 'radio') {
+                var radioButtons = document.getElementsByName(formDataInput[i].name);
+
+                for(var r = 0; r < radioButtons.length; r++){
+
+                    if(data[formDataInput[i].name] == radioButtons[r].value){
+                        radioButtons[r].checked = true;
+                    }
+                }
+            } else if (formDataInput[i].type.toLowerCase() == 'checkbox') {
+                console.log(formDataInput[i].name+":"+ data[formDataInput[i].name]);
+                if (data[formDataInput[i].name] == 1) {
                     formDataInput[i].checked = true;
+                } else {
+                    formDataInput[i].checked = false;
                 }
             } else {
 
@@ -156,10 +186,15 @@ var setFormData = function (formId, data) {
             }
         }
     }
-
     for (var i = 0; i < formDataSelect.length; i++) {
         if (data[formDataSelect[i].name]) {
             formDataSelect[i].value = data[formDataSelect[i].name];
         }
     }
+    for (var i = 0; i < formDataTextArea.length; i++) {
+        if (data[formDataTextArea[i].name]) {
+            formDataTextArea[i].value = data[formDataTextArea[i].name];
+        }
+    }
+
 };
