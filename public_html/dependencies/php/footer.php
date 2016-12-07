@@ -37,7 +37,7 @@
          * Register add promotion tile click
          */
         $(".add-promotion-btn").unbind('click').click(function () {
-            checkDowntime();
+
             $('input[name=propertyId]').val(this.id);
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
@@ -60,7 +60,6 @@
          */
         $(".toggle-display-btn").click(function () {
 
-            checkDowntime();
 
             $(this).addClass("hidden");
             if ($(this).attr("id") === "toggle-display") {
@@ -113,10 +112,16 @@
             alert('toolbar options');
         });
 
+        /**
+         * Check for box problems every 5 seconds
+         */
         window.setInterval(function () {
             checkDowntime();
         }, 5000);
 
+        /**
+         * Check to see if a box is down or recovered
+         */
        function checkDowntime(){
 
             $.ajax({
@@ -126,53 +131,83 @@
                 cache: false,
                 success: function (response){
 
-                    //var jsonResponse = responseJSON;
-                    //var displays = JSON.parse(response);
-                    console.log(response);
-                 //  for(var key in response){
-                    $.each(response, function(index, value)
-                    {
-                        //  if(response.hasOwnProperty(key)) {
+                    $.each(response, function(index, value) {
 
-                        console.log(value["display_id"]);
-                        //  if (response[key]["seconds"] >= response[key]["display_monitor_threshold_red"]) {
 
-                        //         setDisplayDownAlert(response[key]["display_id"]);
-                        //  }
-                        //     }
-                        });
-                       // });
+                      if (parseInt(value["last_checkin"]) >= parseInt(value["display_monitor_threshold_red"])) {
+                          //console.log("Box is down!");
+                          setDisplayDownAlert(value["display_id"]);
+
+                      }else if(parseInt(value["uptime"]) <= parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])){
+                          //console.log("Box is recovering!");
+                          setDisplayRecoveringAlert(value["display_id"]);
+
+                      }else if(parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])){
+                         // console.log("box is stable");
+                          setDisplayNormal(value["display_id"])
+                      }
+
+                    });
+
                 }
             });
-
-
 
        }
 
 
-
+    /**
+     * Switch the display to alert mode
+     * @param displayID
+     */
     function setDisplayDownAlert(displayID){
 
         clearBoxState(displayID);
-        console.log("trying to alert user!");
         $("#display-box-id-" + displayID).addClass("display-background-down");
+        addAlarmText(displayID);
     }
 
-    function setDisplayRecoveringAlert(displayID){
-        clearBoxState(displayID);
-        $("#display-box-id-" + displayID).addClass("display-background-recovering");
-    }
+        /**
+         * Switch the display to recovering
+         * @param displayID
+         */
+        function setDisplayRecoveringAlert(displayID){
+            clearBoxState(displayID);
+            $("#display-box-id-" + displayID).addClass("display-background-recovering");
+            addAlarmText(displayID);
+        }
 
-    function setDisplayNormal(){
-        clearBoxState(displayID);
-        $("#display-box-id-" + displayID).addClass("display-background-normal");
-    }
+        /**
+         * Switch the display to stable
+         * @param displayID
+         */
+        function setDisplayNormal(displayID){
+            clearBoxState(displayID);
+            $("#display-box-id-" + displayID).addClass("display-background-normal");
+            $("#display-box-id-" + displayID).find("#display-name").addClass("display-font");
+            $("#display-box-id-" + displayID).find("#display-location").addClass("display-font");
+        }
 
-    function clearBoxState(displayID){
-        $("#display-box-id-" + displayID).removeClass("display-background-normal");
-        $("#display-box-id-" + displayID).removeClass("display-background-recovering");
-        $("#display-box-id-" + displayID).removeClass("display-background-down");
-    }
+        /**
+         * Clear all formatting
+         * @param displayID
+         */
+        function clearBoxState(displayID){
+            $("#display-box-id-" + displayID).removeClass("display-background-normal");
+            $("#display-box-id-" + displayID).removeClass("display-background-recovering");
+            $("#display-box-id-" + displayID).removeClass("display-background-down");
+            $("#display-box-id-" + displayID).find("#display-name").removeAttr("display-font");
+            $("#display-box-id-" + displayID).find("#display-location").removeAttr("display-font-alarm");
+
+        }
+
+        /**
+         * Change text to alarm
+         * @param displayID
+         */
+        function addAlarmText(displayID){
+            $("#display-box-id-" + displayID).find("#display-name").addClass("display-font-alarm");
+            $("#display-box-id-" + displayID).find("#display-location").addClass("display-font-alarm");
+        }
 
     })
 </script>

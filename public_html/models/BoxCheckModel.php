@@ -21,7 +21,7 @@ class BoxCheckModel {
      */
     public function checkDownTime(){
 
-        $sql="SELECT display_id, (TO_SECONDS(NOW()) - TO_SECONDS(display_lastcheckin)) AS seconds, display_monitor_threshold_red, display_monitor_threshold_yellow, display_uptimestart 
+        $sql="SELECT display_id, (TO_SECONDS(NOW()) - TO_SECONDS(display_lastcheckin)) AS last_checkin, (TO_SECONDS(NOW()) - TO_SECONDS(display_uptimestart)) AS uptime, display_monitor_threshold_red, display_monitor_threshold_yellow
               FROM display";
 
         $result = $this->conn->prepare($sql);
