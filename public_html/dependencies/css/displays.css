@@ -90,6 +90,11 @@ hr.display{
     text-shadow: 1px 1px #f7f7f7;
 }
 
+.display-font-alarm{
+    color: white;
+    text-shadow: 1px 1px grey;
+}
+
 .box-settings {
     background-color: #969696;
 }

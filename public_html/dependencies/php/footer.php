@@ -37,7 +37,7 @@
          * Register add promotion tile click
          */
         $(".add-promotion-btn").unbind('click').click(function () {
-            checkDowntime();
+
             $('input[name=propertyId]').val(this.id);
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
@@ -60,7 +60,6 @@
          */
         $(".toggle-display-btn").click(function () {
 
-            checkDowntime();
 
             $(this).addClass("hidden");
             if ($(this).attr("id") === "toggle-display") {
@@ -134,20 +133,21 @@
 
                     $.each(response, function(index, value) {
 
-                        //console.log("seconds:" + value["seconds"] + " Threshold: " + value["display_monitor_threshold_red"]);
 
-                          if (value["seconds"] >= value["display_monitor_threshold_red"]) {
+                      if (parseInt(value["last_checkin"]) >= parseInt(value["display_monitor_threshold_red"])) {
+                          //console.log("Box is down!");
+                          setDisplayDownAlert(value["display_id"]);
 
-                              setDisplayDownAlert(value["display_id"]);
-                          }else if(value["seconds"] >= value["display_monitor_threshold_yellow"] && value["seconds"] < value["display_monitor_threshold_red"]){
-                              setDisplayRecoveringAlert(value["display_id"]);
-                          }else if(value["seconds"] < value["display_monitor_threshold_yellow"] && value["seconds"] < value["display_monitor_threshold_red"]){
-                              setDisplayNormal(value["display_id"])
-                          }
+                      }else if(parseInt(value["uptime"]) <= parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])){
+                          //console.log("Box is recovering!");
+                          setDisplayRecoveringAlert(value["display_id"]);
 
+                      }else if(parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])){
+                         // console.log("box is stable");
+                          setDisplayNormal(value["display_id"])
+                      }
 
-
-                        });
+                    });
 
                 }
             });
@@ -155,28 +155,59 @@
        }
 
 
-
+    /**
+     * Switch the display to alert mode
+     * @param displayID
+     */
     function setDisplayDownAlert(displayID){
 
         clearBoxState(displayID);
         $("#display-box-id-" + displayID).addClass("display-background-down");
+        addAlarmText(displayID);
     }
 
-    function setDisplayRecoveringAlert(displayID){
-        clearBoxState(displayID);
-        $("#display-box-id-" + displayID).addClass("display-background-recovering");
-    }
+        /**
+         * Switch the display to recovering
+         * @param displayID
+         */
+        function setDisplayRecoveringAlert(displayID){
+            clearBoxState(displayID);
+            $("#display-box-id-" + displayID).addClass("display-background-recovering");
+            addAlarmText(displayID);
+        }
 
-    function setDisplayNormal(displayID){
-        clearBoxState(displayID);
-        $("#display-box-id-" + displayID).addClass("display-background-normal");
-    }
+        /**
+         * Switch the display to stable
+         * @param displayID
+         */
+        function setDisplayNormal(displayID){
+            clearBoxState(displayID);
+            $("#display-box-id-" + displayID).addClass("display-background-normal");
+            $("#display-box-id-" + displayID).find("#display-name").addClass("display-font");
+            $("#display-box-id-" + displayID).find("#display-location").addClass("display-font");
+        }
 
-    function clearBoxState(displayID){
-        $("#display-box-id-" + displayID).removeClass("display-background-normal");
-        $("#display-box-id-" + displayID).removeClass("display-background-recovering");
-        $("#display-box-id-" + displayID).removeClass("display-background-down");
-    }
+        /**
+         * Clear all formatting
+         * @param displayID
+         */
+        function clearBoxState(displayID){
+            $("#display-box-id-" + displayID).removeClass("display-background-normal");
+            $("#display-box-id-" + displayID).removeClass("display-background-recovering");
+            $("#display-box-id-" + displayID).removeClass("display-background-down");
+            $("#display-box-id-" + displayID).find("#display-name").removeAttr("display-font");
+            $("#display-box-id-" + displayID).find("#display-location").removeAttr("display-font-alarm");
+
+        }
+
+        /**
+         * Change text to alarm
+         * @param displayID
+         */
+        function addAlarmText(displayID){
+            $("#display-box-id-" + displayID).find("#display-name").addClass("display-font-alarm");
+            $("#display-box-id-" + displayID).find("#display-location").addClass("display-font-alarm");
+        }
 
     })
 </script>
