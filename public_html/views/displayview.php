@@ -11,7 +11,7 @@
 
     foreach ($propertyDisplays as $display){?>
         <div class="display-outer">
-            <div class="display-body display-background-normal container" id="<?php echo "display-box-id-" + $property['display_id']; ?>">
+            <div class="display-body display-background-normal container" id="<?php echo "display-box-id-" . $display->getId(); ?>">
                 <div class="display-header row">
                     <div class="col-md-4"><h3 id="name" class="header-text display-friendly-name display-font">
                             <?php echo $display->getName();?></h3></div>
