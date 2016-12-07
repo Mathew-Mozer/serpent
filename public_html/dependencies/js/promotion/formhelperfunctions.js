@@ -44,7 +44,6 @@ var updatePromotion = function (promotionId, promotionTypeId, accountId) {
     var data = getFormData('add-promotion');
     data['action'] = 'update';
     data['promotionTypeId'] = promotionTypeId;
-    console.log(promotionTypeId);
     data['promotionId'] = promotionId;
     data['accountId'] = accountId;
     $.ajax({

@@ -18,7 +18,7 @@
 <input id="cash-prize" name="kfc_cash_prize" type = "number" placeholder="Initial Cash Prize"/>
     <label for="cash-prize">Initial Cash Prize</label>
 
-<input type="hidden" name="scene_id" value="4"/>
+<input type="hidden" name="scene_id" value="11"/>
 <br>
 
 
