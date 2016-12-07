@@ -10,7 +10,7 @@
 <br>
 <br>
 
-<input id="chosen-number-modal" name="kfc_chosen_number" type="number" placeholder="Chosen Number">
+<input id="chosen-number-modal" name="kfc_chosen_number" type="number" min="0" placeholder="Chosen Number">
   <label for="chosen-number-modal">Chosen Number</label>
 
 <br>

@@ -57,9 +57,9 @@
                 &nbsp;
             </button>
             <br>
-            <input id="enable-instant-winner1-threshold" name="pgt_points1" type="number" placeholder="250">
+            <input id="enable-instant-winner1-threshold" name="pgt_points1" type="number" min="0" placeholder="250">
             <br><br>
-            <input id="enable-instant-winner1-prize" name="pgt_prize_amount1" type="number" placeholder="25">
+            <input id="enable-instant-winner1-prize" name="pgt_prize_amount1" type="number" min="0" placeholder="25">
             <br><br>
         </div>
     <input id="enable-instant-winner2" name="enable-instant-winner2" type="checkbox"><label>Enable Instant Winner 2</label>
@@ -70,9 +70,9 @@
             &nbsp;
         </button>
         <br>
-        <input id="enable-instant-winner2-threshold" name="pgt_points2" type="number" placeholder="500">
+        <input id="enable-instant-winner2-threshold" name="pgt_points2" type="number" min="0" placeholder="500">
         <br><br>
-        <input id="enable-instant-winner2-prize" name="pgt_prize_amount2" type="number" placeholder="50">
+        <input id="enable-instant-winner2-prize" name="pgt_prize_amount2" type="number" min="0" placeholder="50">
         <br><br>
     </div>
     <input id="enable-instant-winner3" name="enable-instant-winner3" type="checkbox"><label>Enable Instant Winner 3</label>
@@ -83,9 +83,9 @@
             &nbsp;
         </button>
         <br>
-        <input id="enable-instant-winner3-threshold" name="pgt_points3" type="number" placeholder="750">
+        <input id="enable-instant-winner3-threshold" name="pgt_points3" type="number" min="0" placeholder="750">
         <br><br>
-        <input id="enable-instant-winner3-prize" name="pgt_prize_amount3" type="number" placeholder="75">
+        <input id="enable-instant-winner3-prize" name="pgt_prize_amount3" type="number" min="0" placeholder="75">
         <br><br>
     </div>
 
