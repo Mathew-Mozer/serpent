@@ -5,6 +5,13 @@
       <paths name="MyTech">
         <serverdata>
           <mappings>
+            <mapping deploy="/public_html" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="serpent">
+        <serverdata>
+          <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>

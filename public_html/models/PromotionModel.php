@@ -131,6 +131,16 @@ class PromotionModel {
         return $promoResult['image'];
     }
 
+    public function getPromotionById($id)
+    {
+        $sql = "SELECT promotion_type_id, promotion_visible, settings, artifact, promotion_sceneid, promotion_lastupdated FROM promotion WHERE promotion_id = :id;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
+
     public function getPromotionImageByPromotionId($id)
     {
         $sql = "SELECT promotion_type_image as image FROM promotion, promotion_type
@@ -141,11 +151,33 @@ class PromotionModel {
         return $image;
     }
 
+    public function getPromotionTypeById($id){
+        $sql = "SELECT promotion_type.promotion_type_title, promotion.promotion_id
+FROM promotion_type
+INNER JOIN promotion
+ON promotion_type.promotion_type_id = promotion.promotion_type_id
+WHERE promotion.promotion_id = :id;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
+
     function getRandomFontAwesome()
     {
         $artifactList = $this->generateFontAwesomeArray();
         $artifactSelection = rand(0, sizeof($artifactList));
         return $artifactList[$artifactSelection];
+    }
+
+    public function getPromotionArtifactById($promotionId){
+        $sql = "SELECT artifact FROM promotion WHERE promotion_id = :id;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        return $promoResult['artifact'];
     }
 
     public function generateFontAwesomeArray()
