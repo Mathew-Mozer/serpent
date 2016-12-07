@@ -29,6 +29,10 @@ $promotion = new PromotionModel($dbcon->read_database());
         </div>
         <div id="promotion-details">
         </div>
+        <div id="create-template">
+        </div>
+        <div id="add-promotion-buttons">
+        </div>
         <script id="add-promotion-function"></script>
     </form>
 </div>
@@ -108,14 +112,6 @@ $promotion = new PromotionModel($dbcon->read_database());
 
 </body>
 <script src="dependencies/js/login.js"></script>
-<script src="dependencies/js/optionsmodal.js"></script>
-<script src="dependencies/js/addpromotionmodal.js"></script>
-<script src="dependencies/js/createproperty.js"></script>
-<script src="dependencies/js/displayview.js"></script>
-<script src="dependencies/js/promotionmodal.js"></script>
-<script src="dependencies/js/editdisplay.js"></script>
-<script src="dependencies/js/promotion.js"></script>
-
 <script>
     <?php
 

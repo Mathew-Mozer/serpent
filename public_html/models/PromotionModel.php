@@ -62,7 +62,8 @@ class PromotionModel
                     FROM
                       promotion, promotion_type, promo_property, property
                     WHERE
-                      promotion.promotion_type_id = promotion_type.promotion_type_id
+                      promo_property.promo_property_template = 0
+                      AND promotion.promotion_type_id = promotion_type.promotion_type_id
                       AND  promotion.promotion_id = promo_property.promo_property_promo_id
                       AND property.property_id = promo_property.promo_property_property_id
                       AND promotion.promotion_visible = 1 AND property.property_id =  :id;
@@ -191,6 +192,7 @@ class PromotionModel
     {
         $sql = "SELECT * FROM promo_property p, promotion_type, promotion WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
               WHERE d.promotion_id = p.promo_property_promo_id AND d.display_id=:display_id ) 
+              AND p.promo_property_template = 0
 			  AND promotion.promotion_id = p.promo_property_promo_id
               AND p.promo_property_property_id=:property_id 
               AND promotion.promotion_type_id = promotion_type.promotion_type_id
@@ -201,6 +203,26 @@ class PromotionModel
         $result->execute();
         $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);
         return $unassignedPromotions;
+    }
+
+    public function saveTemplate($values){
+        $sql = "INSERT INTO promotion (promotion_type_id, promotion_sceneid) VALUES (:id, :sceneId);";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $values['promotionTypeId'], PDO::PARAM_STR);
+        $result->bindValue(':sceneId', $values['sceneId'], PDO::PARAM_STR);
+        $result->execute();
+        $promotionId = $this->db->lastInsertId();
+
+        $sql = "INSERT INTO promo_property (promo_property_property_id, promo_property_promo_id, promo_property_template,
+                      promo_property_template_name) VALUES (:propertyId,:promotionId,:isTemplate,:template_name);";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
+        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $result->bindValue(':isTemplate', 1, PDO::PARAM_STR);
+        $result->bindValue(':template_name', $values['templateName'], PDO::PARAM_STR);
+        $result->execute();
+
+        return $promotionId;
     }
 }
 

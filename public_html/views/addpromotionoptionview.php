@@ -16,17 +16,4 @@ foreach ($promotionTypeList as $row) {
     echo '<hr>';
 }
 }?>
-<script>
-$("div.addPromotion").on('click', function(e){
-
-  e.preventDefault();
-  $("#promotion-details").data("promotion-id", $(this).data('promotion-id'));
-  promotionName = $(this).data('promotion-name');
-  $("#promotion-select").hide();
-  $("#promotion-details").show();
-
-  $("#promotion-details").load("views/addpromotionviews/add"+promotionName+"view.php");
-
-});
-
-</script>
+<script src="dependencies/js/addpromotionmodal.js"></script>

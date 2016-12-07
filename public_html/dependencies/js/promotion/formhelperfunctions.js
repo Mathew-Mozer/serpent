@@ -25,8 +25,12 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         success: function (response) {
             //update view with new promotion
             addPromotion(response);
-            $("#promotion-details").empty();
             addPromotionModal.dialog('close');
+            $("#promotion-details").empty();
+            $('#add-promotion-buttons').empty();
+            $('#create-template').empty();
+            $("#promotion-select").show();
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -187,4 +191,42 @@ var setFormData = function (formId, data) {
         }
     }
 
+};
+
+/**
+ * Inserts a template promotion into the database
+ */
+var saveTemplate = function () {
+    var promotionData = getFormData('add-promotion');
+    var promotionTypeId = $('#promotionTypeId').val();
+    var propertyId = $('input[name=propertyId]').val();
+    var promotionType = $('#promotionTypeName').val();
+    var accountId =  1;
+    var templateName = $('#template-name').val();
+    var sceneId = $('#scene-id').val();
+    $.ajax({
+        url: 'controllers/promotioncontroller.php',
+        type: 'post',
+        data: {
+            action: 'saveTemplate',
+            promotionTypeId: promotionTypeId,
+            propertyId : propertyId,
+            promotionType: promotionType,
+            accountId : accountId,
+            templateName: templateName,
+            sceneId : sceneId,
+            data: promotionData
+        },
+        cache: false,
+        success: function () {
+            $('#addPromotion').dialog('close');
+            $("#promotion-details").empty();
+            $('#add-promotion-buttons').empty();
+            $('#create-template').empty();
+            $("#promotion-select").show();
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
 };
