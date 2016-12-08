@@ -64,21 +64,48 @@ var cards = ['CB', 'CB', 'CB', 'CB', 'CB', 'CB', 'CB', 'CB'];
 var handIndex = 1;
 function addCards(clicked_id) {
 
-    if (handIndex < 9) {
+    console.log(clicked_id.indexOf("hh_index"));
+
+    if (handIndex < 9 && clicked_id.indexOf("hh_index") < 0) {
+
         cards[handIndex] = clicked_id;
+        lockInCard(clicked_id);
 
-
-    } else if (handIndex >= 9) {
+    } else if (handIndex >= 9 && clicked_id.indexOf("hh_index") < 0) {
         handIndex = 1;
         addCards(clicked_id);
-        return;
+        //lockInCard(clicked_id);
+
+    } else if(clicked_id.indexOf("hh_index") == 0){
+        setSelectionIndex(clicked_id);
     }
 
-    $("#hh_index" + handIndex).removeClass("card-index-highlight");
-    $("#hh_index" + handIndex).attr('src', 'dependencies/images/cards/' + clicked_id + ".png");
-    handIndex++;
-    moveHighlightToNextCard(clicked_id);
+
 }
+
+/**
+ * Set the current card selection
+ * @param clicked_id
+ */
+function lockInCard(clicked_id){
+        $("#hh_index" + handIndex).removeClass("card-index-highlight");
+        $("#hh_index" + handIndex).attr('src', 'dependencies/images/cards/' + clicked_id + ".png");
+        handIndex++;
+        moveHighlightToNextCard(clicked_id);
+    }
+
+/**
+ * Select the card index that was clicked on
+ * @param clicked_id
+ */
+function setSelectionIndex(clicked_id){
+    $("#hh_index" + handIndex).removeClass("card-index-highlight");
+        handIndex = clicked_id.substr(clicked_id.length - 1);
+        moveHighlightToNextCard(clicked_id);
+
+
+
+    }
 
 /**
  * Lock used card so duplicates can't be used

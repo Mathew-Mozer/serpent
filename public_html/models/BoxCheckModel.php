@@ -21,7 +21,7 @@ class BoxCheckModel {
      */
     public function checkDownTime(){
 
-        $sql="SELECT display_id, (TO_SECONDS(NOW()) - TO_SECONDS(display_lastcheckin)) AS last_checkin, (TO_SECONDS(NOW()) - TO_SECONDS(display_uptimestart)) AS uptime, display_monitor_threshold_red, display_monitor_threshold_yellow
+        $sql="SELECT display_id, (TO_SECONDS(NOW()) - TO_SECONDS(display_lastcheckin)) AS last_checkin, (TO_SECONDS(NOW()) - TO_SECONDS(display_uptimestart)) AS uptime, display_monitor_threshold_red, display_monitor_threshold_yellow, display_monitor
               FROM display";
 
         $result = $this->conn->prepare($sql);
@@ -30,18 +30,8 @@ class BoxCheckModel {
 
         $dateResult = $result->fetchAll(PDO::FETCH_ASSOC);
 
-      //  foreach($dateResult as $row){
+        return $dateResult;
 
-        //    if($row['seconds'] >= $row['display_monitor_threshold_red']){
-                //echo "Box : " . $row['display_id'] . " is down! Last Check-in was " . $row['seconds'] . " seconds ago <br>";
-                // "<script> setDisplayDownAlert(" . $row['display_id'] . ") </script>";
-
-                return $dateResult;
-        //    }
-       // }
-
-
-        
     }
 
 }
