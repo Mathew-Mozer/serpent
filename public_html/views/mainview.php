@@ -49,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //If they have no permissions to view a property, let them know.
     if ($propertyRowIndex == 0) { ?>
         <div>
-            <h3>You have no access to any properties.</h3>
+            <h3>You are not currently assigned to any properties.</h3>
+            <p>Please contact your supervisor for property pillages.</p>
         </div>
     <?php }
 
