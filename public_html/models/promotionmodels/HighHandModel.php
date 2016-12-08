@@ -33,12 +33,12 @@ class HighHandModel{
         $result->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
         $result->bindValue(':title_message', $values['title_message'], PDO::PARAM_STR);
         $result->bindValue(':use_joker', $values['use_joker'], PDO::PARAM_STR);
-        $result->bindValue(':high_hand_gold', $values['high_hand_gold'], PDO::PARAM_STR);
+        $result->bindValue(':high_hand_gold', $values['high_hand_attachmc'], PDO::PARAM_STR);
         $result->bindValue(':horn_timer', $values['horn_timer'], PDO::PARAM_STR);
         $result->bindValue(':payout_value', $values['payout_value'], PDO::PARAM_STR);
         $result->bindValue(':session_timer', $values['session_timer'], PDO::PARAM_STR);
         $result->bindValue(':multiple_hands', $values['multiple_hands'], PDO::PARAM_INT);
-        $result->bindValue(':custom_payout', $values['custom_payout'], PDO::PARAM_STR);
+        $result->bindValue(':custom_payout', $values['high_hand_custom_payout'], PDO::PARAM_STR);
         $result->bindValue(':is_odd', $values['isodd'], PDO::PARAM_STR);
         $result->execute();
     }

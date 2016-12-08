@@ -8,7 +8,7 @@
 <div id="add-promotion">
   <?php
     for($i = 1; $i<=20; $i++) { ?>
-      <div class="playerForms">&nbsp;<?php echo $i;?> &nbsp; <input type="text" id="txtName<?php echo $i;?>" name="pgt_player_name<?php echo $i;?>"><input id="txtPoints<?php echo $i;?>" type="number" name="pgt_current_points<?php echo $i;?>"></div>
+      <div class="playerForms">&nbsp;<?php echo $i;?> &nbsp; <input type="text" id="txtName<?php echo $i;?>" name="pgt_player_name<?php echo $i;?>"><input id="txtPoints<?php echo $i;?>" type="number" min="0" name="pgt_current_points<?php echo $i;?>"></div>
       <?php } ?>
 
 

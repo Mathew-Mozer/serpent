@@ -43,8 +43,15 @@ class KickForCashModel{
      */
    public function update($values){
 
+       if($values['update_player']=='true'){
+           if($values['kfc_target_number']==$values['kfc_chosen_number']){
+               $values['kfc_failedattempts'] = 0;
+           }else {
+               $values['kfc_failedattempts'] = intval($values['kfc_failedattempts'])+1;
+           }
+       }
      $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number, kfc_name, kfc_chosen_number, kfc_failedattempts, kfc_gamelabel, kfc_team1,kfc_team2,kfc_vs)
-            VALUES (:promotion_id, :cash, :target_number,:current_name,:failedattempts, :chosen_number, :gamelabel, :team1, :team2, :vs);";
+            VALUES (:promotion_id, :cash, :target_number,:current_name, :chosen_number, :failedattempts, :gamelabel, :team1, :team2, :vs);";
 
 
      $result = $this->db->prepare($sql);

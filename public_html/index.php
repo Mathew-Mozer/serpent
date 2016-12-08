@@ -4,6 +4,7 @@ require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
 
+
 /**
  * This is the main page that finds them, bring them all and in the darkness
  * bind them.
@@ -108,11 +109,6 @@ $promotion = new PromotionModel($dbcon->read_database());
         <br/>
     </form>
 </div>
-
-
-    <footer>
-
-    </footer>
 
 </body>
 <script src="dependencies/js/login.js"></script>

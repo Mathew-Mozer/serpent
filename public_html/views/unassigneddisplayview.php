@@ -10,7 +10,8 @@
         //uses default property id which is 0
         $unassigned = new PropertyDisplays($dbcon->read_database(), 0);
         $unassignedDisplays = $unassigned->getDisplays();
-        foreach ($unassignedDisplays as $display) {
+
+    foreach ($unassignedDisplays as $display) {
     ?>
         <div class="unassigned-display-body promotion-preview-display display-settings">
             <p class="unassigned-display-display-text"><?php echo $display->getMacAddress(); ?></p>

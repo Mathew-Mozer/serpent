@@ -10,13 +10,24 @@
     min-height: 150px;
     min-width: 50%;
     margin: 0 auto;
-    background-color: #c3cacc;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
     box-shadow: 2px 2px 5px #969696;
     vertical-align: top;
     margin-bottom: 25px;
+}
+
+.display-background-normal{
+    background-color: #c3cacc;
+}
+
+.display-background-recovering{
+    background-color: darkgoldenrod;
+}
+
+.display-background-down{
+    background-color: darkred;
 }
 
 .display-outer{
@@ -68,6 +79,25 @@ h3.display-friendly-name{
 
 }
 
+.promotion-artifact-preview{
+    clear: both;
+    max-height: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    position: relative;
+    top: -65px;
+    left: -20px;
+    z-index: 4;
+    background-color: green;
+    color: white;
+    border-radius: 25px;
+    padding-top: 5px;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 2px 2px 5px #969696;
+}
+
 hr.display{
     border-color: #686868;
     background-color: #686868;
@@ -77,6 +107,11 @@ hr.display{
 .display-font{
     color: #686868;
     text-shadow: 1px 1px #f7f7f7;
+}
+
+.display-font-alarm{
+    color: white;
+    text-shadow: 1px 1px grey;
 }
 
 .box-settings {

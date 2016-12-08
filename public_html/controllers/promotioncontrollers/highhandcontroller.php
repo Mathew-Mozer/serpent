@@ -23,16 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response['casino-id'] = $_POST['casinoId'];
         header('content-type:application/json');
         echo json_encode($response);
+
     } else if ($_POST['action'] == 'read') {
         $highHand = new HighHandModel($conn->read_database());
         $response = $highHand->getHighHand($_POST['promotionId']);
         header('content-type:application/json');
         echo json_encode($response);
+
     } else if ($_POST['action'] == 'template'){
         $highHand = new HighHandModel($conn->read_database());
         $response = $highHand->getTemplate();
         header('content-type:application/json');
         echo json_encode($response);
+
     }else if($_POST['action'] == 'update'){
         $highHand = new HighHandModel($conn->insert_database());
         $highHand->updateHighHand($_POST['promotionId'], $_POST['name'], $_POST['card1'], $_POST['card2'],
@@ -40,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST['card8']);
         header('content-type:application/json');
         echo json_encode($response);
+
     } else if ($_POST['action'] == 'view'){
         $highHand = new HighHandModel($conn->read_database());
         $response = $highHand->getAllHands($_POST['highHandSession']);

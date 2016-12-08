@@ -82,6 +82,8 @@ var savePromotionDisplaySettings = function (promotionId,sceneDuration,skinId) {
         cache: false,
         success: function() {
             $('#save-btn-'+promotionId).hide();
+            $('.remove-from-display').show();
+
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -103,6 +105,7 @@ $('.add-to-display').click(function () {
 });
 
 $('.scene-duration').bind("keyup change",function (){
+    $('.remove-from-display').hide();
     $('#save-btn-'+this.name).show();
 });
 
