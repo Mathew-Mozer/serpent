@@ -6,7 +6,9 @@
 
 <div id="add-promotion">
     <div id="first-page">
-        <form>
+
+            <input type="hidden" name="promotionTypeName" value="highhand">
+            <input type="hidden" id="promotionTypeId" name="highhand_promotionTypeId" value="1">
             <br>
 
             <input id="title-message" name="title_message" type="text" placeholder="Title Message"/>
@@ -64,12 +66,13 @@
 
             <input class="high-hand-checkbox" id="use-joker" name="use_joker" type="checkbox"/>
             <label class="high-hand-label">Use Joker</label>
-            <input type="hidden" name="scene_id" value="2"/>
             <br>
 
             <input class="high-hand-checkbox" id="custom-payout" name="high_hand_custom_payout" type="checkbox"/>
             <label class="high-hand-label">Custom Payout</label>
-        </form>
+
+            <input type="hidden" id="scene-id" name="scene_id" value="2"/>
+
     </div>
 </div>
 <script src="dependencies/js/promotion/formhelperfunctions.js"></script>

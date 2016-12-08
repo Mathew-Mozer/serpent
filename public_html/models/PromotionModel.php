@@ -214,18 +214,23 @@ WHERE promotion.promotion_id = :id;";
         return $assignedpromotions;
     }
 
-    public function getUnassignedPromotions($displayId, $propertyID)
+    public function getUnassignedPromotions($displayId, $acctID)
     {
-        $sql = "SELECT * FROM promo_property p, promotion_type, promotion WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
-              WHERE d.promotion_id = p.promo_property_promo_id AND d.display_id=:display_id ) 
-              AND p.promo_property_template = 0
-			  AND promotion.promotion_id = p.promo_property_promo_id
-              AND p.promo_property_property_id=:property_id 
-              AND promotion.promotion_type_id = promotion_type.promotion_type_id
-			  GROUP BY p.promo_property_promo_id;";
+        $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
+                WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
+                WHERE d.promotion_id = p.promo_property_promo_id 
+                AND d.display_id=:display_id ) 
+                AND p.promo_property_template = 0 
+                AND promotion.promotion_id =p.promo_property_promo_id 
+                AND p.promo_property_property_id=account_permissions.excess_id 
+                AND promotion.promotion_type_id = promotion_type.promotion_type_id 
+                AND account_permissions.tag_id=:acct_id 
+                AND account_permissions.excess_id=p.promo_property_property_id 
+                AND account_permissions.account_id=:acct_id 
+                GROUP BY p.promo_property_promo_id";
         $result = $this->db->prepare($sql);
         $result->bindValue(':display_id', $displayId);
-        $result->bindValue(':property_id', $propertyID);
+        $result->bindValue(':acct_id', $acctID);
         $result->execute();
         $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);
         return $unassignedPromotions;
@@ -253,10 +258,28 @@ WHERE promotion.promotion_id = :id;";
 
     public function getTemplates($values) {
         if($values['promotionType'] == 'kickforcash') {
-            $sql = "select promo_property.promo_property_promo_id,promo_property.promo_property_template_name  
-            from promotion,promo_property where promotion.promotion_id=promo_property.promo_property_promo_id 
-            and promo_property.promo_property_property_id= :propertyId 
-            and promo_property.promo_property_template=1";
+            $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
+            from kick_for_cash,promotion,promo_property
+            where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and kick_for_cash.kfc_promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id=:propertyId 
+            and promo_property.promo_property_template=1';
+        }
+        else if($values['promotionType'] == 'pointsgt') {
+            $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
+            from points_gt,promotion,promo_property
+            where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and points_gt.pgt_promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id=:propertyId 
+            and promo_property.promo_property_template=1';
+        }
+        else if($values['promotionType'] == 'highhand'){
+            $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
+            from high_hand,promotion,promo_property
+            where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and high_hand.promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id=:propertyId 
+            and promo_property.promo_property_template=1';
         }
 
         $statement = $this->db->prepare($sql);
