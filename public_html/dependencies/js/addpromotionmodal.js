@@ -101,7 +101,7 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
             "<option value='"+obj.promo_property_promo_id+"'>"+obj.promo_property_template_name+"</option>"
         )
     });
-
+    $('#template-options').show();
     $('#add-promotion-buttons').append("<button type='button' id='next-page-btn'> Next </button>");
 
     $('#next-page-btn').click(function () {
@@ -111,26 +111,8 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
     });
 };
 
-/*var getTemplateValues = function(templateId,promotionTypeId) {
-    $.ajax({
-        url: 'controllers/promotioncontroller.php',
-        type: 'post',
-        data: {
-            action: 'getTemplateValues',
-            promotionTypeId: promotionTypeId,
-            templateId: templateId
-        },
-        cache: false,
-        success: function (response) {
-            addPromotionUsingTemplate(response);
-        },
-        error: function (xhr, desc, err) {
-            console.log(xhr + "\n" + err);
-        }
-    });
-};*/
-
 var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
+    console.log(promotionId + "-" + promotionTypeId);
     $("#template-form").load("views/addpromotionviews/add"+promotionName+"view.php",{promotion_settings:true,
         promotion_id:promotionId, promotion_type:promotionTypeId});
     $('#add-promotion-buttons').empty();
@@ -149,6 +131,7 @@ var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
 var noTemplate = function () {
     $('#use-template-prompt').hide();
     $("#promotion-details").load("views/addpromotionviews/add" + promotionName + "view.php");
+    $('#promotion-details').show();
     $('#add-promotion-buttons').empty();
     $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
 

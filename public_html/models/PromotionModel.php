@@ -306,8 +306,8 @@ WHERE promotion.promotion_id = :id;";
         $statement = $this->db->prepare($sql);
         $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
         $statement->execute();
-
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
         return $results;
     }
 

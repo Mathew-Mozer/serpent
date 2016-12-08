@@ -6,7 +6,7 @@
 
 <div id="add-promotion">
     <div id="first-page">
-
+        <form>
             <input type="hidden" name="promotionTypeName" value="highhand">
             <input type="hidden" id="promotionTypeId" name="highhand_promotionTypeId" value="1">
             <br>

@@ -152,4 +152,16 @@ class HighHandModel{
         return $response;
 
     }
+
+    public function updateCardSet($value){
+        $sql = "UPDATE high_hand_records SET high_hand_isWinner=:isWinner, high_hand_payout=:payout WHERE high_hand_record_id=:handId";
+
+        $result = $this->conn->prepare($sql);
+
+        $result->bindValue(':isWinner', $value['isWinner'], PDO::PARAM_STR);
+        $result->bindValue(':payout', $value['payout'], PDO::PARAM_STR);
+        $result->bindValue(':handId', $value['handId'], PDO::PARAM_STR);
+
+        $result->execute();
+    }
 }

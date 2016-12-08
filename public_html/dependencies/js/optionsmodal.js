@@ -19,7 +19,12 @@ var settingsModal = $("#settings").dialog({
         create: function (){
             //removes the x button on the top right corner
             //$(this).dialog("widget").find('.ui-dialog-titlebar-close').remove();
-        }
+        },
+    buttons: {
+        Update: function () {
+            updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
+            $("#settings").dialog('close');
+        }}
     });
 
     // $('#settings').dialog("widget").find('.ui-dialog-titlebar-close').click(function(){

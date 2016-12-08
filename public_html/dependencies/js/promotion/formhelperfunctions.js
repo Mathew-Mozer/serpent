@@ -106,6 +106,7 @@ var getModalData = function (promotionId, promotionTypeId) {
         },
         cache: false,
         success: function (response) {
+            console.log(response);
             setFormData('add-promotion', response)
         },
         error: function (xhr, desc, err) {
