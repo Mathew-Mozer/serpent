@@ -95,9 +95,9 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 </form>
 <hr>
 <form class="form-horizontal" method="post">
-    <input type="text" id="display-name" name="displayName" value='<?php echo $display->getName() ?>'>
+    <input type="text" id="display-name-field" name="displayName" value='<?php echo $display->getName() ?>'>
     <p>Display Name</p><br>
-    <input type="text" id="display-location" name="displayLocation"
+    <input type="text" id="display-location-field" name="displayLocation"
            value='<?php echo $display->getDisplayLocation() ?>'>
     <p>Display Location</p><br>
     <button type="button" id="update-display-btn" hidden>Save</button>

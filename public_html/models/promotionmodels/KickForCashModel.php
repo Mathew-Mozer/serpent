@@ -74,7 +74,6 @@ class KickForCashModel{
      * @return mixed
      */
    public function get($id){
-
      $sql = "SELECT
                *
              FROM
@@ -89,7 +88,6 @@ class KickForCashModel{
      $result->execute();
 
      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
-
      return $promoResult;
    }
 
@@ -125,5 +123,6 @@ class KickForCashModel{
        $result->execute();
        return array("id"=>$promotionId,"name"=>$name,"target_number"=>$targetNumber,"game_label"=>$gameLabel);
    }
+
  }
 ?>

@@ -25,8 +25,12 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         success: function (response) {
             //update view with new promotion
             addPromotion(response);
-            $("#promotion-details").empty();
             addPromotionModal.dialog('close');
+            $("#promotion-details").empty();
+            $('#add-promotion-buttons').empty();
+            $('#create-template').empty();
+            $("#promotion-select").show();
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -157,6 +161,7 @@ var getFormData = function (formId) {
  */
 
 var setFormData = function (formId, data) {
+    alert('set form data');
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
     var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
@@ -197,3 +202,5 @@ var setFormData = function (formId, data) {
     }
 
 };
+
+
