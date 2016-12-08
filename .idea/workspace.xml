@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="387a5a77-39f5-4f38-b5f9-db8c63230e55" name="Default" comment="Fixed high hand selection">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/highhandcontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/highhandcontroller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/footer.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/BoxCheckModel.php" afterPath="$PROJECT_DIR$/public_html/models/BoxCheckModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/modals/displaymodalform.php" afterPath="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/PromotionModel.php" afterPath="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
     </list>
     <ignored path="serpent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,54 +25,78 @@
     <favorites_list name="serpent" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="HighHandModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
-              <folding>
-                <marker date="1481069652512" expanded="true" signature="428:800" ph="INSERT INTO high_hand... " />
-                <marker date="1481069652512" expanded="true" signature="2007:2124" ph="SELECT * FRO... high_hand" />
-                <marker date="1481069652512" expanded="true" signature="2796:3285" ph="INSERT INTO high_hand_records... " />
-                <marker date="1481069652512" expanded="true" signature="4158:4198" ph="SELECT * FRO... high_hand" />
-                <marker date="1481069652512" expanded="true" signature="4532:4718" ph="SELECT * FRO... high_hand" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="highhand.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="displayhighhandview.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="highhandcontroller.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/highhandcontroller.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.6015406">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="PromotionModel.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1031">
+                  <caret line="221" column="48" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="48" />
+                  <folding>
+                    <marker date="1481177125525" expanded="true" signature="362:670" ph="SELECT promo... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="918:940" ph="SELECT * FRO... property" />
+                    <marker date="1481177125525" expanded="true" signature="1193:1251" ph="SELECT * FRO... promotion_type" />
+                    <marker date="1481177125525" expanded="true" signature="1582:2558" ph="SELECT promo... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="2888:3377" ph="SELECT promo... promotion_type" />
+                    <marker date="1481177125525" expanded="true" signature="3717:3821" ph="INSERT INTO promotion... " />
+                    <marker date="1481177125525" expanded="true" signature="4217:4331" ph="INSERT INTO promo_property... " />
+                    <marker date="1481177125525" expanded="true" signature="4570:5056" ph="SELECT promo... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="5490:5576" ph="SELECT promo... promotion_type" />
+                    <marker date="1481177125525" expanded="true" signature="5874:6019" ph="SELECT promo... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="6322:6514" ph="SELECT promo... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="6733:6941" ph="SELECT promo... promotion_type" />
+                    <marker date="1481177125525" expanded="true" signature="7461:7516" ph="SELECT artif... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="8601:9706" ph="SELECT promo... promotion" />
+                    <marker date="1481177125525" expanded="true" signature="10052:10504" ph="SELECT * FRO... promo_property" />
+                    <marker date="1481177125525" expanded="true" signature="10129:10259" ph="SELECT null promotion_property" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="displaymodalform.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="34" column="132" selection-start-line="34" selection-start-column="132" selection-end-line="34" selection-end-column="132" />
+                  <folding>
+                    <marker date="1481182136213" expanded="true" signature="1826:1860" ph="..." />
+                    <marker date="1481182136213" expanded="true" signature="3344:3380" ph="..." />
+                    <marker date="1481182136213" expanded="true" signature="3984:4040" ph="..." />
+                    <marker date="1481182136213" expanded="true" signature="4154:4221" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="displayview.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="493">
+                  <caret line="31" column="165" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="165" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tiles.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/tiles.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="414">
+                  <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -95,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/kickforcash.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/buttons.js" />
@@ -109,7 +130,6 @@
         <option value="$PROJECT_DIR$/public_html/dependencies/php/header.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/php/HelperFunctions.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/php/Toolbar.php" />
-        <option value="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
         <option value="$PROJECT_DIR$/public_html/modals/promotionModalView.php" />
         <option value="$PROJECT_DIR$/public_html/models/promotionmodels/KickForCashModel.php" />
         <option value="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" />
@@ -122,7 +142,6 @@
         <option value="$PROJECT_DIR$/public_html/models/ToolbarModel.php" />
         <option value="$PROJECT_DIR$/public_html/models/UsersModel.php" />
         <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addkickforcashview.php" />
-        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php" />
         <option value="$PROJECT_DIR$/public_html/views/addpromotionoptionview.php" />
         <option value="$PROJECT_DIR$/public_html/views/promotionview.php" />
         <option value="$PROJECT_DIR$/public_html/views/propertyview.php" />
@@ -140,12 +159,15 @@
         <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" />
         <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/css/displays.css" />
-        <option value="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
         <option value="$PROJECT_DIR$/public_html/views/displayview.php" />
         <option value="$PROJECT_DIR$/public_html/models/BoxCheckModel.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
         <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/highhandcontroller.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php" />
+        <option value="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/tiles.css" />
+        <option value="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
       </list>
     </option>
   </component>
@@ -252,28 +274,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="displaypromotionviews" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -292,81 +292,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="promotionmodels" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dependencies" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dependencies" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dependencies" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="promotion" />
+              <option name="myItemId" value="modals" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,29 +328,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serpent" />
+              <option name="myItemId" value="dependencies" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="promotioncontrollers" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -447,15 +355,15 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\code\serpent\public_html\models" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sking\Documents\GitHub\serpent\public_html" />
       <recent name="C:\Users\sking\Documents\GitHub\serpent\public_html\views\displaypromotionviews" />
       <recent name="C:\Users\sking\Documents\GitHub\serpent\public_html\views\addpromotionviews" />
       <recent name="C:\Users\sking\Documents\GitHub\serpent\public_html\models\promotionmodels" />
       <recent name="C:\Users\sking\Documents\GitHub\serpent\public_html\controllers\promotioncontrollers" />
-      <recent name="C:\Users\sking\Documents\GitHub\serpent\dependencies\php" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\code\serpent\public_html\models" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.php">
@@ -559,6 +467,8 @@
       <workItem from="1481091609870" duration="12000" />
       <workItem from="1481091812959" duration="12729000" />
       <workItem from="1481110614373" duration="6928000" />
+      <workItem from="1481157772472" duration="1761000" />
+      <workItem from="1481173838770" duration="8053000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed radio and checkbox saving">
       <created>1481066639703</created>
@@ -571,18 +481,18 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107636000" />
+    <option name="totallyTimeSpent" value="117450000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11510417" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11666667" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13958333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14587738" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03911205" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -622,20 +532,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/optionsmodal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="179" column="9" selection-start-line="179" selection-start-column="9" selection-end-line="179" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -661,13 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -780,13 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/unassigneddisplayview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dbcon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1562">
@@ -880,7 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -894,27 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/styling.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/tiles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="69" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/displays.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
           <caret line="88" column="12" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -931,7 +795,7 @@
         <state relative-caret-position="187">
           <caret line="11" column="301" selection-start-line="11" selection-start-column="301" selection-end-line="11" selection-end-column="301" />
           <folding>
-            <element signature="e#6#43#0#PHP" expanded="true" />
+            <element signature="e#6#43#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -940,17 +804,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1496">
           <caret line="88" column="21" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
-          <folding>
-            <marker date="1481069652474" expanded="true" signature="753:860" ph="SELECT * FRO... display" />
-            <marker date="1481069652474" expanded="true" signature="1988:2027" ph="SELECT * FRO... display" />
-            <marker date="1481069652474" expanded="true" signature="2395:2477" ph="UPDATE displ... " />
-            <marker date="1481069652474" expanded="true" signature="2815:2876" ph="SELECT * FRO... promotion_property" />
-            <marker date="1481069652474" expanded="true" signature="3604:3706" ph="UPDATE displ... " />
-            <marker date="1481069652474" expanded="true" signature="4115:4313" ph="INSERT INTO `promotion_property`... " />
-            <marker date="1481069652474" expanded="true" signature="5099:5235" ph="DELETE FROM " />
-            <marker date="1481069652474" expanded="true" signature="5624:5729" ph="SELECT skin.... skin" />
-            <marker date="1481069652474" expanded="true" signature="6257:6434" ph="UPDATE promo... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -962,46 +816,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="162" column="56" selection-start-line="162" selection-start-column="56" selection-end-line="162" selection-end-column="56" />
-          <folding>
-            <marker date="1481110609925" expanded="true" signature="362:670" ph="SELECT promo... promotion" />
-            <marker date="1481110609925" expanded="true" signature="918:940" ph="SELECT * FRO... property" />
-            <marker date="1481110609925" expanded="true" signature="1193:1251" ph="SELECT * FRO... promotion_type" />
-            <marker date="1481110609925" expanded="true" signature="1582:2558" ph="SELECT promo... promotion" />
-            <marker date="1481110609925" expanded="true" signature="2888:3377" ph="SELECT promo... promotion_type" />
-            <marker date="1481110609925" expanded="true" signature="3717:3821" ph="INSERT INTO promotion... " />
-            <marker date="1481110609925" expanded="true" signature="4217:4331" ph="INSERT INTO promo_property... " />
-            <marker date="1481110609925" expanded="true" signature="4570:5056" ph="SELECT promo... promotion" />
-            <marker date="1481110609925" expanded="true" signature="5490:5576" ph="SELECT promo... promotion_type" />
-            <marker date="1481110609925" expanded="true" signature="5874:6019" ph="SELECT promo... promotion" />
-            <marker date="1481110609925" expanded="true" signature="6322:6514" ph="SELECT promo... promotion" />
-            <marker date="1481110609925" expanded="true" signature="6733:6941" ph="SELECT promo... promotion_type" />
-            <marker date="1481110609925" expanded="true" signature="7461:7516" ph="SELECT artif... promotion" />
-            <marker date="1481110609925" expanded="true" signature="17222:18327" ph="SELECT promo... promotion" />
-            <marker date="1481110609925" expanded="true" signature="18673:19125" ph="SELECT * FRO... promo_property" />
-            <marker date="1481110609925" expanded="true" signature="18750:18880" ph="SELECT null promotion_property" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/models/BoxCheckModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="24" column="26" selection-start-line="23" selection-start-column="14" selection-end-line="24" selection-end-column="26" />
-          <folding>
-            <marker date="1481112387903" expanded="true" signature="401:663" ph="SELECT displ... display" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,9 +832,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/highhandcontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
+        <state relative-caret-position="612">
           <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
           <folding>
             <marker date="1481069652512" expanded="true" signature="428:800" ph="INSERT INTO high_hand... " />
@@ -1027,27 +870,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/highhandcontroller.php">
+    <entry file="file://$PROJECT_DIR$/public_html/views/unassigneddisplayview.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="306">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displayhighhandview.php">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/text.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js">
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/displaymodal.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/styling.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1031">
+          <caret line="221" column="48" selection-start-line="221" selection-start-column="25" selection-end-line="221" selection-end-column="48" />
+          <folding>
+            <marker date="1481177125525" expanded="true" signature="362:670" ph="SELECT promo... promotion" />
+            <marker date="1481177125525" expanded="true" signature="918:940" ph="SELECT * FRO... property" />
+            <marker date="1481177125525" expanded="true" signature="1193:1251" ph="SELECT * FRO... promotion_type" />
+            <marker date="1481177125525" expanded="true" signature="1582:2558" ph="SELECT promo... promotion" />
+            <marker date="1481177125525" expanded="true" signature="2888:3377" ph="SELECT promo... promotion_type" />
+            <marker date="1481177125525" expanded="true" signature="3717:3821" ph="INSERT INTO promotion... " />
+            <marker date="1481177125525" expanded="true" signature="4217:4331" ph="INSERT INTO promo_property... " />
+            <marker date="1481177125525" expanded="true" signature="4570:5056" ph="SELECT promo... promotion" />
+            <marker date="1481177125525" expanded="true" signature="5490:5576" ph="SELECT promo... promotion_type" />
+            <marker date="1481177125525" expanded="true" signature="5874:6019" ph="SELECT promo... promotion" />
+            <marker date="1481177125525" expanded="true" signature="6322:6514" ph="SELECT promo... promotion" />
+            <marker date="1481177125525" expanded="true" signature="6733:6941" ph="SELECT promo... promotion_type" />
+            <marker date="1481177125525" expanded="true" signature="7461:7516" ph="SELECT artif... promotion" />
+            <marker date="1481177125525" expanded="true" signature="8601:9706" ph="SELECT promo... promotion" />
+            <marker date="1481177125525" expanded="true" signature="10052:10504" ph="SELECT * FRO... promo_property" />
+            <marker date="1481177125525" expanded="true" signature="10129:10259" ph="SELECT null promotion_property" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/tiles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="31" column="165" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="165" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="34" column="132" selection-start-line="34" selection-start-column="132" selection-end-line="34" selection-end-column="132" />
+          <folding>
+            <marker date="1481182136213" expanded="true" signature="1826:1860" ph="..." />
+            <marker date="1481182136213" expanded="true" signature="3344:3380" ph="..." />
+            <marker date="1481182136213" expanded="true" signature="3984:4040" ph="..." />
+            <marker date="1481182136213" expanded="true" signature="4154:4221" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
