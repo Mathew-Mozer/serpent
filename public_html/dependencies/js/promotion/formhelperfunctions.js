@@ -161,7 +161,6 @@ var getFormData = function (formId) {
  */
 
 var setFormData = function (formId, data) {
-    alert('set form data');
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
     var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');

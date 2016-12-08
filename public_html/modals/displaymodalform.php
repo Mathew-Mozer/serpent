@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath() . "dbcon.php";
 require "../models/PromotionModel.php";
@@ -13,7 +14,7 @@ $displayProperties = new PropertyDisplays($dbcon->read_Database(), $_POST['prope
 $display = $displayProperties->getDisplayWithId($_POST['displayId']);
 $skins = $displayProperties->getSkinTypes($_POST['propertyId']);
 $assignedPromotions = $displayOptions->getPromotionsByDisplayId($_POST['displayId']);
-$unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['displayId'], $_POST['propertyId']);
+$unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['displayId'], $_SESSION['userId']);
 ?>
 
 <form>

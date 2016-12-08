@@ -6,7 +6,8 @@
 
 
 <div id="add-promotion">
-<input type="hidden" name="promotionType" value="poinstgt">
+<input type="hidden" name="promotionTypeName" value="poinstgt">
+<input type="hidden" id="promotionTypeId" name="pgt_promotionTypeId" value="4">
 
 
 <input id="top-title-box" name="pgt_title" type="text" placeholder="Top Title">
@@ -90,7 +91,7 @@
     </div>
 
 </div>
-<input type="hidden" name="scene_id" value="4">
+<input type="hidden" id="scene-id" name="scene_id" value="4">
 </div>
 <script>
     $('#enable-instant-winners').change(function(){
