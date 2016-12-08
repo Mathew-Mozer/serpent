@@ -92,7 +92,7 @@
     </div>
 
 </div>
-<input type="hidden" name="scene_id" value="4">
+<input type="hidden" id="scene-id" name="scene_id" value="4">
 </div>
 <script>
     $('#enable-instant-winners').change(function(){

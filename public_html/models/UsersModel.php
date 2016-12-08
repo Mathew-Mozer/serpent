@@ -9,7 +9,7 @@
  * permissions.
  */
 
-class UsersModal{
+class UsersModel{
 
     private $userID;
     private $userFirstName;
@@ -18,16 +18,30 @@ class UsersModal{
     /**
      * UsersModal constructor.
      */
-    public function __construct() {
-        $this->userFirstName = "Killian";
-        $this->userFirstName = "Darkwater";
+    public function __construct(PDO $conn)
+    {
+        $this->conn = $conn;
     }
 
     /**
-     * @return mixed
+     * @param $userName
+     * @param $userPassword
+     * @param $propertyID
      */
-    public function getUsers() {
-        return $this->userFirstName . " " . $this->userLastName;
+    public function addUser($userName, $userPassword, $propertyID) {
+
+
+        $sql = "INSERT INTO account (account_name, account_password) VALUES(:userName, :userPassword);
+                INSERT INTO account_permissions (account_id, tag_id, permissions, excess_id) VALUES(LAST_INSERT_ID(), 1, 'RU', :propertyID);";
+
+        $result = $this->conn->prepare($sql);
+
+        $result->bindValue(':userName', $userName, PDO::PARAM_STR);
+        $result->bindValue(':userPassword', $userPassword, PDO::PARAM_STR);
+        $result->bindValue(':propertyID', $propertyID, PDO::PARAM_INT);
+
+        $result->execute();
+        return $result;
     }
 
 }

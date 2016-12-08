@@ -25,8 +25,6 @@ class KickForCashModel{
    public function add($values){
      $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number)
                                  VALUES (:promotion_id, :cash, :target_number);";
-
-
      $result = $this->db->prepare($sql);
      $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
      $result->bindValue(':cash', $values['kfc_cash_prize'], PDO::PARAM_STR);

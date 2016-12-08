@@ -11,6 +11,7 @@
 <script src="dependencies/js/promotionmodal.js"></script>
 <script src="dependencies/js/editdisplay.js"></script>
 <script src="dependencies/js/promotion.js"></script>
+<script src="dependencies/js/addusermodal.js"></script>
 <script>
 
     $(document).ready(function() {
@@ -50,10 +51,10 @@
             addPromotionModal.dialog('open');
         });
 
-        /*        //Open add/remove user panel
-         $(".userBtn").unbind('click').click(function () {
-         editUsersModal.dialog('open');
-         });*/
+        //Open add/remove user panel
+         $("#userBtn").click(function () {
+         createUserModal.dialog('open');
+         });
 
         /**
          * Opens the property modal

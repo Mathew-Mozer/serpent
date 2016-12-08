@@ -177,7 +177,6 @@ var CreateTemplatePrompt = function () {
     });
 };
 
-
 /**
  * Inserts a template promotion into the database
  */

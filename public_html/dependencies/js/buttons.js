@@ -19,8 +19,9 @@ $(document).ready(function(){
     });
 
     //Open add/remove user panel
-    $(".userBtn").unbind('click').click(function () {
-        editUsersModal.dialog('open');
+    $("#userBtn").click(function () {
+        alert.("I'm trying");
+        createUserModal.dialog('open');
     });
 
     $("#create-property-btn").click(function(){

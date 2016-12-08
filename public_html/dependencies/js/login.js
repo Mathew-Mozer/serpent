@@ -35,7 +35,9 @@ var validateLogin = function () {
                     ul.appendChild(li);
                 });
             }
+            location.reload();
         },
+
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
         }

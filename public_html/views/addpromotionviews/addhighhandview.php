@@ -66,12 +66,13 @@
 
             <input class="high-hand-checkbox" id="use-joker" name="use_joker" type="checkbox"/>
             <label class="high-hand-label">Use Joker</label>
-            <input type="hidden" name="scene_id" value="2"/>
             <br>
 
             <input class="high-hand-checkbox" id="custom-payout" name="high_hand_custom_payout" type="checkbox"/>
             <label class="high-hand-label">Custom Payout</label>
-        </form>
+
+            <input type="hidden" id="scene-id" name="scene_id" value="2"/>
+
     </div>
 </div>
 <script src="dependencies/js/promotion/formhelperfunctions.js"></script>

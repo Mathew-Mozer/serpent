@@ -33,6 +33,27 @@ class PromotionModel {
         return $promoResult;
     }
 
+    /**
+     * Get list of properties that logged in user can access
+     * @return PDOStatement
+     */
+    public function getAssignableProperties(){
+
+
+
+        $sql = "SELECT property_id,property_name 
+                FROM property,account_permissions 
+                WHERE account_permissions.excess_id=property_id 
+                AND account_permissions.tag_id=1 
+                AND account_permissions.permissions 
+                LIKE '%R%' 
+                AND account_permissions.account_id=" . $_SESSION['userId'] .";";
+
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        return $result;
+    }
+
     public function getPromotionModelName($promtionTypeId)
     {
         $sql = "SELECT * FROM promotion_type WHERE promotion_type_id = :id";
@@ -214,18 +235,23 @@ WHERE promotion.promotion_id = :id;";
         return $assignedpromotions;
     }
 
-    public function getUnassignedPromotions($displayId, $propertyID)
+    public function getUnassignedPromotions($displayId, $acctID)
     {
-        $sql = "SELECT * FROM promo_property p, promotion_type, promotion WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
-              WHERE d.promotion_id = p.promo_property_promo_id AND d.display_id=:display_id ) 
-              AND p.promo_property_template = 0
-			  AND promotion.promotion_id = p.promo_property_promo_id
-              AND p.promo_property_property_id=:property_id 
-              AND promotion.promotion_type_id = promotion_type.promotion_type_id
-			  GROUP BY p.promo_property_promo_id;";
+        $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
+                WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
+                WHERE d.promotion_id = p.promo_property_promo_id 
+                AND d.display_id=:display_id ) 
+                AND p.promo_property_template = 0 
+                AND promotion.promotion_id =p.promo_property_promo_id 
+                AND p.promo_property_property_id=account_permissions.excess_id 
+                AND promotion.promotion_type_id = promotion_type.promotion_type_id 
+                AND account_permissions.tag_id=:acct_id 
+                AND account_permissions.excess_id=p.promo_property_property_id 
+                AND account_permissions.account_id=:acct_id 
+                GROUP BY p.promo_property_promo_id";
         $result = $this->db->prepare($sql);
         $result->bindValue(':display_id', $displayId);
-        $result->bindValue(':property_id', $propertyID);
+        $result->bindValue(':acct_id', $acctID);
         $result->execute();
         $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);
         return $unassignedPromotions;
