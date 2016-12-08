@@ -224,6 +224,23 @@ class PromotionModel
 
         return $promotionId;
     }
+
+    public function getTemplates($values) {
+        if($values['promotionType'] == 'kickforcash') {
+            $sql = "select promo_property.promo_property_promo_id,promo_property.promo_property_template_name  
+            from promotion,promo_property where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id= :propertyId 
+            and promo_property.promo_property_template=1";
+        }
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
+        $statement->execute();
+
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
+    }
+
 }
 
 ?>

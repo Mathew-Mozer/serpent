@@ -29,8 +29,8 @@ class KickForCashModel{
 
      $result = $this->db->prepare($sql);
      $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-     $result->bindValue(':cash', $values['data']['kfc_cash_prize'], PDO::PARAM_STR);
-     $result->bindValue(':target_number', $values['data']['kfc_target_number'], PDO::PARAM_STR);
+     $result->bindValue(':cash', $values['kfc_cash_prize'], PDO::PARAM_STR);
+     $result->bindValue(':target_number', $values['kfc_target_number'], PDO::PARAM_STR);
 
      $result->execute();
 

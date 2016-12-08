@@ -46,6 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $reflectionClass = new ReflectionClass($className);
         $classReference = $reflectionClass->newInstanceArgs(array($conn->insert_database()));
         $classReference->add($_POST);
+    } else if($_POST['action'] == 'getTemplates') {
+        $promotion = new PromotionModel($conn->read_database());
+        $response = $promotion->getTemplates($_POST);
+        header('content-type:application/json');
+        echo json_encode($response);
+    } else if ($_POST['action'] == 'getTemplateValues') {
+        $promotion = new PromotionModel($conn->insert_database());
+        $className = $promotion->getPromotionModelName($_POST['promotionTypeId']);
+        require '../models/promotionmodels/'.$className.'.php';
+        $reflectionClass = new ReflectionClass($className);
+        $classReference = $reflectionClass->newInstanceArgs(array($conn->insert_database()));
+        $response = $classReference->get($_POST['templateId']);
+        header('content-type:application/json');
+        echo json_encode($response);
     }
 }
 ?>

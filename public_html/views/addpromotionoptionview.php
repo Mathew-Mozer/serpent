@@ -17,3 +17,4 @@ foreach ($promotionTypeList as $row) {
 }
 }?>
 <script src="dependencies/js/addpromotionmodal.js"></script>
+<script src="dependencies/js/promotion/formhelperfunctions.js"></script>

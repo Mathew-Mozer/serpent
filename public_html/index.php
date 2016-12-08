@@ -29,6 +29,10 @@ $promotion = new PromotionModel($dbcon->read_database());
         </div>
         <div id="promotion-details">
         </div>
+        <div id="use-template">
+        </div>
+        <div id="template-form">
+        </div>
         <div id="create-template">
         </div>
         <div id="add-promotion-buttons">
