@@ -133,19 +133,20 @@
 
                     $.each(response, function(index, value) {
 
+                    if(parseInt(value['display_monitor']) == 1) {
+                        if (parseInt(value["last_checkin"]) >= parseInt(value["display_monitor_threshold_red"])) {
+                            //console.log("Box is down!");
+                            setDisplayDownAlert(value["display_id"]);
 
-                      if (parseInt(value["last_checkin"]) >= parseInt(value["display_monitor_threshold_red"])) {
-                          //console.log("Box is down!");
-                          setDisplayDownAlert(value["display_id"]);
+                        } else if (parseInt(value["uptime"]) <= parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])) {
+                            //console.log("Box is recovering!");
+                            setDisplayRecoveringAlert(value["display_id"]);
 
-                      }else if(parseInt(value["uptime"]) <= parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])){
-                          //console.log("Box is recovering!");
-                          setDisplayRecoveringAlert(value["display_id"]);
-
-                      }else if(parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])){
-                         // console.log("box is stable");
-                          setDisplayNormal(value["display_id"])
-                      }
+                        } else if (parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_yellow"]) && parseInt(value["last_checkin"]) < parseInt(value["display_monitor_threshold_red"])) {
+                            // console.log("box is stable");
+                            setDisplayNormal(value["display_id"])
+                        }
+                    }
 
                     });
 
