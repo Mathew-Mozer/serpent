@@ -25,8 +25,12 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         success: function (response) {
             //update view with new promotion
             addPromotion(response);
-            $("#promotion-details").empty();
             addPromotionModal.dialog('close');
+            $("#promotion-details").empty();
+            $('#add-promotion-buttons').empty();
+            $('#create-template').empty();
+            $("#promotion-select").show();
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -197,3 +201,5 @@ var setFormData = function (formId, data) {
     }
 
 };
+
+

@@ -125,5 +125,6 @@ class KickForCashModel{
        $result->execute();
        return array("id"=>$promotionId,"name"=>$name,"target_number"=>$targetNumber,"game_label"=>$gameLabel);
    }
+
  }
 ?>

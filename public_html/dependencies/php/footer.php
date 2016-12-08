@@ -3,6 +3,14 @@
 * This page controls the footer and closing material for the website
 */
 ?>
+
+<script src="dependencies/js/optionsmodal.js"></script>
+<script src="dependencies/js/addpromotionmodal.js"></script>
+<script src="dependencies/js/createproperty.js"></script>
+<script src="dependencies/js/displayview.js"></script>
+<script src="dependencies/js/promotionmodal.js"></script>
+<script src="dependencies/js/editdisplay.js"></script>
+<script src="dependencies/js/promotion.js"></script>
 <script>
 
     $(document).ready(function() {
