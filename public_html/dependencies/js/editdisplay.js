@@ -9,8 +9,8 @@ var saveDisplayOptions = function () {
             action: 'updateDisplaySettings',
             propertyId: $('#property-id').val(),
             displayId: $('#display-id').val(),
-            displayName: $('#display-name').val(),
-            displayLocation: $('#display-location').val()
+            displayName: $('#display-name-field').val(),
+            displayLocation: $('#display-location-field').val()
         },
         cache: false,
         success: function () {
@@ -113,11 +113,11 @@ $('select').change(function (){
     $('#save-btn-'+this.name).show();
 });
 
-$('#display-name').bind("keyup change",function (){
+$('#display-name-field').bind("keyup change",function (){
     $('#update-display-btn').show();
 });
 
-$('#display-location').bind("keyup change",function (){
+$('#display-location-field').bind("keyup change",function (){
     $('#update-display-btn').show();
 });
 
