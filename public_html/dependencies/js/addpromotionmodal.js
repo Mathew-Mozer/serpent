@@ -112,6 +112,7 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
 };
 
 var getTemplateValues = function(templateId,promotionTypeId) {
+    alert('getvalues');
     $.ajax({
         url: 'controllers/promotioncontroller.php',
         type: 'post',
@@ -131,9 +132,11 @@ var getTemplateValues = function(templateId,promotionTypeId) {
 };
 
 var addPromotionUsingTemplate = function (values) {
-    setFormData('add-promotion',values);
+    console.log(values);
+/*    $("#settings").load("views/addpromotionviews/add"+promotionName+"view.php",{promotion_settings:true,
+        promotion_id:values[''], promotion_type:$(this).data("promo-type-id")});
     $('#add-promotion-buttons').empty();
-    $('#add-promotion-buttons').append("<button type='button' id='create-promotion-btn'>Create Promotion</button>");
+    $('#add-promotion-buttons').append("<button type='button' id='create-promotion-btn'>Create Promotion</button>");*/
 
     $('#create-promotion-btn').click(function () {
         var promotionTypeId = $("#promotion-details").data("promotion-id");

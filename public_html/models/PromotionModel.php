@@ -194,7 +194,8 @@ WHERE promotion.promotion_id = :id;";
                       promotion_property.display_id,
                       promotion_property.scene_duration,
                       promotion_property.skin_id,
-                      promotion_type.promotion_type_title
+                      promotion_type.promotion_type_title,
+                      promotion_type.promotion_type_scene_verbage
                     FROM
                       promotion, promotion_type, promotion_property, property
                     WHERE
