@@ -17,7 +17,7 @@
         if($permission->hasPermissionByAccount('account','C')){
 
           ?>
-        <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Edit User">
+        <div id = "userBtn" class="button-body tool-button" data-toggle="tooltip" title="Edit User">
             <!--<span class="glyphicon glyphicon-user tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-user fa-3x"></i>
         </div>

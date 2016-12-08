@@ -110,6 +110,29 @@ $promotion = new PromotionModel($dbcon->read_database());
     </form>
 </div>
 
+<div id="createUser" style="display: none;" title="Create User">
+
+    <form id="userForm">
+
+        <input type="text" id="userName2" name="userName2" placeholder="User Name">
+        <br/>
+        <br/>
+        <input type="password" id="userPassword" name="userPassword" placeholder="User Password">
+        <br/>
+        <br/>
+        <select id="propertyID" name="propertyID">
+            <?php
+            $properties = $promotion->getAssignableProperties();
+            foreach ($properties as $property){
+                echo "<option value='" . $property['property_id'] . "'>" . $property['property_name'] . "</option>";
+            }
+            ?>
+        </select>
+        <label for="propertyID">Select Property</label>
+        <br/>
+        <br/>
+    </form>
+</div>
 </body>
 <script src="dependencies/js/login.js"></script>
 <script>

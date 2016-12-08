@@ -33,6 +33,24 @@ class PromotionModel {
         return $promoResult;
     }
 
+    /**
+     * Get list of properties that logged in user can access
+     * @return PDOStatement
+     */
+    public function getAssignableProperties(){
+        $sql = "SELECT property_id,property_name 
+                FROM property,account_permissions 
+                WHERE account_permissions.excess_id=property_id 
+                AND account_permissions.tag_id=1 
+                AND account_permissions.permissions 
+                LIKE '%R%' 
+                AND account_permissions.account_id=" . $_SESSION['userId'] .";";
+
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        return $result;
+    }
+
     public function getPromotionModelName($promtionTypeId)
     {
         $sql = "SELECT * FROM promotion_type WHERE promotion_type_id = :id";
