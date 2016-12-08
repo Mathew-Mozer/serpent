@@ -122,9 +122,11 @@ $promotion = new PromotionModel($dbcon->read_database());
         <br/>
         <select id="propertyID" name="propertyID">
             <?php
+            if(isset($_SESSION['userId'])){
             $properties = $promotion->getAssignableProperties();
             foreach ($properties as $property){
                 echo "<option value='" . $property['property_id'] . "'>" . $property['property_name'] . "</option>";
+                }
             }
             ?>
         </select>
@@ -133,6 +135,7 @@ $promotion = new PromotionModel($dbcon->read_database());
         <br/>
     </form>
 </div>
+
 </body>
 <script src="dependencies/js/login.js"></script>
 <script>

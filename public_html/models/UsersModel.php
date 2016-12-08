@@ -32,7 +32,7 @@ class UsersModel{
 
 
         $sql = "INSERT INTO account (account_name, account_password) VALUES(:userName, :userPassword);
-                INSERT INTO account_permissions (account_id, tag_id, permissions, excess_id) VALUES(LAST_INSERT_ID(), 2, 'RU', :propertyID);";
+                INSERT INTO account_permissions (account_id, tag_id, permissions, excess_id) VALUES(LAST_INSERT_ID(), 1, 'RU', :propertyID);";
 
         $result = $this->conn->prepare($sql);
 

@@ -8,7 +8,7 @@
         <?php
         if($permission->hasPermissionByAccount('property','C')){
             ?>
-            <div id = "create-property-btn" class="button-body tool-button" data-toggle="tooltip" title="Create New Property">
+            <div id = "create-property-btn" class="button-body tool-button hidden" data-toggle="tooltip" title="Create New Property">
                 <!--<span class="glyphicon icon-glyphicon-new-property tool-glyphicon white" aria-hidden="true"></span>-->
                 <i class="font-awesome-toolbar fa fa-sitemap fa-3x"></i>
             </div>
@@ -44,12 +44,12 @@
  ?>
 
 
-        <div id = "options-btn" class="button-body tool-button" data-toggle="tooltip" title="Options">
+        <div id = "options-btn" class="button-body tool-button hidden" data-toggle="tooltip" title="Options">
             <!--<span class="glyphicon glyphicon-cog tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-cog fa-3x"></i>
         </div>
 
-        <div id = "" class="button-body tool-button" data-toggle="tooltip" title="Request Help">
+        <div id = "" class="button-body tool-button hidden" data-toggle="tooltip" title="Request Help">
             <!--<span class="glyphicon glyphicon-comment tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-comment-o fa-3x"></i>
         </div>

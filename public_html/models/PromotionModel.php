@@ -38,6 +38,9 @@ class PromotionModel {
      * @return PDOStatement
      */
     public function getAssignableProperties(){
+
+
+
         $sql = "SELECT property_id,property_name 
                 FROM property,account_permissions 
                 WHERE account_permissions.excess_id=property_id 
