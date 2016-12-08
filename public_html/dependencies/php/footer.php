@@ -119,6 +119,7 @@
             checkDowntime();
         }, 5000);
 
+
         /**
          * Check to see if a box is down or recovered
          */
