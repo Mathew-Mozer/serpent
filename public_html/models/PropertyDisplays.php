@@ -17,7 +17,7 @@ class PropertyDisplays
      */
     public function __construct($conn, $propertyId){
         $this->conn = $conn;
-        if ($propertyId != null) {
+        if ($propertyId != null || $propertyId === 0) {
             $this->displays = $this->getAllDisplaysWithPropertyId($propertyId);
         }
     }
@@ -76,7 +76,6 @@ class PropertyDisplays
      */
     public function assignDisplayWithId($values) {
         $sql = "UPDATE display SET property_id = " . $values['propertyId'] . " WHERE display_id = " . $values['displayId'];
-        echo $sql;
         $statement = $this->conn->prepare($sql);
         return $statement->execute();
     }
@@ -186,4 +185,13 @@ class PropertyDisplays
         $statement->bindValue(':sceneDuration', $sceneDuration, PDO::PARAM_STR);
         $statement->execute();
     }
+
+/*    public function getUnassignedDisplays(){
+        $sql = "SELECT * FROM display WHERE property_id = 0";
+        $statement = $this->conn->prepare($sql);
+
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }*/
 }
