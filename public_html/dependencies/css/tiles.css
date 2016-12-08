@@ -70,6 +70,27 @@
     box-shadow: 2px 2px 5px #969696;
 }
 
+.display-list-artifact{
+    clear: both;
+    float: left;
+    max-height: 25px;
+    min-height: 25px;
+    min-width: 25px;
+    max-width: 25px;
+    position: relative;
+
+    z-index: 4;
+    background-color: green;
+    margin-left: 5px;
+    color: white;
+    border-radius: 15px;
+    padding-top: 4px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 2px 2px 5px #969696;
+}
+
 .tile-menu-item-hover {
     background-color: rgba(255, 255, 255, 0.8);
 
