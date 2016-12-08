@@ -102,9 +102,6 @@ function setSelectionIndex(clicked_id){
     $("#hh_index" + handIndex).removeClass("card-index-highlight");
         handIndex = clicked_id.substr(clicked_id.length - 1);
         moveHighlightToNextCard(clicked_id);
-
-
-
     }
 
 /**
@@ -132,37 +129,12 @@ function moveHighlightToNextCard(clicked_id) {
         $("#hh_index1").addClass("card-index-highlight");
     }
 }
-
-/**
- * Delete this
- */
-var getTemplate = function () {
-    $.ajax({
-        url: 'controllers/promotioncontrollers/highhandcontroller.php',
-        type: 'post',
-        data: {
-            action: 'template'
-        },
-        cache: false,
-        success: function (response) {
-            $('#title-message').attr('value', response.title_message);
-            $('#horn-timer').attr('value', response.horn_timer);
-            $('#payout-value').attr('value', response.payout_value);
-            $('#session-timer').attr('value', response.session_timer);
-            $('#scene-type').attr('value', 2);
-            $('#multiple-hands').attr('value', response.multiple_hand);
-            $('#use-joker').prop('checked', response.use_joker);
-            $('#high-hand').prop('checked', response.high_hand_gold);
-
-        }
-    });
-};
-
+var payout;
+var handID;
 /**
  * This gets all hands assigned to a high hand promotion
  * @type {boolean}
  */
-var customPayout = false;
 var getAllHands = function (id) {
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
@@ -173,53 +145,80 @@ var getAllHands = function (id) {
         },
         cache: false,
         success: function (response) {
-            console.log(response);
             $.each(response, function (index, element) {
-                var promotionID = element.high_hand_session;
-                var handID = element.high_hand_record_id;
-                var handCards1 = element.high_hand_card1;
-                var handCards2 = element.high_hand_card2;
-                var handCards3 = element.high_hand_card3;
-                var handCards4 = element.high_hand_card4;
-                var handCards5 = element.high_hand_card5;
-                var handCards6 = element.high_hand_card6;
-                var handCards7 = element.high_hand_card7;
-                var handCards8 = element.high_hand_card8;
+                handID = element.high_hand_record_id;
+                var handCards1 = 'dependencies/images/cards/'+element.high_hand_card1+'.png';
+                var handCards2 = 'dependencies/images/cards/'+element.high_hand_card2+'.png';
+                var handCards3 = 'dependencies/images/cards/'+element.high_hand_card3+'.png';
+                var handCards4 = 'dependencies/images/cards/'+element.high_hand_card4+'.png';
+                var handCards5 = 'dependencies/images/cards/'+element.high_hand_card5+'.png';
+                var handCards6 = 'dependencies/images/cards/'+element.high_hand_card6+'.png';
+                var handCards7 = 'dependencies/images/cards/'+element.high_hand_card7+'.png';
+                var handCards8 = 'dependencies/images/cards/'+element.high_hand_card8+'.png';
                 var handName = element.high_hand_name;
                 var handDate = element.high_hand_timestamp;
-                var handWinner = element.high_hand_isWinner;
-                customPayout = element.high_hand_custom_payout;
+                var isWinner = element.high_hand_isWinner;
+                payout = element.high_hand_custom_payout;
+
+                if(payout == 0){
+                    payout = element.payout_value;
+                }
+
 
                 $('#high_hand_table > tbody:last-child').append('<tr>');
                 $('#high_hand_table > tbody:last-child').append('<td>' + handID + '</td>');
                 $('#high_hand_table > tbody:last-child').append('<td>' + handDate + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handName + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards1 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards2 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards3 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards4 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards5 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards6 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards7 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handCards8 + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td> <input class="is-winner-checkbox" ' +
-                    'id="is-winner-' + promotionID + '" name="is-winner" type="checkbox"></td>');
+                $('#high_hand_table > tbody:last-child').append("<td>" + handName + "<div id='currentStatus-"+handID+"'></div></td>");
+                updateCurrentStatus(handID,isWinner);
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards1-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards2-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards3-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards4-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards5-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards6-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards7-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards8-"+handID+"'>" + '</td>');
+                $('#high_hand_table > tbody:last-child').append(
+                    "<td> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
+                    "<button class='to-pending' id='set-to-pending-" + handID + "' name='"+handID+"'  type='button'>Pending</button>"+
+                    "<button class='to-last' id='set-to-last-" + handID + "' name='"+handID+"'  type='button'>Last Hand</button></td>");
 
                 $('#high_hand_table > tbody:last-child ').append('</tr>');
+                $('#handCards1-'+handID).attr('src',handCards1);
+                $('#handCards2-'+handID).attr('src',handCards2);
+                $('#handCards3-'+handID).attr('src',handCards3);
+                $('#handCards4-'+handID).attr('src',handCards4);
+                $('#handCards5-'+handID).attr('src',handCards5);
+                $('#handCards6-'+handID).attr('src',handCards6);
+                $('#handCards7-'+handID).attr('src',handCards7);
+                $('#handCards8-'+handID).attr('src',handCards8);
 
-                if (handWinner == 1) {
-                    $('#is-winner-' + promotionID).prop('checked', true);
-                }
+            });
+            $('.to-winner').click(function() {
+                updateHandStatus(1,payout,this.name);
+                updateCurrentStatus(this.name,1);
             });
 
-            $("#high_hand_table").DataTable();
+            $('.to-pending').click(function() {
+                updateHandStatus(0,0,this.name);
+                updateCurrentStatus(this.name,0);
 
+            });
+
+            $('.to-last').click(function() {
+                updateHandStatus(2,0,this.name);
+                updateCurrentStatus(this.name,2);
+            });
+
+            $("#high_hand_table").dataTable();
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
 
         }
+
     });
+
 };
 
 /**
@@ -250,3 +249,37 @@ $('#30').click(function() {
     $('#hr-option').hide();
 });
 
+var updateHandStatus = function (isWinner, payout, handId) {
+    $.ajax({
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        type: 'post',
+        data: {
+            action: 'updateHand',
+            isWinner: isWinner,
+            payout: payout,
+            handId: handId
+        },
+        cache: false,
+        success: function () {
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+};
+
+var updateCurrentStatus = function (handID,isWinner) {
+    $('#currentStatus-'+handID).empty();
+    if(isWinner == 0){
+        status = 'Pending';
+        classattr = 'pending-status';
+    } else if (isWinner == 1) {
+        status = 'Winner';
+        classattr = 'winning-status';
+    } else {
+        status = 'Last Hand';
+        classattr = 'last-hand-status';
+    }
+    $('#currentStatus-'+handID).append('<div>'+status+'</div>');
+    $('#currentStatus-'+handID).attr('class',classattr);
+};

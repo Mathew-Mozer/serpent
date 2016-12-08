@@ -27,3 +27,15 @@
 #hr-option {
     margin-left: 40px;
 }
+
+.winning-status {
+    background-color: green;
+}
+
+.pending-status {
+    background-color: yellow;
+}
+
+.last-hand-status {
+    background-color: orange;
+}

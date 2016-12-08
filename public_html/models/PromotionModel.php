@@ -253,17 +253,35 @@ WHERE promotion.promotion_id = :id;";
 
     public function getTemplates($values) {
         if($values['promotionType'] == 'kickforcash') {
-            $sql = "select promo_property.promo_property_promo_id,promo_property.promo_property_template_name  
-            from promotion,promo_property where promotion.promotion_id=promo_property.promo_property_promo_id 
-            and promo_property.promo_property_property_id= :propertyId 
-            and promo_property.promo_property_template=1";
+            $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
+            from kick_for_cash,promotion,promo_property
+            where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and kick_for_cash.kfc_promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id=:propertyId 
+            and promo_property.promo_property_template=1';
+        }
+        else if($values['promotionType'] == 'pointsgt') {
+            $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
+            from points_gt,promotion,promo_property
+            where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and points_gt.pgt_promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id=:propertyId 
+            and promo_property.promo_property_template=1';
+        }
+        else if($values['promotionType'] == 'highhand'){
+            $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
+            from high_hand,promotion,promo_property
+            where promotion.promotion_id=promo_property.promo_property_promo_id 
+            and high_hand.promotion_id=promo_property.promo_property_promo_id 
+            and promo_property.promo_property_property_id=:propertyId 
+            and promo_property.promo_property_template=1';
         }
 
         $statement = $this->db->prepare($sql);
         $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
         $statement->execute();
-
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
         return $results;
     }
 

@@ -101,42 +101,22 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
             "<option value='"+obj.promo_property_promo_id+"'>"+obj.promo_property_template_name+"</option>"
         )
     });
-
+    $('#template-options').show();
     $('#add-promotion-buttons').append("<button type='button' id='next-page-btn'> Next </button>");
 
     $('#next-page-btn').click(function () {
         $('#select-template').hide();
         $('#template-form').load('views/addpromotionviews/add'+promotionName+'view.php');
-       getTemplateValues($('#template-options').val(),promotionTypeId);
+        addPromotionUsingTemplate($('#template-options').val(),promotionTypeId);
     });
 };
 
-var getTemplateValues = function(templateId,promotionTypeId) {
-    alert('getvalues');
-    $.ajax({
-        url: 'controllers/promotioncontroller.php',
-        type: 'post',
-        data: {
-            action: 'getTemplateValues',
-            promotionTypeId: promotionTypeId,
-            templateId: templateId
-        },
-        cache: false,
-        success: function (response) {
-            addPromotionUsingTemplate(response);
-        },
-        error: function (xhr, desc, err) {
-            console.log(xhr + "\n" + err);
-        }
-    });
-};
-
-var addPromotionUsingTemplate = function (values) {
-    console.log(values);
-/*    $("#settings").load("views/addpromotionviews/add"+promotionName+"view.php",{promotion_settings:true,
-        promotion_id:values[''], promotion_type:$(this).data("promo-type-id")});
+var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
+    console.log(promotionId + "-" + promotionTypeId);
+    $("#template-form").load("views/addpromotionviews/add"+promotionName+"view.php",{promotion_settings:true,
+        promotion_id:promotionId, promotion_type:promotionTypeId});
     $('#add-promotion-buttons').empty();
-    $('#add-promotion-buttons').append("<button type='button' id='create-promotion-btn'>Create Promotion</button>");*/
+    $('#add-promotion-buttons').append("<button type='button' id='create-promotion-btn'>Create Promotion</button>");
 
     $('#create-promotion-btn').click(function () {
         var promotionTypeId = $("#promotion-details").data("promotion-id");
@@ -151,6 +131,7 @@ var addPromotionUsingTemplate = function (values) {
 var noTemplate = function () {
     $('#use-template-prompt').hide();
     $("#promotion-details").load("views/addpromotionviews/add" + promotionName + "view.php");
+    $('#promotion-details').show();
     $('#add-promotion-buttons').empty();
     $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
 
@@ -196,30 +177,23 @@ var CreateTemplatePrompt = function () {
     });
 };
 
+
 /**
  * Inserts a template promotion into the database
  */
 var saveTemplate = function () {
     var promotionData = getFormData('add-promotion');
-    var promotionTypeId = $('#promotionTypeId').val();
-    var propertyId = $('input[name=propertyId]').val();
-    var promotionType = $('#promotionTypeName').val();
-    var accountId =  1;
-    var templateName = $('#template-name').val();
-    var sceneId = $('#scene-id').val();
+    promotionData['promotionTypeId'] = $('#promotionTypeId').val();
+    promotionData['propertyId'] = $('input[name=propertyId]').val();
+    promotionData['promotionType'] = $('#promotionTypeName').val();
+    promotionData['accountId'] =  1;
+    promotionData['templateName'] = $('#template-name').val();
+    promotionData['sceneId'] = $('#scene-id').val();
+    promotionData['action'] = 'saveTemplate';
     $.ajax({
         url: 'controllers/promotioncontroller.php',
         type: 'post',
-        data: {
-            action: 'saveTemplate',
-            promotionTypeId: promotionTypeId,
-            propertyId : propertyId,
-            promotionType: promotionType,
-            accountId : accountId,
-            templateName: templateName,
-            sceneId : sceneId,
-            data: promotionData
-        },
+        data: promotionData,
         cache: false,
         success: function () {
             $('#addPromotion').dialog('close');

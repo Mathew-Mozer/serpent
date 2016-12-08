@@ -49,6 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $highHand->getAllHands($_POST['highHandSession']);
         header('content-type:application/json');
         echo json_encode($response);
+    } else if ($_POST['action'] == 'updateHand'){
+        $highHand = new HighHandModel($conn->update_database());
+        $highHand->updateCardSet($_POST);
     }
 }
 

@@ -45,7 +45,6 @@
          * Register add promotion tile click
          */
         $(".add-promotion-btn").unbind('click').click(function () {
-
             $('input[name=propertyId]').val(this.id);
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
@@ -219,6 +218,20 @@
             $("#display-box-id-" + displayID).find("#display-location").addClass("display-font-alarm");
         }
 
+        $('#settings').on('dialogclose', function(event) { $('#settings').empty(); });
+
+
+        $('#addPromotion').on('dialogclose', function(event) {
+            $('#promotion-details').removeData();
+            $('#addPromotion').children().hide();
+            $('#promotion-details').hide();
+            $('#use-template').hide();
+            $('#template-form').hide();
+            $('#create-template').hide();
+            $('#add-promotion-buttons').empty();
+            $('#promotion-select').show();
+            $('#add-promotion-form').show();
+        });
     })
 </script>
 </html>
