@@ -2,14 +2,16 @@
 
 /**
  * This file contains public functions that help other public functions
+ * //
  */
 
 /**
-* This function allows files to be found anywhere in the property directory
-* so that they can be tested in any configuration and uploaded.
-*/
-    function getServerPath(){
-      list($root, $home, $server, $public_html) = explode("/", $_SERVER['DOCUMENT_ROOT']);
-      return "/" . $home . "/" . $server . "/";
-    }
- ?>
+ * This function allows files to be found anywhere in the property directory
+ * so that they can be tested in any configuration and uploaded.
+ */
+function getServerPath(){
+    list($root, $home, $server, $public_html,$fld1,$fld2) = explode("/", $_SERVER['DOCUMENT_ROOT']);
+    return "/" . $home . "/" . $server . "/";
+    ////return $_SERVER['DOCUMENT_ROOT'];
+}
+?>
