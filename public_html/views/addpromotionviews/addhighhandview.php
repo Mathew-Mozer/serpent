@@ -81,7 +81,9 @@
     getTemplate();
 </script>
 <?php
-if ($_POST['promotion_settings']) {
-    echo "<script>getModalData(" . $_POST['promotion_id'] . "," . $_POST['promotion_type'] . ");</script>";
+if(isset($_POST['promotion_settings'])) {
+    if ($_POST['promotion_settings']) {
+        echo "<script>getModalData(" . $_POST['promotion_id'] . "," . $_POST['promotion_type'] . ");</script>";
+    }
 }
 ?>
