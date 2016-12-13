@@ -41,8 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $propertyRowIndex++;
             ?>
                 <hr>
-            <?php
+            <div id="displayViewContainer<?php echo($property['property_id'])?>">
+                <?php
             include 'displayview.php';
+            ?>
+            </div>
+
+            <?php
+
         }
     }
 

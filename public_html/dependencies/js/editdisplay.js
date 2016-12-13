@@ -34,8 +34,12 @@ var removePromotionFromDisplay = function (promotionId) {
         },
         cache: false,
         success: function() {
-            editDisplayModal.dialog('close');
-            editDisplayModal.dialog('open');
+            var propertyId = $('#property-id').val();
+            var displayId = $('#display-id').val();
+            var propertyName = $('#property-name').val();
+            console.log("pname="+propertyName);
+            $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId: propertyId, displayId: displayId,propertyName: propertyName});
+            $("#displayViewContainer"+propertyId).load("views/displayview.php", {propertyId: propertyId, displayId: displayId,property_name: propertyName});
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -52,6 +56,7 @@ var addPromotionToDisplay = function (promotionId) {
             action: 'addPromotion',
             displayId:  $('#display-id').val(),
             propertyId: $('#property-id').val(),
+            propertyName: $('#property-name').val(),
             skinId: $('#default-skin').val(),
             sceneDuration: $('#default-scene-duration').val(),
             promotionId: promotionId,
@@ -59,8 +64,14 @@ var addPromotionToDisplay = function (promotionId) {
         },
         cache: false,
         success: function() {
-            editDisplayModal.dialog('close');
+            //editDisplayModal.dialog('close');
             //location.reload();
+            var propertyId = $('#property-id').val();
+            var displayId = $('#display-id').val();
+            var propertyName = $('#property-name').val();
+            console.log("pname="+propertyName);
+            $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId: propertyId, displayId: displayId,propertyName: propertyName});
+            $("#displayViewContainer"+propertyId).load("views/displayview.php", {propertyId: propertyId, displayId: displayId,property_name:propertyName});
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
