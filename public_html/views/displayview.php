@@ -1,4 +1,13 @@
 <?php
+if(isset($_POST['property_name'])){
+    $property['property_name']=$_POST['property_name'];
+    $property['property_id']=$_POST['propertyId'];
+    include('../models/PropertyDisplays.php');
+    include('../models/PromotionModel.php');
+    require_once("../dependencies/php/HelperFunctions.php");
+    require_once(getServerPath() . "dbcon.php");
+    $dbcon = NEW DbCon();
+}
 /**
  * This is the display tile
  */
@@ -6,6 +15,7 @@
 <div class="displays">
     <h2 class="property-title"><?php echo $property['property_name'];?></h2>
     <?php
+
     $propertyDisplay = new PropertyDisplays($dbcon->read_database(), $property['property_id']);
     $promotionData = new PromotionModel($dbcon->read_database());
     $propertyDisplays = $propertyDisplay->getDisplays();
@@ -19,14 +29,14 @@
                     <div class="col-md-4"><h3 id="display-location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
-                        <button type="button" data-property-id="<?php echo $property['property_id'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
+                        <button type="button" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
                     </div>
                 </div>
                 <hr class="display">
                 <?php
                 $promotions = $display->getPromotions();
                     foreach ($promotions as $promo) {
-                        $image = $promotion->getPromotionImageByPromotionId($promo['promotion_id']);
+                        $image = $promotionData->getPromotionImageByPromotionId($promo['promotion_id']);
                         $artifact = $promotionData->getPromotionArtifactById($promo['promotion_id']);
                         $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']); ?>
                         <div class="promotion-preview-body" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">

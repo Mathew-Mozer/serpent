@@ -20,6 +20,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 <form>
     <div id="display-id-form" hidden data-display-id="<?php echo $_POST['displayId']; ?>"></div>
     <div id="property-id-form" hidden data-property-id="<?php echo $_POST['propertyId']; ?>"></div>
+    <div id="property-name-form" hidden data-property-name="<?php echo $_POST['propertyName']; ?>"></div>
 
     <?php
 
@@ -105,6 +106,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 
     <input type="hidden" id="property-id" value="<?php echo $_POST['propertyId']; ?>">
     <input type="hidden" id="display-id" value="<?php echo $_POST['displayId']; ?>">
+    <input type="hidden" id="property-name" value="<?php echo $_POST['propertyName']; ?>">
     <input type="hidden" id="default-skin" value="0">
     <input type="hidden" id="default-scene-duration" value="1">
 </form>

@@ -106,13 +106,19 @@
         /**
          * Open the edit display modal
          */
-        $(".edit-display-btn").unbind('click').click(function () {
+        $(document).on("click", ".edit-display-btn", function(){
             var propertyId = $(this).data("property-id");
-            var displayId = $(this).data("display-id");
-            $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId: propertyId, displayId: displayId});
-            editDisplayModal.dialog('open');
+            var displayId= $(this).data("display-id");
+            var propertyName = $(this).data("property-name");
+
+            showEditDisplayModal(propertyId,displayId,propertyName);
         });
 
+
+        function showEditDisplayModal(propertyid,displayid,propertyname){
+            $("#editDisplayModal").load("modals/displaymodalform.php", {propertyId: propertyid, displayId: displayid,propertyName: propertyname});
+            editDisplayModal.dialog('open');
+        }
         /**
          * Open the options modal
          */
