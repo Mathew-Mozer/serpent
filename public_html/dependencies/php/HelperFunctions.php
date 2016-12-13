@@ -11,7 +11,7 @@
  */
 function getServerPath(){
     list($root, $home, $server, $public_html,$fld1,$fld2) = explode("/", $_SERVER['DOCUMENT_ROOT']);
-    return "/" . $home . "/" . $server . "/";
+    return "/" . $home . "/" . $server . "/".$public_html."/".$fld1."/";
     ////return $_SERVER['DOCUMENT_ROOT'];
 }
 ?>

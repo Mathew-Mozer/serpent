@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ac1f2a6d-18a6-425e-a3d5-5e6cdff045c0" name="mat.typhonconnect.com" url="http://picard.typhonconnect.com">
+        <fileTransfer host="picard.typhonconnect.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="2f84a421-febd-4baa-bb38-5876ffaf6fd8" name="picard" url="http://picard.typhonconnect.com">
+        <fileTransfer host="picard.typhonconnect.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

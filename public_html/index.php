@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)) {
+    session_start();
+}
 require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
@@ -141,7 +143,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 <script>
     <?php
 
-    if ($_SESSION['loggedIn'] != 'true') {
+    if (!isset($_SESSION['loggedIn'])||$_SESSION['loggedIn'] != 'true') {
         echo "$('#page').hide();";
         echo "loginModal.dialog('open');";
     } else {
