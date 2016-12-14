@@ -20,7 +20,7 @@ $(document).ready(function(){
 
     //Open add/remove user panel
     $("#userBtn").click(function () {
-        alert.("I'm trying");
+        alert("I'm trying");
         createUserModal.dialog('open');
     });
 

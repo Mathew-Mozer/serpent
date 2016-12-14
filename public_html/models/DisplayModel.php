@@ -13,6 +13,8 @@ class DisplayModel
     private $macAddress;
     private $promotions = array();
     private $displayLocation;
+    private $lockedPromoId;
+    private $monitorState;
 
     /**
      * DisplayModel constructor.
@@ -34,6 +36,8 @@ class DisplayModel
         $this->setSerial($fieldArray['display_serial']);
         $this->setMacAddress($fieldArray['display_mac_address']);
         $this->setDisplayLocation($fieldArray['display_location']);
+        $this->setLockedPromo($fieldArray['display_lockedpromo']);
+        $this->setMonitorState($fieldArray['display_monitor']);
     }
 
     /**
@@ -56,6 +60,9 @@ class DisplayModel
      * This sets the name
      * @param mixed $name
      */
+    public function setLockedPromo($promoid){
+       $this->lockedPromoId=$promoid;
+    }
     public function setName($name)
     {
         $this->name = $name;
@@ -99,6 +106,15 @@ class DisplayModel
     public function getId()
     {
         return $this->id;
+    }
+    public function getLockedPromoId(){
+        return $this->lockedPromoId;
+    }
+    public function getMonitorState(){
+        return $this->monitorState;
+    }
+    public function setMonitorState($state){
+        $this->monitorState = $state;
     }
     /**
      * This gets the name

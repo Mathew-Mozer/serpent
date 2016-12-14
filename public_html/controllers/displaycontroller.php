@@ -48,6 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $displayProperties = new PropertyDisplays($dbcon->delete_database(), null);
         $displayProperties->updatePromotionDisplaySettings(
             $_POST['promotionId'],$_POST['displayId'],$_POST['sceneDuration'],$_POST['skinId']);
+    }else if ($_POST['action'] == 'updateLockStatus') {
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), null);
+        $displayProperties->setLockedPromotion($_POST['promotionId'],$_POST['displayId']);
+
+    }else if ($_POST['action'] == 'changeMonitorStatus') {
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), null);
+        $response = $displayProperties->updateDisplayMonitorState($_POST['displayId'],$_POST['monitorState']);
+        header('content-type:application/json');
+        echo json_encode($response);
     }
+
 }
 ?>

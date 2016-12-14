@@ -60,6 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $classReference->get($_POST['templateId']);
         header('content-type:application/json');
         echo json_encode($response);
+    }else if (($_POST['action'] == 'updatePromotionStatus')){
+        $promotion = new PromotionModel($conn->insert_database());
+        $response = $promotion->updatePromotionStatus($_POST['promotionId'],$_POST['nextStatus']);
+        header('content-type:application/json');
+        echo json_encode($response);
+    }else if (($_POST['action'] == 'updateLockStutus')){
+        $promotion = new PromotionModel($conn->insert_database());
+        $response = $promotion->updateLockStatus($_POST['promotionId']);
+        header('content-type:application/json');
+        echo json_encode($response);
     }
 }
 ?>

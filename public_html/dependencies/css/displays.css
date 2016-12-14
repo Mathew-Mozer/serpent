@@ -97,7 +97,20 @@ h3.display-friendly-name{
     display: inline-block;
     box-shadow: 2px 2px 5px #969696;
 }
-
+.promotion-lock-overlay{
+    background-color: grey;
+    opacity: 0.5;
+    max-height: 75px;
+    max-width: 75px;
+    min-height: 75px;
+    min-width: 75px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 5px;
+    display: inline-block;
+    vertical-align: top;
+}
 hr.display{
     border-color: #686868;
     background-color: #686868;
