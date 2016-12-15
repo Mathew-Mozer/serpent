@@ -111,6 +111,22 @@ h3.display-friendly-name{
     display: inline-block;
     vertical-align: top;
 }
+
+.lock-glyphicon-container{
+    position: relative;
+}
+
+.lock-glyphicon{
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    left: 22px;
+    font-size: 32px;
+    display: block;
+    z-index: 20;
+    text-shadow: 1px 1px #0c0c0c;
+}
+
 hr.display{
     border-color: #686868;
     background-color: #686868;
