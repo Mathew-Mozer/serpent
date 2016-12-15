@@ -64,7 +64,7 @@ class HighHandModel{
                high_hand
              WHERE
                promotion_id=:id;
-              ";
+               ";
         $result = $this->conn->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
@@ -140,14 +140,12 @@ class HighHandModel{
      * @return array
      */
     public function getAllHands($id){
-       $sql = "SELECT * FROM high_hand,high_hand_records
-                WHERE high_hand_records.high_hand_session = :id
-                AND high_hand.promotion_id = high_hand_records.high_hand_session";
+       $sql = "SELECT * FROM high_hand_records
+                WHERE high_hand_records.high_hand_session = :id order by high_hand_record_id DESC ";
         $result = $this->conn->prepare($sql);
 
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
-
         $response = $result->fetchAll(PDO::FETCH_ASSOC);
         return $response;
 

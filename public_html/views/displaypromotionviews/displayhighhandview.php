@@ -100,20 +100,13 @@
 <div id="view-hands">
     <table id="high_hand_table" class="high_hand">
         <thead>
-        <tr>
-            <th> Hand ID</th>
+
+            <th>Hand ID</th>
             <th>Date</th>
-            <th> Name</th>
-            <th> Card 1</th>
-            <th> Card 2</th>
-            <th> Card 3</th>
-            <th> Card 4</th>
-            <th> Card 5</th>
-            <th> Card 6</th>
-            <th> Card 7</th>
-            <th> Card 8</th>
-            <th> Winner</th>
-        </tr>
+            <th>Name</th>
+            <th>Hand</th>
+            <th>Winner</th>
+
         </thead>
         <tbody>
         </tbody>
@@ -130,4 +123,5 @@
 <script>
 
     getAllHands($("#promotion-view-modal").data('promo-id'));
+
 </script>
