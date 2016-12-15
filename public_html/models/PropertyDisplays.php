@@ -110,6 +110,20 @@ class PropertyDisplays
      * @param $name
      * @param $displayLocation
      */
+    public function updateDisplayMonitorState($displayId,$monitorState){
+        $sql = "UPDATE display SET display_monitor=:monitor_state WHERE display_id=:id;";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':monitor_state', $monitorState, PDO::PARAM_STR);
+        $result->bindValue(':id', $displayId, PDO::PARAM_STR);
+        $result->execute();
+
+        $sql = "SELECT display_monitor FROM display where display_id=:id";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':id', $displayId, PDO::PARAM_STR);
+        $result->execute();
+        $displayResult = $result->fetch(PDO::FETCH_ASSOC);
+        return $displayResult;
+}
     public function updateDisplayWithId($id, $name, $displayLocation) {
         $sql = "UPDATE display SET display_name=:current_name, display_location=:display_location WHERE display_id=:id;";
         $result = $this->conn->prepare($sql);
@@ -181,6 +195,14 @@ class PropertyDisplays
         $statement->bindValue(':displayId', $displayId, PDO::PARAM_STR);
         $statement->bindValue(':skinId', $skinId, PDO::PARAM_STR);
         $statement->bindValue(':sceneDuration', $sceneDuration, PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    public function setLockedPromotion($promotionId,$displayId){
+        $sql = 'UPDATE display SET display_lockedpromo=:promotionId WHERE display_id = :displayId';
+        $statement = $this->conn->prepare($sql);
+        $statement->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $statement->bindValue(':displayId', $displayId, PDO::PARAM_STR);
         $statement->execute();
     }
 

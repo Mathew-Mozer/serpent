@@ -20,12 +20,28 @@ if(isset($_POST['property_name'])){
     $promotionData = new PromotionModel($dbcon->read_database());
     $propertyDisplays = $propertyDisplay->getDisplays();
 
-    foreach ($propertyDisplays as $display){?>
+    foreach ($propertyDisplays as $display){
+        $lockedpromoid = $display->getLockedPromoId();
+        switch (intval($display->getMonitorState())){
+            case 0:
+                $glyphmonitor = "glyphicon-eye-close";
+                break;
+            case 1:
+                $glyphmonitor = "glyphicon-eye-open";
+                break;
+            case 2:
+                $glyphmonitor = "glyphicon-warning-sign";
+                break;
+            default:
+                $glyphmonitor = "glyphicon-eye-open";
+        }
+        ?>
+
         <div class="display-outer">
             <div class="display-body display-background-normal container" id="<?php echo "display-box-id-" . $display->getId(); ?>">
                 <div class="display-header row">
                     <div class="col-md-4"><h3 id="display-name" class="header-text display-friendly-name display-font">
-                            <?php echo $display->getName();?></h3></div>
+                           <div class="glyphicon <?php echo $glyphmonitor;?>  toggleMonitorStatusBtn" data-display-id="<?php echo $display->getId();?>" data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php echo $display->getName();?></h3></div>
                     <div class="col-md-4"><h3 id="display-location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
@@ -38,8 +54,18 @@ if(isset($_POST['property_name'])){
                     foreach ($promotions as $promo) {
                         $image = $promotionData->getPromotionImageByPromotionId($promo['promotion_id']);
                         $artifact = $promotionData->getPromotionArtifactById($promo['promotion_id']);
-                        $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']); ?>
-                        <div class="promotion-preview-body" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">
+                        $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']);
+                        //echo($lockedpromoid."==".$promo['promotion_id']);
+                        if($lockedpromoid==$promo['promotion_id']){
+                            $lockclass="promotion-lock-overlay glyphicon glyphicon-lock";
+                            $lockstatus="1";
+                        }else{
+                            $lockclass="";
+                            $lockstatus="0";
+                        }
+                        ?>
+
+                        <div class="promotion-preview-body <?php echo $lockclass ?> promotionLockBtn" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-promo-lockstatus="<?php echo $lockstatus;?>" data-promo-id="<?php echo $promo['promotion_id']?>" data-display-id="<?php echo $display->getId()?>" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">
                             <img class="promotion-preview-icon"
                                  src="dependencies/images/<?php echo $image['image']; ?>">
                             <div class="promotion-artifact-preview">

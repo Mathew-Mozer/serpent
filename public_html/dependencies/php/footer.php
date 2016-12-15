@@ -40,7 +40,25 @@
          * This is for click listeners
          */
         $(".settingsBtn").unbind('click').click(settingsButtonClick);
+///
+///
+        $(".promotionStatusBtn").unbind('click').click(promoStatusButtonClick);
 
+        $(document).on("click", ".toggleMonitorStatusBtn", function(){
+            var currentObject = $(this);
+            var displayId = $(this).data("display-id");
+            var monitorState =  parseInt($(this).data("monitor-state"))+1;
+            toggleMonitorStatusBtnClick(currentObject,displayId,monitorState)
+        });
+
+        $(document).on("click", ".promotionLockBtn", function(){
+            var lockstatus = Boolean($(this).data("promo-lockstatus"));
+            var promoId = $(this).data("promo-id");
+            var displayId = $(this).data("display-id");
+            var propertyName = $(this).data("property-name");
+            var propertyId = $(this).data("property-id");
+            promoLockButtonClick(lockstatus,promoId,displayId,propertyName,propertyId);
+        });
 
         /**
          * Register add promotion tile click

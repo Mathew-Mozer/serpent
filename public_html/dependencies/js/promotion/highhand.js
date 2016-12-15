@@ -145,6 +145,7 @@ var getAllHands = function (id) {
         },
         cache: false,
         success: function (response) {
+
             $.each(response, function (index, element) {
                 handID = element.high_hand_record_id;
                 var handCards1 = 'dependencies/images/cards/'+element.high_hand_card1+'.png';
@@ -165,25 +166,26 @@ var getAllHands = function (id) {
                 }
 
 
-                $('#high_hand_table > tbody:last-child').append('<tr>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handID + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + handDate + '</td>');
-                $('#high_hand_table > tbody:last-child').append("<td>" + handName + "<div id='currentStatus-"+handID+"'></div></td>");
-                updateCurrentStatus(handID,isWinner);
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards1-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards2-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards3-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards4-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards5-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards6-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards7-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append('<td>' + "<img class='card standard-card' id='handCards8-"+handID+"'>" + '</td>');
-                $('#high_hand_table > tbody:last-child').append(
-                    "<td> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
-                    "<button class='to-pending' id='set-to-pending-" + handID + "' name='"+handID+"'  type='button'>Pending</button>"+
-                    "<button class='to-last' id='set-to-last-" + handID + "' name='"+handID+"'  type='button'>Last Hand</button></td>");
+                var html = "";
+                html+='<tr><td>' + handID + '</td>';
+                html+='<td>' + handDate + '</td>';
+                html+='<td>' + handName + "<div id='currentStatus-"+handID+"'></div></td>";
 
-                $('#high_hand_table > tbody:last-child ').append('</tr>');
+                html+='<td>' + "<img class='card standard-card' id='handCards1-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards2-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards3-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards4-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards5-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards6-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards7-"+handID+"'>" + '';
+                html+='' + "<img class='card standard-card' id='handCards8-"+handID+"'>" + '</td>';
+
+                html+="<td> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
+                    "<button class='to-pending' id='set-to-pending-" + handID + "' name='"+handID+"'  type='button'>Pending</button>"+
+                    "<button class='to-last' id='set-to-last-" + handID + "' name='"+handID+"'  type='button'>Last Hand</button></td>";
+
+                $('#high_hand_table > tbody:last-child ').append(html);
+                updateCurrentStatus(handID,isWinner);
                 $('#handCards1-'+handID).attr('src',handCards1);
                 $('#handCards2-'+handID).attr('src',handCards2);
                 $('#handCards3-'+handID).attr('src',handCards3);
@@ -210,7 +212,14 @@ var getAllHands = function (id) {
                 updateCurrentStatus(this.name,2);
             });
 
-            $("#high_hand_table").dataTable();
+            $(document).ready(function() {
+                $('#high_hand_table').DataTable( {
+                    "order": [[ 0, "desc" ]],
+                    "lengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+                    "bLengthChange" : false
+                } );
+            } );
+
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -280,6 +289,7 @@ var updateCurrentStatus = function (handID,isWinner) {
         status = 'Last Hand';
         classattr = 'last-hand-status';
     }
+
     $('#currentStatus-'+handID).append('<div>'+status+'</div>');
     $('#currentStatus-'+handID).attr('class',classattr);
 };
