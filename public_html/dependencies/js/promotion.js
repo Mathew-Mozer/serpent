@@ -85,6 +85,33 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
 
     });
 };
+    var promotionDeleteBtnClick = function (e) {
+        e.stopPropagation();
+
+    var currentObject = $(this);
+    var promoId = currentObject.data("promo-id");
+    if(confirm('Are you sure you want to delete this promotion?')){
+        $.ajax({
+            url: 'controllers/promotioncontroller.php',
+            type: 'post',
+            data: {
+                action: 'archivePromotion',
+                promotionId: promoId
+            },
+            cache: false,
+            success: function (response) {
+                if(response==1){
+                    $('#tile-'+promoId).remove();
+                }
+            },
+            error: function(xhr, desc, err) {
+                console.log(xhr + "\n" + err);
+            }
+
+        });
+    }
+
+};
 var promoStatusButtonClick = function (e) {
     e.stopPropagation();
     var currentObject = $(this);

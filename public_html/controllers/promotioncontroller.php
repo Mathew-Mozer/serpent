@@ -70,6 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $promotion->updateLockStatus($_POST['promotionId']);
         header('content-type:application/json');
         echo json_encode($response);
+    }else if (($_POST['action'] == 'archivePromotion')){
+        $promotion = new PromotionModel($conn->insert_database());
+        $response = $promotion->archivePromotion($_POST['promotionId']);
+        header('content-type:application/json');
+        echo json_encode($response);
     }
 }
 ?>
