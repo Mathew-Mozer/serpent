@@ -57,15 +57,21 @@ if(isset($_POST['property_name'])){
                         $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']);
                         //echo($lockedpromoid."==".$promo['promotion_id']);
                         if($lockedpromoid==$promo['promotion_id']){
-                            $lockclass="promotion-lock-overlay glyphicon glyphicon-lock";
+                            $lockcontainerclass="promotion-lock-overlay";
+                            $lockglyphclass="<i class='font-awesome fa fa-lock lock-glyphicon locked'></i>";
+                            //$lockglyphclass="<span id='display-promo-" . $lockedpromoid . "' class='lock-glyphicon glyphicon glyphicon-lock'></span>";
                             $lockstatus="1";
                         }else{
-                            $lockclass="";
+                            $lockcontainerclass="promotion-preview-body";
+                            $lockglyphclass="<i class='font-awesome fa lock-glyphicon hidden unlocked'></i>";
                             $lockstatus="0";
                         }
                         ?>
 
-                        <div class="promotion-preview-body <?php echo $lockclass ?> promotionLockBtn" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-promo-lockstatus="<?php echo $lockstatus;?>" data-promo-id="<?php echo $promo['promotion_id']?>" data-display-id="<?php echo $display->getId()?>" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">
+                        <div class="<?php echo $lockcontainerclass ?> promotionLockBtn" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-promo-lockstatus="<?php echo $lockstatus;?>" data-promo-id="<?php echo $promo['promotion_id']?>" data-display-id="<?php echo $display->getId()?>" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">
+                            <div class="lock-glyphicon-container">
+                                <?php echo $lockglyphclass; ?>
+                            </div>
                             <img class="promotion-preview-icon"
                                  src="dependencies/images/<?php echo $image['image']; ?>">
                             <div class="promotion-artifact-preview">
