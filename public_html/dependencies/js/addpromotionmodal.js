@@ -8,19 +8,24 @@
  */
 var addPromotion = function (data) {
     data['append_promotion'] = true;
+    data['promo_status']=0;
     $.ajax({
         url: 'views/promotionview.php',
         type: 'post',
         data: data,
         cache: false,
         success: function (html) {
+            console.log("made it here"+html);
             $("#promotion-list-" + data['property_id']).append(html);
             $("#tile-" + data['promo_id']).unbind('click').click(tileBodyClick);
             $("#tile-" + data['promo_id'] + " div div.settingsBtn").unbind('click').click(settingsButtonClick);
-
+            $("#tile-" + data['promo_id'] + " div div.promotionStatusBtn").unbind('click').click(promoStatusButtonClick);
             $("#tile-" + data['promo_id'] + " div.tile-menu-item").hover(highlightCurrentOption, dehighlightCurrentOption);
             $("#tile-" + data['promo_id']).hover(showOptionsBar, hideOptionsBar);
             $("#tile-" + data['promo_id']).tooltip();
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
         }
     });
 };
