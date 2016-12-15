@@ -43,6 +43,7 @@
 ///
 ///
         $(".promotionStatusBtn").unbind('click').click(promoStatusButtonClick);
+        $(".promotionDeleteBtn").unbind('click').click(promotionDeleteBtnClick);
 
         $(document).on("click", ".toggleMonitorStatusBtn", function(){
             var currentObject = $(this);

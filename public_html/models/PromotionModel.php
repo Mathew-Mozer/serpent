@@ -116,8 +116,6 @@ public function updatePromotionStatus($promotionId,$newstatus){
     $result->bindValue(':newstatus', $newstatus, PDO::PARAM_STR);
     $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
     $result->execute();
-    //return "sent to db -"+$newstatus;
-
 
      $sql = "SELECT promotion_status as promo_status
                 FROM promotion
@@ -128,8 +126,14 @@ public function updatePromotionStatus($promotionId,$newstatus){
     $result->execute();
     $promoResult = $result->fetch(PDO::FETCH_ASSOC);
     return $promoResult;
-
 }
+    public function archivePromotion($promotionId){
+        $sql = "update promotion set promotion_visible=0 where promotion_id=:promotionId limit 1";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $result->execute();
+        return $result->rowCount();
+    }
 
     public function addPromotion($promotionTypeId, $propertyId, $sceneId)
     {

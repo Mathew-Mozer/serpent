@@ -33,14 +33,14 @@ if(isset($row['promo_status'])) {
             </div>
             <div class="tile-menu-bar" style="display: none">
                 <?php// if ($canUpdate){?>
-                <div class="tile-menu-item settingsBtn"  data-promo-id="<?php echo $row['promo_id'];?>" data-promo-type="<?php echo $row['file_name'];?>" data-promo-type-id="<?php echo $row['promo_type_id'];?>" id="<?php echo $property['property_id'] . '-' . $row['promo_id']; ?>">
+                <div class="tile-menu-item settingsBtn"  data-promo-id="<?php echo $row['promo_id'];?>" data-promo-type="<?php echo $row['file_name'];?>" data-promo-type-id="<?php echo $row['promo_type_id'];?>" id="<?php echo $row['property_id'] . '-' . $row['promo_id']; ?>">
                     <span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
                 </div> <?php// } ?>
-                <div class="tile-menu-item promotionStatusBtn" data-promo-id="<?php echo $row['promo_id'];?>" data-promo-status="<?php echo $row['promo_status'];?>" id="<?php echo $property['property_id'] . '-' . $row['promo_id']; ?>">
+                <div class="tile-menu-item promotionStatusBtn" data-promo-id="<?php echo $row['promo_id'];?>" data-promo-status="<?php echo $row['promo_status'];?>" id="<?php echo $row['property_id'] . '-' . $row['promo_id']; ?>">
                     <span class="glyphicon <?php echo($glyphstatus);?> glyphicon-menu black" aria-hidden="true"></span>
                 </div>
-                <div class="tile-menu-item">
-                    <span class="glyphicon glyphicon-user glyphicon-menu black" aria-hidden="true"></span>
+                <div class="tile-menu-item promotionDeleteBtn"  data-promo-id="<?php echo $row['promo_id'];?>">
+                    <span class="glyphicon glyphicon-remove-circle glyphicon-menu black " aria-hidden="true"></span>
                 </div>
             </div>
         </div>

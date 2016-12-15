@@ -49,8 +49,6 @@ var settingsModal = $("#settings").dialog({
  * Opens the settings modal
  */
 var openSettingsModal = function() {
-        //include buttons
-        // settingsModal.dialog('option');
         settingsModal.dialog('open');
     };
 
