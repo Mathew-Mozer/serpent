@@ -3,26 +3,27 @@
  * This is the promotion tile
  */
 if(isset($_POST['append_promotion'])){
-if($_POST['append_promotion'] == true){
-    $row = $_POST;
-    $canUpdate = true;
-}else{
-    $canUpdate = $permission->hasPermissionById('property', $row['property_id'],'U');
+    if($_POST['append_promotion'] == true){
+        $row = $_POST;
+        $canUpdate = true;
+    }else{
+        $canUpdate = $permission->hasPermissionById('property', $row['property_id'],'U');
+    }
 }
-
-}
-switch (intval($row['promo_status'])){
-    case 0:
-        $glyphstatus = "glyphicon-play";
-        break;
-    case 1:
-        $glyphstatus = "glyphicon-stop";
-        break;
-    case 2:
-        $glyphstatus = "glyphicon-pause";
-        break;
-    default:
-        $glyphstatus = "glyphicon-pause";
+if(isset($row['promo_status'])) {
+    switch (intval($row['promo_status'])) {
+        case 0:
+            $glyphstatus = "glyphicon-play";
+            break;
+        case 1:
+            $glyphstatus = "glyphicon-stop";
+            break;
+        case 2:
+            $glyphstatus = "glyphicon-pause";
+            break;
+        default:
+            $glyphstatus = "glyphicon-pause";
+    }
 }
 ?>
 <div id="tile-<?php echo $row['promo_id'];?>" class="tile-body <?php echo $row['promo_id'];?>" data-promo-type-id="<?php echo $row['promo_type_id'];?>" data-promo-id="<?php echo $row['promo_id'];?>" data-promo-status="<?php echo $row['promo_status'];?>" data-promo-type="<?php echo $row['file_name'];?>" data-toggle="tooltip" title="<?php echo $row['promo_title']." ".$row['promo_id'];?>">
