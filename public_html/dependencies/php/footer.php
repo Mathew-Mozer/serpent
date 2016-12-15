@@ -30,6 +30,35 @@
         //Show option bar
         $(".tile-body").hover(showOptionsBar, hideOptionsBar);
 
+        //toggle lock icon
+        $(document).on({
+
+            mouseenter: function(){
+
+                if($(this).find("i").hasClass("locked")) {
+                    $(this).find("i").toggleClass("fa-lock fa-unlock");
+
+                }else {
+                    $(this).find(".unlocked").toggleClass("hidden fa-lock");
+                }
+
+        }, mouseleave: function() {
+
+                if ($(this).find("i").hasClass("locked")) {
+                    $(this).find("i").toggleClass("fa-unlock fa-lock");
+
+                } else{
+                    $(this).find(".unlocked").toggleClass("fa-lock hidden");
+                }
+            }
+                }, ".promotionLockBtn");
+
+               // $(this).children("i").removeClass("hidden");
+
+
+             //   $(this).children("i").addClass("hidden");
+
+
         //highlight option under mouse
         $(".tile-menu-item").hover(highlightCurrentOption, dehighlightCurrentOption);
 
