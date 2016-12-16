@@ -15,11 +15,9 @@ if(isset($_POST['property_name'])){
 <div class="displays">
     <h2 class="property-title"><?php echo $property['property_name'];?></h2>
     <?php
-
     $propertyDisplay = new PropertyDisplays($dbcon->read_database(), $property['property_id']);
     $promotionData = new PromotionModel($dbcon->read_database());
     $propertyDisplays = $propertyDisplay->getDisplays();
-
     foreach ($propertyDisplays as $display){
         $lockedpromoid = $display->getLockedPromoId();
         switch (intval($display->getMonitorState())){
@@ -41,7 +39,7 @@ if(isset($_POST['property_name'])){
             <div class="display-body display-background-normal container" id="<?php echo "display-box-id-" . $display->getId(); ?>">
                 <div class="display-header row">
                     <div class="col-md-4"><h3 id="display-name" class="header-text display-friendly-name display-font">
-                           <div class="glyphicon <?php echo $glyphmonitor;?>  toggleMonitorStatusBtn" data-display-id="<?php echo $display->getId();?>" data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php echo $display->getName();?></h3></div>
+                            <div class="glyphicon <?php echo $glyphmonitor;?>  toggleMonitorStatusBtn" data-display-id="<?php echo $display->getId();?>" data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php echo $display->getName();?></h3></div>
                     <div class="col-md-4"><h3 id="display-location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
@@ -51,34 +49,34 @@ if(isset($_POST['property_name'])){
                 <hr class="display">
                 <?php
                 $promotions = $display->getPromotions();
-                    foreach ($promotions as $promo) {
-                        $image = $promotionData->getPromotionImageByPromotionId($promo['promotion_id']);
-                        $artifact = $promotionData->getPromotionArtifactById($promo['promotion_id']);
-                        $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']);
-                        //echo($lockedpromoid."==".$promo['promotion_id']);
-                        if($lockedpromoid==$promo['promotion_id']){
-                            $lockcontainerclass="promotion-lock-overlay";
-                            $lockglyphclass="<i class='font-awesome fa fa-lock lock-glyphicon locked'></i>";
-                            //$lockglyphclass="<span id='display-promo-" . $lockedpromoid . "' class='lock-glyphicon glyphicon glyphicon-lock'></span>";
-                            $lockstatus="1";
-                        }else{
-                            $lockcontainerclass="promotion-preview-body";
-                            $lockglyphclass="<i class='font-awesome fa lock-glyphicon hidden unlocked'></i>";
-                            $lockstatus="0";
-                        }
-                        ?>
+                foreach ($promotions as $promo) {
+                    $image = $promotionData->getPromotionImageByPromotionId($promo['promotion_id']);
+                    $artifact = $promotionData->getPromotionArtifactById($promo['promotion_id']);
+                    $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']);
+                    //echo($lockedpromoid."==".$promo['promotion_id']);
+                    if($lockedpromoid==$promo['promotion_id']){
+                        $lockcontainerclass="promotion-lock-overlay";
+                        $lockglyphclass="<i class='font-awesome fa fa-lock lock-glyphicon locked'></i>";
+                        //$lockglyphclass="<span id='display-promo-" . $lockedpromoid . "' class='lock-glyphicon glyphicon glyphicon-lock'></span>";
+                        $lockstatus="1";
+                    }else{
+                        $lockcontainerclass="promotion-preview-body";
+                        $lockglyphclass="<i class='font-awesome fa lock-glyphicon hidden unlocked'></i>";
+                        $lockstatus="0";
+                    }
+                    ?>
 
-                        <div class="<?php echo $lockcontainerclass ?> promotionLockBtn" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-promo-lockstatus="<?php echo $lockstatus;?>" data-promo-id="<?php echo $promo['promotion_id']?>" data-display-id="<?php echo $display->getId()?>" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">
-                            <div class="lock-glyphicon-container">
-                                <?php echo $lockglyphclass; ?>
-                            </div>
-                            <img class="promotion-preview-icon"
-                                 src="dependencies/images/<?php echo $image['image']; ?>">
-                            <div class="promotion-artifact-preview">
-                                <i class="font-awesome fa <?php echo $artifact; ?>"></i>
-                            </div>
+                    <div class="<?php echo $lockcontainerclass ?> promolockbtn-<?php echo $promo['promotion_id']?> promotionLockBtn" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-promo-lockstatus="<?php echo $lockstatus;?>" data-promo-id="<?php echo $promo['promotion_id']?>" data-display-id="<?php echo $display->getId()?>" data-toggle="tooltip" title="<?php echo $promoType['promotion_type_title'] . " " .$promo['promotion_id'];?>">
+                        <div class="lock-glyphicon-container">
+                            <?php echo $lockglyphclass; ?>
                         </div>
-                    <?php } ?>
+                        <img class="promotion-preview-icon"
+                             src="dependencies/images/<?php echo $image['image']; ?>">
+                        <div class="promotion-artifact-preview">
+                            <i class="font-awesome fa <?php echo $artifact; ?>"></i>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     <?php } ?>
