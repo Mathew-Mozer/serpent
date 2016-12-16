@@ -102,6 +102,8 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
             success: function (response) {
                 if(response==1){
                     $('#tile-'+promoId).remove();
+                    $('#promolockbtn-'+promoId).remove();
+                    $('.promolockbtn-'+promoId).remove();
                 }
             },
             error: function(xhr, desc, err) {
@@ -109,6 +111,9 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
             }
 
         });
+    }else{
+        alert('did not delete');
+        alert("this-" +$('#promolockbtn-'+promoId).data('display-id'));
     }
 
 };

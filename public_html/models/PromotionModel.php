@@ -132,7 +132,13 @@ public function updatePromotionStatus($promotionId,$newstatus){
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $result->execute();
-        return $result->rowCount();
+        $rowcount = $result->rowCount();
+        $sql = "delete from promotion_property where promotion_property.promotion_id=:promotionId";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $result->execute();
+        return $rowcount;
+
     }
 
     public function addPromotion($promotionTypeId, $propertyId, $sceneId)
@@ -268,6 +274,7 @@ WHERE promotion.promotion_id = :id;";
                 WHERE d.promotion_id = p.promo_property_promo_id 
                 AND d.display_id=:display_id ) 
                 AND p.promo_property_template = 0 
+                AND promotion.promotion_visible=1
                 AND promotion.promotion_id =p.promo_property_promo_id 
                 AND p.promo_property_property_id=account_permissions.excess_id 
                 AND promotion.promotion_type_id = promotion_type.promotion_type_id 
