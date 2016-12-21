@@ -42,6 +42,34 @@ class PointsGTModel{
     $result->bindValue(':pgt_id', $pointsGTId, PDO::PARAM_STR);
     $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
 
+
+       if(!isset($values['pgt_points1'])){
+           $values['pgt_points1']='0';
+       }
+       if(!isset($values['pgt_prize_amount1'])){
+           $values['pgt_prize_amount1']='0';
+       }
+       if(!isset($values['pgt_color1'])){
+           $values['pgt_color1']='0';
+       }
+       if(!isset($values['pgt_points2'])){
+           $values['pgt_points2']='0';
+       }
+       if(!isset($values['pgt_prize_amount2'])){
+           $values['pgt_prize_amount2']='0';
+       }
+       if(!isset($values['pgt_color2'])){
+           $values['pgt_color2']='0';
+       }
+       if(!isset($values['pgt_points3'])){
+           $values['pgt_points3']='0';
+       }
+       if(!isset($values['pgt_prize_amount3'])){
+           $values['pgt_prize_amount3']='0';
+       }
+       if(!isset($values['pgt_color3'])){
+           $values['pgt_color3']='0';
+       }
     $result->bindValue(':pgt_points1', $values['pgt_points1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount1', $values['pgt_prize_amount1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_color1', $values['pgt_color1'], PDO::PARAM_STR);
@@ -55,7 +83,8 @@ class PointsGTModel{
     $result->bindValue(':pgt_color3', $values['pgt_color3'], PDO::PARAM_STR);
 
     //Adds instant winners for Points GT.
-    $sql = "INSERT INTO points_gt_players (
+    $sql = "replace INTO points_gt_players (
+        pgt_player_id,
         pgt_player_name,
         pgt_current_points,
         pgt_car_icon,
@@ -63,13 +92,23 @@ class PointsGTModel{
         pgt_account_id
       ) VALUES";
       for($i = 1; $i <= 20; $i++){
-        $sql .= "(:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
+        $sql .= "(:pgt_player_id$i,:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
         $sql .= $i < 20 ? "," : ";";
 
       }
 
         $result = $this->db->prepare($sql);
     for($i = 1; $i <= 20; $i++){
+        if(!isset($values["pgt_player_name$i"])){
+            $values["pgt_player_name$i"]='';
+        }
+        if(!isset($values["pgt_current_points$i"])){
+            $values["pgt_current_points$i"]='0';
+        }
+        if(!isset($values['pgt_car_icon'])){
+            $values["pgt_car_icon$i"]='0';
+        }
+        $result->bindValue(":pgt_player_id$i", $values["pgt_player_id$i"], PDO::PARAM_STR);
     $result->bindValue(":pgt_player_name$i", $values["pgt_player_name$i"], PDO::PARAM_STR);
     $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
     $result->bindValue(":pgt_car_icon$i", $values["pgt_car_icon$i"], PDO::PARAM_STR);
@@ -80,7 +119,15 @@ class PointsGTModel{
 
     $result->execute();
    }
+public function checkforbindvalues($val){
 
+    if(!isset($val)){
+        $tmpval='0';
+    }else{
+        $tmpval=$val;
+    }
+    return $tmpval;
+}
    private function addPointsGT($values){
      $sql = "INSERT INTO points_gt (
         pgt_title,

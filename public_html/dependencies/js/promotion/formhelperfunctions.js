@@ -151,7 +151,7 @@ var getFormData = function (formId) {
     for (var i = 0; i < formDataTextArea.length; i++) {
         data[formDataTextArea[i].name] = formDataTextArea[i].value;
     }
-    console.log(data);
+    //console.log(data);
     return data;
 };
 
@@ -165,6 +165,7 @@ var setFormData = function (formId, data) {
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
     var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
+    console.log('bitgch');
     console.log(data);
     for (var i = 0; i < formDataInput.length; i++) {
         if (data[formDataInput[i].name]) {
@@ -185,7 +186,7 @@ var setFormData = function (formId, data) {
                     formDataInput[i].checked = false;
                 }
             } else {
-
+                console.log(formDataInput[i].name);
                 formDataInput[i].value = data[formDataInput[i].name];
             }
         }

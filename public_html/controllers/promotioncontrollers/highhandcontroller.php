@@ -4,10 +4,10 @@ require getServerPath()."dbcon.php";
 require "../../models/PromotionModel.php";
 require('../../models/promotionmodels/HighHandModel.php');
 $conn = new DbCon();
-
+$promotion = new PromotionModel($conn->insert_database());
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'add') {
-        $promotion = new PromotionModel($conn->insert_database());
+
         $highHand = new HighHandModel($conn->insert_database());
         $addPromotion = 0;
         if($_POST['isTemplate'] != 'true') {
@@ -41,8 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $highHand->updateHighHand($_POST['promotionId'], $_POST['name'], $_POST['card1'], $_POST['card2'],
             $_POST['card3'], $_POST['card4'], $_POST['card5'], $_POST['card6'], $_POST['card7'],
             $_POST['card8']);
+        echo("yo");
+        $promotion->setUpdatedTimestamp($_POST['promotionId']);
         header('content-type:application/json');
-        echo json_encode($response);
+        echo json_encode($highHand);
 
     } else if ($_POST['action'] == 'view'){
         $highHand = new HighHandModel($conn->read_database());
@@ -52,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($_POST['action'] == 'updateHand'){
         $highHand = new HighHandModel($conn->update_database());
         $highHand->updateCardSet($_POST);
+        $promotion->setUpdatedTimestamp($_POST['promotionId']);
+
     }
 }
 

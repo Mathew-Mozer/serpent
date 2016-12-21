@@ -125,6 +125,7 @@ public function updatePromotionStatus($promotionId,$newstatus){
     $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
     $result->execute();
     $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+    $this->setUpdatedTimestamp($promotionId);
     return $promoResult;
 }
     public function archivePromotion($promotionId){
@@ -137,6 +138,7 @@ public function updatePromotionStatus($promotionId,$newstatus){
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $result->execute();
+        $this->setUpdatedTimestamp($promotionId);
         return $rowcount;
 
     }
@@ -217,7 +219,13 @@ WHERE promotion.promotion_id = :id;";
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-
+public function setUpdatedTimestamp($promotionId){
+    $sql = "update promotion set promotion_lastupdated=now() where promotion_id=:promotionId;";
+    $result = $this->db->prepare($sql);
+    $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+    $result->execute();
+    //echo($result->rowCount());
+}
     function getRandomFontAwesome()
     {
         $artifactList = $this->generateFontAwesomeArray();

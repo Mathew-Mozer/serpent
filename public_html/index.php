@@ -5,7 +5,7 @@ if(!isset($_SESSION)) {
 require "dependencies/php/header.php";
 require "models/PromotionModel.php";
 require "models/PermissionModel.php";
-
+date_default_timezone_set('America/Los_Angeles');
 
 /**
  * This is the main page that finds them, bring them all and in the darkness
@@ -150,7 +150,7 @@ $promotion = new PromotionModel($dbcon->read_database());
         echo "$('#page').load('views/mainview.php', {id :" . $_SESSION['userId'] . "});";
         echo "$('#page').show();";
     }
-
+//
     ?>
 
 </script>
