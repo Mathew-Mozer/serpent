@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //List all the properties that the current user has permissions to view
     require "../models/PropertyDisplays.php";
-    if ($permission->hasPermissionByAccount('display','U')) {
+    if ($permission->hasPermissionByAccount('display_manager','C')) {
         require "unassigneddisplayview.php";
     }
     foreach ($propertyList as $property) {
@@ -41,9 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $propertyRowIndex++;
             ?>
                 <hr>
-            <div id="displayViewContainer<?php echo($property['property_id'])?>">
+
+                <div id="displayViewContainer<?php echo($property['property_id']) ?>">
                 <?php
-            include 'displayview.php';
+                include 'displayview.php';
             ?>
             </div>
 

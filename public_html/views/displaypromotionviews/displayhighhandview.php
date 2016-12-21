@@ -123,5 +123,5 @@
 <script>
 
     getAllHands($("#promotion-view-modal").data('promo-id'));
-
+    $('##promotion-view-modal').width="800px";
 </script>

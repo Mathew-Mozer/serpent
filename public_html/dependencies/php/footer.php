@@ -4,14 +4,14 @@
 */
 ?>
 
-<script src="dependencies/js/optionsmodal.js"></script>
-<script src="dependencies/js/addpromotionmodal.js"></script>
-<script src="dependencies/js/createproperty.js"></script>
-<script src="dependencies/js/displayview.js"></script>
-<script src="dependencies/js/promotionmodal.js"></script>
-<script src="dependencies/js/editdisplay.js"></script>
-<script src="dependencies/js/promotion.js"></script>
-<script src="dependencies/js/addusermodal.js"></script>
+<script src="dependencies/js/optionsmodal.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/addpromotionmodal.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/createproperty.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/displayview.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/promotionmodal.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/editdisplay.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/promotion.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/addusermodal.js?t=<?php echo microtime()?>"></script>
 <script>
 
     $(document).ready(function() {
@@ -73,7 +73,8 @@
 ///
         $(".promotionStatusBtn").unbind('click').click(promoStatusButtonClick);
         $(".promotionDeleteBtn").unbind('click').click(promotionDeleteBtnClick);
-
+        $(document).on("ajaxStop", function (e) {
+        });
         $(document).on("click", ".toggleMonitorStatusBtn", function(){
             var currentObject = $(this);
             var displayId = $(this).data("display-id");
@@ -97,6 +98,7 @@
             $('input[name=propertyId]').val(this.id);
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
+
         });
 
         //Open add/remove user panel

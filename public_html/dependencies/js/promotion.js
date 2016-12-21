@@ -6,12 +6,11 @@
  * When a tile is clicked, open the edit modal
  */
 var tileBodyClick = function () {
-    promotionViewModal.dialog('open');
+
     $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
     $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
-    $
     $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php");
-
+    promotionViewModal.dialog('open');
 };
 
 /**
@@ -143,14 +142,14 @@ var promoStatusButtonClick = function (e) {
             switch(parseInt(response['promo_status'])){
                 case 0:
                     currentObject.find('span').removeClass('glyphicon-pause');
-                    currentObject.find('span').addClass('glyphicon-play');
-                    break;
-                case 1:
-                    currentObject.find('span').removeClass('glyphicon-play');
                     currentObject.find('span').addClass('glyphicon-stop');
                     break;
-                case 2:
+                case 1:
                     currentObject.find('span').removeClass('glyphicon-stop');
+                    currentObject.find('span').addClass('glyphicon-play');
+                    break;
+                case 2:
+                    currentObject.find('span').removeClass('glyphicon-play');
                     currentObject.find('span').addClass('glyphicon-pause');
                     break;
             }

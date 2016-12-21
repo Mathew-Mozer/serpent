@@ -197,18 +197,18 @@ var getAllHands = function (id) {
 
             });
             $('.to-winner').click(function() {
-                updateHandStatus(1,payout,this.name);
+                updateHandStatus(1,payout,this.name,id);
                 updateCurrentStatus(this.name,1);
             });
 
             $('.to-pending').click(function() {
-                updateHandStatus(0,0,this.name);
+                updateHandStatus(0,0,this.name,id);
                 updateCurrentStatus(this.name,0);
 
             });
 
             $('.to-last').click(function() {
-                updateHandStatus(2,0,this.name);
+                updateHandStatus(2,0,this.name,id);
                 updateCurrentStatus(this.name,2);
             });
 
@@ -258,7 +258,8 @@ $('#30').click(function() {
     $('#hr-option').hide();
 });
 
-var updateHandStatus = function (isWinner, payout, handId) {
+var updateHandStatus = function (isWinner, payout, handId,id) {
+
     $.ajax({
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
@@ -266,7 +267,8 @@ var updateHandStatus = function (isWinner, payout, handId) {
             action: 'updateHand',
             isWinner: isWinner,
             payout: payout,
-            handId: handId
+            handId: handId,
+            promotionId:id
         },
         cache: false,
         success: function () {

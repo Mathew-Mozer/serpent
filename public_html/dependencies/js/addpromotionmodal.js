@@ -8,7 +8,7 @@
  */
 var addPromotion = function (data) {
     data['append_promotion'] = true;
-    data['promo_status']=0;
+    data['promo_status']=1;
     $.ajax({
         url: 'views/promotionview.php',
         type: 'post',
@@ -37,9 +37,7 @@ var addPromotion = function (data) {
  */
 var addPromotionModal = $("#addPromotion").dialog({
     autoOpen: false,
-    height: 'auto',
-    width: 'auto',
-    position: 'center',
+    position: { my: "center", at: "center", of: window },
     modal: true
 });
 
@@ -111,7 +109,9 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
 
     $('#next-page-btn').click(function () {
         $('#select-template').hide();
+
         $('#template-form').load('views/addpromotionviews/add'+promotionName+'view.php');
+        $('#template-form').show();
         addPromotionUsingTemplate($('#template-options').val(),promotionTypeId);
     });
 };
