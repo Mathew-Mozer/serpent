@@ -53,12 +53,12 @@ if(isset($_POST['property_name'])){
                     $image = $promotionData->getPromotionImageByPromotionId($promo['promotion_id']);
                     $artifact = $promotionData->getPromotionArtifactById($promo['promotion_id']);
                     $promoType = $promotionData->getPromotionTypeById($promo['promotion_id']);
-                    //echo($lockedpromoid."==".$promo['promotion_id']);
+
                     if($lockedpromoid==$promo['promotion_id']){
                         $lockcontainerclass="promotion-lock-overlay";
                         $lockglyphclass="<i class='font-awesome fa fa-lock lock-glyphicon locked'></i>";
-                        //$lockglyphclass="<span id='display-promo-" . $lockedpromoid . "' class='lock-glyphicon glyphicon glyphicon-lock'></span>";
                         $lockstatus="1";
+
                     }else{
                         $lockcontainerclass="promotion-preview-body";
                         $lockglyphclass="<i class='font-awesome fa lock-glyphicon hidden unlocked'></i>";
