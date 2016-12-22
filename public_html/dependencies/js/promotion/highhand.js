@@ -118,6 +118,11 @@ $(".card").click(function () {
     addCards(this.id);
 });
 
+$(".selected-card").click(function () {
+    //flagUsedCard(this.id);
+    addCards(this.id);
+});
+
 /**
  * Highlight the card that will be modified
  * @param clicked_id
