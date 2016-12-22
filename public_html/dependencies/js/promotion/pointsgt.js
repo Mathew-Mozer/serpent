@@ -17,7 +17,7 @@ var addPromotionByType = function(casinoId, promotionId) {
     var beginDate = $('').val();
     var endDate = $('').val();
     var accountID = $('').val();    //get from session
-
+echo("trying to add pointsGT");
     $.ajax({
         url: 'controllers/promotioncontrollers/pointsgtcontroller.php',
         type: 'post',
@@ -43,7 +43,7 @@ var addPromotionByType = function(casinoId, promotionId) {
     });
 };
 
-var getModalData = function(promotionId){
+var fgetModalData = function(promotionId){
     $.ajax({
         url: 'controllers/promotioncontrollers/pointsgtcontroller.php',
         type: 'post',

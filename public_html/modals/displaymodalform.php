@@ -16,7 +16,7 @@ $skins = $displayProperties->getSkinTypes($_POST['propertyId']);
 $assignedPromotions = $displayOptions->getPromotionsByDisplayId($_POST['displayId']);
 $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['displayId'], $_SESSION['userId']);
 ?>
-
+<div>
 <form>
     <div id="display-id-form" hidden data-display-id="<?php echo $_POST['displayId']; ?>"></div>
     <div id="property-id-form" hidden data-property-id="<?php echo $_POST['propertyId']; ?>"></div>
@@ -95,6 +95,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 
 
 </form>
+</div>
 <hr>
 <form class="form-horizontal" method="post">
     <input type="text" id="display-name-field" name="displayName" value='<?php echo $display->getName() ?>'>
@@ -111,4 +112,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
     <input type="hidden" id="default-scene-duration" value="1">
 </form>
 
-<script src="dependencies/js/editdisplay.js"></script>
+<script src="dependencies/js/editdisplay.js?t=<?php echo microtime()?>"></script>
+<script>
+
+</script>

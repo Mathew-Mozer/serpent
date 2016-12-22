@@ -1,13 +1,21 @@
+
 <?php
+if(!isset($_SESSION)) {
+    session_start();
+}
 if(isset($_POST['property_name'])){
     $property['property_name']=$_POST['property_name'];
     $property['property_id']=$_POST['propertyId'];
     include('../models/PropertyDisplays.php');
     include('../models/PromotionModel.php');
+    require "../models/PermissionModel.php";
     require_once("../dependencies/php/HelperFunctions.php");
     require_once(getServerPath() . "dbcon.php");
     $dbcon = NEW DbCon();
+
+    $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']);
 }
+
 /**
  * This is the display tile
  */
@@ -39,11 +47,14 @@ if(isset($_POST['property_name'])){
             <div class="display-body display-background-normal container" id="<?php echo "display-box-id-" . $display->getId(); ?>">
                 <div class="display-header row">
                     <div class="col-md-4"><h3 id="display-name" class="header-text display-friendly-name display-font">
-                            <div class="glyphicon <?php echo $glyphmonitor;?>  toggleMonitorStatusBtn" data-display-id="<?php echo $display->getId();?>" data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php echo $display->getName();?></h3></div>
+                            <?php if ($permission->hasPermissionByAccount('display_manager','U')) {?>
+                            <div class="glyphicon <?php echo $glyphmonitor;?>  toggleMonitorStatusBtn" data-display-id="<?php echo $display->getId();?>" data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php }?><?php echo $display->getName();?></h3></div>
                     <div class="col-md-4"><h3 id="display-location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
+                        <?php if ($permission->hasPermissionById('display', $property['property_id'],'U')){?>
                         <button type="button" data-property-id="<?php echo $property['property_id'];?>" data-property-name="<?php echo $property['property_name'];?>" data-display-id="<?php echo $display->getId();?>" class="btn btn-info btn-lg edit-display-btn">EDIT</button>
+                        <?php }?>
                     </div>
                 </div>
                 <hr class="display">

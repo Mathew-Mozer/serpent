@@ -60,7 +60,7 @@ var updateDisplay = function(displayId,propertyId) {
 var editDisplayModal = $("#editDisplayModal").dialog({
     autoOpen: false,
     height: 450,
-    width: 500,
+    width: 800,
     modal: true,
     buttons: {
         Close: function(){
