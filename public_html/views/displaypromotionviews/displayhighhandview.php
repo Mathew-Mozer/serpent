@@ -15,14 +15,14 @@
     </form>
     <div class="container">
         <div class="row">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card card-index-highlight" id="hh_index1">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card" id="hh_index2">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card" id="hh_index3">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card" id="hh_index4">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card" id="hh_index5">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card" id="hh_index6">
-            <img src="dependencies/images/cards/CB.png" class="card standard-card" id="hh_index7">
-            <img src="dependencies/images/cards/CB.png" class="card gold-card" id="hh_index8">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card card-index-highlight" id="hh_index1">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card" id="hh_index2">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card" id="hh_index3">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card" id="hh_index4">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card" id="hh_index5">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card" id="hh_index6">
+            <img src="dependencies/images/cards/CB.png" class="selected-card standard-card" id="hh_index7">
+            <img src="dependencies/images/cards/CB.png" class="selected-card gold-card" id="hh_index8">
         </div>
     </div>
 <hr>
