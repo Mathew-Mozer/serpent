@@ -24,7 +24,7 @@
 
 
 </div>
-<script src="dependencies/js/promotion/formhelperfunctions.js"></script>
+<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime()?>"></script>
 <?php
 if(isset($_POST['promotion_settings'])) {
     if ($_POST['promotion_settings']) {

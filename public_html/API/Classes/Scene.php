@@ -77,13 +77,14 @@ class Scene
 
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * from high_hand where promotion_id=?';
+        $sql = 'SELECT * from high_hand where promotion_id=? order by high_hand.id desc limit 1';
         $statement = $conn->prepare($sql);
         //echo ("sceneid".$pSceneID);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
         $this->highHandData = new HighHand();
             $this->highHandData->active=1;
+            $this->highHandData->id=$result['id'];
             $this->highHandData->session=$result['promotion_id'];
             $this->highHandData->payouts=$result['payout_value'];
             $this->highHandData->TitleMsg=$result['title_message'];

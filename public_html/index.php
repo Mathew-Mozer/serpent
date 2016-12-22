@@ -32,6 +32,10 @@ $promotion = new PromotionModel($dbcon->read_database());
         </div>
         <div id="promotion-details">
         </div>
+        <div id="select-skin-container">
+        </div>
+        <div id="select-scene-style">
+        </div>
         <div id="use-template">
         </div>
         <div id="template-form">

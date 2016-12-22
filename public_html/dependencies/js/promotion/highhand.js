@@ -29,7 +29,7 @@ var getTemplate = function () {
  * @param promotionId
  */
 var updatePromotion = function (promotionId) {
-
+    console.log('Updating now');
     var name = $('#player-name-modal').val();
 
     $.ajax({

@@ -47,8 +47,11 @@ var removePromotionFromDisplay = function (promotionId) {
     });
 };
 
-var addPromotionToDisplay = function (promotionId) {
-
+var addPromotionToDisplay = function (promotionId,skinId) {
+    console.log("pskin:"+skinId);
+if(skinId==0){
+    skinId=$('#default-skin').val();
+}
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
@@ -57,15 +60,13 @@ var addPromotionToDisplay = function (promotionId) {
             displayId:  $('#display-id').val(),
             propertyId: $('#property-id').val(),
             propertyName: $('#property-name').val(),
-            skinId: $('#default-skin').val(),
+            skinId:skinId,
             sceneDuration: $('#default-scene-duration').val(),
             promotionId: promotionId,
             active: 1
         },
         cache: false,
         success: function() {
-            //editDisplayModal.dialog('close');
-            //location.reload();
             var propertyId = $('#property-id').val();
             var displayId = $('#display-id').val();
             var propertyName = $('#property-name').val();
@@ -112,7 +113,7 @@ $('.remove-from-display').click(function () {
 });
 
 $('.add-to-display').click(function () {
-    addPromotionToDisplay(this.id);
+    addPromotionToDisplay(this.id,$(this).data('skin-id'));
 });
 
 $('.scene-duration').bind("keyup change",function (){
