@@ -31,13 +31,20 @@ class UsersModel{
     public function addUser($userName, $userPassword, $propertyID) {
 
 
+        //How expensive should the hash be? The more expensive, the harder it is to break
+        //and the more time it takes the server to perform
+        $options = ['cost' => 11];
+
+        //Hash password using bcrypt
+        $hashed_password = password_hash($userPassword, PASSWORD_BCRYPT, $options);
+
         $sql = "INSERT INTO account (account_name, account_password) VALUES(:userName, :userPassword);
                 INSERT INTO account_permissions (account_id, tag_id, permissions, excess_id) VALUES(LAST_INSERT_ID(), 1, 'RU', :propertyID);";
 
         $result = $this->conn->prepare($sql);
 
         $result->bindValue(':userName', $userName, PDO::PARAM_STR);
-        $result->bindValue(':userPassword', $userPassword, PDO::PARAM_STR);
+        $result->bindValue(':userPassword', $hashed_password, PDO::PARAM_STR);
         $result->bindValue(':propertyID', $propertyID, PDO::PARAM_INT);
 
         $result->execute();

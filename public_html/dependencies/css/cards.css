@@ -9,15 +9,21 @@
     margin: 3px;
 }
 
+.selected-card{
+    height: 110px;
+    width: 79px;
+    margin: 5px;
+}
+
 .standard-card{
     box-shadow: 2px 2px 5px #969696;
 }
 
 .gold-card{
-    box-shadow: 2px 2px 5px #f9d716;
+    box-shadow: 5px 5px 7px #f9d716;
 }
 
 .card-index-highlight{
 
-    box-shadow: 3px 3px 7px #6e94d1;
+    box-shadow: 7px 7px 5px #6e94d1;
 }

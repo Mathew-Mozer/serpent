@@ -120,10 +120,10 @@ $promotion = new PromotionModel($dbcon->read_database());
 
     <form id="userForm">
 
-        <input type="text" id="userName2" name="userName2" placeholder="User Name">
+        <input type="text" id="userName2" name="userName2" placeholder="User Name" required>
         <br/>
         <br/>
-        <input type="password" id="userPassword" name="userPassword" placeholder="User Password">
+        <input type="password" id="userPassword" name="userPassword" placeholder="User Password" required>
         <br/>
         <br/>
         <select id="propertyID" name="propertyID">
