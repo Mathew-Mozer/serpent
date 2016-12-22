@@ -37,7 +37,9 @@ var addPromotion = function (data) {
  */
 var addPromotionModal = $("#addPromotion").dialog({
     autoOpen: false,
-    position: { my: "center", at: "center", of: window },
+        height: 'auto',
+        width: 'auto',
+    position:'center',
     modal: true
 });
 
@@ -57,6 +59,8 @@ $("div.addPromotion").on('click', function (e) {
     $("#use-template-prompt").hide();
     $("#save-template-prompt").hide();
     $("#template-data").hide();
+    $("#select-skin-container").hide();
+    $("#select-scene-style").hide();
     $('#use-template').show();
     $('#add-promotion-buttons').append(
         "<button type='button' id='scratch-promotion-btn'>Create New</button>" +
@@ -141,15 +145,51 @@ var noTemplate = function () {
     $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
 
     $('#next-page').click(function () {
+        //CreateTemplatePrompt();
+
+        if($('#enable-scene-select').val()=="true"){
+            selectStyle();
+        }else{
+            selectSkin();
+        }
+    });
+};
+var selectStyle = function () {
+
+    $('#use-template-prompt').hide();
+    $('#promotion-details').hide();
+    $("#select-scene-style").load("views/selectStyle.php",{promotionTypeId:$('input[name=promotionTypeId]').val()});
+    $("#select-scene-style").show();
+    $('#add-promotion-buttons').empty();
+    $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
+
+    $('#next-page').click(function () {
+        $('#scene-id').val($('input[name=style_id]:checked').val());
+        selectSkin();
+    });
+};
+var selectSkin = function () {
+
+    $('#use-template-prompt').hide();
+    $('#promotion-details').hide();
+    $("#select-scene-style").hide();
+    $("#select-skin-container").load("views/selectSkin.php",{propertyId:$('input[name=propertyId]').val()});
+    $("#select-skin-container").show();
+    $('#add-promotion-buttons').empty();
+    $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
+
+    $('#next-page').click(function () {
+        //console.log($('#scene_id').val());
+
         CreateTemplatePrompt();
     });
 };
-
 /**
  * Creates a template or promotion
  */
 var CreateTemplatePrompt = function () {
     $('#promotion-details').hide();
+    $('#select-skin-container').hide();
     $('#save-template-prompt').append("<p> Do you want to create the promotion or save as a template?</p>"+
     "<br><br><br>");
     $('#add-promotion-buttons').empty();
@@ -176,9 +216,10 @@ var CreateTemplatePrompt = function () {
         var promotionTypeId = $("#promotion-details").data("promotion-id");
         var propertyId = $('input[name=propertyId]').val();
         var promotionType = $('input[name=promotionType]').val();
+        var selectedSkin = $('#skin-chooser').val();
         var accountId = 1;
         $("#promotion-details").hide();
-        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId);
+        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin);
     });
 };
 

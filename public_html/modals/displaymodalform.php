@@ -83,7 +83,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
             <?php
             echo '<div class="display-list-artifact"><i class="font-awesome fa ' . $displayOptions->getPromotionArtifactById($unassignedPromotion["promotion_id"]) . '"></i></div> <img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['promotion_type_image'] . '"> &nbsp';
             echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $unassignedPromotion['promotion_id'] . " '>" . $unassignedPromotion['promotion_type_title'] . "</label>";
-            echo "<button type='button'  class='add-to-display' id='{$unassignedPromotion['promo_property_promo_id']}' 
+            echo "<button type='button' data-skin-id='".$unassignedPromotion['promotion_skin']."'  class='add-to-display' id='{$unassignedPromotion['promo_property_promo_id']}' 
                     name='add-promotion'> Add </button>";
             ?>
 

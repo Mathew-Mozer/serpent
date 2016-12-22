@@ -143,14 +143,15 @@ public function updatePromotionStatus($promotionId,$newstatus){
 
     }
 
-    public function addPromotion($promotionTypeId, $propertyId, $sceneId)
+    public function addPromotion($promotionTypeId, $propertyId, $sceneId,$chosenSkin)
     {
-        $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid) VALUES (:id, :artifact, :sceneId);";
+        $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid,promotion_skin) VALUES (:id, :artifact, :sceneId,:skinId);";
         $artifact = $this->getRandomFontAwesome();
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $promotionTypeId, PDO::PARAM_STR);
         $result->bindValue(':artifact', $artifact, PDO::PARAM_STR);
         $result->bindValue(':sceneId', $sceneId, PDO::PARAM_STR);
+        $result->bindValue(':skinId', $chosenSkin, PDO::PARAM_STR);
         $result->execute();
 
         $promotionId = $this->db->lastInsertId();

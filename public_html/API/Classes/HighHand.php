@@ -8,6 +8,7 @@
  */
 class HighHand
 {
+    public $id;
     public $active="";
     public $session;
     public $HHtype;

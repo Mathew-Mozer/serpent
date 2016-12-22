@@ -96,6 +96,8 @@
          */
         $(".add-promotion-btn").unbind('click').click(function () {
             $('input[name=propertyId]').val(this.id);
+            $("#select-skin-container").hide();
+            $("#select-scene-style").hide();
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
 

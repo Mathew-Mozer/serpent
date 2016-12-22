@@ -9,14 +9,15 @@
  * @param promotionType
  * @param accountId
  */
-var addPromotionByType = function (propertyId, promotionTypeId, promotionType, accountId) {
-
+var addPromotionByType = function (propertyId, promotionTypeId, promotionType, accountId,selectedSkin) {
     var data = getFormData('add-promotion');
     data['action'] = 'add';
     data['promotionTypeId'] = promotionTypeId;
     data['propertyId'] = propertyId;
     data['promotionType'] = promotionType;
     data['accountId'] = accountId;
+    data['chosenSkin'] = selectedSkin;
+    console.log("#scene-id:"+data['scene_id']);
     $.ajax({
         url: 'controllers/promotioncontroller.php',
         type: 'post',
@@ -24,6 +25,7 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         cache: false,
         success: function (response) {
             //update view with new promotion
+
             addPromotion(response);
             addPromotionModal.dialog('close');
             $("#promotion-details").empty();
@@ -46,6 +48,7 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
  */
 var updatePromotion = function (promotionId, promotionTypeId, accountId) {
     var data = getFormData('add-promotion');
+    console.log('Updating now');
     data['action'] = 'update';
     data['promotionTypeId'] = promotionTypeId;
     data['promotionId'] = promotionId;
@@ -70,6 +73,7 @@ var updatePromotion = function (promotionId, promotionTypeId, accountId) {
  */
 var updatePromotionSettings = function (promotionId) {
     var data = getFormData('add-promotion');
+    console.log('Updating now');
     data['action'] = 'updateSettings';
     data['promotionTypeId'] = promotionTypeId;
     data['propertyId'] = propertyId;
@@ -106,7 +110,7 @@ var getModalData = function (promotionId, promotionTypeId) {
         },
         cache: false,
         success: function (response) {
-            console.log(response);
+            console.log('Get Modal Data');
             setFormData('add-promotion', response)
         },
         error: function (xhr, desc, err) {
@@ -165,8 +169,7 @@ var setFormData = function (formId, data) {
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');
     var formDataTextArea = document.getElementById(formId).getElementsByTagName('TEXTAREA');
-    console.log('bitgch');
-    console.log(data);
+
     for (var i = 0; i < formDataInput.length; i++) {
         if (data[formDataInput[i].name]) {
             if (formDataInput[i].type.toLowerCase() == 'radio') {

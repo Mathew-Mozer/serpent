@@ -8,7 +8,7 @@
     <div id="first-page">
         <form>
             <input type="hidden" name="promotionTypeName" value="highhand">
-            <input type="hidden" id="promotionTypeId" name="highhand_promotionTypeId" value="1">
+            <input type="hidden" id="promotionTypeId" name="promotionTypeId" value="1">
             <br>
 
             <input id="title-message" name="title_message" type="text" placeholder="Title Message"/>
@@ -72,14 +72,12 @@
             <label class="high-hand-label">Custom Payout</label>
 
             <input type="hidden" id="scene-id" name="scene_id" value="2"/>
+            <input type="hidden" id="enable-scene-select" name="enable_scene_id" value="true"/>
 
     </div>
 </div>
-<script src="dependencies/js/promotion/formhelperfunctions.js"></script>
-<script src="dependencies/js/promotion/highhand.js"></script>
-<script>
-    getTemplate();
-</script>
+<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime()?>"></script>
+
 <?php
 if(isset($_POST['promotion_settings'])) {
     if ($_POST['promotion_settings']) {

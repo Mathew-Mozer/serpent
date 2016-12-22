@@ -111,7 +111,7 @@ function loadSceneData()
 
     $dbcon = new DbCon();
     $conn = $dbcon->read_database();
-    $sql = 'SELECT promotion_status,scene_effectid,display_monitor,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion WHERE promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
+    $sql = 'SELECT promotion_skin,promotion_status,scene_effectid,display_monitor,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion WHERE promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
     $statement = $conn->prepare($sql);
     $statement->execute(array($macAddress));
     $tmpSceneArray = array();
@@ -130,7 +130,12 @@ function loadSceneData()
         $displayData->monitor = $result['display_monitor'];
         //Add Scenes to Display
         //echo("Promoid:".$result[promotion_id]." Promotion Type ID".$result[promotion_type_id]." skinid:".$result[skin_id]." sceneid".$result[promotion_sceneid]."<br><br><br>");
-        $tmpScene = new Scene($result['promotion_id'],$result['promotion_type_id'],$result['scene_duration'],$result['skin_id'],$result['promotion_sceneid'],$result['promotion_lastupdated'],$result['scene_effectid']);
+        $tmpSkinID=$result['skin_id'];
+        if($result['promotion_skin'] !=0){
+            $tmpSkinID=$result['promotion_skin'];
+        }
+
+        $tmpScene = new Scene($result['promotion_id'],$result['promotion_type_id'],$result['scene_duration'],$tmpSkinID,$result['promotion_sceneid'],$result['promotion_lastupdated'],$result['scene_effectid']);
         $tmpScene->promotionStatus = $result['promotion_status'];
         array_push($tmpSceneArray,$tmpScene);
         $displayData->sceneList = $tmpSceneArray;

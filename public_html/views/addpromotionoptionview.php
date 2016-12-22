@@ -18,5 +18,6 @@ foreach ($promotionTypeList as $row) {
 }
 }
 }?>
-<script src="dependencies/js/addpromotionmodal.js"></script>
-<script src="dependencies/js/promotion/formhelperfunctions.js"></script>
+
+<script src="dependencies/js/addpromotionmodal.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime()?>"></script>
