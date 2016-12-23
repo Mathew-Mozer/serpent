@@ -11,7 +11,6 @@ date_default_timezone_set('America/Los_Angeles');
  * This is the main page that finds them, bring them all and in the darkness
  * bind them.
  */
-
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>

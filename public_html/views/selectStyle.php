@@ -16,13 +16,14 @@ switch ($_POST['promotionTypeId']){
 
         ?>
             <input class="skin-radio" value="2" name="style_id" id="v2" type="radio" checked/>
-            <label for="disabled"> Version 1</label>
+            <img class="style-select" src="..\dependencies\images\screenshots\hhv1.png">
+
             <br/>
             <input class="skin-radio" value="7" name="style_id" id="v7" type="radio"/>
-            <label for="previous"> Version 2 </label>
+            <img class="style-select" src="..\dependencies\images\screenshots\hhv2.png">
             <br/>
             <input class="skin-radio" value="9" name="style_id" id="v9" type="radio"/>
-            <label for="ranked"> Version 3 </label>
+            <img class="style-select" src="..\dependencies\images\screenshots\hhv3.png">
             <br/>
         <?php
         break;
