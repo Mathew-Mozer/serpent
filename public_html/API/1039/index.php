@@ -135,7 +135,7 @@ function loadSceneData()
             $tmpSkinID=$result['promotion_skin'];
         }
 
-        $tmpScene = new Scene($result['promotion_id'],$result['promotion_type_id'],$result['scene_duration'],$tmpSkinID,$result['promotion_sceneid'],$result['promotion_lastupdated'],$result['scene_effectid']);
+        $tmpScene = new Scene($result['promotion_id'],$result['promotion_type_id'],$result['scene_duration'],$tmpSkinID,$result['promotion_sceneid'],$result['promotion_lastupdated'],$result['scene_effectid'],$result['property_id']);
         $tmpScene->promotionStatus = $result['promotion_status'];
         array_push($tmpSceneArray,$tmpScene);
         $displayData->sceneList = $tmpSceneArray;
@@ -158,7 +158,7 @@ function loadSceneData()
     //Update Checkin Time
 
     if($displayData->sceneList===null){
-        $tmpScene = new Scene(0,0,0,0,0,0,0);
+        $tmpScene = new Scene(0,0,0,0,0,0,0,0);
         $tmpScene->promotionStatus = 0;
         array_push($tmpSceneArray,$tmpScene);
         $displayData->sceneList = $tmpSceneArray;

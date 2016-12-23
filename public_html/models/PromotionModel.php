@@ -287,7 +287,7 @@ public function setUpdatedTimestamp($promotionId){
                 AND promotion.promotion_id =p.promo_property_promo_id 
                 AND p.promo_property_property_id=account_permissions.excess_id 
                 AND promotion.promotion_type_id = promotion_type.promotion_type_id 
-                AND account_permissions.tag_id=:acct_id 
+                AND account_permissions.tag_id='2' 
                 AND account_permissions.excess_id=p.promo_property_property_id 
                 AND account_permissions.account_id=:acct_id 
                 GROUP BY p.promo_property_promo_id";

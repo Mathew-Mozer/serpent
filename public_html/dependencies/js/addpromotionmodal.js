@@ -6,6 +6,7 @@
  * This adds a new tile to the tile view with the proper image
  * @param data
  */
+var isTemplate=false;
 var addPromotion = function (data) {
     data['append_promotion'] = true;
     data['promo_status']=1;
@@ -125,16 +126,20 @@ var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
     $("#template-form").load("views/addpromotionviews/add"+promotionName+"view.php",{promotion_settings:true,
         promotion_id:promotionId, promotion_type:promotionTypeId});
     $('#add-promotion-buttons').empty();
-    $('#add-promotion-buttons').append("<button type='button' id='create-promotion-btn'>Create Promotion</button>");
-
-    $('#create-promotion-btn').click(function () {
-        var promotionTypeId = $("#promotion-details").data("promotion-id");
-        var propertyId = $('input[name=propertyId]').val();
-        var promotionType = $('input[name=promotionType]').val();
-        var accountId = 1;
-        $("#promotion-details").hide();
-        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId);
+    $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
+    $('#next-page').click(function () {
+        //CreateTemplatePrompt();
+        $('#add-promotion').hide();
+        isTemplate=true;
+        if($('#enable-scene-select').val()=="true"){
+            selectStyle();
+        }else{
+            selectSkin();
+        }
     });
+    /*
+    create button
+    */
 };
 
 var noTemplate = function () {
@@ -176,13 +181,30 @@ var selectSkin = function () {
     $("#select-skin-container").load("views/selectSkin.php",{propertyId:$('input[name=propertyId]').val()});
     $("#select-skin-container").show();
     $('#add-promotion-buttons').empty();
-    $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
 
-    $('#next-page').click(function () {
-        //console.log($('#scene_id').val());
+    if(isTemplate){
+        $('#add-promotion-buttons').append("<button type='button' id='create-promotion-btn'>Create Promotion</button>");
+        $('#create-promotion-btn').click(function () {
+            var promotionTypeId = $("#promotion-details").data("promotion-id");
+            var propertyId = $('input[name=propertyId]').val();
+            var promotionType = $('input[name=promotionType]').val();
+            var accountId = 1;
+            var selectedSkin = $('#skin-chooser').val();
+            $("#promotion-details").hide();
+            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin);
+        });
+    }else {
+        $('#use-template-prompt').hide();
+        $('#promotion-details').hide();
+        $("#select-scene-style").hide();
+        $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
 
-        CreateTemplatePrompt();
-    });
+        $('#next-page').click(function () {
+            //console.log($('#scene_id').val());
+            CreateTemplatePrompt();
+        });
+
+    }
 };
 /**
  * Creates a template or promotion

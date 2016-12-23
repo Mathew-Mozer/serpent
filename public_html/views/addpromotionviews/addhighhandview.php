@@ -9,20 +9,22 @@
         <form>
             <input type="hidden" name="promotionTypeName" value="highhand">
             <input type="hidden" id="promotionTypeId" name="promotionTypeId" value="1">
-            <br>
+            <br><label for="title-message">Title Message</label>
+            <textarea id="title-message" style="width: 250px;height: 100px" name="title_message" type="text" placeholder="Title Message">
 
-            <input id="title-message" name="title_message" type="text" placeholder="Title Message"/>
-            <label for="title-message">Title Message</label>
-            <br>
-            <br>
+            </textarea>
 
-            <input id="horn-timer" name="horn_timer" type="number" placeholder="Horn Timer"/>
+
+            <br>
+            <br>
             <label for="horn-timer">Horn Timer</label>
-            <br>
-            <br>
+            <input id="horn-timer" name="horn_timer" type="number" placeholder="Horn Timer"/>
 
-            <input id="payout-value" name="payout_value" type="number" placeholder="Default Payout"/>
+            <br>
+            <br>
             <label for="payout-value">Default Payout</label>
+            <input id="payout-value" name="payout_value" type="number" placeholder="Default Payout"/>
+
             <br>
             <br>
             <label>Session Timer</label>
