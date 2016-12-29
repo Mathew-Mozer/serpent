@@ -14,7 +14,7 @@
             </div>
             <?php
         }
-        if($permission->hasPermissionByAccount('account','C')){
+        if($permission->hasPermissionByAccount('account','R')){
 
           ?>
         <div id = "userBtn" class="button-body tool-button" data-toggle="tooltip" title="Edit User">

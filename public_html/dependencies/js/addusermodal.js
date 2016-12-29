@@ -15,17 +15,3 @@ var createUserModal = $('#createUser').dialog({
     }
 });
 
-var createUser = function () {
-    var userName = $('#userName2').val();
-    var userPassword = $('#userPassword').val();
-    var propertyID = $('#propertyID').val();
-
-
-    $.ajax({
-        url: 'controllers/newusercontroller.php',
-        type: 'post',
-        data: {
-            userName: userName, userPassword: userPassword, propertyID: propertyID}
-
-    })
-};
