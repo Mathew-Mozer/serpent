@@ -99,6 +99,9 @@ class PointsGTModel{
 
         $result = $this->db->prepare($sql);
     for($i = 1; $i <= 20; $i++){
+        if(!isset($values["pgt_player_id$i"])){
+            $values["pgt_player_id$i"]='';
+        }
         if(!isset($values["pgt_player_name$i"])){
             $values["pgt_player_name$i"]='';
         }

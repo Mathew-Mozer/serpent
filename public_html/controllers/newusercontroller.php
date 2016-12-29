@@ -5,16 +5,23 @@
  */
 
 require "../dependencies/php/HelperFunctions.php";
-require getServerPath()."dbcon.php";
+require getServerPath() . "dbcon.php";
 require "../models/UsersModel.php";
+require "../models/PermissionModel.php";
 $dbcon = NEW DbCon();
 
 //Add the new promotion to the database
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user = new UsersModel($dbcon->insert_database());
-    $addResponse = $user->addUser($_POST['userName'], $_POST['userPassword'], $_POST['propertyID']);
-
-    //header('content-type:application/json');
-    //echo json_encode($response);
+    if ($_POST['action'] == 'newuser') {
+        $user = new UsersModel($dbcon->insert_database());
+        $addResponse = $user->addUser($_POST['userName'], $_POST['userPassword'], $_POST['propertyID']);
+        header('content-type:application/json');
+        echo json_encode($addResponse);
+    }else if($_POST['action'] == 'updateUserPermission'){
+        $permissions = new PermissionModel($dbcon->update_database(), $_POST['userId']);
+        $response=$permissions->updateUserPermission($_POST['userId'],$_POST['propertyId'],$_POST['modType'],$_POST['permValue'],$_POST['tagId']);
+        header('content-type:application/json');
+        echo json_encode($response);
+    }
 }
 ?>

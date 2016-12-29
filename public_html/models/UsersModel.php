@@ -50,7 +50,14 @@ class UsersModel{
         $result->execute();
         return $result;
     }
-
+    public function getUsers($propertyId) {
+        $sql = "SELECT * FROM `account`,account_permissions WHERE account.account_id=account_permissions.account_id and account_permissions.permissions LIKE '%%' and account_permissions.tag_id='1'and account_permissions.excess_id=:id;";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+        $result->execute();
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 
 ?>

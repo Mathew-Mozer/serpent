@@ -12,6 +12,7 @@
 <script src="dependencies/js/editdisplay.js?t=<?php echo microtime()?>"></script>
 <script src="dependencies/js/promotion.js?t=<?php echo microtime()?>"></script>
 <script src="dependencies/js/addusermodal.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/editusermodal.js?t=<?php echo microtime()?>"></script>
 <script>
 
     $(document).ready(function() {
@@ -105,7 +106,8 @@
 
         //Open add/remove user panel
          $("#userBtn").click(function () {
-         createUserModal.dialog('open');
+             $('#editUsersModal').load("views/editusersview.php", {propertyId: this.id});
+             editUserModal.dialog('open');
          });
 
         /**
