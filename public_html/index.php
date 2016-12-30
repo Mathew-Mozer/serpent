@@ -14,6 +14,12 @@ date_default_timezone_set('America/Los_Angeles');
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
+<div class="loader hidden">
+    <div class="donut">
+        <div class='thinking-donut' style='transform:scale(0.50);'></div>
+    </div>
+</div>
+
 <div id="page">
 </div>
 
@@ -118,7 +124,9 @@ $promotion = new PromotionModel($dbcon->read_database());
     </form>
 </div>
 
-
+<div class="donut loader hidden">
+    <div class='thinking-donut' style='transform:scale(0.50);'></div>
+</div>
 
 </body>
 <script src="dependencies/js/login.js"></script>
@@ -126,9 +134,11 @@ $promotion = new PromotionModel($dbcon->read_database());
     <?php
 
     if (!isset($_SESSION['loggedIn'])||$_SESSION['loggedIn'] != 'true') {
+
         echo "$('#page').hide();";
         echo "loginModal.dialog('open');";
     } else {
+        echo '$(".loader").removeClass("hidden");';
         echo "$('#page').load('views/mainview.php', {id :" . $_SESSION['userId'] . "});";
         echo "$('#page').show();";
     }
