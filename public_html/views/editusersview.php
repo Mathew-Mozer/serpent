@@ -9,7 +9,7 @@ if(!isset($_SESSION)) {
     session_start();
 }
 ?>
-<button type="button" id="addUserBtn">Add User</button><button type="button" id="viewUserBtn">View Users</button>
+<button class="btn btn-primary" type="button" id="addUserBtn">Add User</button>&nbsp;<button class="btn btn-primary" type="button" id="viewUserBtn">View Users</button>
 <div id="UserModalContent">
 <?php
 echo "<script>$('#UserModalContent').load('views/userview.php');</script>";

@@ -14,16 +14,18 @@ $user = new UsersModel($dbcon->read_database());?>
             if(isset($_SESSION['userId'])){
                 $properties = $promotion->getAssignableProperties();
                 foreach ($properties as $property){
-                    echo "<br><br></bt><div><h1>".$property['property_name']."</h1><br>";
+                    echo "</bt><div><h1>".$property['property_name']."</h1>";
                     $propertyUsers = $user->getUsers($property['property_id']);
                     foreach ($propertyUsers as $propertyuser) {
                         ?>
-                        <div class="editUserBtn" style="border: solid; border-width: 1px; float: left; width:150px;" data-account-id="<?php echo $propertyuser['account_id'] ?>" data-property-id="<?php echo $property['property_id'] ?>">
+                        <div class="edit-user-button" data-account-id="<?php echo $propertyuser['account_id'] ?>" data-property-id="<?php echo $property['property_id'] ?>">
                             <?php echo $propertyuser['account_name'] ?>
                         </div>
+
                         <?php
                     }
-                    echo "</div>";
+                    echo "</div><br><hr>";
+
                 }
 }
             ?>

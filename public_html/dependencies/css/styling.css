@@ -19,3 +19,13 @@
     width:15%;
     height:15%;
 }
+
+.edit-user-button{
+    margin: 2px;
+    text-align: center;
+    display: inline-block;
+    background-color: #c3cacc;
+    width: 100px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px #969696;
+}

@@ -3,16 +3,21 @@ $(document).on("click", "#addUserBtn", function(){
 });
 
 $(document).on("click", "#viewUserBtn", function(){
+    console.log("Clicked View Users");
     $('#UserModalContent').load('views/userview.php');
 });
-$(document).on("click", ".editUserBtn", function(){
+
+$(document).on("click", ".edit-user-button", function(){
     $('#UserModalContent').load("views/EditUserPermissionsView.php", {propertyId: $(this).data('property-id'),userId: $(this).data('account-id')});
 });
+
 $(document).on("click", "#createUserBtn", function(){
     console.log('trying to create user');
     createUser();
 });
+
 console.log('loaded editusers.js');
+
 var updateUserPermissions = function (userid,propertyid,tagid,modtype,permvalue) {
     var userId = userid;
     var tagId  = tagid;
