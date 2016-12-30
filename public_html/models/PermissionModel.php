@@ -130,7 +130,7 @@ public function getPermissionRecordCount($userId,$tagId,$propertyId){
                       tag.tag_id=account_permissions.tag_id and
                       account_permissions.account_id=:uid 
                     and account_permissions.excess_id=:id;
-                    ";
+                    order by tc.tag_toggle_cat_order asc";
         $result = $this->db->prepare($sql);
         $result->bindValue(':uid', $this->loginId, PDO::PARAM_STR);
         $result->bindValue(':id', $propertyId, PDO::PARAM_STR);

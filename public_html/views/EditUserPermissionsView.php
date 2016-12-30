@@ -15,8 +15,20 @@ $tagCategory = "";
 ?>
 
 <?php
+//
+function cmp(array $a, array $b) {
+    if ($a['tag_toggle_cat_id'] < $b['tag_toggle_cat_id']) {
+        return -1;
+    } else if ($a['tag_toggle_cat_id'] > $b['tag_toggle_cat_id']) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+//
 if (isset($_SESSION['userId'])) {
     $myTags = $myPermission->getPermissionTagTriggers($_POST['propertyId']);
+    usort($myTags,'cmp');
 
     foreach ($myTags as $tagToggles) {
         $isChecked = "";
@@ -29,8 +41,8 @@ if (isset($_SESSION['userId'])) {
         ?>
         <div>
             <?php if ($tagToggles['tag_toggle_cat_name'] != $tagCategory) {
-                //echo("<h3>" . $tagToggles['tag_toggle_cat_name'] . "</h3>");
-                //$tagCategory = $tagToggles['tag_toggle_cat_name'];
+                echo("<h3>" . $tagToggles['tag_toggle_cat_name'] . "</h3>");
+                $tagCategory = $tagToggles['tag_toggle_cat_name'];
             }
 
             ?>
