@@ -29,3 +29,14 @@
     cursor: pointer;
     box-shadow: 2px 2px 5px #969696;
 }
+
+.loader{
+    position: fixed;
+    background-color: #262626;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1004;
+}

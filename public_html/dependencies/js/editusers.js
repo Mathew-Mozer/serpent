@@ -22,7 +22,9 @@ var updateUserPermissions = function (userid,propertyid,tagid,modtype,permvalue)
     var tagId  = tagid;
     var propertyID = propertyid;
     $.ajax({
+
         url: 'controllers/newusercontroller.php',
+        global: false,
         type: 'post',
         success: function (response){
             console.log(response);

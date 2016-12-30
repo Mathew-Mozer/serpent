@@ -3,20 +3,20 @@
 * the thinking donut
 *************************************/
 .donut{
-  margin: auto;
-  width: 50%;
+
 }
 
 .thinking-donut{
-
+    position: absolute;
     width: 80px;
     height: 80px;
-    top: 20px;
-    left: 20px;
+    top: 40%;
+    left: 50%;
     border-radius: 40px;
     box-shadow: 0 6px 0 0 #59ebff;
     animation: thinking-donut-anim 2s linear infinite;
     margin: auto;
+    z-index: 1005;
 }
 
 @keyframes thinking-donut-anim{

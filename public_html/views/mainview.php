@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Another require
     require 'toolbar.php';
 
+
     //Create Property objects
     $propertyList = $promotion->getPromotionProperties();
     $propertyCount = count($propertyList);
@@ -52,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         }
     }
+
 
     //If they have no permissions to view a property, let them know.
     if ($propertyRowIndex == 0) { ?>

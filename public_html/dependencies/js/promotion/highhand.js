@@ -33,6 +33,7 @@ var updatePromotion = function (promotionId) {
     var name = $('#player-name-modal').val();
 
     $.ajax({
+
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
         data: {
@@ -49,9 +50,11 @@ var updatePromotion = function (promotionId) {
             card8: cards[8]
         },
         cache: false,
-        success: function (response) {
+        success: function () {
 
         }
+
+
     });
 };
 
@@ -266,6 +269,7 @@ $('#30').click(function() {
 var updateHandStatus = function (isWinner, payout, handId,id) {
 
     $.ajax({
+
         url: 'controllers/promotioncontrollers/highhandcontroller.php',
         type: 'post',
         data: {
@@ -281,6 +285,7 @@ var updateHandStatus = function (isWinner, payout, handId,id) {
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
         }
+
     });
 };
 
