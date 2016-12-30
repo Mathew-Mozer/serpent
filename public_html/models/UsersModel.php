@@ -43,12 +43,18 @@ class UsersModel{
 
         $result = $this->conn->prepare($sql);
 
-        $result->bindValue(':userName', $userName, PDO::PARAM_STR);
+        $result->bindValue(':userName', $this->formatInput($userName), PDO::PARAM_STR);
         $result->bindValue(':userPassword', $hashed_password, PDO::PARAM_STR);
         $result->bindValue(':propertyID', $propertyID, PDO::PARAM_INT);
 
         $result->execute();
         return $result;
+    }
+    private function formatInput ($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
     public function getUsers($propertyId) {
         $sql = "SELECT * FROM `account`,account_permissions WHERE account.account_id=account_permissions.account_id and account_permissions.permissions LIKE '%%' and account_permissions.tag_id='1'and account_permissions.excess_id=:id;";
