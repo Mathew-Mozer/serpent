@@ -115,7 +115,18 @@ public function getPermissionRecordCount($userId,$tagId,$propertyId){
 }
     public function getPermissionTagTriggers($propertyId)
     {
-        $sql = "SELECT * FROM 
+        if($_SESSION['isGod']){
+            $sql = "SELECT * FROM 
+                    tag_toggle,tag_toggle_cat,tag
+                  where
+                  tag_toggle.tag_toggle_tag_id=tag.tag_id and
+                    tag_toggle_cat.tag_toggle_cat_id =tag_toggle.tag_toggle_catid
+                    group by tag_toggle.tag_toggle_id
+                  order by 
+                    tag_toggle_cat.tag_toggle_cat_order asc";
+            $result = $this->db->prepare($sql);
+        }else{
+            $sql = "SELECT * FROM 
                     tag,tag_toggle tt 
                     INNER JOIN 
                     account_permissions 
@@ -131,9 +142,12 @@ public function getPermissionRecordCount($userId,$tagId,$propertyId){
                       account_permissions.account_id=:uid 
                     and account_permissions.excess_id=:id;
                     order by tc.tag_toggle_cat_order asc";
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':uid', $this->loginId, PDO::PARAM_STR);
-        $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':uid', $this->loginId, PDO::PARAM_STR);
+            $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+        }
+
+
         $result->execute();
         $results = $result->fetchAll(PDO::FETCH_ASSOC);
         return $results;

@@ -14,7 +14,7 @@
             </div>
             <?php
         }
-        if($permission->hasPermissionByAccount('account','R')){
+        if($permission->hasPermissionByAccount('account','R')||$_SESSION['isGod']){
 
           ?>
         <div id = "userBtn" class="button-body tool-button" data-toggle="tooltip" title="Edit User">
@@ -25,7 +25,7 @@
 
         <?php }
 
-        if($permission->hasPermissionByAccount("display","R")) {
+        if($permission->hasPermissionByAccount("display","R")||$_SESSION['isGod']) {
         ?>
 
 

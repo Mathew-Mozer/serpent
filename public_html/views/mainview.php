@@ -31,12 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //List all the properties that the current user has permissions to view
     require "../models/PropertyDisplays.php";
-    if ($permission->hasPermissionByAccount('display_manager','C')) {
+    if ($permission->hasPermissionByAccount('display_manager','C')||$_SESSION['isGod']) {
         require "unassigneddisplayview.php";
     }
     foreach ($propertyList as $property) {
         //If the permission checks out, print the promotion
-        if ($permission->hasPermissionById('property', $property['property_id'],'R')) {  
+        if ($permission->hasPermissionById('property', $property['property_id'],'R')||$_SESSION['isGod']) {
             include('propertyview.php');
             $propertyRowIndex++;
             ?>

@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 // PromotionModal class
 //
 // author: Alex Onorati
@@ -40,15 +43,18 @@ class PromotionModel {
     public function getAssignableProperties(){
 
 
-
+    if($_SESSION['isGod']){
+        $sql = "SELECT property_id,property_name 
+                FROM property";
+    }else {
         $sql = "SELECT property_id,property_name 
                 FROM property,account_permissions 
                 WHERE account_permissions.excess_id=property_id 
                 AND account_permissions.tag_id=1 
                 AND account_permissions.permissions 
                 LIKE '%R%' 
-                AND account_permissions.account_id=" . $_SESSION['userId'] .";";
-
+                AND account_permissions.account_id=" . $_SESSION['userId'] . ";";
+    }
         $result = $this->db->prepare($sql);
         $result->execute();
         return $result;
@@ -93,7 +99,20 @@ class PromotionModel {
 
     public function getPromotionTypes($propertyId)
     {
-        $sql = "SELECT
+        if($_SESSION['isGod']){
+            $sql = "SELECT
+               promotion_type.promotion_type_id as promo_id,
+               promotion_type.promotion_type_title as promo_title,
+               promotion_type.promotion_type_image as promo_image,
+               promotion_type.promotion_type_file_name as file_name
+             FROM
+               promotion_type
+            WHERE promotion_type.promotion_type_file_name!=''
+               ;";
+            $result = $this->db->prepare($sql);
+
+        }else {
+            $sql = "SELECT
                promotion_type.promotion_type_id as promo_id,
                promotion_type.promotion_type_title as promo_title,
                promotion_type.promotion_type_image as promo_image,
@@ -104,8 +123,10 @@ class PromotionModel {
                promotion_type.promotion_type_id = subscription.promotion_type_id AND
                subscription.property_id = :propertyId
                ;";
-        $result = $this->db->prepare($sql);
-        $result->bindValue(':propertyId', $propertyId);
+            $result = $this->db->prepare($sql);
+            $result->bindValue(':propertyId', $propertyId);
+        }
+
         $result->execute();
         $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
         return $promoResult;
@@ -278,7 +299,9 @@ public function setUpdatedTimestamp($promotionId){
 
     public function getUnassignedPromotions($displayId, $acctID)
     {
-        $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
+
+        if($_SESSION['isGod']){
+            $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
                 WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
                 WHERE d.promotion_id = p.promo_property_promo_id 
                 AND d.display_id=:display_id ) 
@@ -288,12 +311,30 @@ public function setUpdatedTimestamp($promotionId){
                 AND p.promo_property_property_id=account_permissions.excess_id 
                 AND promotion.promotion_type_id = promotion_type.promotion_type_id 
                 AND account_permissions.tag_id='2' 
-                AND account_permissions.excess_id=p.promo_property_property_id 
-                AND account_permissions.account_id=:acct_id 
+                AND account_permissions.excess_id=p.promo_property_property_id
                 GROUP BY p.promo_property_promo_id";
+        }else{
+            $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
+                WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
+                WHERE d.promotion_id = p.promo_property_promo_id 
+                AND d.display_id=:display_id ) 
+                AND p.promo_property_template = 0 
+                AND promotion.promotion_visible=1
+                AND promotion.promotion_id =p.promo_property_promo_id 
+                AND p.promo_property_property_id=account_permissions.excess_id 
+                AND promotion.promotion_type_id = promotion_type.promotion_type_id 
+                AND account_permissions.tag_id='2' 
+                AND account_permissions.excess_id=p.promo_property_property_id
+                AND account_permissions.account_id=:acct_id
+                GROUP BY p.promo_property_promo_id";
+        }
+
+
         $result = $this->db->prepare($sql);
         $result->bindValue(':display_id', $displayId);
-        $result->bindValue(':acct_id', $acctID);
+        if(!$_SESSION['isGod']) {
+            $result->bindValue(':acct_id', $acctID);
+        }
         $result->execute();
         $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);
         return $unassignedPromotions;

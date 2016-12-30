@@ -43,7 +43,7 @@ class UsersModel{
 
         $result = $this->conn->prepare($sql);
 
-        $result->bindValue(':userName', $this->formatInput($userName), PDO::PARAM_STR);
+        $result->bindValue(':userName', strtolower($this->formatInput($userName)), PDO::PARAM_STR);
         $result->bindValue(':userPassword', $hashed_password, PDO::PARAM_STR);
         $result->bindValue(':propertyID', $propertyID, PDO::PARAM_INT);
 
@@ -56,10 +56,16 @@ class UsersModel{
         $data = htmlspecialchars($data);
         return $data;
     }
-    public function getUsers($propertyId) {
-        $sql = "SELECT * FROM `account`,account_permissions WHERE account.account_id=account_permissions.account_id and account_permissions.permissions LIKE '%%' and account_permissions.tag_id='1'and account_permissions.excess_id=:id;";
+    public function getUsers($propertyId,$userid) {
+        if($_SESSION['isGod']){
+            $sql = "SELECT * FROM `account`,account_permissions WHERE account.account_id=account_permissions.account_id and account.account_id !=:uid and account_permissions.excess_id=:id group by account.account_id;";
+        }else{
+            $sql = "SELECT * FROM `account`,account_permissions WHERE account.account_id=account_permissions.account_id and account.account_godmode=0 and account.account_id !=:uid and account_permissions.excess_id=:id group by account.account_id;";
+        }
+
         $result = $this->conn->prepare($sql);
         $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+        $result->bindValue(':uid', $userid, PDO::PARAM_STR);
         $result->execute();
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
         return $result;

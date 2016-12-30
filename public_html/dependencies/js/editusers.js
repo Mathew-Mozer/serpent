@@ -12,7 +12,6 @@ $(document).on("click", ".edit-user-button", function(){
 });
 
 $(document).on("click", "#createUserBtn", function(){
-    console.log('trying to create user');
     createUser();
 });
 

@@ -48,7 +48,7 @@ if (isset($_SESSION['userId'])) {
 
             ?>
 
-            <div style="float:left;  width :200px">
+            <div style="float:left;  width :225px">
                 <?php echo($tagToggles['tag_toggle_description']) ?></div>
             <div style="float:left; width :200px">
                 <input data-user-id="<?php echo($_POST['userId']) ?>"
