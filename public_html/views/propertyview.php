@@ -7,7 +7,7 @@
     <h2 class="property-title"><?php echo $property['property_name'];?></h2>
 
     <?php
-    if($permission->hasPermissionById('promotion',$property['property_id'],'C')){?>
+    if($permission->hasPermissionById('promotion',$property['property_id'],'C')||$_SESSION['isGod']){?>
     <div title="New Promotion"  data-toggle="tooltip"  id=<?php echo "\"" . $property['property_id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert">
         <img class="tile-icon" src="dependencies/images/clear.png">
         <div class="glyphicon-new-container">

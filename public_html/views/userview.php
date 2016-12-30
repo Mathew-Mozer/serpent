@@ -15,7 +15,7 @@ $user = new UsersModel($dbcon->read_database());?>
                 $properties = $promotion->getAssignableProperties();
                 foreach ($properties as $property){
                     echo "</bt><div><h1>".$property['property_name']."</h1>";
-                    $propertyUsers = $user->getUsers($property['property_id']);
+                    $propertyUsers = $user->getUsers($property['property_id'],$_SESSION['userId']);
                     foreach ($propertyUsers as $propertyuser) {
                         ?>
                         <div class="edit-user-button" data-account-id="<?php echo $propertyuser['account_id'] ?>" data-property-id="<?php echo $property['property_id'] ?>">
