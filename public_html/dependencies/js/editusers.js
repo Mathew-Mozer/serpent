@@ -1,15 +1,18 @@
-$("#addUserBtn").click(function () {
-    console.log('clicked add user');
+$(document).on("click", "#addUserBtn", function(){
     $('#UserModalContent').load("views/newuserview.php", {propertyId: $('#UserModalContent').data('property-id')});
 });
-$("#createUserBtn").click(function () {
- console.log('clicked it');
-    createUser();
+
+$(document).on("click", "#viewUserBtn", function(){
+    $('#UserModalContent').load('views/userview.php');
 });
 $(document).on("click", ".editUserBtn", function(){
-    console.log("userid:"+$(this).data('account-id'));
     $('#UserModalContent').load("views/EditUserPermissionsView.php", {propertyId: $(this).data('property-id'),userId: $(this).data('account-id')});
 });
+$(document).on("click", "#createUserBtn", function(){
+    console.log('trying to create user');
+    createUser();
+});
+console.log('loaded editusers.js');
 var updateUserPermissions = function (userid,propertyid,tagid,modtype,permvalue) {
     var userId = userid;
     var tagId  = tagid;
@@ -26,14 +29,16 @@ var updateUserPermissions = function (userid,propertyid,tagid,modtype,permvalue)
     })
 };
 var createUser = function () {
+    console.log('trying to create user');
     var userName = $('#theName').val();
     var userPassword = $('#theWord').val();
-    var propertyID = $('#UserModalContent').data('property-id');
+    var propertyID = $('#propertyID').val();
     $.ajax({
         url: 'controllers/newusercontroller.php',
         type: 'post',
         success: function (response){
           console.log('user created');
+            $('#UserModalContent').load('views/userview.php');
         },
         data: {
             action: 'newuser',userName: userName, userPassword: userPassword, propertyID: propertyID}
