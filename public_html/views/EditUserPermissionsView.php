@@ -13,7 +13,7 @@ $myPermission = new PermissionModel($dbcon->update_database(), $_SESSION['userId
 $theirPermission = new PermissionModel($dbcon->update_database(), $_POST['userId']);
 $tagCategory = "";
 ?>
-
+<br>
 <?php
 if (isset($_SESSION['userId'])) {
     $myTags = $myPermission->getPermissionTagTriggers($_POST['propertyId']);
@@ -27,6 +27,7 @@ if (isset($_SESSION['userId'])) {
         }
 
         ?>
+
         <div>
             <?php if ($tagToggles['tag_toggle_cat_name'] != $tagCategory) {
                 //echo("<h3>" . $tagToggles['tag_toggle_cat_name'] . "</h3>");
