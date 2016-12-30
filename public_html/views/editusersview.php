@@ -12,7 +12,8 @@ if(!isset($_SESSION)) {
 <button type="button" id="addUserBtn">Add User</button><button type="button" id="viewUserBtn">View Users</button>
 <div id="UserModalContent">
 <?php
-echo "<script>$('#UserModalContent').load('views/userview.php', {id :" . $_SESSION['userId'] . "});</script>";
+echo "<script>$('#UserModalContent').load('views/userview.php');</script>";
 ?>
 </div>
-<script src="dependencies/js/editusers.js?t=<?php echo microtime()?>"></script>
+
+

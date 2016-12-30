@@ -13,6 +13,7 @@
 <script src="dependencies/js/promotion.js?t=<?php echo microtime()?>"></script>
 <script src="dependencies/js/addusermodal.js?t=<?php echo microtime()?>"></script>
 <script src="dependencies/js/editusermodal.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/editusers.js?t=<?php echo microtime()?>"></script>
 <script>
 
     $(document).ready(function() {
@@ -109,7 +110,9 @@
              $('#editUsersModal').load("views/editusersview.php", {propertyId: this.id});
              editUserModal.dialog('open');
          });
-
+        $('div#editUsersModal').on('dialogclose', function(event) {
+            $('#editUsersModal').empty();
+        });
         /**
          * Opens the property modal
          */
