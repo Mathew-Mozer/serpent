@@ -5,6 +5,8 @@
  * and the user is uncertain if it is frozen or still loading.
  */
 ?>
-<div class="donut">
-    <div class='thinking-donut' style='transform:scale(0.50);'></div>
+<div class="loader">
+    <div class="donut">
+        <div class='thinking-donut' style='transform:scale(0.50);'></div>
+    </div>
 </div>

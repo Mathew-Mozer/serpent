@@ -14,6 +14,7 @@ var validateLogin = function () {
     //ajax call to validation controller
     $.ajax({
         url: 'controllers/validationScript.php',
+        global: false,
         type: 'post',
         data: {userName: s_name, password: s_password},
         cache: false,
@@ -22,8 +23,10 @@ var validateLogin = function () {
                 $("#errorMessage").empty();
                 $("#errorMessage").hide();
                 loginModal.dialog('close');
+                $(".loader").removeClass("hidden");
                 $('#page').load('views/mainview.php', {id : json.userId});
                 $('#page').show();
+
             } else {
                 //display error message
                 ul = document.getElementById("errorMessage");
@@ -49,6 +52,7 @@ var validateLogin = function () {
 */
 var loginModal = $("#loginModal").dialog({
     autoOpen: false,
+    global: false,
     height: 275,
     width: 350,
     modal: true,
@@ -79,6 +83,7 @@ $('#password').keypress(function(e) {
 var logoutUser = function () {
     $.ajax({
         url: 'controllers/logincontroller.php',
+        global: false,
         type: 'post',
         data: {action: 'logout'},
         cache: false,

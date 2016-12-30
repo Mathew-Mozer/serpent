@@ -30,6 +30,9 @@ echo("trying to add pointsGT");
 
         },
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         success: function(response) {
 
 
@@ -39,6 +42,9 @@ echo("trying to add pointsGT");
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
         }
     });
 };
@@ -52,6 +58,12 @@ var fgetModalData = function(promotionId){
             promotionId: promotionId
         },
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
+        complete: function(){
+        $(".loader").addClass("hidden");
+    }
         //success: function(response) {
 
 //references the template in view (by id)
@@ -96,11 +108,17 @@ var updatePromotion = function(promotionId){
             team2: team2
         },
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         success: function(response) {
 
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
         }
     });
 };

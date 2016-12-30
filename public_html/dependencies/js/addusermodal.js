@@ -4,6 +4,7 @@
 
 var createUserModal = $('#createUser').dialog({
     autoOpen: false,
+    global: false,
     height: 610,
     width: 350,
     modal: true,

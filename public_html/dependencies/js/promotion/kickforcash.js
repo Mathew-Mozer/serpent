@@ -16,11 +16,17 @@ var updatePlayer = function (promotionId, promotionTypeId, accountId) {
         type: 'post',
         data: data,
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         Update: function (response) {
             alert(response);
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
         }
     });
 };

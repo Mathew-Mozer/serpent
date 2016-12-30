@@ -23,6 +23,9 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         type: 'post',
         data: data,
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         success: function (response) {
             //update view with new promotion
 
@@ -36,6 +39,9 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
         }
     });
 };
@@ -58,11 +64,17 @@ var updatePromotion = function (promotionId, promotionTypeId, accountId) {
         type: 'post',
         data: data,
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         Update: function (response) {
             alert(response);
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
         }
     });
 };
@@ -84,12 +96,18 @@ var updatePromotionSettings = function (promotionId) {
         type: 'post',
         data: data,
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         Update: function (response) {
 
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
-        }
+        },
+            complete: function(){
+                $(".loader").addClass("hidden");
+            }
     });
 };
 
@@ -109,12 +127,21 @@ var getModalData = function (promotionId, promotionTypeId) {
             promotionTypeId: promotionTypeId
         },
         cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
         success: function (response) {
             console.log('Get Modal Data');
             setFormData('add-promotion', response)
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
         }
     });
 };

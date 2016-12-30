@@ -18,7 +18,16 @@
 
     $(document).ready(function() {
 
+        $(document).bind("ajaxSend", function(){
+            loadThinkingDonut();
+        }).bind("ajaxComplete", function(){
+            unloadThinkingDonut();
+        });
+
+
         checkDowntime();
+
+
 
         $('.displays').hide();
 
@@ -199,6 +208,7 @@
             $.ajax({
                 type: "GET",
                 url: "controllers/boxstatuscheck.php",
+                global: false,
                 dataType: "json",
                 cache: false,
                 success: function (response){
@@ -296,6 +306,16 @@
             $('#promotion-select').show();
             $('#add-promotion-form').show();
         });
+
+        function loadThinkingDonut(){
+            $(".loader").removeClass("hidden");
+        }
+
+        function unloadThinkingDonut(){
+            $(".loader").addClass("hidden");
+        }
+
+        unloadThinkingDonut();
     })
 </script>
 </html>
