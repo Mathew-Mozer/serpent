@@ -75,6 +75,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 
 <div id="editDisplayModal" style="display: none;" title="Edit Display">
 </div>
+
 <div id="editUsersModal" style="display: none;" title="Edit Users">
 </div>
 

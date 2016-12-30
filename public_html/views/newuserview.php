@@ -10,16 +10,17 @@ $dbcon = NEW DbCon();
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <div id="createUser" style="" title="Create User">
-
+<br>
     <form id="userForm" autocomplete="off">
         <label for="theName">Username</label><br>
-        <input type="text" id="theName" name="theName" autocomplete="off" value=" " required>
+        <input type="text" id="theName" name="theName" autocomplete="off" value="" placeholder="username" readonly onfocus="this.removeAttribute('readonly')" required>
         <br/>
         <br/>
-        <label for="theWord">Password:</label><br>
-        <input type="password" id="theWord" name="theWord"  value="" required>
+        <label for="theWord">Password</label><br>
+        <input type="password" id="theWord" name="theWord"  value="" placeholder="password" required>
         <br/>
         <br/>
+        <label for="propertyID">Select Property</label><br>
         <select id="propertyID" name="propertyID">
             <?php
             if(isset($_SESSION['userId'])){
@@ -30,7 +31,7 @@ $promotion = new PromotionModel($dbcon->read_database());
             }
             ?>
         </select>
-        <label for="propertyID">Select Property</label>
+
         <br/>
         <br/>
 <button type="button" id="createUserBtn">Create User</button>
