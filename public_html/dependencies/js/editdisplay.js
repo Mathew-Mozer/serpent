@@ -47,7 +47,7 @@ var removePromotionFromDisplay = function (promotionId) {
     });
 };
 
-var addPromotionToDisplay = function (promotionId,skinId) {
+var addPromotionToDisplay = function (promotionId,skinId,defaultTime) {
     console.log("pskin:"+skinId);
 if(skinId==0){
     skinId=$('#default-skin').val();
@@ -61,7 +61,7 @@ if(skinId==0){
             propertyId: $('#property-id').val(),
             propertyName: $('#property-name').val(),
             skinId:skinId,
-            sceneDuration: $('#default-scene-duration').val(),
+            sceneDuration: defaultTime,
             promotionId: promotionId,
             active: 1
         },
@@ -113,7 +113,7 @@ $('.remove-from-display').click(function () {
 });
 
 $('.add-to-display').click(function () {
-    addPromotionToDisplay(this.id,$(this).data('skin-id'));
+    addPromotionToDisplay(this.id,$(this).data('skin-id'),$(this).data('default-time'));
 });
 
 $('.scene-duration').bind("keyup change",function (){

@@ -14,6 +14,8 @@
 <script src="dependencies/js/addusermodal.js?t=<?php echo microtime()?>"></script>
 <script src="dependencies/js/editusermodal.js?t=<?php echo microtime()?>"></script>
 <script src="dependencies/js/editusers.js?t=<?php echo microtime()?>"></script>
+<script src="dependencies/js/promotion/multipliermadness.js?t=<?php echo microtime()?>"></script>
+
 <script>
 
     $(document).ready(function() {
