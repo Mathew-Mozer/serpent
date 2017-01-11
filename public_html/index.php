@@ -57,6 +57,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 
     <ul id="errorMessage" hidden></ul>
     <form>
+        <img src="http://www.typhonpacific.com/logo.png" style="display: block; margin: auto;" />
         <input type="text" name="userName" id="userName" placeholder="User Name">
         <br/>
         <br/>
@@ -131,6 +132,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 </body>
 <script src="dependencies/js/login.js"></script>
 <script>
+
     <?php
 
     if (!isset($_SESSION['loggedIn'])||$_SESSION['loggedIn'] != 'true') {

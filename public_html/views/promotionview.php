@@ -22,7 +22,7 @@ if(isset($_POST['append_promotion'])){
 $glyphstatus = "glyphicon-play";
 
 if(isset($row['promo_status'])) {
-    
+
     switch (intval($row['promo_status'])) {
         case 0:
             $glyphstatus = "glyphicon-stop";
@@ -32,6 +32,9 @@ if(isset($row['promo_status'])) {
             break;
         case 2:
             $glyphstatus = "glyphicon-pause";
+            break;
+        case 3:
+            $glyphstatus = "glyphicon-time";
             break;
         default:
             $glyphstatus = "glyphicon-play";

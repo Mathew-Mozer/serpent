@@ -53,7 +53,7 @@ var validateLogin = function () {
 var loginModal = $("#loginModal").dialog({
     autoOpen: false,
     global: false,
-    height: 275,
+    height: 475,
     width: 350,
     modal: true,
     buttons: {

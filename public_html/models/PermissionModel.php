@@ -78,7 +78,6 @@ class PermissionModel
                 break;
             case 1:
                 //check for record first
-
                 if($this->getPermissionRecordCount($userId,$tagId,$propertyId)==0){
                     $sql="INSERT INTO `account_permissions` (`account_id`, `tag_id`, `permissions`, `excess_id`) VALUES (:uid,:tagid,:permvalue ,:propId);";
                 }else{
@@ -93,7 +92,9 @@ class PermissionModel
         $result->bindValue(':tagid', $tagId, PDO::PARAM_STR);
         $result->bindValue(':propId', $propertyId, PDO::PARAM_STR);
         $result->execute();
-        return $result;
+        //echo($userId."-".$permValue."-".$tagId."- PropertyId: ".$propertyId);
+        return $result->rowCount();
+
     }
 public function getPermissionRecordCount($userId,$tagId,$propertyId){
     $sql = "select COUNT(*) 

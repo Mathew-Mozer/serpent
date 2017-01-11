@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user'] = $_POST['userName'];
             $_SESSION['loggedIn'] = 'true';
             $_SESSION['userId'] = $response['userId'];
+            $_SESSION['isGod'] = $response['godMode'];
         }
 
         header('content-type:application/json');

@@ -6,14 +6,18 @@ if (!isset($_SESSION)) {
 //
 // author: Alex Onorati
 // This class contains all the legal queries on the database property_serpent.
-class PromotionModel {
+class PromotionModel
+{
     protected $db;
-    public function __construct(PDO $db) {
+
+    public function __construct(PDO $db)
+    {
         $this->db = $db;
     }
 
     //This retrives all promotions that are stored.
-    public function getAllPromotions() {
+    public function getAllPromotions()
+    {
         $sql = "SELECT
                 promotion.promotion_id as promo_id,
                 promotion_type.title as promo_title,
@@ -28,7 +32,9 @@ class PromotionModel {
         $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-    public function getPromotionProperties(){
+
+    public function getPromotionProperties()
+    {
         $sql = "SELECT * FROM property;";
         $result = $this->db->prepare($sql);
         $result->execute();
@@ -40,21 +46,22 @@ class PromotionModel {
      * Get list of properties that logged in user can access
      * @return PDOStatement
      */
-    public function getAssignableProperties(){
+    public function getAssignableProperties()
+    {
 
 
-    if($_SESSION['isGod']){
-        $sql = "SELECT property_id,property_name 
+        if ($_SESSION['isGod']) {
+            $sql = "SELECT property_id,property_name 
                 FROM property";
-    }else {
-        $sql = "SELECT property_id,property_name 
+        } else {
+            $sql = "SELECT property_id,property_name 
                 FROM property,account_permissions 
                 WHERE account_permissions.excess_id=property_id 
                 AND account_permissions.tag_id=1 
                 AND account_permissions.permissions 
                 LIKE '%R%' 
                 AND account_permissions.account_id=" . $_SESSION['userId'] . ";";
-    }
+        }
         $result = $this->db->prepare($sql);
         $result->execute();
         return $result;
@@ -99,7 +106,7 @@ class PromotionModel {
 
     public function getPromotionTypes($propertyId)
     {
-        if($_SESSION['isGod']){
+        if ($_SESSION['isGod']) {
             $sql = "SELECT
                promotion_type.promotion_type_id as promo_id,
                promotion_type.promotion_type_title as promo_title,
@@ -111,7 +118,7 @@ class PromotionModel {
                ;";
             $result = $this->db->prepare($sql);
 
-        }else {
+        } else {
             $sql = "SELECT
                promotion_type.promotion_type_id as promo_id,
                promotion_type.promotion_type_title as promo_title,
@@ -131,25 +138,29 @@ class PromotionModel {
         $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-public function updatePromotionStatus($promotionId,$newstatus){
-    $sql = "update promotion set promotion_status=:newstatus where promotion_id=:promotionId;";
-    $result = $this->db->prepare($sql);
-    $result->bindValue(':newstatus', $newstatus, PDO::PARAM_STR);
-    $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
-    $result->execute();
 
-     $sql = "SELECT promotion_status as promo_status
+    public function updatePromotionStatus($promotionId, $newstatus)
+    {
+        $sql = "update promotion set promotion_status=:newstatus where promotion_id=:promotionId;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':newstatus', $newstatus, PDO::PARAM_STR);
+        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $result->execute();
+
+        $sql = "SELECT promotion_status as promo_status
                 FROM promotion
                 where promotion.promotion_id = :id;
                     ";
-    $result = $this->db->prepare($sql);
-    $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
-    $result->execute();
-    $promoResult = $result->fetch(PDO::FETCH_ASSOC);
-    $this->setUpdatedTimestamp($promotionId);
-    return $promoResult;
-}
-    public function archivePromotion($promotionId){
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        $this->setUpdatedTimestamp($promotionId);
+        return $promoResult;
+    }
+
+    public function archivePromotion($promotionId)
+    {
         $sql = "update promotion set promotion_visible=0 where promotion_id=:promotionId limit 1";
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
@@ -164,7 +175,7 @@ public function updatePromotionStatus($promotionId,$newstatus){
 
     }
 
-    public function addPromotion($promotionTypeId, $propertyId, $sceneId,$chosenSkin)
+    public function addPromotion($promotionTypeId, $propertyId, $sceneId, $chosenSkin)
     {
         $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid,promotion_skin) VALUES (:id, :artifact, :sceneId,:skinId);";
         $artifact = $this->getRandomFontAwesome();
@@ -194,7 +205,7 @@ public function updatePromotionStatus($promotionId,$newstatus){
         $result->execute();
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         $promoResult['promo_id'] = $promotionId;
-        $promoResult['property_id'] =$propertyId;
+        $promoResult['property_id'] = $propertyId;
         return $promoResult;
 
     }
@@ -229,7 +240,8 @@ public function updatePromotionStatus($promotionId,$newstatus){
         return $image;
     }
 
-    public function getPromotionTypeById($id){
+    public function getPromotionTypeById($id)
+    {
         $sql = "SELECT promotion_type.promotion_type_title, promotion.promotion_id
 FROM promotion_type
 INNER JOIN promotion
@@ -241,13 +253,16 @@ WHERE promotion.promotion_id = :id;";
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-public function setUpdatedTimestamp($promotionId){
-    $sql = "update promotion set promotion_lastupdated=now() where promotion_id=:promotionId;";
-    $result = $this->db->prepare($sql);
-    $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
-    $result->execute();
-    //echo($result->rowCount());
-}
+
+    public function setUpdatedTimestamp($promotionId)
+    {
+        $sql = "update promotion set promotion_lastupdated=now() where promotion_id=:promotionId;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $result->execute();
+        //echo($result->rowCount());
+    }
+
     function getRandomFontAwesome()
     {
         $artifactList = $this->generateFontAwesomeArray();
@@ -255,7 +270,8 @@ public function setUpdatedTimestamp($promotionId){
         return $artifactList[$artifactSelection];
     }
 
-    public function getPromotionArtifactById($promotionId){
+    public function getPromotionArtifactById($promotionId)
+    {
         $sql = "SELECT artifact FROM promotion WHERE promotion_id = :id;";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $promotionId, PDO::PARAM_STR);
@@ -266,9 +282,11 @@ public function setUpdatedTimestamp($promotionId){
 
     public function generateFontAwesomeArray()
     {
-        return $fontawesome = array('fa-ambulance','fa-anchor','fa-android','fa-arrow-down','fa-arrow-left','fa-arrow-right','fa-arrow-up','fa-at','fa-bath','fa-battery','fa-bell','fa-bicycle','fa-birthday-cake','fa-black-tie','fa-bolt','fa-bomb','fa-bug','fa-child','fa-coffee','fa-cut','fa-diamond','fa-dollar','fa-envira','fa-fa','fa-female','','fa-fighter-jet','fa-fort-awesome','fa-frown-o','fa-gift','fa-glass','fa-globe','fa-hand-peace-o','fa-hand-spock-o','fa-hourglass','fa-key','fa-lightbulb-o','fa-linux','fa-lock','fa-motorcycle','fa-mortar-board','fa-paper-plane','fa-rocket','fa-snowflake-o','fa-soccer-ball-o','fa-star','fa-thermometer','fa-thumbs-o-up','fa-tint','fa-tree','fa-umbrella');
+        return $fontawesome = array('fa-ambulance', 'fa-anchor', 'fa-android', 'fa-arrow-down', 'fa-arrow-left', 'fa-arrow-right', 'fa-arrow-up', 'fa-at', 'fa-bath', 'fa-battery', 'fa-bell', 'fa-bicycle', 'fa-birthday-cake', 'fa-black-tie', 'fa-bolt', 'fa-bomb', 'fa-bug', 'fa-child', 'fa-coffee', 'fa-cut', 'fa-diamond', 'fa-dollar', 'fa-envira', 'fa-fa', 'fa-female', '', 'fa-fighter-jet', 'fa-fort-awesome', 'fa-frown-o', 'fa-gift', 'fa-glass', 'fa-globe', 'fa-hand-peace-o', 'fa-hand-spock-o', 'fa-hourglass', 'fa-key', 'fa-lightbulb-o', 'fa-linux', 'fa-lock', 'fa-motorcycle', 'fa-mortar-board', 'fa-paper-plane', 'fa-rocket', 'fa-snowflake-o', 'fa-soccer-ball-o', 'fa-star', 'fa-thermometer', 'fa-thumbs-o-up', 'fa-tint', 'fa-tree', 'fa-umbrella');
     }
-    public function getPromotionsByDisplayId($displayId){
+
+    public function getPromotionsByDisplayId($displayId)
+    {
         $sql1 = "SELECT
                       promotion.promotion_id as promo_id,
                       promotion_type.promotion_type_image,
@@ -300,7 +318,7 @@ public function setUpdatedTimestamp($promotionId){
     public function getUnassignedPromotions($displayId, $acctID)
     {
 
-        if($_SESSION['isGod']){
+        if ($_SESSION['isGod']) {
             $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
                 WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
                 WHERE d.promotion_id = p.promo_property_promo_id 
@@ -313,7 +331,7 @@ public function setUpdatedTimestamp($promotionId){
                 AND account_permissions.tag_id='2' 
                 AND account_permissions.excess_id=p.promo_property_property_id
                 GROUP BY p.promo_property_promo_id";
-        }else{
+        } else {
             $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
                 WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
                 WHERE d.promotion_id = p.promo_property_promo_id 
@@ -332,7 +350,7 @@ public function setUpdatedTimestamp($promotionId){
 
         $result = $this->db->prepare($sql);
         $result->bindValue(':display_id', $displayId);
-        if(!$_SESSION['isGod']) {
+        if (!$_SESSION['isGod']) {
             $result->bindValue(':acct_id', $acctID);
         }
         $result->execute();
@@ -340,7 +358,8 @@ public function setUpdatedTimestamp($promotionId){
         return $unassignedPromotions;
     }
 
-    public function saveTemplate($values){
+    public function saveTemplate($values)
+    {
         $sql = "INSERT INTO promotion (promotion_type_id, promotion_sceneid) VALUES (:id, :sceneId);";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $values['promotionTypeId'], PDO::PARAM_STR);
@@ -360,24 +379,53 @@ public function setUpdatedTimestamp($promotionId){
         return $promotionId;
     }
 
-    public function getTemplates($values) {
-        if($values['promotionType'] == 'kickforcash') {
+    public function addSession($values)
+    {
+        $sql = "INSERT INTO promotion_session_time (promotion_sessiontime_startday, promotion_sessiontime_starttime,promotion_sessiontime_endday,promotion_sessiontime_endtime,promotion_sessiontime_promoid) VALUES (:sDay, :sTime,:eDay,:eTime,:promoId);";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':sDay', $values['sDay'], PDO::PARAM_STR);
+        $result->bindValue(':sTime', $values['sTime'], PDO::PARAM_STR);
+        $result->bindValue(':eDay', $values['eDay'], PDO::PARAM_STR);
+        $result->bindValue(':eTime', $values['eTime'], PDO::PARAM_STR);
+        $result->bindValue(':promoId', $values['promoId'], PDO::PARAM_STR);
+        $result->execute();
+        return $result;
+    }
+    public function removeSession($values)
+    {
+        $sql = "Delete from promotion_session_time where promotion_sessiontime_id=:sessionId;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':sessionId', $values['sessionId'], PDO::PARAM_STR);
+            $result->execute();
+        return $result;
+    }
+
+    public function getSessions($values){
+        $sql = "select *,DAYOFWEEK('".date('Y/m/d')."') as curdayow from promotion_session_time where promotion_sessiontime_promoid=:promoid";
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':promoid', $values['promoId'], PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($results);
+        return $results;
+}
+    public function getTemplates($values)
+    {
+        if ($values['promotionType'] == 'kickforcash') {
             $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
             from kick_for_cash,promotion,promo_property
             where promotion.promotion_id=promo_property.promo_property_promo_id 
             and kick_for_cash.kfc_promotion_id=promo_property.promo_property_promo_id 
             and promo_property.promo_property_property_id=:propertyId 
             and promo_property.promo_property_template=1';
-        }
-        else if($values['promotionType'] == 'pointsgt') {
+        } else if ($values['promotionType'] == 'pointsgt') {
             $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
             from points_gt,promotion,promo_property
             where promotion.promotion_id=promo_property.promo_property_promo_id 
             and points_gt.pgt_promotion_id=promo_property.promo_property_promo_id 
             and promo_property.promo_property_property_id=:propertyId 
             and promo_property.promo_property_template=1';
-        }
-        else if($values['promotionType'] == 'highhand'){
+        } else if ($values['promotionType'] == 'highhand') {
             $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
             from high_hand,promotion,promo_property
             where promotion.promotion_id=promo_property.promo_property_promo_id 
@@ -395,4 +443,5 @@ public function setUpdatedTimestamp($promotionId){
     }
 
 }
+
 ?>
