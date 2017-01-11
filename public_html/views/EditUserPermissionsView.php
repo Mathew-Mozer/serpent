@@ -26,6 +26,7 @@ function cmp(array $a, array $b) {
     }
 }
 //
+
 if (isset($_SESSION['userId'])) {
     $myTags = $myPermission->getPermissionTagTriggers($_POST['propertyId']);
     usort($myTags,'cmp');
@@ -53,7 +54,7 @@ if (isset($_SESSION['userId'])) {
             <div style="float:left; width :200px">
                 <input data-user-id="<?php echo($_POST['userId']) ?>"
                        data-permvalue="<?php echo($tagToggles['tag_toggle_permission_value']) ?>"
-                       data-property-id="<?php echo($tagToggles['excess_id']) ?>"
+                       data-property-id="<?php echo($_POST['propertyId']) ?>"
                        data-permid="<?php echo($tagToggles['tag_id']) ?>" class="switch-wrapper swtchbtn"
                        type="checkbox" value="1" <?php echo($isChecked) ?>>
             </div>

@@ -2,7 +2,13 @@
 /**
  * This is the create high hand form
  */
+if(isset($_POST['promotion_settings'])) {
+    if ($_POST['promotion_settings']) {
+        include "../sessionmanager.php";
+    }
+}
 ?>
+
 
 <div id="add-promotion">
     <div id="first-page">

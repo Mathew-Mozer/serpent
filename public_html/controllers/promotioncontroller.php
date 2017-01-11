@@ -77,6 +77,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $promotion->archivePromotion($_POST['promotionId']);
         header('content-type:application/json');
         echo json_encode($response);
+    }else if (($_POST['action'] == 'addSessionTime')){
+        $promotion = new PromotionModel($conn->insert_database());
+        $response = $promotion->addSession($_POST);
+        header('content-type:application/json');
+        echo json_encode($response);
+    }else if (($_POST['action'] == 'removeSession')){
+        $promotion = new PromotionModel($conn->insert_database());
+        $response = $promotion->removeSession($_POST);
+        header('content-type:application/json');
+        echo json_encode($response);
     }
+
 }
 ?>

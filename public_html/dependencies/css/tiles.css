@@ -38,7 +38,6 @@
     display: flex;
     flex-wrap: wrap;
 }
-
 .tile-menu-item {
     max-height: 20px;
     min-height: 20px;
@@ -49,6 +48,30 @@
     display: block;
     text-align: center;
 }
+.tile-status-bar {
+    max-height: 20px;
+    min-height: 20px;
+    max-width: 150px;
+    min-width: 150px;
+    background-color: rgba(179, 179, 179, 0.6);
+    position: relative;
+    top: -70px;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+}
+.tile-status-item {
+    max-height: 20px;
+    min-height: 20px;
+    max-width: 50px;
+    min-width: 50px;
+    z-index: 2;
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+
 .tile-menu-item-placemarker {
     max-height: 20px;
     min-height: 20px;
