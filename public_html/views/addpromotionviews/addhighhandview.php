@@ -2,10 +2,8 @@
 /**
  * This is the create high hand form
  */
-if(isset($_POST['promotion_settings'])) {
-    if ($_POST['promotion_settings']) {
+if(!isset($_POST['promotion_template'])) {
         include "../sessionmanager.php";
-    }
 }
 ?>
 
@@ -15,21 +13,19 @@ if(isset($_POST['promotion_settings'])) {
         <form>
             <input type="hidden" name="promotionTypeName" value="highhand">
             <input type="hidden" id="promotionTypeId" name="promotionTypeId" value="1">
-            <br><label for="title-message">Title Message</label>
-            <textarea id="title-message" style="width: 250px;height: 100px" name="title_message" type="text" placeholder="Title Message">
-
-            </textarea>
+            <br><label for="title-message">Description</label>
+            <textarea id="title-message" style="width: 250px;height: 100px" name="title_message" type="text" placeholder="Title Message"></textarea>
 
 
             <br>
             <br>
             <label for="horn-timer">Horn Timer</label>
-            <input id="horn-timer" name="horn_timer" type="number" placeholder="Horn Timer"/>
+            <input id="horn-timer" name="horn_timer" type="number" value="0" placeholder="Horn Timer"/>
 
             <br>
             <br>
             <label for="payout-value">Default Payout</label>
-            <input id="payout-value" name="payout_value" type="number" placeholder="Default Payout"/>
+            <input id="payout-value" name="payout_value" type="number" value="250" placeholder="Default Payout"/>
 
             <br>
             <br>

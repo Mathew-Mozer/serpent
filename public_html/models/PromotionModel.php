@@ -79,7 +79,7 @@ class PromotionModel
 
     public function getAllPromotionsByProperty($propertyId)
     {
-        $sql = "SELECT
+        $sql = "SELECT *,
                       promotion.promotion_status as promo_status,
                       promotion.promotion_id as promo_id,
                       promotion.artifact as artifact,
@@ -175,15 +175,22 @@ class PromotionModel
 
     }
 
-    public function addPromotion($promotionTypeId, $propertyId, $sceneId, $chosenSkin)
+    public function addPromotion($post)
     {
-        $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid,promotion_skin) VALUES (:id, :artifact, :sceneId,:skinId);";
+        $promotionTypeId=$post['promotionTypeId'];
+        $propertyId=$post['propertyId'];
+        $sceneId=$post['scene_id'];
+        $chosenSkin=$post['chosenSkin'];
+        $promolabel = $post['Promotion-Label'];
+
+        $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid,promotion_skin,promotion_label) VALUES (:id, :artifact, :sceneId,:skinId, :promolabel);";
         $artifact = $this->getRandomFontAwesome();
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $promotionTypeId, PDO::PARAM_STR);
         $result->bindValue(':artifact', $artifact, PDO::PARAM_STR);
         $result->bindValue(':sceneId', $sceneId, PDO::PARAM_STR);
         $result->bindValue(':skinId', $chosenSkin, PDO::PARAM_STR);
+        $result->bindValue(':promolabel', $promolabel, PDO::PARAM_STR);
         $result->execute();
 
         $promotionId = $this->db->lastInsertId();
@@ -192,7 +199,7 @@ class PromotionModel
         $result->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
         $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $result->execute();
-        $sql = "SELECT promotion_type.promotion_type_id as promo_type_id, 
+        $sql = "SELECT *,promotion_type.promotion_type_id as promo_type_id, 
                       promotion_type.promotion_type_title as promo_title, 
                       promotion_type.promotion_type_image as promo_image, 
                       promotion.artifact, promotion_type.promotion_type_file_name as file_name
@@ -206,6 +213,7 @@ class PromotionModel
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         $promoResult['promo_id'] = $promotionId;
         $promoResult['property_id'] = $propertyId;
+
         return $promoResult;
 
     }
@@ -287,7 +295,7 @@ WHERE promotion.promotion_id = :id;";
 
     public function getPromotionsByDisplayId($displayId)
     {
-        $sql1 = "SELECT
+        $sql1 = "SELECT *,
                       promotion.promotion_id as promo_id,
                       promotion_type.promotion_type_image,
                       promotion_type.promotion_type_file_name,

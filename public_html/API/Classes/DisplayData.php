@@ -24,6 +24,7 @@ class DisplayData
     public $skinLastUpdated="";
     public $displayID;
     public $monitor;
+    public $apiurl;
 //Specific Scene Settings
     public $sceneList;
 

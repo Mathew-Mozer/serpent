@@ -83,6 +83,12 @@ if (isset($_POST['property_name'])) {
                         $lockglyphclass = "<i class='font-awesome fa lock-glyphicon hidden unlocked'></i>";
                         $lockstatus = "0";
                     }
+                    if($promo['promotion_label']==""){
+                        $apromoname=$promoType['promotion_type_title'];
+                    }else{
+                        $apromoname=$promo['promotion_label'];
+
+                    }
                     ?>
 
                     <div class="<?php echo $lockcontainerclass ?> promolockbtn-<?php echo $promo['promotion_id'] ?> promotionLockBtn"
@@ -91,7 +97,7 @@ if (isset($_POST['property_name'])) {
                          data-promo-lockstatus="<?php echo $lockstatus; ?>"
                          data-promo-id="<?php echo $promo['promotion_id'] ?>"
                          data-display-id="<?php echo $display->getId() ?>" data-toggle="tooltip"
-                         title="<?php echo $promoType['promotion_type_title'] . " " . $promo['promotion_id']; ?>">
+                         title="<?php echo $apromoname . " " . $promo['promotion_id'] ?>">
                         <div class="lock-glyphicon-container">
                             <?php echo $lockglyphclass; ?>
                         </div>

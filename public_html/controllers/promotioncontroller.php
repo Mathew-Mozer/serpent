@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $promotion = new PromotionModel($conn->insert_database());
         $className = $promotion->getPromotionModelName($_POST['promotionTypeId']);
         require '../models/promotionmodels/'.$className.'.php';
-        $addedPromotion = $promotion->addPromotion($_POST['promotionTypeId'], $_POST['propertyId'], $_POST['scene_id'],$_POST['chosenSkin']);
+        $addedPromotion = $promotion->addPromotion($_POST);
         $_POST['promotionId'] = $addedPromotion['promo_id'];
         $reflectionClass = new ReflectionClass($className);
         $classReference = $reflectionClass->newInstanceArgs(array($conn->insert_database()));

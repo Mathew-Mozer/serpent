@@ -114,8 +114,7 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
 
     $('#next-page-btn').click(function () {
         $('#select-template').hide();
-
-        $('#template-form').load('views/addpromotionviews/add'+promotionName+'view.php');
+        $('#template-form').load('views/addpromotionviews/add'+promotionName+'view.php',{promotion_template:true});
         $('#template-form').show();
         addPromotionUsingTemplate($('#template-options').val(),promotionTypeId);
     });
@@ -124,7 +123,7 @@ var chooseTemplateToUse = function (response, promotionTypeId) {
 var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
     console.log(promotionId + "-" + promotionTypeId);
     $("#template-form").load("views/addpromotionviews/add"+promotionName+"view.php",{promotion_settings:true,
-        promotion_id:promotionId, promotion_type:promotionTypeId});
+        promotion_id:promotionId, promotion_type:promotionTypeId,promotion_template:true});
     $('#add-promotion-buttons').empty();
     $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
     $('#next-page').click(function () {
@@ -144,7 +143,7 @@ var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
 
 var noTemplate = function () {
     $('#use-template-prompt').hide();
-    $("#promotion-details").load("views/addpromotionviews/add" + promotionName + "view.php");
+    $("#promotion-details").load("views/addpromotionviews/add" + promotionName + "view.php",{promotion_template:true});
     $('#promotion-details').show();
     $('#add-promotion-buttons').empty();
     $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
@@ -190,8 +189,9 @@ var selectSkin = function () {
             var promotionType = $('input[name=promotionType]').val();
             var accountId = 1;
             var selectedSkin = $('#skin-chooser').val();
+            var promotionlabel = $('#Promotion-Label').val();
             $("#promotion-details").hide();
-            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin);
+            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel);
         });
     }else {
         $('#use-template-prompt').hide();
@@ -240,8 +240,9 @@ var CreateTemplatePrompt = function () {
         var promotionType = $('input[name=promotionType]').val();
         var selectedSkin = $('#skin-chooser').val();
         var accountId = 1;
+        var promotionlabel = $('#Promotion-Label').val();
         $("#promotion-details").hide();
-        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin);
+        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel);
     });
 };
 

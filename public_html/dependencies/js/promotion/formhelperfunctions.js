@@ -9,7 +9,7 @@
  * @param promotionType
  * @param accountId
  */
-var addPromotionByType = function (propertyId, promotionTypeId, promotionType, accountId,selectedSkin) {
+var addPromotionByType = function (propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel) {
     var data = getFormData('add-promotion');
     data['action'] = 'add';
     data['promotionTypeId'] = promotionTypeId;
@@ -17,7 +17,8 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
     data['promotionType'] = promotionType;
     data['accountId'] = accountId;
     data['chosenSkin'] = selectedSkin;
-    console.log("#scene-id:"+data['scene_id']);
+    data['Promotion-Label']= promotionlabel;
+    console.log("promotion label: " + data['Promotion-Label']);
     $.ajax({
         url: 'controllers/promotioncontroller.php',
         type: 'post',
