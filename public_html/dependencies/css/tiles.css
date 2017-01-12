@@ -16,7 +16,11 @@
     box-shadow: 2px 2px 5px #969696;
     vertical-align: top;
 }
+.select-tile {
+    background-color: lightgray;
+    width:300px;
 
+}
 .tile-icon {
     max-height: 140px;
     max-width: 140px;
@@ -24,8 +28,13 @@
     min-width: 140px;
     margin-left: 5px;
     margin-top: 5px;
+    top:-25px;
+    position: relative;
 }
-
+.tile-icon-select-promo {
+    top:0px;
+    left:-20px;
+}
 .tile-menu-bar {
     max-height: 20px;
     min-height: 20px;
@@ -33,7 +42,7 @@
     min-width: 150px;
     background-color: rgba(179, 179, 179, 0.6);
     position: relative;
-    top: -50px;
+    top: -65px;
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
@@ -82,7 +91,25 @@
     display: block;
     text-align: center;
 }
+.tile-promotion-title {
+    clear: both;
+    max-height: 20px;
+    min-height: 20px;
+    min-width: 150px;
+    max-width: 150px;
+    position: relative;
+    top: -20px;
+    z-index: 0;
+    background-color: green;
+    margin-left: 1px;
+    color: white;
+    padding-top: 1px;
+    vertical-align: middle;
+    text-align: center;
+    display: block;
+    box-shadow: 2px 0px 5px #969696;
 
+}
 .tile-promotion-artifact {
     clear: both;
     max-height: 30px;
@@ -90,7 +117,7 @@
     min-width: 30px;
     max-width: 30px;
     position: relative;
-    top: -140px;
+    top: -165px;
     z-index: 4;
     background-color: green;
     margin-left: 5px;
@@ -185,7 +212,7 @@
 }
 
 .button-body:hover, .tile-body:hover {
-    background-color: #00b226;
+    background-color: #31590d;
 }
 
 .button-icon {

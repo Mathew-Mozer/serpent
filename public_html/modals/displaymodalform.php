@@ -33,8 +33,14 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 
         <div class="form-group">
             <?php
+            if($assignedPromotion['promotion_label']==""){
+                $apromoname=$assignedPromotion['promotion_type_title'];
+            }else{
+                $apromoname=$assignedPromotion['promotion_label'];
+
+            }
                 echo '<div class="display-list-artifact"><i class="font-awesome fa ' . $displayOptions->getPromotionArtifactById($assignedPromotion["promo_id"]) . '"></i></div> <img class=checkbox-image src="dependencies/images/' . $assignedPromotion['promotion_type_image'] . '"> &nbsp';
-                echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $assignedPromotion['promo_id'] . "'>" . $assignedPromotion['promotion_type_title'] . "</label>";
+                echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $assignedPromotion['promo_id'] ."\n".$apromoname. "'>" . $apromoname . "</label>";
             ?>
             <label class="display-modal-label"><?php echo $assignedPromotion['promotion_type_scene_verbage']; ?> </label>
 
@@ -81,8 +87,15 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 
         <div class="form-group">
             <?php
+            if($unassignedPromotion['promotion_label']==""){
+                $promoname=$unassignedPromotion['promotion_type_title'];
+            }else{
+                $promoname=$unassignedPromotion['promotion_label'];
+
+            }
+
             echo '<div class="display-list-artifact"><i class="font-awesome fa ' . $displayOptions->getPromotionArtifactById($unassignedPromotion["promotion_id"]) . '"></i></div> <img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['promotion_type_image'] . '"> &nbsp';
-            echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $unassignedPromotion['promotion_id'] . " '>" . $unassignedPromotion['promotion_type_title'] . "</label>";
+            echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $unassignedPromotion['promotion_id'] . " '>" . $promoname . "</label>";
             echo "<button type='button' data-default-time='".$unassignedPromotion['promotion_type_default_time']."' data-skin-id='".$unassignedPromotion['promotion_skin']."'  class='add-to-display' id='{$unassignedPromotion['promo_property_promo_id']}' 
                     name='add-promotion'> Add </button>";
             ?>

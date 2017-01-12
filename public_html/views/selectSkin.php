@@ -12,6 +12,8 @@ $dbcon = new DBCon();
 $displayProperties = new PropertyDisplays($dbcon->read_Database(), $_POST['propertyId']);
 $skins = $displayProperties->getSkinTypes($_POST['propertyId']);
 ?>
+<label for="Promotion-Label">Promotion Label</label>
+<input id="Promotion-Label" name="promotion_label" type="text" placeholder="Promotion Label"/><br><br>
 Select a skin to use for this promotion:
 <div id="select-skin">
     <select class="skin-id" id="skin-chooser" name="skin-choosen">
@@ -22,3 +24,7 @@ Select a skin to use for this promotion:
         ?>
     </select>
 </div>
+<script>
+    $('#Promotion-Label').val($('#template-options option:selected').text());
+
+</script>

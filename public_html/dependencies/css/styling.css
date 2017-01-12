@@ -19,7 +19,10 @@
     width:15%;
     height:15%;
 }
+.hidden-radio {
+    visibility: hidden;
 
+}
 .edit-user-button{
     margin: 2px;
     text-align: center;

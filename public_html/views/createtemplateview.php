@@ -17,8 +17,6 @@
     <select id="template-options" name="template-options">
     </select>
     <br>
-    <br>
-    <br>
 </div>
 
 <div id="save-template-prompt">
