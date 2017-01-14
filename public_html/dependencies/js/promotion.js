@@ -16,7 +16,7 @@ var tileBodyClick = function () {
 
     $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
     $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
-    $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php");
+    $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php",{promoid:$(this).data("promo-id")});
     promotionViewModal.dialog('open');
 };
 

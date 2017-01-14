@@ -26,6 +26,7 @@ class Scene
     public $kickForCashData;
     public $pointsGTData;
     public $highHandData;
+    public $timeTargetData;
     public $sceneSkin;
 
     //Database Global Variables
@@ -67,7 +68,9 @@ class Scene
                 break;
             case 11:
                 $this->loadKickForCashData($promoID);
-
+                break;
+            case 14:
+                $this->loadTimeTargetData($promoID);
                 break;
         }
     }
@@ -98,6 +101,24 @@ class Scene
             $this->highHandData->paytype=$result['high_hand_paytype'];
             $this->highHandData->handcount=$result['high_hand_handcount'];
             $this->highHandData->loadHighHands($this->highHandData->session,$this->highHandData->handcount);
+        }
+    }
+    function loadTimeTargetData($pSceneID)
+    {
+        global $conn;
+
+        $dbcon = new DbCon();
+        $conn = $dbcon->read_database();
+        $sql = 'SELECT * FROM `time_target`where time_target_promoid=\'713\' ORDER BY time_target_start desc limit 1 ';
+        $statement = $conn->prepare($sql);
+        //echo ("sceneid".$pSceneID);
+        $statement->execute(array($pSceneID));
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            $this->timeTargetData = new TimeTarget();
+            $this->timeTargetData->seed=$result['time_target_seed'];
+            $this->timeTargetData->start=$result['time_target_start'];
+            $this->timeTargetData->min=$result['time_target_increment_min'];
+            $this->timeTargetData->add=$result['time_target_add'];
         }
     }
     function loadPointsGTData($pSceneID)

@@ -136,6 +136,10 @@ function loadSceneData()
         $displayData->displayID = $result['display_id'];
         $displayData->monitor = $result['display_monitor'];
         $displayData->apiurl = $result['api_url'];
+        $displayData->width=$result['display_width'];
+        $displayData->height=$result['display_height'];
+        $displayData->fitw=(bool) $result['display_fitw'];
+        $displayData->fith=(bool)$result['display_fith'];
         //Add Scenes to Display
         //echo("Promoid:".$result[promotion_id]." Promotion Type ID".$result[promotion_type_id]." skinid:".$result[skin_id]." sceneid".$result[promotion_sceneid]."<br><br><br>");
         $tmpSkinID = $result['skin_id'];

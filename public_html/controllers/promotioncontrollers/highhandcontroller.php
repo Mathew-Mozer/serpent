@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         $highHand->addHighHand($addPromotion, $_POST['titleMessage'], $_POST['useJoker'],
             $_POST['highHandGold'], $_POST['hornTimer'], $_POST['payoutValue'], $_POST['sessionTimer'],
-            $_POST['multipleHands'], $_POST['isTemplate']);
+            $_POST['multipleHands'], $_POST['isTemplate'], $_POST['high_hand_cardcount']);
 
         $response = array();
         $response['image'] = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
@@ -38,9 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }else if($_POST['action'] == 'update'){
         $highHand = new HighHandModel($conn->insert_database());
-        $highHand->updateHighHand($_POST['promotionId'], $_POST['name'], $_POST['card1'], $_POST['card2'],
-            $_POST['card3'], $_POST['card4'], $_POST['card5'], $_POST['card6'], $_POST['card7'],
-            $_POST['card8']);
+        $highHand->updateHighHand($_POST['promotionId'], $_POST['name'], $_POST['cards']);
         $promotion->setUpdatedTimestamp($_POST['promotionId']);
         header('content-type:application/json');
         echo json_encode($highHand);
