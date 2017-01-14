@@ -16,11 +16,13 @@
     box-shadow: 2px 2px 5px #969696;
     vertical-align: top;
 }
+
 .select-tile {
     background-color: lightgray;
-    width:300px;
+    width: 300px;
 
 }
+
 .tile-icon {
     max-height: 140px;
     max-width: 140px;
@@ -28,13 +30,15 @@
     min-width: 140px;
     margin-left: 5px;
     margin-top: 5px;
-    top:-25px;
+    top: -25px;
     position: relative;
 }
+
 .tile-icon-select-promo {
-    top:0px;
-    left:-20px;
+    top: 0px;
+    left: -20px;
 }
+
 .tile-menu-bar {
     max-height: 20px;
     min-height: 20px;
@@ -47,6 +51,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .tile-menu-item {
     max-height: 20px;
     min-height: 20px;
@@ -57,6 +62,7 @@
     display: block;
     text-align: center;
 }
+
 .tile-status-bar {
     max-height: 20px;
     min-height: 20px;
@@ -69,6 +75,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .tile-status-item {
     max-height: 20px;
     min-height: 20px;
@@ -80,7 +87,6 @@
     text-align: center;
 }
 
-
 .tile-menu-item-placemarker {
     max-height: 20px;
     min-height: 20px;
@@ -91,6 +97,7 @@
     display: block;
     text-align: center;
 }
+
 .tile-promotion-title {
     clear: both;
     max-height: 20px;
@@ -108,7 +115,13 @@
     text-align: center;
     display: block;
     box-shadow: 2px 0px 5px #969696;
-
+}
+@media
+only screen and (max-width: 960px),
+(min-device-width: 900px) and (max-device-width: 1024px)  {
+    .no-mobile{
+        display: none;
+    }
 }
 .tile-promotion-artifact {
     clear: both;
@@ -130,7 +143,7 @@
     box-shadow: 2px 2px 5px #969696;
 }
 
-.display-list-artifact{
+.display-list-artifact {
     clear: both;
     float: left;
     max-height: 25px;

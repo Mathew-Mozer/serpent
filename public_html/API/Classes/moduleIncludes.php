@@ -9,6 +9,7 @@ include 'HighHand.php';
 include 'MonsterCarlo.php';
 include 'KickForCash.php';
 include 'PointsGT.php';
+include 'TimeTarget.php';
 include 'PointsGTPlayer.php';
 include 'Skin.php';
 include 'PokerHand.php';

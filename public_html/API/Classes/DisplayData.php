@@ -25,6 +25,10 @@ class DisplayData
     public $displayID;
     public $monitor;
     public $apiurl;
+    public $width;
+    public $height;
+    public $fitw;
+    public $fith;
 //Specific Scene Settings
     public $sceneList;
 

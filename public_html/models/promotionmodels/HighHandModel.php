@@ -25,9 +25,9 @@ class HighHandModel{
      */
     public function add($values) {
         $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_attachmc,
-            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout, high_hand_isodd)
+            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout, high_hand_isodd,high_hand_cardcount)
             VALUES (:promotionId,:title_message,:use_joker,:high_hand_gold,:horn_timer,:payout_value,
-                    :session_timer,:multiple_hands, :custom_payout, :is_odd);";
+                    :session_timer,:multiple_hands, :custom_payout, :is_odd,:cardcount);";
 
         $result = $this->conn->prepare($sql);
         $result->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
@@ -40,6 +40,8 @@ class HighHandModel{
         $result->bindValue(':multiple_hands', $values['multiple_hands'], PDO::PARAM_INT);
         $result->bindValue(':custom_payout', $values['high_hand_custom_payout'], PDO::PARAM_STR);
         $result->bindValue(':is_odd', $values['isodd'], PDO::PARAM_STR);
+        $result->bindValue(':cardcount', $values['high_hand_cardcount'], PDO::PARAM_STR);
+
         $result->execute();
     }
 
@@ -87,7 +89,8 @@ class HighHandModel{
      * @param $card7
      * @param $card8
      */
-    public function updateHighHand($promotionID, $playerName, $card1, $card2, $card3, $card4, $card5, $card6, $card7, $card8){
+    public function updateHighHand($promotionID, $playerName, $cards){
+        var_dump($cards);
 
         $sql ='INSERT INTO high_hand_records(
                 high_hand_session,
@@ -108,14 +111,14 @@ class HighHandModel{
         $result = $this->conn->prepare($sql);
         $result->bindValue(':promotionID', $promotionID, PDO::PARAM_INT);
         $result->bindValue(':playerName', $playerName, PDO::PARAM_STR);
-        $result->bindValue(':card1', $card1, PDO::PARAM_STR);
-        $result->bindValue(':card2', $card2, PDO::PARAM_STR);
-        $result->bindValue(':card3', $card3, PDO::PARAM_STR);
-        $result->bindValue(':card4', $card4, PDO::PARAM_STR);
-        $result->bindValue(':card5', $card5, PDO::PARAM_STR);
-        $result->bindValue(':card6', $card6, PDO::PARAM_STR);
-        $result->bindValue(':card7', $card7, PDO::PARAM_STR);
-        $result->bindValue(':card8', $card8, PDO::PARAM_STR);
+        $result->bindValue(':card1', $cards[0], PDO::PARAM_STR);
+        $result->bindValue(':card2', $cards[1], PDO::PARAM_STR);
+        $result->bindValue(':card3', $cards[2], PDO::PARAM_STR);
+        $result->bindValue(':card4', $cards[3], PDO::PARAM_STR);
+        $result->bindValue(':card5', $cards[4], PDO::PARAM_STR);
+        $result->bindValue(':card6', $cards[5], PDO::PARAM_STR);
+        $result->bindValue(':card7', $cards[6], PDO::PARAM_STR);
+        $result->bindValue(':card8', $cards[7], PDO::PARAM_STR);
 
         $result->execute();
 }

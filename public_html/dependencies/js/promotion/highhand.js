@@ -40,14 +40,7 @@ var updatePromotion = function (promotionId) {
             action: 'update',
             promotionId: promotionId,
             name: name,
-            card1: cards[1],
-            card2: cards[2],
-            card3: cards[3],
-            card4: cards[4],
-            card5: cards[5],
-            card6: cards[6],
-            card7: cards[7],
-            card8: cards[8]
+            cards: cards
         },
         cache: false,
         success: function () {
@@ -64,18 +57,18 @@ var updatePromotion = function (promotionId) {
  */
 
 var cards = ['CB', 'CB', 'CB', 'CB', 'CB', 'CB', 'CB', 'CB'];
-var handIndex = 1;
+var handIndex = 0;
 function addCards(clicked_id) {
 
-    console.log(clicked_id.indexOf("hh_index"));
+    console.log(handIndex);
 
-    if (handIndex < 9 && clicked_id.indexOf("hh_index") < 0) {
+    if (handIndex < (cardcount) && clicked_id.indexOf("hh_index") < 0) {
 
         cards[handIndex] = clicked_id;
         lockInCard(clicked_id);
 
-    } else if (handIndex >= 9 && clicked_id.indexOf("hh_index") < 0) {
-        handIndex = 1;
+    } else if (handIndex >= (cardcount) && clicked_id.indexOf("hh_index") < 0) {
+        handIndex = 0;
         addCards(clicked_id);
         //lockInCard(clicked_id);
 
@@ -131,9 +124,9 @@ $(".selected-card").click(function () {
  * @param clicked_id
  */
 function moveHighlightToNextCard(clicked_id) {
-    if (handIndex < 9) {
+    if (handIndex < (cardcount+1)) {
         $("#hh_index" + (handIndex)).addClass("card-index-highlight");
-    } else if (handIndex >= 9) {
+    } else if (handIndex >= (cardcount+1)) {
         $("#hh_index1").addClass("card-index-highlight");
     }
 }
@@ -175,18 +168,23 @@ var getAllHands = function (id) {
 
 
                 var html = "";
-                html+='<tr><td>' + handID + '</td>';
-                html+='<td>' + handDate + '</td>';
+                html+='<tr><td class="no-mobile">' + handID + '</td>';
+                html+='<td class="no-mobile">' + handDate + '</td>';
                 html+='<td>' + handName + "<div id='currentStatus-"+handID+"'></div></td>";
 
-                html+='<td>' + "<img class='card standard-card' id='handCards1-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards2-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards3-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards4-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards5-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards6-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards7-"+handID+"'>" + '';
-                html+='' + "<img class='card standard-card' id='handCards8-"+handID+"'>" + '</td>';
+                html+='<td>';
+                for(card=1;card < cardcount+1;card++){
+                    html+='' + "<img class='card standard-card' id='handCards"+card+"-"+handID+"'>"
+                }
+                //html+='' + "<img class='card standard-card' id='handCards1-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards2-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards3-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards4-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards5-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards6-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards7-"+handID+"'>" + '';
+                //html+='' + "<img class='card standard-card' id='handCards8-"+handID+"'>"
+                html+='</td>';
 
                 html+="<td> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
                     "<button class='to-pending' id='set-to-pending-" + handID + "' name='"+handID+"'  type='button'>Pending</button>"+

@@ -53,13 +53,22 @@ if(!isset($_POST['promotion_template'])) {
             <label>Show Multiple Hands</label> <br>
             <div class="option-group">
                 <input class="high-hand-radio" value="0" name="multiple_hands" id="disabled" type="radio" checked/>
-                <label for="disabled"> Disabled </label>
+                <label for="disabled"> Disabled (Show Title Message) </label>
                 <br/>
                 <input class="high-hand-radio" value="1" name="multiple_hands" id="previous" type="radio"/>
                 <label for="previous"> Previous Winners </label>
                 <br/>
                 <input class="high-hand-radio" value="2" name="multiple_hands" id="ranked" type="radio"/>
                 <label for="ranked"> Ranked Hands </label>
+                <br/>
+            </div>
+            <div class="option-group">
+                <input class="high-hand-radio" value="5" name="high_hand_cardcount" id="holdem" type="radio" checked/>
+                <label for="disabled"> 5 Cards </label>
+                <br/>
+                <input class="high-hand-radio" value="7" name="high_hand_cardcount" id="paigow" type="radio"/>
+                <label for="previous"> 7 Cards </label>
+                <br/>
                 <br/>
             </div>
             <br>

@@ -23,13 +23,14 @@ class TimeTargetModel{
      * @param $values
      */
    public function add($values){
-     $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number)
-                                 VALUES (:promotion_id, :cash, :target_number);";
-     $result = $this->db->prepare($sql);
-     $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-     $result->bindValue(':cash', $values['kfc_cash_prize'], PDO::PARAM_STR);
-     $result->bindValue(':target_number', $values['kfc_target_number'], PDO::PARAM_STR);
-
+     $sql = "INSERT INTO time_target (time_target_promoid, time_target_start,time_target_seed,time_target_add,time_target_increment_min)
+                                 VALUES (:promotion_id, :start,:seed,:add,:min);";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
+        $result->bindValue(':seed', $values['time_target_seed'], PDO::PARAM_STR);
+        $result->bindValue(':start', $values['time_target_start'], PDO::PARAM_STR);
+        $result->bindValue(':add', $values['time_target_add'], PDO::PARAM_STR);
+        $result->bindValue(':min', $values['time_target_increment_min'], PDO::PARAM_STR);
      $result->execute();
 
 
