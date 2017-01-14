@@ -60,12 +60,7 @@ class HighHandModel{
      */
     public function get($id){
 
-        $sql = "SELECT
-               *
-             FROM
-               high_hand
-             WHERE
-               promotion_id=:id;
+        $sql = "SELECT * FROM high_hand WHERE promotion_id=:id ORDER BY id DESC LIMIT 1;
                ";
         $result = $this->conn->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
