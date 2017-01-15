@@ -31,7 +31,7 @@ class HighHand
         global $conn;
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * from high_hand_records where  high_hand_session=? order by high_hand_record_id DESC limit 25';
+        $sql = 'SELECT * from high_hand_records where  high_hand_session=? and high_hand_record_archive=0 order by high_hand_record_id DESC limit 25';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSessionID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {

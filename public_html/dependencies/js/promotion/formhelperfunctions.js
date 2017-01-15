@@ -9,6 +9,7 @@
  * @param promotionType
  * @param accountId
  */
+console.log('Loaded FormHelperFunctions.js');
 var addPromotionByType = function (propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel) {
     var data = getFormData('add-promotion');
     data['action'] = 'add';
