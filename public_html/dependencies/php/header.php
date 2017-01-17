@@ -89,10 +89,16 @@ if(!isset($_SESSION)) {
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Date Time Picker-->
+    <script src="dependencies/js/filthypillow/jquery.filthypillow.js"></script>
+    <script src="dependencies/js/filthypillow/moment.js"></script>
+    <script src="dependencies/js/filthypillow/jquery.filthypillow.min.js"></script>
+    <link href="dependencies/js/filthypillow/jquery.filthypillow.css" rel="stylesheet">
+
     <!-- jQueryUI SwitchButton -->
     <script src="dependencies/js/jQuery-switchButton-master/jquery.switchButton.js"></script>
     <link href="dependencies/js/jQuery-switchButton-master/jquery.switchButton.css" rel="stylesheet">
     <link href="dependencies/js/jQuery-switchButton-master/main.css" rel="stylesheet">
+
 </head>

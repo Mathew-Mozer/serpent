@@ -109,16 +109,27 @@ class Scene
 
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * FROM `time_target`where time_target_promoid=\'713\' ORDER BY time_target_start desc limit 1 ';
+        $sql = 'SELECT * FROM `time_target`where time_target_archive=\'0\' and time_target_promoid=? ORDER BY time_target_id desc limit 1 ';
         $statement = $conn->prepare($sql);
         //echo ("sceneid".$pSceneID);
+
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $this->timeTargetData = new TimeTarget();
+            $this->timeTargetData->id=$result['time_target_id'];
             $this->timeTargetData->seed=$result['time_target_seed'];
-            $this->timeTargetData->start=$result['time_target_start'];
+            $this->timeTargetData->startTime=$result['time_target_start'];
+            $this->timeTargetData->endTime=$result['time_target_end'];
             $this->timeTargetData->min=$result['time_target_increment_min'];
             $this->timeTargetData->add=$result['time_target_add'];
+            //$this->timeTargetData->title="";
+            /*$this->timeTargetData->contentTitle=$result['time_target_add'];
+            $this->timeTargetData->content=$result['time_target_add'];
+            $this->timeTargetData->card1=$result['time_target_add'];
+            $this->timeTargetData->card2=$result['time_target_add'];
+            $this->timeTargetData->card3=$result['time_target_add'];
+            $this->timeTargetData->card4=$result['time_target_add'];
+            */
         }
     }
     function loadPointsGTData($pSceneID)

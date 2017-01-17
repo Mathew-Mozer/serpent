@@ -14,4 +14,13 @@ function getServerPath(){
     return "/" . $home . "/" . $server . "/".$public_html."/".$fld1."/";
     ////return $_SERVER['DOCUMENT_ROOT'];
 }
+function is_iterable($var)
+{
+    return $var !== null
+    && (is_array($var)
+        || $var instanceof Traversable
+        || $var instanceof Iterator
+        || $var instanceof IteratorAggregate
+    );
+}
 ?>

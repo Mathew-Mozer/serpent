@@ -4,8 +4,12 @@ require getServerPath() . "dbcon.php";
 include '../Classes/DisplayData.php';
 include '../Classes/Scene.php';
 require_once "../../models/PromotionModel.php";
+require "../../models/promotionmodels/TimeTargetModel.php";
+
 require_once(getServerPath() . "dbcon.php");
 $dbcon = NEW DbCon();
+$TimeTargetModel = new TimeTargetModel($dbcon->insert_database());
+$promotion=new PromotionModel($dbcon->insert_database());
 header('Content-Type: application/json; charset=utf-8');
 date_default_timezone_set('America/Los_Angeles');
 /**
@@ -19,7 +23,10 @@ $displayData = new DisplayData();
 $conn;
 CheckDeviceCheck();
 if (isset($_POST["action"])) {
-    $macAddress = $_POST["macAddress"];
+    if(isset($_POST["macAddress"])){
+        $macAddress = $_POST["macAddress"];
+    }
+
     switch ($_POST["action"]) {
         case "GetSettings":
             //Get Box Settings
@@ -34,7 +41,12 @@ if (isset($_POST["action"])) {
         case "LogFromBox":
             $msg = "-" . $username . "- " . $_POST["logdata"];
             SlackTool::slack($msg, "#displaylog", $_POST["displayname"]);
-            echo("sucdcess");
+            echo("success");
+            break;
+        case "endTimeTarget":
+            $TimeTargetModel->endTimeTarget($_POST);
+            $promotion->setUpdatedTimestamp($_POST['promotionId']);
+            echo("success");
             break;
     }
 } else {

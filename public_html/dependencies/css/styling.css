@@ -43,3 +43,28 @@
     left: 0;
     z-index: 1004;
 }
+.time-table-button {
+    clear: both;
+    max-height: 25px;
+    min-height: 25px;
+    min-width: 25px;
+    max-width: 25px;
+    position: relative;
+    top: 0px;
+    z-index: 4;
+    background-color: green;
+    margin-left: 5px;
+    color: white;
+    border-radius: 25px;
+    padding-top: 5px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 2px 2px 5px #969696;
+}
+.time-table-button-red {
+     background-color: red;
+ }
+.time-table-button-black {
+    background-color: black;
+}

@@ -20,7 +20,6 @@
     $promotionList = $promotion->getAllPromotionsByProperty($property['property_id']);
     if(count($promotionList)>0){
         foreach($promotionList as $row){
-
           include 'promotionview.php';
         }
       }?>
