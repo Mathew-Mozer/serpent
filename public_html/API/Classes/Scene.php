@@ -134,7 +134,7 @@ class Scene
 
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * FROM `points_gt`,points_gt_players where points_gt_players.pgt_id=points_gt.pgt_id and pgt_promotion_id=? limit 20';
+        $sql = 'SELECT * FROM `points_gt`,points_gt_players where points_gt_players.pgt_id=points_gt.pgt_promotion_id and pgt_promotion_id=? ORDER by points_gt.pgt_id desc limit 20';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $tmpPlayerList = array();

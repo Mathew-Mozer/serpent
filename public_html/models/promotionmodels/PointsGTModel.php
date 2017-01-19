@@ -24,24 +24,24 @@ class PointsGTModel{
    public function add($values){
      //Adds Points GT.
 
-    $pointsGTId = $this->addPointsGT($values);
+    $this->addPointsGT($values);
 
     //Adds instant winners for Points GT.
-    $sql = "INSERT INTO points_gt_instant_winner (
+    $sql = "REPLACE INTO points_gt_instant_winner (
+        pgt_instant_winner_id,
         pgt_points,
         pgt_prize_amount,
         pgt_color,
         pgt_id,
-        pgt_account_id
+        pgt_account_id,
+        pgt_enable_instant_winner
       ) VALUES
-      (:pgt_points1, :pgt_prize_amount1, :pgt_color1, :pgt_id, :pgt_account_id),
-      (:pgt_points2, :pgt_prize_amount2, :pgt_color2, :pgt_id, :pgt_account_id),
-      (:pgt_points3, :pgt_prize_amount3, :pgt_color3, :pgt_id, :pgt_account_id);";
+      (:pgt_instant_winner_id1,:pgt_points1,:pgt_prize_amount1,:pgt_color1,:pgt_id,:pgt_account_id,:pgt_enable_instant_winner1),
+      (:pgt_instant_winner_id2,:pgt_points2,:pgt_prize_amount2,:pgt_color2,:pgt_id,:pgt_account_id,:pgt_enable_instant_winner2),
+      (:pgt_instant_winner_id3,:pgt_points3,:pgt_prize_amount3,:pgt_color3,:pgt_id,:pgt_account_id,:pgt_enable_instant_winner3);";
     $result = $this->db->prepare($sql);
-
-    $result->bindValue(':pgt_id', $pointsGTId, PDO::PARAM_STR);
+    $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
     $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
-
 
        if(!isset($values['pgt_points1'])){
            $values['pgt_points1']='0';
@@ -70,17 +70,44 @@ class PointsGTModel{
        if(!isset($values['pgt_color3'])){
            $values['pgt_color3']='0';
        }
+       if(!isset($values['pgt_instant_winner_id1'])){
+           $values['pgt_instant_winner_id1']='';
+       }
+       if(!isset($values['pgt_enable_instant_winner1'])){
+           $values['pgt_enable_instant_winner2']='0';
+       }
+       if(!isset($values['pgt_instant_winner_id2'])){
+           $values['pgt_instant_winner_id2']='';
+       }
+       if(!isset($values['pgt_enable_instant_winner2'])){
+           $values['pgt_enable_instant_winner2']='0';
+       }
+       if(!isset($values['pgt_instant_winner_id3'])){
+           $values['pgt_instant_winner_id3']='';
+       }
+       if(!isset($values['pgt_enable_instant_winner3'])){
+           $values['pgt_enable_instant_winner3']='0';
+       }
+    $result->bindValue(':pgt_instant_winner_id1', $values['pgt_instant_winner_id1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points1', $values['pgt_points1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount1', $values['pgt_prize_amount1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_color1', $values['pgt_color1'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_enable_instant_winner1', $values['pgt_enable_instant_winner1'], PDO::PARAM_STR);
 
+    $result->bindValue(':pgt_instant_winner_id2', $values['pgt_instant_winner_id2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points2', $values['pgt_points2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount2', $values['pgt_prize_amount2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_color2', $values['pgt_color2'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_enable_instant_winner2', $values['pgt_enable_instant_winner2'], PDO::PARAM_STR);
 
+
+    $result->bindValue(':pgt_instant_winner_id3', $values['pgt_instant_winner_id3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points3', $values['pgt_points3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount3', $values['pgt_prize_amount3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_color3', $values['pgt_color3'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_enable_instant_winner3', $values['pgt_enable_instant_winner3'], PDO::PARAM_STR);
+
+    $result->execute();
 
     //Adds instant winners for Points GT.
     $sql = "replace INTO points_gt_players (
@@ -116,7 +143,7 @@ class PointsGTModel{
     $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
     $result->bindValue(":pgt_car_icon$i", $values["pgt_car_icon$i"], PDO::PARAM_STR);
   }
-      $result->bindValue(':pgt_id', $pointsGTId, PDO::PARAM_STR);
+      $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
     $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
 
 
@@ -143,7 +170,8 @@ public function checkforbindvalues($val){
         pgt_race_begin,
         pgt_race_end,
         pgt_account_id,
-        pgt_promotion_id
+        pgt_promotion_id,
+        pgt_enable_instant_winners
       ) VALUES (
         :add_title,
         :add_subtitle,
@@ -155,7 +183,8 @@ public function checkforbindvalues($val){
         :add_race_begin,
         :add_race_end,
         :add_account_id,
-        :add_promotion_id
+        :add_promotion_id,
+        :add_instant_winners
         );";
 
     $result = $this->db->prepare($sql);
@@ -170,11 +199,13 @@ public function checkforbindvalues($val){
     $result->bindValue(':add_race_end', $values['pgt_race_end'], PDO::PARAM_STR);
     $result->bindValue(':add_account_id', $values['accountId'], PDO::PARAM_STR);
     $result->bindValue(':add_promotion_id', $values['promotionId'], PDO::PARAM_STR);
-       $result->execute();
+    $result->bindValue(':add_instant_winners', $values['pgt_enable_instant_winners'], PDO::PARAM_STR);
 
 
-
+    $result->execute();
     return $this->db->lastInsertId();
+
+
    }
 
    /**
@@ -188,7 +219,7 @@ public function checkforbindvalues($val){
              WHERE
                pgt_promotion_id=:id
              ORDER BY
-               pgt_timestamp DESC
+               pgt_id DESC
              LIMIT 1;";
      $result = $this->db->prepare($sql);
      $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -200,9 +231,9 @@ public function checkforbindvalues($val){
        $timestamp = strtotime($promoResult['pgt_race_end']);
        $promoResult['pgt_race_end'] = date("Y-m-d", $timestamp);
      $result->closeCursor();
-     $instantWinners = $this->getPointsGTInstantWinners($promoResult['pgt_id']);
+     $instantWinners = $this->getPointsGTInstantWinners($id);
 
-     $players = $this->getPointsGTPlayers($promoResult['pgt_id']);
+     $players = $this->getPointsGTPlayers($id);
 
      $result = array_merge($promoResult, $instantWinners, $players);
      return $result;
