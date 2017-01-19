@@ -66,6 +66,7 @@ if (isset($_POST['property_name'])) {
                     </div>
                 </div>
                 <hr class="display">
+
                 <?php
                 $promotions = $display->getPromotions();
                 foreach ($promotions as $promo) {
@@ -97,15 +98,15 @@ if (isset($_POST['property_name'])) {
                          data-promo-lockstatus="<?php echo $lockstatus; ?>"
                          data-promo-id="<?php echo $promo['promotion_id'] ?>"
                          data-display-id="<?php echo $display->getId() ?>" data-toggle="tooltip"
-                         title="<?php echo $apromoname . " " . $promo['promotion_id'] ?>">
+                         title="<?php echo $apromoname . " " . $promo['promotion_id']?>">
                         <div class="lock-glyphicon-container">
                             <?php echo $lockglyphclass; ?>
                         </div>
                         <img class="promotion-preview-icon"
                              src="dependencies/images/<?php echo $image['image']; ?>">
-                        <div class="promotion-artifact-preview">
-                            <i class="font-awesome fa <?php echo $artifact; ?>"></i>
-                        </div>
+                       <!-- <div class="promotion-artifact-preview">
+                           <!-- <i class="font-awesome fa <?php //echo $artifact; ?>"></i>
+                        </div>-->
                     </div>
                 <?php } ?>
             </div>

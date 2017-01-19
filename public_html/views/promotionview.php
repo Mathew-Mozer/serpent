@@ -52,9 +52,9 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
     <div class="tile-promotion-title"><?php echo $row['promotion_label']?></div>
     <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image'] ?>">
 
-    <div class="tile-promotion-artifact">
-        <i class="font-awesome fa <?php echo $row['artifact'] ?>"></i>
-    </div>
+  <!--  <div class="tile-promotion-artifact">
+        <i class="font-awesome fa <?php //echo $row['artifact'] ?>"></i>
+    </div>-->
     <div class="tile-menu-bar" style="display: none">
         <div class="tile-menu-item">
             <?php if ((bool)$permission->hasPermissionById('promotion_settings', $row['property_id'], 'U') || $_SESSION['isGod']) { ?>
