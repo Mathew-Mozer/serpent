@@ -264,6 +264,7 @@ WHERE promotion.promotion_id = :id;";
 
     public function setUpdatedTimestamp($promotionId)
     {
+
         $sql = "update promotion set promotion_lastupdated=now() where promotion_id=:promotionId;";
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);

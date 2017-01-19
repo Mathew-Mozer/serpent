@@ -43,6 +43,7 @@ class Skin
             $tmpdata->bordercolor = $result['skin_tag_data_bordercolor'];
             array_push($tmpArray,$tmpdata);
         }
+        //echo('Skin info- sceneid:'.$sceneid." skinid:".$pskinID." propertyid:".$propertyId."/n");
         $sql = 'SELECT * FROM `skin_logo` where skin_logo.skin_logo_propertyid=? and skin_logo_skinid=? and skin_logo_sceneid=? limit 1';
         $statement = $conn->prepare($sql);
         $statement->execute(array($propertyId,$pskinID,$sceneid));

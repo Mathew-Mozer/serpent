@@ -139,7 +139,7 @@ class HighHandModel{
      */
     public function getAllHands($id){
        $sql = "SELECT * FROM high_hand_records
-                WHERE high_hand_records.high_hand_session = :id order by high_hand_record_id DESC ";
+                WHERE high_hand_records.high_hand_session = :id and high_hand_record_archive='0' order by high_hand_record_id DESC ";
         $result = $this->conn->prepare($sql);
 
         $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -158,6 +158,13 @@ class HighHandModel{
         $result->bindValue(':payout', $value['payout'], PDO::PARAM_STR);
         $result->bindValue(':handId', $value['handId'], PDO::PARAM_STR);
 
+        $result->execute();
+    }
+    public function archiveHands($value){
+        $sql = "UPDATE high_hand_records SET high_hand_record_archive='1' WHERE high_hand_session=:promoid";
+
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':promoid', $value['promotionId'], PDO::PARAM_STR);
         $result->execute();
     }
 }

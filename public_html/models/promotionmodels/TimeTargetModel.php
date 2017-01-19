@@ -22,8 +22,8 @@ class TimeTargetModel{
      * Add new kick for cash data
      * @param $values
      */
-   public function add($values){
-     $sql = "INSERT INTO time_target (time_target_promoid, time_target_start,time_target_seed,time_target_add,time_target_increment_min)
+   public function addSession($values){
+     $sql = "INSERT INTO time_target_sessions (time_target_session_promoid, time_target_start,time_target_seed,time_target_add,time_target_increment_min)
                                  VALUES (:promotion_id, :start,:seed,:add,:min);";
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
@@ -40,33 +40,21 @@ class TimeTargetModel{
      * Update kick for cash
      * @param $values
      */
-   public function update($values){
-
-       if($values['update_player']=='true'){
-           if($values['kfc_target_number']==$values['kfc_chosen_number']){
-               $values['kfc_failedattempts'] = 0;
-           }else {
-               $values['kfc_failedattempts'] = intval($values['kfc_failedattempts'])+1;
-           }
-       }
-     $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number, kfc_name, kfc_chosen_number, kfc_failedattempts, kfc_gamelabel, kfc_team1,kfc_team2,kfc_vs)
-            VALUES (:promotion_id, :cash, :target_number,:current_name, :chosen_number, :failedattempts, :gamelabel, :team1, :team2, :vs);";
-
-
-     $result = $this->db->prepare($sql);
-     $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-     $result->bindValue(':cash', $values['kfc_cash_prize'], PDO::PARAM_STR);
-     $result->bindValue(':target_number', $values['kfc_target_number'], PDO::PARAM_STR);
-     $result->bindValue(':current_name', $values['kfc_name'], PDO::PARAM_STR);
-     $result->bindValue(':failedattempts', $values['kfc_failedattempts'], PDO::PARAM_STR);
-     $result->bindValue(':chosen_number', $values['kfc_chosen_number'], PDO::PARAM_STR);
-     $result->bindValue(':gamelabel', $values['kfc_gamelabel'], PDO::PARAM_STR);
-     $result->bindValue(':team1', $values['kfc_team1'], PDO::PARAM_STR);
-     $result->bindValue(':team2', $values['kfc_team2'], PDO::PARAM_STR);
-     $result->bindValue(':vs', $values['kfc_vs'], PDO::PARAM_STR);
-     $result->execute();
+   public function add($values){
+       $sql = "INSERT INTO time_target (time_target_promoid, time_target_title,time_target_contenttitle,time_target_content,time_target_cards)
+                                 VALUES (:promotion_id,:title,:contenttitle,:content,:cards);";
+       $result = $this->db->prepare($sql);
+       $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
+       $result->bindValue(':contenttitle', $values['time_target_contenttitle'], PDO::PARAM_STR);
+       $result->bindValue(':content', $values['time_target_content'], PDO::PARAM_STR);
+       $result->bindValue(':title', $values['time_target_title'], PDO::PARAM_STR);
+       $result->bindValue(':cards', $values['time_target_cards'], PDO::PARAM_STR);
+       $result->execute();
+       return $result;
    }
-
+    public function update($values){
+        $this->add($values);
+    }
     /**
      * Get kicked for cash
      * @param $id
@@ -76,11 +64,11 @@ class TimeTargetModel{
      $sql = "SELECT
                *
              FROM
-               kick_for_cash
+               time_target
              WHERE
-               kfc_promotion_id=:id
+               time_target_promoid=:id
              ORDER BY
-              kfc_timestamp DESC
+              time_target_id DESC
                LIMIT 1;";
      $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -89,39 +77,59 @@ class TimeTargetModel{
      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
      return $promoResult;
    }
+    public function getAllSessions($id){
+        $sql = "SELECT
+               *
+             FROM
+               time_target_sessions
+             WHERE time_target_archive='0' and
+               time_target_session_promoid=:id
+             ORDER BY
+              time_target_session_id DESC
+               ;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
+    public function confirmTimeTarget($values){
+        $sql = "Update time_target_sessions set time_target_approved='1' where time_target_session_id=:id";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
+        $result->execute();
+        return $result;
+    }
+    public function endTimeTarget($values){
 
-    /**
-     * DELETE
-     * @param $values
-     * @return array
-     */
-   public function updateExcess($values){
+        switch ($values['endTime']){
+            case 3:
+                $endtime=$values['currentTime'];
+            echo($endtime);
+                break;
 
-     $sql=
-     "UPDATE
-          kick_for_cash
-      SET
-          name=:current_name,
-          chosen_number=:chosen_number,
-          kfc_failedattempts=kfc_failedattempts+1,
-          kfc_gamelabel=:kfc_gamelabel,
-          kfc_team1=:kfc_team1,
-          kfc_team2=:kfc_team2,
-          kfc_vs=:kfc_vs
-     WHERE
-          promotion_id=:promotion_id;";
+            case 1:
+                $endtime=date("Y/m/d H:i:s");
+                break;
+            case 0:
+                $endtime="0000/00/00 00:00:00";
+                break;
+        }
+        $sql = "Update time_target_sessions set time_target_end=:endtime where time_target_session_id=:id";
+        $result = $this->db->prepare($sql);
 
-       $result = $this->db->prepare($sql);
-       $result->bindValue(':current_name', $values['name'], PDO::PARAM_STR);
-       $result->bindValue(':chosen_number', $values['chosen_number'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_gamelabel', $values['kfc_gamelabel'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_team1', $values['kfc_team1'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_team2', $values['kfc_team2'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_vs', $values['kfc_vs'], PDO::PARAM_STR);
-       $result->bindValue(':promotion_id', $values['promotion_id'], PDO::PARAM_STR);
-       $result->execute();
-       return array("id"=>$promotionId,"name"=>$name,"target_number"=>$targetNumber,"game_label"=>$gameLabel);
-   }
+        $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
+        $result->bindValue(':endtime',$endtime , PDO::PARAM_STR);
+        $result->execute();
+        return $result;
+    }
+    public function archiveTimeTarget($values){
 
+        $sql = "Update time_target_sessions set time_target_archive='1' where time_target_session_id=:id";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
+        $result->execute();
+        return $result;
+    }
  }
 ?>

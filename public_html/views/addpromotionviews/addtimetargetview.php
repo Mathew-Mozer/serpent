@@ -10,15 +10,14 @@
 <input type="hidden" id="promotionTypeId" name="tt_promotionTypeId" value="23">
 <br>
 <br>
-<label>Seed Jackpot</label>
-<input type="number" value="500" name="time_target_seed"><br>
-    <label>Start</label>
-    <input type="datetime" value="<?php echo(date('Y/m/d h:00:00 a', time())) ?>" name="time_target_start"><br>
-<label>Increment Minutes</label>
-
-<input type="number" value="15" name="time_target_increment_min"><br>
-    <label>To Add</label>
-<input type="number" value="25" name="time_target_add">
+<label>Title Text</label>
+<TextArea type="text" value="" name="time_target_title"></TextArea>
+    <label>Content Title</label>
+    <input type="text" value="" name="time_target_contenttitle"><br>
+<label>content</label>
+<textarea name="time_target_content"></textarea><br>
+    <label>cards</label>
+<input type="text" value="5D,4D,5C,4C" name="time_target_cards">
 
 <input type="hidden" id="scene-id" name="scene_id" value="14"/>
 <br>

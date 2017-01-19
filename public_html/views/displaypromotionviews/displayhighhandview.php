@@ -13,10 +13,11 @@ $HighHand = $HighHandModel->get($_POST['promoid']);
 
 <div id="new-hand">
     <button id="view-hands-btn"> View Hands</button>
-    <form>
+    <form id="hhname">
 
-        <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
         <label for="player-name-modal"> Player Name </label>
+        <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
+
         <br>
         <br>
 
@@ -74,7 +75,7 @@ $HighHand = $HighHandModel->get($_POST['promoid']);
             <img src="dependencies/images/cards/9D.png" class="card standard-card" id="9D">
             <img src="dependencies/images/cards/10D.png" class="card standard-card" id="10D">
             <img src="dependencies/images/cards/JD.png" class="card standard-card" id="JD">
-            <img src="dependencies/images/cards/QD.png" class="card standard-card id=" QD">
+            <img src="dependencies/images/cards/QD.png" class="card standard-card" id="QD">
             <img src="dependencies/images/cards/KD.png" class="card standard-card" id="KD">
         </div>
 
@@ -117,33 +118,20 @@ $HighHand = $HighHandModel->get($_POST['promoid']);
 
 </div>
 <div id="view-hands">
-    <button id="create-new-hand"> Create New Hand</button>
-    <table id="high_hand_table" class="high_hand">
-        <thead>
-
-        <th class="no-mobile">Hand ID</th>
-        <th class="no-mobile">Date</th>
-        <th>Name</th>
-        <th>Hand</th>
-        <th>Winner</th>
-
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <br>
-    <br>
 
 </div>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 
 <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
 <script>
+
     var cardcount=<?php echo($HighHand['high_hand_cardcount']+$HighHand['high_hand_attachmc'])?>;
 </script>
 <script src="dependencies/js/promotion/highhand.js"></script>
 <script>
-
+    loadViewHands();
     getAllHands($("#promotion-view-modal").data('promo-id'));
-    $('##promotion-view-modal').width = "800px";
+    $('#promotion-view-modal').width = "800px";
+
 </script>
+

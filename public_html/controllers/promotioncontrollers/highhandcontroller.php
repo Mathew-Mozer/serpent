@@ -53,7 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $highHand->updateCardSet($_POST);
         $promotion->setUpdatedTimestamp($_POST['promotionId']);
 
+    }else if ($_POST['action'] == 'archiveHands'){
+        $highHand = new HighHandModel($conn->update_database());
+        $highHand->archiveHands($_POST);
+        $promotion->setUpdatedTimestamp($_POST['promotionId']);
+
     }
+
+
 }
 
 

@@ -8,8 +8,10 @@
  */
 class TimeTarget
 {
-public $seed;
-public $start;
-public $min;
-public $add;
+    public $id;
+    public $seed;
+    public $startTime;
+    public $endTime;
+    public $min;
+    public $add;
 }
