@@ -43,6 +43,16 @@
     left: 0;
     z-index: 1004;
 }
+.pgt-instant-winner {
+    width:75px;
+}
+.pointsgt-textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 400px;
+    height: 150px;
+}
 .time-table-button {
     clear: both;
     max-height: 25px;
