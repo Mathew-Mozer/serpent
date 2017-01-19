@@ -211,14 +211,14 @@ var setFormData = function (formId, data) {
                     }
                 }
             } else if (formDataInput[i].type.toLowerCase() == 'checkbox') {
-                console.log(formDataInput[i].name+":"+ data[formDataInput[i].name]);
+                //console.log(formDataInput[i].name+":"+ data[formDataInput[i].name]);
                 if (data[formDataInput[i].name] == 1) {
                     formDataInput[i].checked = true;
                 } else {
                     formDataInput[i].checked = false;
                 }
             } else {
-                console.log(formDataInput[i].name);
+                //console.log(formDataInput[i].name);
                 formDataInput[i].value = data[formDataInput[i].name];
             }
         }
@@ -233,7 +233,14 @@ var setFormData = function (formId, data) {
             formDataTextArea[i].value = data[formDataTextArea[i].name];
         }
     }
+    $('#instant-winner-options').show();
 
+
+    if($('#pgt_enable_instant_winners').is(':checked')){
+        $('#instant-winner-options').show();
+    }else{
+        $('#instant-winner-options').hide();
+    }
 };
 
 
