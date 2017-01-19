@@ -76,7 +76,7 @@ $promotion = new PromotionModel($dbcon->read_database());
     <select id="displayProperties"></select>
 </div>
 
-<div id=promotion-view-modal data-promo-id="" style="display: none";>
+<div id=promotion-view-modal data-promo-id="" style="display: none; width: 1080px";>
 
 </div>
 

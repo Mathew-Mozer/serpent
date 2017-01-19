@@ -46,7 +46,7 @@ if (isset($_POST["action"])) {
         case "endTimeTarget":
             $TimeTargetModel->endTimeTarget($_POST);
             $promotion->setUpdatedTimestamp($_POST['promotionId']);
-            echo("success");
+            echo(" success");
             break;
     }
 } else {
@@ -130,7 +130,7 @@ function loadSceneData()
 
     $dbcon = new DbCon();
     $conn = $dbcon->read_database();
-    $sql = 'SELECT *,promotion_skin,promotion_status,scene_effectid,display_monitor,display_lockedpromo,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion,api WHERE api_id=display_api_id and promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
+    $sql = 'SELECT *,promotion_skin,promotion_status,scene_effectid,display_monitor,display_lockedpromo,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id as pid, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion,api WHERE api_id=display_api_id and promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
     $statement = $conn->prepare($sql);
     $statement->execute(array($macAddress));
     $tmpSceneArray = array();
@@ -138,7 +138,7 @@ function loadSceneData()
         //$displayData->BundleAndroidUrl="http://connect.typhonpacificstudios.com/tv/assetbundles/tpsAndroid.unity3d";
         $displayData->BundleAndroidUrl = "http://svr1.typhonpacific.com/Chimera/Connect/TV/AssetBundles/" . $result['property_asset_bundle_url'];
         $displayData->BundleWindowsURL = "http://svr1.typhonpacific.com/Chimera/Connect/TV/AssetBundles/" . $result['property_asset_bundle_windows'];
-        $displayData->propertyID = $result['property_id'];
+        $displayData->propertyID = $result['pid'];
         $displayData->BundleVer = 1;
         $displayData->AssetName = $result['property_asset_name'];
         $displayData->DefaultLogo = $result['property_default_logo'];

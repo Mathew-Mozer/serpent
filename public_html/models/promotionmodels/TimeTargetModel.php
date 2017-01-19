@@ -22,8 +22,8 @@ class TimeTargetModel{
      * Add new kick for cash data
      * @param $values
      */
-   public function add($values){
-     $sql = "INSERT INTO time_target (time_target_promoid, time_target_start,time_target_seed,time_target_add,time_target_increment_min)
+   public function addSession($values){
+     $sql = "INSERT INTO time_target_sessions (time_target_session_promoid, time_target_start,time_target_seed,time_target_add,time_target_increment_min)
                                  VALUES (:promotion_id, :start,:seed,:add,:min);";
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
@@ -40,19 +40,21 @@ class TimeTargetModel{
      * Update kick for cash
      * @param $values
      */
-   public function update($values){
-       $sql = "INSERT INTO time_target (time_target_promoid, time_target_start,time_target_seed,time_target_add,time_target_increment_min)
-                                 VALUES (:promotion_id, :start,:seed,:add,:min);";
+   public function add($values){
+       $sql = "INSERT INTO time_target (time_target_promoid, time_target_title,time_target_contenttitle,time_target_content,time_target_cards)
+                                 VALUES (:promotion_id,:title,:contenttitle,:content,:cards);";
        $result = $this->db->prepare($sql);
        $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-       $result->bindValue(':seed', $values['time_target_seed'], PDO::PARAM_STR);
-       $result->bindValue(':start', $values['time_target_start'], PDO::PARAM_STR);
-       $result->bindValue(':add', $values['time_target_add'], PDO::PARAM_STR);
-       $result->bindValue(':min', $values['time_target_increment_min'], PDO::PARAM_STR);
+       $result->bindValue(':contenttitle', $values['time_target_contenttitle'], PDO::PARAM_STR);
+       $result->bindValue(':content', $values['time_target_content'], PDO::PARAM_STR);
+       $result->bindValue(':title', $values['time_target_title'], PDO::PARAM_STR);
+       $result->bindValue(':cards', $values['time_target_cards'], PDO::PARAM_STR);
        $result->execute();
        return $result;
    }
-
+    public function update($values){
+        $this->add($values);
+    }
     /**
      * Get kicked for cash
      * @param $id
@@ -75,15 +77,15 @@ class TimeTargetModel{
      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
      return $promoResult;
    }
-    public function getAll($id){
+    public function getAllSessions($id){
         $sql = "SELECT
                *
              FROM
-               time_target
+               time_target_sessions
              WHERE time_target_archive='0' and
-               time_target_promoid=:id
+               time_target_session_promoid=:id
              ORDER BY
-              time_target_id DESC
+              time_target_session_id DESC
                ;";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -92,7 +94,7 @@ class TimeTargetModel{
         return $promoResult;
     }
     public function confirmTimeTarget($values){
-        $sql = "Update time_target set time_target_approved='1' where time_target_id=:id";
+        $sql = "Update time_target_sessions set time_target_approved='1' where time_target_session_id=:id";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
         $result->execute();
@@ -113,15 +115,17 @@ class TimeTargetModel{
                 $endtime="0000/00/00 00:00:00";
                 break;
         }
-        $sql = "Update time_target set time_target_end=:endtime where time_target_id=:id";
+        $sql = "Update time_target_sessions set time_target_end=:endtime where time_target_session_id=:id";
         $result = $this->db->prepare($sql);
+
         $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
         $result->bindValue(':endtime',$endtime , PDO::PARAM_STR);
         $result->execute();
         return $result;
     }
     public function archiveTimeTarget($values){
-        $sql = "Update time_target set time_target_archive='1' where time_target_id=:id";
+
+        $sql = "Update time_target_sessions set time_target_archive='1' where time_target_session_id=:id";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
         $result->execute();

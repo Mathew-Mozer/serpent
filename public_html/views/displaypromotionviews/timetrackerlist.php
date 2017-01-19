@@ -10,14 +10,14 @@ require_once(getServerPath() . "dbcon.php");
 $dbcon = NEW DbCon();
 require "../../models/promotionmodels/TimeTargetModel.php";
 $TimeTargetModel = new TimeTargetModel($dbcon->read_Database());
-$TimeTargets = $TimeTargetModel->getAll($_POST['promoid']);
+$TimeTargets = $TimeTargetModel->getAllSessions($_POST['promoid']);
 
 if (count($TimeTargets) > 0) {
     foreach ($TimeTargets as $timeTarget) {
         ?>
 
         <tr>
-            <td><?php echo($timeTarget['time_target_id']) ?></td>
+            <td><?php echo($timeTarget['time_target_session_id']) ?></td>
             <td><?php echo($timeTarget['time_target_seed']) ?></td>
             <td><?php echo($timeTarget['time_target_start']) ?></td>
             <td><?php
@@ -34,15 +34,15 @@ if (count($TimeTargets) > 0) {
                 $canDelete = 1;
                 if ($timeTarget['time_target_end'] == "0000-00-00 00:00:00") {
                 ?>
-                <span name="test-<?php echo($timeTarget['time_target_id']) ?>"
-                      data-target-id="<?php echo($timeTarget['time_target_id']) ?>"
+                <span name="test-<?php echo($timeTarget['time_target_session_id']) ?>"
+                      data-target-id="<?php echo($timeTarget['time_target_session_id']) ?>"
                       class="glyphicon glyphicon-usd time-table-button time-table-end">
             <?php
             } else {
                 if (!$timeTarget['time_target_approved']) { ?>
-                    <span data-target-id="<?php echo($timeTarget['time_target_id']) ?>"
+                    <span data-target-id="<?php echo($timeTarget['time_target_session_id']) ?>"
                           class="glyphicon glyphicon-ok-sign time-table-button time-table-confirm"></span>
-                    <span data-target-id="<?php echo($timeTarget['time_target_id']) ?>"
+                    <span data-target-id="<?php echo($timeTarget['time_target_session_id']) ?>"
                           class="glyphicon glyphicon-remove-sign time-table-button time-table-button-red time-table-unconfirm"></span>
 
                     <?php
@@ -55,7 +55,7 @@ if (count($TimeTargets) > 0) {
 
                 </span>
 
-                    <span data-target-id="<?php echo($timeTarget['time_target_id']) ?>"
+                    <span data-target-id="<?php echo($timeTarget['time_target_session_id']) ?>"
                           class="glyphicon glyphicon-trash time-table-button time-table-button-black time-table-archive"></span>
             </td>
         </tr>

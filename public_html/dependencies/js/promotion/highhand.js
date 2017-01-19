@@ -24,7 +24,17 @@ var getTemplate = function () {
         }
     });
 };
-
+$('#player-name-modal').bind("enterKey",function(e){
+});
+$('#hhname').on('keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+        e.preventDefault();
+        updatePromotion($("#promotion-view-modal").data('promo-id'));
+        $("#promotion-view-modal").dialog('close');
+        return false;
+    }
+});
 /**
  * Update the database with the selected high hand
  * @param promotionId
@@ -180,7 +190,7 @@ var getAllHands = function (id) {
                 html+='<td class="no-mobile">' + handDate + '</td>';
                 html+='<td>' + handName + "<div id='currentStatus-"+handID+"'></div></td>";
 
-                html+='<td>';
+                html+='<td width="500px">';
                 for(card=1;card < cardcount+1;card++){
                     html+='' + "<img class='card standard-card' id='handCards"+card+"-"+handID+"'>"
                 }
@@ -230,7 +240,10 @@ var getAllHands = function (id) {
                 $('#high_hand_table').DataTable( {
                     "order": [[ 0, "desc" ]],
                     "lengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
-                    "bLengthChange" : false
+                    "bLengthChange" : false,
+                    "columnDefs": [
+                        { "width": "20%", "targets": 0 }
+                    ]
                 } );
             } );
 

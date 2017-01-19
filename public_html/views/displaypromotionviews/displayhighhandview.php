@@ -13,10 +13,11 @@ $HighHand = $HighHandModel->get($_POST['promoid']);
 
 <div id="new-hand">
     <button id="view-hands-btn"> View Hands</button>
-    <form>
+    <form id="hhname">
 
-        <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
         <label for="player-name-modal"> Player Name </label>
+        <input id="player-name-modal" name="title-message" type="text" placeholder="Player Name"/>
+
         <br>
         <br>
 

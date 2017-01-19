@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'addTimeTarget') {
         $TimeTargetModel = new TimeTargetModel($conn->insert_database());
-        $response = $TimeTargetModel->update($_POST);
+        $response = $TimeTargetModel->addSession($_POST);
         $promotion->setUpdatedTimestamp($_POST['promotionId']);
         header('content-type:application/json');
         echo json_encode($response);
