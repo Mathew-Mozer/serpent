@@ -12,8 +12,8 @@
  */
 var settingsModal = $("#settings").dialog({
         autoOpen: false,
-        height: 500,
-        width: 700,
+        height: 800,
+        width: 900,
         modal: true,
         closeOnEscape: false,
         create: function (){

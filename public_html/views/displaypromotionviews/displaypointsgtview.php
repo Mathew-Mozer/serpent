@@ -6,12 +6,20 @@
 
 <label for="add-promotion">Edit Player Points</label>
 <div id="add-promotion">
+    <table>
+        <tr>
+<td>
+
   <?php
-    for($i = 1; $i<=20; $i++) { ?>
+    for($i = 1; $i<=20; $i++) {
+        if($i==11)
+            echo('</td><td>')
+        ?>
       <div class="playerForms">&nbsp;<?php echo $i;?> &nbsp; <input type="hidden" id="txtID<?php echo $i;?>" name="pgt_player_id<?php echo $i;?>"><input type="text" id="txtName<?php echo $i;?>" name="pgt_player_name<?php echo $i;?>"><input id="txtPoints<?php echo $i;?>" type="number" min="0" name="pgt_current_points<?php echo $i;?>"></div>
       <?php } ?>
-
-
+</td>
+        </tr>
+    </table>
 <br>
   <hr>
    <div class="center">

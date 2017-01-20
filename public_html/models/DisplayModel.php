@@ -15,6 +15,12 @@ class DisplayModel
     private $displayLocation;
     private $lockedPromoId;
     private $monitorState;
+    private $apiId;
+    private $appVersion;
+    private $height;
+    private $width;
+    private $fitw;
+    private $fith;
 
     /**
      * DisplayModel constructor.
@@ -29,7 +35,8 @@ class DisplayModel
      * This creates a display with the value set
      * @param $fieldArray
      */
-    private function createDisplayWithValuesSet($fieldArray){
+    private function createDisplayWithValuesSet($fieldArray)
+    {
         $this->setId($fieldArray['display_id']);
         $this->setName($fieldArray['display_name']);
         $this->setPropertyId($fieldArray['property_id']);
@@ -38,6 +45,13 @@ class DisplayModel
         $this->setDisplayLocation($fieldArray['display_location']);
         $this->setLockedPromo($fieldArray['display_lockedpromo']);
         $this->setMonitorState($fieldArray['display_monitor']);
+        $this->setApiId($fieldArray['display_api_id']);
+        $this->setAppVersion($fieldArray['display_appversion']);
+        $this->setHeight($fieldArray['display_height']);
+        $this->setWidth($fieldArray['display_width']);
+        $this->setFitW($fieldArray['display_fitw']);
+        $this->setFitH($fieldArray['display_fith']);
+//var_dump($fieldArray);
     }
 
     /**
@@ -48,6 +62,7 @@ class DisplayModel
     {
         $this->conn = $conn;
     }
+
     /**
      * This sets the ID
      * @param mixed $id
@@ -56,17 +71,51 @@ class DisplayModel
     {
         $this->id = $id;
     }
+
     /**
      * This sets the name
      * @param mixed $name
      */
-    public function setLockedPromo($promoid){
-       $this->lockedPromoId=$promoid;
+    public function setApiId($val)
+    {
+        $this->apiId = $val;
     }
+
+    public function setAppVersion($val)
+    {
+        $this->appVersion = $val;
+    }
+
+    public function setHeight($val)
+    {
+        $this->height = $val;
+    }
+
+    public function setWidth($val)
+    {
+        $this->width = $val;
+    }
+
+    public function setFitW($val)
+    {
+        $this->fitw = $val;
+    }
+
+    public function setFitH($val)
+    {
+        $this->fith = $val;
+    }
+
+    public function setLockedPromo($promoid)
+    {
+        $this->lockedPromoId = $promoid;
+    }
+
     public function setName($name)
     {
         $this->name = $name;
     }
+
     /**
      * This sets the propertyID
      * @param mixed $propertyId
@@ -75,6 +124,7 @@ class DisplayModel
     {
         $this->propertyId = $propertyId;
     }
+
     /**
      * This sets the serial
      * @param mixed $serial
@@ -83,6 +133,7 @@ class DisplayModel
     {
         $this->serial = $serial;
     }
+
     /**
      * This sets the mac address
      * @param mixed $macAddress
@@ -91,6 +142,7 @@ class DisplayModel
     {
         $this->macAddress = $macAddress;
     }
+
     /**
      * This gets the connection
      * @return PDO|string
@@ -99,6 +151,7 @@ class DisplayModel
     {
         return $this->conn;
     }
+
     /**
      * This gets the id
      * @return mixed
@@ -107,15 +160,52 @@ class DisplayModel
     {
         return $this->id;
     }
-    public function getLockedPromoId(){
+
+    public function getApiId()
+    {
+        return $this->apiId;
+    }
+
+    public function getAppVersion()
+    {
+        return $this->appVersion;
+    }
+
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function getFitW()
+    {
+        return $this->fitw;
+    }
+
+    public function getFitH()
+    {
+        return $this->fith;
+    }
+
+    public function getLockedPromoId()
+    {
         return $this->lockedPromoId;
     }
-    public function getMonitorState(){
+
+    public function getMonitorState()
+    {
         return $this->monitorState;
     }
-    public function setMonitorState($state){
+
+    public function setMonitorState($state)
+    {
         $this->monitorState = $state;
     }
+
     /**
      * This gets the name
      * @return mixed
@@ -124,6 +214,7 @@ class DisplayModel
     {
         return $this->name;
     }
+
     /**
      * Get property ID
      * @return mixed
@@ -132,6 +223,7 @@ class DisplayModel
     {
         return $this->propertyId;
     }
+
     /**
      * Get serial
      * @return mixed
@@ -140,6 +232,7 @@ class DisplayModel
     {
         return $this->serial;
     }
+
     /**
      * Get mac address
      * @return mixed
@@ -148,6 +241,7 @@ class DisplayModel
     {
         return $this->macAddress;
     }
+
     /**
      * Get promotions
      * @return mixed
@@ -156,6 +250,7 @@ class DisplayModel
     {
         return $this->promotions;
     }
+
     /**
      * Set promotions
      * @param mixed $promotions
@@ -178,7 +273,8 @@ class DisplayModel
      * Get display location
      * @return mixed
      */
-    public function getDisplayLocation(){
-      return $this->displayLocation;
+    public function getDisplayLocation()
+    {
+        return $this->displayLocation;
     }
 }
