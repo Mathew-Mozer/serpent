@@ -9,7 +9,7 @@ require "../../models/promotionmodels/TimeTargetModel.php";
 require_once(getServerPath() . "dbcon.php");
 $dbcon = NEW DbCon();
 $TimeTargetModel = new TimeTargetModel($dbcon->insert_database());
-$promotion=new PromotionModel($dbcon->insert_database());
+$promotion = new PromotionModel($dbcon->insert_database());
 header('Content-Type: application/json; charset=utf-8');
 date_default_timezone_set('America/Los_Angeles');
 /**
@@ -23,7 +23,7 @@ $displayData = new DisplayData();
 $conn;
 CheckDeviceCheck();
 if (isset($_POST["action"])) {
-    if(isset($_POST["macAddress"])){
+    if (isset($_POST["macAddress"])) {
         $macAddress = $_POST["macAddress"];
     }
 
@@ -130,7 +130,8 @@ function loadSceneData()
 
     $dbcon = new DbCon();
     $conn = $dbcon->read_database();
-    $sql = 'SELECT *,promotion_skin,promotion_status,scene_effectid,display_monitor,display_lockedpromo,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion,api WHERE api_id=display_api_id and promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
+    //$sql = 'SELECT *,display.property_id as prid,promotion_skin,promotion_status,scene_effectid,display_monitor,display_lockedpromo,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion,api WHERE api_id=display_api_id and promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
+    $sql = "SELECT *,display.property_id as prid FROM display, property, api WHERE api_id=display_api_id and display.property_id=property.property_id and display.display_mac_address=?";
     $statement = $conn->prepare($sql);
     $statement->execute(array($macAddress));
     $tmpSceneArray = array();
@@ -138,7 +139,7 @@ function loadSceneData()
         //$displayData->BundleAndroidUrl="http://connect.typhonpacificstudios.com/tv/assetbundles/tpsAndroid.unity3d";
         $displayData->BundleAndroidUrl = "http://svr1.typhonpacific.com/Chimera/Connect/TV/AssetBundles/" . $result['property_asset_bundle_url'];
         $displayData->BundleWindowsURL = "http://svr1.typhonpacific.com/Chimera/Connect/TV/AssetBundles/" . $result['property_asset_bundle_windows'];
-        $displayData->propertyID = $result['property_id'];
+        $displayData->propertyID = $result['prid'];
         $displayData->BundleVer = 1;
         $displayData->AssetName = $result['property_asset_name'];
         $displayData->DefaultLogo = $result['property_default_logo'];
@@ -148,49 +149,16 @@ function loadSceneData()
         $displayData->displayID = $result['display_id'];
         $displayData->monitor = $result['display_monitor'];
         $displayData->apiurl = $result['api_url'];
-        $displayData->width=$result['display_width'];
-        $displayData->height=$result['display_height'];
-        $displayData->fitw=(bool) $result['display_fitw'];
-        $displayData->fith=(bool)$result['display_fith'];
+        $displayData->width = $result['display_width'];
+        $displayData->height = $result['display_height'];
+        $displayData->fitw = (bool)$result['display_fitw'];
+        $displayData->fith = (bool)$result['display_fith'];
+        $displayData->sceneList = loadScenes($result);
         //Add Scenes to Display
         //echo("Promoid:".$result[promotion_id]." Promotion Type ID".$result[promotion_type_id]." skinid:".$result[skin_id]." sceneid".$result[promotion_sceneid]."<br><br><br>");
-        $tmpSkinID = $result['skin_id'];
-        if ($result['promotion_skin'] != 0) {
-            $tmpSkinID = $result['promotion_skin'];
-        }
-        $tmpScene = new Scene($result['promotion_id'], $result['promotion_type_id'], $result['scene_duration'], $tmpSkinID, $result['promotion_sceneid'], $result['promotion_lastupdated'], $result['scene_effectid'], $result['property_id']);
-
-        switch ($result['promotion_status']) {
-            case 0:
-            case 1:
-            case 2:
-                $tmpScene->promotionStatus = $result['promotion_status'];
-                break;
-            case 3:
-                if (shouldShowPromo($result['promotion_id'])) {
-                    $tmpScene->promotionStatus = '1';
-                } else {
-                    $tmpScene->promotionStatus = '2';
-                }
-                break;
-
-        }
-        if($result['display_lockedpromo']==0){
-            array_push($tmpSceneArray, $tmpScene);
-
-        }else{
-            if($displayData->lockedScene==$tmpScene->promoID){
-                array_push($tmpSceneArray, $tmpScene);
-
-            }else{
-                //echo("didn't add: ".$tmpScene->promoID." lockedpromo: ".$displayData->lockedScene."\n");
-            }
-        }
-
-
-        $displayData->sceneList = $tmpSceneArray;
 
     }
+
     if ($displayData->displayID != 0) {
         if ($_POST["appVersion"] != $displayData->AppVersion) {
             UpdateDisplayData('display_appversion', $_POST["appVersion"], $displayData->AppVersion, $displayData->displayID, true);
@@ -219,6 +187,62 @@ function loadSceneData()
     print_r(json_encode($displayData));
 
 }
+
+function loadScenes($display)
+{
+
+    global $displayData, $conn, $macAddress;
+
+    $dbcon = new DbCon();
+    $conn = $dbcon->read_database();
+    $sql = "SELECT * FROM promotion_property,promotion WHERE promotion_property.display_id=? and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0";
+    $statement = $conn->prepare($sql);
+    $statement->execute(array($display['display_id']));
+    $tmpSceneArray = array();
+    foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+
+        $tmpSkinID = $result['skin_id'];
+        if ($result['promotion_skin'] != 0) {
+            $tmpSkinID = $result['promotion_skin'];
+        }
+        $tmpScene = new Scene($result['promotion_id'], $result['promotion_type_id'], $result['scene_duration'], $tmpSkinID, $result['promotion_sceneid'], $result['promotion_lastupdated'], $result['scene_effectid'], $display['prid']);
+        switch ($result['promotion_status']) {
+            case 0:
+            case 1:
+            case 2:
+                $tmpScene->promotionStatus = $result['promotion_status'];
+                break;
+            case 3:
+                if (shouldShowPromo($result['promotion_id'])) {
+                    $tmpScene->promotionStatus = '1';
+                } else {
+                    $tmpScene->promotionStatus = '2';
+                }
+                break;
+
+        }
+        if ($display['display_lockedpromo'] == 0) {
+            array_push($tmpSceneArray, $tmpScene);
+
+        } else {
+            if ($displayData->lockedScene == $tmpScene->promoID) {
+                array_push($tmpSceneArray, $tmpScene);
+
+            } else {
+                //echo("didn't add: ".$tmpScene->promoID." lockedpromo: ".$displayData->lockedScene."\n");
+            }
+        }
+
+    }
+
+
+
+
+
+
+    return $tmpSceneArray;
+}
+
 function currentTime()
 {
     //return "10:01:00";
@@ -254,12 +278,12 @@ function shouldShowPromo($promoid)
                 //if start time is before the end time (single day)
                 if ($session['promotion_sessiontime_starttime'] < $session['promotion_sessiontime_endtime']) {
                     //if current time is before end time
-                    if (currentTime() < $session['promotion_sessiontime_endtime']&currentTime()>$session['promotion_sessiontime_starttime']) {
+                    if (currentTime() < $session['promotion_sessiontime_endtime'] & currentTime() > $session['promotion_sessiontime_starttime']) {
 
                         return true;
                         //if current time is after end time
                     } else {
-                        $val=false;
+                        $val = false;
 
                     }
                 } //if start time is after end time on same day the following week
@@ -267,7 +291,7 @@ function shouldShowPromo($promoid)
                     //if current time is after end time
                     if (currentTime() > $session['promotion_sessiontime_endtime']) {
 
-                        $val=false;
+                        $val = false;
                     } //if current time is before end time
                     else {
 
@@ -282,7 +306,7 @@ function shouldShowPromo($promoid)
                         return true;
                     } else {
 
-                        $val=false;
+                        $val = false;
                     }
                 }
 
@@ -297,7 +321,7 @@ function shouldShowPromo($promoid)
 
                 } else {
 
-                    $val=false;
+                    $val = false;
 
                 }
             } elseif (currentDay($session['curdayow']) <= $session['promotion_sessiontime_endday']) {
@@ -305,13 +329,13 @@ function shouldShowPromo($promoid)
                     return true;
                 } else {
 
-                    $val=false;
+                    $val = false;
 
                 }
 
             } elseif (currentDay($session['curdayow']) < $session['promotion_sessiontime_startday'] & currentDay($session['curdayow']) > $session['promotion_sessiontime_endday']) {
 
-                $val=false;
+                $val = false;
 
             }
 
@@ -321,7 +345,7 @@ function shouldShowPromo($promoid)
             if (currentTime() > $session['promotion_sessiontime_starttime']) {
                 return true;
             } else {
-                $val=false;
+                $val = false;
             }
 
 

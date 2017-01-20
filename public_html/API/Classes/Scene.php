@@ -41,7 +41,6 @@ class Scene
     function __construct($promoID, $promo_type_id, $pSceneDuration,$pSkinId,$psceneID,$lastupdated,$pEffectID,$propertyId)
     {
         //Set Scene Variables
-
         $this->promoID=$promoID;
         $this->sceneDuration=$pSceneDuration;
         $this->sceneType=$promo_type_id;
@@ -49,6 +48,7 @@ class Scene
         $this->EffectID=$pEffectID;
         $this->lastUpdated=$lastupdated;
         $this->sceneSkin= new Skin($psceneID,$pSkinId,$propertyId);
+        //echo("pid:".$propertyId);
         //Query data for the scene and put relevant data in $sceneData
         switch ($promo_type_id){
             //High Hand
