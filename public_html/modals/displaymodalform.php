@@ -4,6 +4,7 @@ require "../dependencies/php/HelperFunctions.php";
 require getServerPath() . "dbcon.php";
 require "../models/PromotionModel.php";
 require "../models/PropertyDisplays.php";
+require "../models/PermissionModel.php";
 $dbcon = new DBCon();
 ?>
 
@@ -15,8 +16,20 @@ $display = $displayProperties->getDisplayWithId($_POST['displayId']);
 $skins = $displayProperties->getSkinTypes($_POST['propertyId']);
 $assignedPromotions = $displayOptions->getPromotionsByDisplayId($_POST['displayId']);
 $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['displayId'], $_SESSION['userId']);
+$permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']);
 ?>
-<div>
+<div id="display-info" data-property-id="<?php echo($_POST['propertyId'])?>" data-display-id="<?php echo($_POST['displayId'])?>">
+    <button class="display-modal-view-switch" data-tab="display-promotions-modal-view"> Display Promotions </button>
+    <?php if ($_SESSION['isGod']) { ?>
+        <button class="display-modal-view-switch" data-tab="display-admin-options-modal"> Administrator Options</button>
+        <?php
+    }
+    ?>
+</div>
+<div id="display-admin-options-modal" class="display-modal-view" hidden>
+
+</div>
+<div id="display-promotions-modal-view" class="display-modal-view">
 <form>
     <div id="display-id-form" hidden data-display-id="<?php echo $_POST['displayId']; ?>"></div>
     <div id="property-id-form" hidden data-property-id="<?php echo $_POST['propertyId']; ?>"></div>
@@ -108,7 +121,7 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
 
 
 </form>
-</div>
+
 <hr>
 <form class="form-horizontal" method="post">
     <input type="text" id="display-name-field" name="displayName" value='<?php echo $display->getName() ?>'>
@@ -125,7 +138,4 @@ $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['display
     <input type="hidden" id="default-scene-duration" value="1">
 </form>
 
-<script src="dependencies/js/editdisplay.js?t=<?php echo microtime()?>"></script>
-<script>
-
-</script>
+</div>

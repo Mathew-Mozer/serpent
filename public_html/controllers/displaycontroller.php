@@ -57,6 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $displayProperties->updateDisplayMonitorState($_POST['displayId'],$_POST['monitorState']);
         header('content-type:application/json');
         echo json_encode($response);
+    }else if ($_POST['action'] == 'updatePromotionDisplayOptions') {
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), null);
+        $response=$displayProperties->updatePromotionDisplayOptions($_POST);
+        var_dump($_POST);
     }
 
 }
