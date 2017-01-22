@@ -200,12 +200,11 @@ function loadScenes($display)
     $statement->execute(array($display['display_id']));
     $tmpSceneArray = array();
     foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-
         $tmpSkinID = $result['skin_id'];
         if ($result['promotion_skin'] != 0) {
             $tmpSkinID = $result['promotion_skin'];
         }
-        $tmpScene = new Scene($result['promotion_id'], $result['promotion_type_id'], $result['scene_duration'], $tmpSkinID, $result['promotion_sceneid'], $result['promotion_lastupdated'], $result['scene_effectid'], $display['prid']);
+        $tmpScene = new Scene($result['promotion_id'], $result['promotion_type_id'], $result['scene_duration'], $tmpSkinID, $result['promotion_sceneid'], $result['promotion_lastupdated'], $result['scene_effectid'], $display['prid'],$result['promotion_animation']);
         switch ($result['promotion_status']) {
             case 0:
             case 1:
@@ -221,6 +220,7 @@ function loadScenes($display)
                 break;
 
         }
+        //array_push($tmpSceneArray, $tmpScene);
         if ($display['display_lockedpromo'] == 0) {
             array_push($tmpSceneArray, $tmpScene);
 

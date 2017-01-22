@@ -182,8 +182,8 @@ class PromotionModel
         $sceneId=$post['scene_id'];
         $chosenSkin=$post['chosenSkin'];
         $promolabel = $post['Promotion-Label'];
-
-        $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid,promotion_skin,promotion_label) VALUES (:id, :artifact, :sceneId,:skinId, :promolabel);";
+        $animation =$post['Promotion-Animation'];
+        $sql = "INSERT INTO promotion (promotion_type_id, artifact, promotion_sceneid,promotion_skin,promotion_label,promotion_animation) VALUES (:id, :artifact, :sceneId,:skinId, :promolabel,:animation);";
         $artifact = $this->getRandomFontAwesome();
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $promotionTypeId, PDO::PARAM_STR);
@@ -191,6 +191,8 @@ class PromotionModel
         $result->bindValue(':sceneId', $sceneId, PDO::PARAM_STR);
         $result->bindValue(':skinId', $chosenSkin, PDO::PARAM_STR);
         $result->bindValue(':promolabel', $promolabel, PDO::PARAM_STR);
+        $result->bindValue(':animation', $animation, PDO::PARAM_STR);
+
         $result->execute();
 
         $promotionId = $this->db->lastInsertId();
