@@ -100,7 +100,7 @@ class PropertyDisplays
      */
     private function getDisplayPromotions($display)
     {
-        $getPromotions = "SELECT * FROM promotion,`promotion_property` WHERE promotion.promotion_visible=1 and promotion_property.promotion_id=promotion.promotion_id and display_id =:display";
+        $getPromotions = "SELECT * FROM promotion,`promotion_property` WHERE promotion.promotion_visible=1 and promotion_property.promotion_id=promotion.promotion_id and display_id =:display order by promotion.promotion_id desc";
         $statement = $this->conn->prepare($getPromotions);
         $statement->bindValue(':display', $display, PDO::PARAM_STR);
 

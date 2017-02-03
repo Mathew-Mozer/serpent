@@ -59,7 +59,7 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
  */
 var updatePromotion = function (promotionId, promotionTypeId, accountId) {
     var data = getFormData('add-promotion');
-    console.log('Updating now');
+
     data['action'] = 'update';
     data['promotionTypeId'] = promotionTypeId;
     data['promotionId'] = promotionId;
@@ -136,7 +136,7 @@ var getModalData = function (promotionId, promotionTypeId) {
             $(".loader").removeClass("hidden");
         },
         success: function (response) {
-            console.log('Get Modal Data');
+            console.log('Get Modal Data:'+ response);
             setFormData('add-promotion', response)
         },
         error: function (xhr, desc, err) {

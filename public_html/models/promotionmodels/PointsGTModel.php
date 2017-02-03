@@ -25,7 +25,8 @@ class PointsGTModel{
      //Adds Points GT.
 
     $this->addPointsGT($values);
-
+    if($values['updateSettings']){
+echo('updating Settings of PointsGT');
     //Adds instant winners for Points GT.
     $sql = "REPLACE INTO points_gt_instant_winner (
         pgt_instant_winner_id,
@@ -108,9 +109,15 @@ class PointsGTModel{
     $result->bindValue(':pgt_enable_instant_winner3', $values['pgt_enable_instant_winner3'], PDO::PARAM_STR);
 
     $result->execute();
+    }else{
+        $this->updatePlayers($values);
+    }
 
-    //Adds instant winners for Points GT.
-    $sql = "replace INTO points_gt_players (
+
+   }
+   public function updatePlayers($values){
+       //echo('updating Players of PointsGT');
+       $sql = "replace INTO points_gt_players (
         pgt_player_id,
         pgt_player_name,
         pgt_current_points,
@@ -118,36 +125,36 @@ class PointsGTModel{
         pgt_id,
         pgt_account_id
       ) VALUES";
-      for($i = 1; $i <= 20; $i++){
-        $sql .= "(:pgt_player_id$i,:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
-        $sql .= $i < 20 ? "," : ";";
+       for($i = 1; $i <= 20; $i++){
+           $sql .= "(:pgt_player_id$i,:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
+           $sql .= $i < 20 ? "," : ";";
 
-      }
+       }
 
-        $result = $this->db->prepare($sql);
-    for($i = 1; $i <= 20; $i++){
-        if(!isset($values["pgt_player_id$i"])){
-            $values["pgt_player_id$i"]='';
-        }
-        if(!isset($values["pgt_player_name$i"])){
-            $values["pgt_player_name$i"]='';
-        }
-        if(!isset($values["pgt_current_points$i"])){
-            $values["pgt_current_points$i"]='0';
-        }
-        if(!isset($values['pgt_car_icon'])){
-            $values["pgt_car_icon$i"]='0';
-        }
-        $result->bindValue(":pgt_player_id$i", $values["pgt_player_id$i"], PDO::PARAM_STR);
-    $result->bindValue(":pgt_player_name$i", $values["pgt_player_name$i"], PDO::PARAM_STR);
-    $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
-    $result->bindValue(":pgt_car_icon$i", $values["pgt_car_icon$i"], PDO::PARAM_STR);
-  }
-      $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
+       $result = $this->db->prepare($sql);
+       for($i = 1; $i <= 20; $i++){
+           if(!isset($values["pgt_player_id$i"])){
+               $values["pgt_player_id$i"]='';
+           }
+           if(!isset($values["pgt_player_name$i"])){
+               $values["pgt_player_name$i"]='';
+           }
+           if(!isset($values["pgt_current_points$i"])){
+               $values["pgt_current_points$i"]='0';
+           }
+           if(!isset($values['pgt_car_icon'])){
+               $values["pgt_car_icon$i"]='0';
+           }
+           $result->bindValue(":pgt_player_id$i", $values["pgt_player_id$i"], PDO::PARAM_STR);
+           $result->bindValue(":pgt_player_name$i", $values["pgt_player_name$i"], PDO::PARAM_STR);
+           $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
+           $result->bindValue(":pgt_car_icon$i", $values["pgt_car_icon$i"], PDO::PARAM_STR);
+       }
+       $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
+       $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
 
 
-    $result->execute();
+       $result->execute();
    }
 public function checkforbindvalues($val){
 
@@ -283,9 +290,9 @@ public function checkforbindvalues($val){
              FROM
                points_gt_players
              WHERE
-               pgt_id=:id;
+               pgt_id=:id
              ORDER BY
-               pgt_current_points DESC
+               pgt_current_points desc 
              LIMIT 20;";
      $result = $this->db->prepare($sql);
      $result->bindValue(':id', $id, PDO::PARAM_STR);

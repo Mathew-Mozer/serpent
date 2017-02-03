@@ -104,6 +104,7 @@
 
 
     <input type="hidden" id="scene-id" name="scene_id" value="4">
+    <input type="hidden" id="scene-id" name="updateSettings" value="true">
 </div>
 <script>
     $('#pgt_enable_instant_winners').change(function () {
