@@ -8,7 +8,7 @@
  */
 
 include 'moduleIncludes.php';
-
+date_default_timezone_set('America/Los_Angeles');
 class Scene
 {
     //Unique Identifier for the record of the scene
@@ -29,7 +29,7 @@ class Scene
     public $highHandData;
     public $timeTargetData;
     public $sceneSkin;
-    public $InstantWinners;
+
 
     //Database Global Variables
     private $conn;
@@ -135,18 +135,27 @@ class Scene
 
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * FROM `points_gt`,points_gt_players where points_gt_players.pgt_id=points_gt.pgt_promotion_id and pgt_promotion_id=? ORDER by points_gt.pgt_id desc limit 20';
+        $sql = 'SELECT * FROM `points_gt` where pgt_promotion_id=? ORDER by points_gt.pgt_id DESC limit 1';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSceneID));
-        $tmpPlayerList = array();
+
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $this->pointsGTData = new PointsGT();
             $date1 = new DateTime($result['pgt_race_begin']);
             $date2 = new DateTime($result['pgt_race_end']);
             $date3 = new DateTime(date('Y-m-d H:i:s'));
+
+                if($date3>$date2){
+                  $this->pointsGTData->finished=True;
+                }else{
+                    $this->pointsGTData->finished=False;
+                }
+
+
+
             $this->pointsGTData->DayOfSession = $this->dateDifference($date3, $date1, '%d') + 1;
             $this->pointsGTData->DaysInSession = $this->dateDifference($date2, $date1, '%d') + 1;
-            $this->pointsGTData->isFinished = 0;
+
             $this->pointsGTData->lastUpdated = $result['pgt_timestamp'];
             $this->pointsGTData->title = $result['pgt_title'];
             $this->pointsGTData->Value1 = $result['pgt_subtitle'];
@@ -154,11 +163,21 @@ class Scene
             $this->pointsGTData->Value2Title = $result['pgt_left_title'];
             $this->pointsGTData->Value3 = $result['pgt_right_content'];
             $this->pointsGTData->Value3Title = $result['pgt_right_title'];
+            $this->pointsGTData->SpriteAtlas = $result['pgt_atlas'];
+            $this->pointsGTData->PayoutList = $result['pgt_payout'];
+
             if ($result['pgt_enable_instant_winners']) {
                 $this->pointsGTData->InstantWinners = $this->getPointsGTInstantWinners($pSceneID);
             }
 
             //$sPlayerName, $sPoints, $sCarID,$saccountid
+
+        }
+        $sql = 'SELECT * FROM points_gt_players where points_gt_players.pgt_id=? limit 20';
+        $statement = $conn->prepare($sql);
+        $statement->execute(array($pSceneID));
+        $tmpPlayerList = array();
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $tmpPlayer = new PointsGTPlayer($result['pgt_player_name'], $result['pgt_current_points'], $result['pgt_car_icon'], $result['pgt_account_id']);
             array_push($tmpPlayerList, $tmpPlayer);
         }

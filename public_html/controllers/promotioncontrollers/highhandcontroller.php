@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($_POST['action'] == 'view'){
         $highHand = new HighHandModel($conn->read_database());
         $response = $highHand->getAllHands($_POST['highHandSession']);
+
         header('content-type:application/json');
         echo json_encode($response);
     } else if ($_POST['action'] == 'updateHand'){

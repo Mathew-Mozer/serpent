@@ -17,6 +17,8 @@ public $DayOfSession;
 public $DaysInSession;
 public $title;
 public $lastUpdated;
-public $isFinished;
+public $finished;
 public $playerListJson;
+public $InstantWinners;
+public $SpriteAtlas;
 }

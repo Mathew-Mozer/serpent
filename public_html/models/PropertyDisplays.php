@@ -196,7 +196,12 @@ class PropertyDisplays
      */
     public function getSkinTypes($propertyId)
     {
-        $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
+        if ($_SESSION['isGod']) {
+            $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin';
+        } else {
+            $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
+        }
+
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
         $statement->execute();

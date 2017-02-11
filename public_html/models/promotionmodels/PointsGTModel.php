@@ -178,7 +178,8 @@ public function checkforbindvalues($val){
         pgt_race_end,
         pgt_account_id,
         pgt_promotion_id,
-        pgt_enable_instant_winners
+        pgt_enable_instant_winners,
+        pgt_atlas
       ) VALUES (
         :add_title,
         :add_subtitle,
@@ -191,7 +192,8 @@ public function checkforbindvalues($val){
         :add_race_end,
         :add_account_id,
         :add_promotion_id,
-        :add_instant_winners
+        :add_instant_winners,
+        :add_atlas
         );";
 
     $result = $this->db->prepare($sql);
@@ -207,6 +209,7 @@ public function checkforbindvalues($val){
     $result->bindValue(':add_account_id', $values['accountId'], PDO::PARAM_STR);
     $result->bindValue(':add_promotion_id', $values['promotionId'], PDO::PARAM_STR);
     $result->bindValue(':add_instant_winners', $values['pgt_enable_instant_winners'], PDO::PARAM_STR);
+    $result->bindValue(':add_atlas', $values['pgt_atlas'], PDO::PARAM_STR);
 
 
     $result->execute();
@@ -234,9 +237,9 @@ public function checkforbindvalues($val){
 
        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
        $timestamp = strtotime($promoResult['pgt_race_begin']);
-       $promoResult['pgt_race_begin'] = date("Y-m-d", $timestamp);
+       $promoResult['pgt_race_begin'] = date("Y-m-d H:i:00", $timestamp);
        $timestamp = strtotime($promoResult['pgt_race_end']);
-       $promoResult['pgt_race_end'] = date("Y-m-d", $timestamp);
+       $promoResult['pgt_race_end'] = date("Y-m-d H:i:00", $timestamp);
      $result->closeCursor();
      $instantWinners = $this->getPointsGTInstantWinners($id);
 

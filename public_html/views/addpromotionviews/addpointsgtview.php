@@ -41,12 +41,19 @@
                 <input id="payout" name="pgt_payout" type="text" placeholder="Payout">
 
                 <br><br>
-                <label for="start-date">Start Date</label><br>
-                <input id="start-date" name="pgt_race_begin" type="date">
+                <label for="start-date">Starts</label><br>
+                <input id="start-date" class="filthypillow" name="pgt_race_begin">
 
                 <br><br>
-                <label for="end-date">End Date</label><br>
-                <input id="end-date" name="pgt_race_end" type="date">
+                <label for="end-date">Ends</label><br>
+                <input id="end-date" class="filthypillow" name="pgt_race_end">
+                <br><br>
+                <label for="end-date">Theme</label><br><br>
+                <Select id="pgt-atlas" name="pgt_atlas">
+                    <option value="0">Race Cars</option>
+                    <option value="1">Chinese Dragon</option>
+                </Select>
+
 
                 <br><br>
                 <input id="pgt_enable_instant_winners" name="pgt_enable_instant_winners" type="checkbox"><label>Allow
@@ -114,7 +121,42 @@
             $('#instant-winner-options').hide();
         }
     });
+    //first fp
+    var $fp1 = $( "#start-date" ),
+        now = moment( ).subtract( "seconds", 1 );
+    $fp1.val( moment().format( "YYYY-MM-DD HH:mm:00") );
+    $fp1.filthypillow( {
+        calendar: {
+            saveOnDateSelect: true,
+            isPinned: true
 
+        }
+    });
+    $fp1.on( "focus", function( ) {
+        $fp1.filthypillow( "show" );
+    } );
+    $fp1.on( "fp:save", function( e, dateObj ) {
+        $fp1.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+        $fp1.filthypillow( "hide" );
+    } );
+    //second fp
+    var $fp2 = $( "#end-date" ),
+        now = moment( ).subtract( "seconds", 1 );
+    $fp2.val( moment().format( "YYYY-MM-DD HH:mm:00") );
+    $fp2.filthypillow( {
+        calendar: {
+            saveOnDateSelect: true,
+            isPinned: true
+
+        }
+    });
+    $fp2.on( "focus", function( ) {
+        $fp2.filthypillow( "show" );
+    } );
+    $fp2.on( "fp:save", function( e, dateObj ) {
+        $fp2.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+        $fp2.filthypillow( "hide" );
+    } );
 </script>
 <script type="text/javascript" src="dependencies/js/jscolor.js"></script>
 <script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>
