@@ -144,6 +144,7 @@ class HighHandModel{
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
         $response = $result->fetchAll(PDO::FETCH_ASSOC);
+
         return $response;
 
     }

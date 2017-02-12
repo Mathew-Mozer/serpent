@@ -176,7 +176,9 @@ var getAllHands = function (id) {
                 var handCards7 = 'dependencies/images/cards/'+element.high_hand_card7+'.png';
                 var handCards8 = 'dependencies/images/cards/'+element.high_hand_card8+'.png';
                 var handName = element.high_hand_name;
-                var handDate = element.high_hand_timestamp;
+                var date = new Date(element.high_hand_timestamp+' UTC');
+                var dts = date.toLocaleString().split(",");
+                var handDate = dts[1] + "</br>" + dts[0];
                 var isWinner = element.high_hand_isWinner;
                 payout = element.high_hand_custom_payout;
 
