@@ -46,6 +46,7 @@ $promotion = new PromotionModel($dbcon->read_database());
                     <?php
                     if (isset($_SESSION['userId'])) {
                         $properties = $promotion->getAssignableProperties();
+                        echo "<option value='0'>Unassign</option>";
                         foreach ($properties as $property) {
                             echo "<option value='" . $property['property_id'] . "' ".isSelected($property['property_id'],$_POST['propertyId']).">" . $property['property_name'] . "</option>";
                         }

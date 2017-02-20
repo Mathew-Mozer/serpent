@@ -25,7 +25,8 @@ class PointsGTModel{
      //Adds Points GT.
 
     $this->addPointsGT($values);
-
+    if($values['updateSettings']){
+echo('updating Settings of PointsGT');
     //Adds instant winners for Points GT.
     $sql = "REPLACE INTO points_gt_instant_winner (
         pgt_instant_winner_id,
@@ -91,26 +92,32 @@ class PointsGTModel{
     $result->bindValue(':pgt_instant_winner_id1', $values['pgt_instant_winner_id1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points1', $values['pgt_points1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount1', $values['pgt_prize_amount1'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_color1', $values['pgt_color1'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color1', str_replace('#','',$values['pgt_color1']) , PDO::PARAM_STR);
     $result->bindValue(':pgt_enable_instant_winner1', $values['pgt_enable_instant_winner1'], PDO::PARAM_STR);
 
     $result->bindValue(':pgt_instant_winner_id2', $values['pgt_instant_winner_id2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points2', $values['pgt_points2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount2', $values['pgt_prize_amount2'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_color2', $values['pgt_color2'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color2', str_replace('#','',$values['pgt_color2']), PDO::PARAM_STR);
     $result->bindValue(':pgt_enable_instant_winner2', $values['pgt_enable_instant_winner2'], PDO::PARAM_STR);
 
 
     $result->bindValue(':pgt_instant_winner_id3', $values['pgt_instant_winner_id3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points3', $values['pgt_points3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount3', $values['pgt_prize_amount3'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_color3', $values['pgt_color3'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color3', str_replace('#','',$values['pgt_color3']), PDO::PARAM_STR);
     $result->bindValue(':pgt_enable_instant_winner3', $values['pgt_enable_instant_winner3'], PDO::PARAM_STR);
 
     $result->execute();
+    }else{
+        $this->updatePlayers($values);
+    }
 
-    //Adds instant winners for Points GT.
-    $sql = "replace INTO points_gt_players (
+
+   }
+   public function updatePlayers($values){
+       //echo('updating Players of PointsGT');
+       $sql = "replace INTO points_gt_players (
         pgt_player_id,
         pgt_player_name,
         pgt_current_points,
@@ -118,36 +125,36 @@ class PointsGTModel{
         pgt_id,
         pgt_account_id
       ) VALUES";
-      for($i = 1; $i <= 20; $i++){
-        $sql .= "(:pgt_player_id$i,:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
-        $sql .= $i < 20 ? "," : ";";
+       for($i = 1; $i <= 20; $i++){
+           $sql .= "(:pgt_player_id$i,:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
+           $sql .= $i < 20 ? "," : ";";
 
-      }
+       }
 
-        $result = $this->db->prepare($sql);
-    for($i = 1; $i <= 20; $i++){
-        if(!isset($values["pgt_player_id$i"])){
-            $values["pgt_player_id$i"]='';
-        }
-        if(!isset($values["pgt_player_name$i"])){
-            $values["pgt_player_name$i"]='';
-        }
-        if(!isset($values["pgt_current_points$i"])){
-            $values["pgt_current_points$i"]='0';
-        }
-        if(!isset($values['pgt_car_icon'])){
-            $values["pgt_car_icon$i"]='0';
-        }
-        $result->bindValue(":pgt_player_id$i", $values["pgt_player_id$i"], PDO::PARAM_STR);
-    $result->bindValue(":pgt_player_name$i", $values["pgt_player_name$i"], PDO::PARAM_STR);
-    $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
-    $result->bindValue(":pgt_car_icon$i", $values["pgt_car_icon$i"], PDO::PARAM_STR);
-  }
-      $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
+       $result = $this->db->prepare($sql);
+       for($i = 1; $i <= 20; $i++){
+           if(!isset($values["pgt_player_id$i"])){
+               $values["pgt_player_id$i"]='';
+           }
+           if(!isset($values["pgt_player_name$i"])){
+               $values["pgt_player_name$i"]='';
+           }
+           if(!isset($values["pgt_current_points$i"])){
+               $values["pgt_current_points$i"]='0';
+           }
+           if(!isset($values['pgt_car_icon'])){
+               $values["pgt_car_icon$i"]='0';
+           }
+           $result->bindValue(":pgt_player_id$i", $values["pgt_player_id$i"], PDO::PARAM_STR);
+           $result->bindValue(":pgt_player_name$i", $values["pgt_player_name$i"], PDO::PARAM_STR);
+           $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
+           $result->bindValue(":pgt_car_icon$i", $values["pgt_car_icon$i"], PDO::PARAM_STR);
+       }
+       $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
+       $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
 
 
-    $result->execute();
+       $result->execute();
    }
 public function checkforbindvalues($val){
 
@@ -171,7 +178,8 @@ public function checkforbindvalues($val){
         pgt_race_end,
         pgt_account_id,
         pgt_promotion_id,
-        pgt_enable_instant_winners
+        pgt_enable_instant_winners,
+        pgt_atlas
       ) VALUES (
         :add_title,
         :add_subtitle,
@@ -184,7 +192,8 @@ public function checkforbindvalues($val){
         :add_race_end,
         :add_account_id,
         :add_promotion_id,
-        :add_instant_winners
+        :add_instant_winners,
+        :add_atlas
         );";
 
     $result = $this->db->prepare($sql);
@@ -200,6 +209,7 @@ public function checkforbindvalues($val){
     $result->bindValue(':add_account_id', $values['accountId'], PDO::PARAM_STR);
     $result->bindValue(':add_promotion_id', $values['promotionId'], PDO::PARAM_STR);
     $result->bindValue(':add_instant_winners', $values['pgt_enable_instant_winners'], PDO::PARAM_STR);
+    $result->bindValue(':add_atlas', $values['pgt_atlas'], PDO::PARAM_STR);
 
 
     $result->execute();
@@ -227,9 +237,9 @@ public function checkforbindvalues($val){
 
        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
        $timestamp = strtotime($promoResult['pgt_race_begin']);
-       $promoResult['pgt_race_begin'] = date("Y-m-d", $timestamp);
+       $promoResult['pgt_race_begin'] = date("Y-m-d H:i:00", $timestamp);
        $timestamp = strtotime($promoResult['pgt_race_end']);
-       $promoResult['pgt_race_end'] = date("Y-m-d", $timestamp);
+       $promoResult['pgt_race_end'] = date("Y-m-d H:i:00", $timestamp);
      $result->closeCursor();
      $instantWinners = $this->getPointsGTInstantWinners($id);
 
@@ -253,21 +263,21 @@ public function checkforbindvalues($val){
    */
    public function getPointsGTInstantWinners($id){
 
-     $sql = "SELECT
-               *
+     $sql = "SELECT `pgt_instant_winner_id`,`pgt_points`,`pgt_prize_amount`,`pgt_id`,`pgt_enable_instant_winner`,`pgt_timestamp`,CONCAT('#',points_gt_instant_winner.pgt_color) as pgt_color 
              FROM
                points_gt_instant_winner
              WHERE
-               pgt_id=:id;
+               pgt_id=:id
              ORDER BY
-               pgt_timestamp DESC
-             LIMIT 3;";
+               pgt_points DESC 
+                            LIMIT 3;";
      $result = $this->db->prepare($sql);
 
       $result->bindValue(':id', $id, PDO::PARAM_STR);
      $result->execute();
 
      $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+
      $result->closeCursor();
 
      return $this->formatRowWithNumberIndex($promoResult);
@@ -283,9 +293,9 @@ public function checkforbindvalues($val){
              FROM
                points_gt_players
              WHERE
-               pgt_id=:id;
+               pgt_id=:id
              ORDER BY
-               pgt_current_points DESC
+               pgt_current_points desc 
              LIMIT 20;";
      $result = $this->db->prepare($sql);
      $result->bindValue(':id', $id, PDO::PARAM_STR);

@@ -41,12 +41,19 @@
                 <input id="payout" name="pgt_payout" type="text" placeholder="Payout">
 
                 <br><br>
-                <label for="start-date">Start Date</label><br>
-                <input id="start-date" name="pgt_race_begin" type="date">
+                <label for="start-date">Starts</label><br>
+                <input id="start-date" class="filthypillow" name="pgt_race_begin">
 
                 <br><br>
-                <label for="end-date">End Date</label><br>
-                <input id="end-date" name="pgt_race_end" type="date">
+                <label for="end-date">Ends</label><br>
+                <input id="end-date" class="filthypillow" name="pgt_race_end">
+                <br><br>
+                <label for="end-date">Theme</label><br><br>
+                <Select id="pgt-atlas" name="pgt_atlas">
+                    <option value="0">Race Cars</option>
+                    <option value="1">Chinese Dragon</option>
+                </Select>
+
 
                 <br><br>
                 <input id="pgt_enable_instant_winners" name="pgt_enable_instant_winners" type="checkbox"><label>Allow
@@ -70,8 +77,7 @@
                                        placeholder="25"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner1-threshold" name="pgt_points1" type="number" min="0"
                                        placeholder="250"></td>
-                            <td><input name="pgt_color1" type="text" class="jscolor" id="pgt_color1" style="width:75px;"/>
-                                <button class="jscolor {valueElement:'pgt_color1'}">&nbsp;</button></td>
+                            <td><input name="pgt_color1" type="text" class="spectrumcl" id="pgt_color1" style="width:75px;"/></td>
                         </tr>
                         <tr>
                             <td> <input name="pgt_instant_winner_id2" type="hidden"><input id="pgt_enable_instant_winner2" name="pgt_enable_instant_winner2" type="checkbox"></td>
@@ -79,10 +85,8 @@
                                        placeholder="50"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner2-threshold" name="pgt_points2" type="number" min="0"
                                        placeholder="500"></td>
-                            <td><input name="pgt_color2" type="text" class="jscolor" id="pgt_color2" style="width:75px;"/>
-                                <button class="jscolor {valueElement:'pgt_color2'}">
-                                    &nbsp;
-                                </button></td>
+                            <td><input name="pgt_color2" type="text" class="spectrumcl" id="pgt_color2" style="width:75px;"/>
+                                </td>
                         </tr>
                         <tr>
                             <td><input name="pgt_instant_winner_id3" type="hidden"><input id="pgt_enable_instant_winner2" name="pgt_enable_instant_winner3" type="checkbox"></td>
@@ -90,10 +94,8 @@
                                        placeholder="75"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner3-threshold" name="pgt_points3" type="number" min="0"
                                        placeholder="750"></td>
-                            <td><input name="pgt_color3" type="text" class=" jscolor" id="pgt_color3" style="width:75px;"/>
-                                <button class="jscolor {valueElement:'pgt_color3'}">
-                                    &nbsp;
-                                </button></td>
+                            <td><input name="pgt_color3" type="text" class="spectrumcl" id="pgt_color3" style="width:75px;" value="#440000"/>
+                                </td>
                         </tr>
                         </tbody>
                     </table>
@@ -104,6 +106,7 @@
 
 
     <input type="hidden" id="scene-id" name="scene_id" value="4">
+    <input type="hidden" id="scene-id" name="updateSettings" value="true">
 </div>
 <script>
     $('#pgt_enable_instant_winners').change(function () {
@@ -113,9 +116,44 @@
             $('#instant-winner-options').hide();
         }
     });
+    //first fp
+    var $fp1 = $( "#start-date" ),
+        now = moment( ).subtract( "seconds", 1 );
+    $fp1.val( moment().format( "YYYY-MM-DD HH:mm:00") );
+    $fp1.filthypillow( {
+        calendar: {
+            saveOnDateSelect: true,
+            isPinned: true
 
+        }
+    });
+    $fp1.on( "focus", function( ) {
+        $fp1.filthypillow( "show" );
+    } );
+    $fp1.on( "fp:save", function( e, dateObj ) {
+        $fp1.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+        $fp1.filthypillow( "hide" );
+    } );
+    //second fp
+    var $fp2 = $( "#end-date" ),
+        now = moment( ).subtract( "seconds", 1 );
+    $fp2.val( moment().format( "YYYY-MM-DD HH:mm:00") );
+    $fp2.filthypillow( {
+        calendar: {
+            saveOnDateSelect: true,
+            isPinned: true
+
+        }
+    });
+    $fp2.on( "focus", function( ) {
+        $fp2.filthypillow( "show" );
+    } );
+    $fp2.on( "fp:save", function( e, dateObj ) {
+        $fp2.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+        $fp2.filthypillow( "hide" );
+    } );
 </script>
-<script type="text/javascript" src="dependencies/js/jscolor.js"></script>
+
 <script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>
 
 <?php
@@ -128,3 +166,4 @@ if (isset($_POST['promotion_settings'])) {
     }
 }
 ?>
+

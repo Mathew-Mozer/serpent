@@ -48,6 +48,10 @@ if (isset($_POST["action"])) {
             $promotion->setUpdatedTimestamp($_POST['promotionId']);
             echo("success");
             break;
+        case "SaveSkinSettings":
+            $skinElement = json_decode($_POST['skinData']);
+            echo("The current Text Color is:".$skinElement->{'textcolor'});
+            break;
     }
 } else {
     echo "test";

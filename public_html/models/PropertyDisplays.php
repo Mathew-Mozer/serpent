@@ -100,7 +100,7 @@ class PropertyDisplays
      */
     private function getDisplayPromotions($display)
     {
-        $getPromotions = "SELECT * FROM promotion,`promotion_property` WHERE promotion.promotion_visible=1 and promotion_property.promotion_id=promotion.promotion_id and display_id =:display";
+        $getPromotions = "SELECT * FROM promotion,`promotion_property` WHERE promotion.promotion_visible=1 and promotion_property.promotion_id=promotion.promotion_id and display_id =:display order by promotion.promotion_id desc";
         $statement = $this->conn->prepare($getPromotions);
         $statement->bindValue(':display', $display, PDO::PARAM_STR);
 
@@ -196,7 +196,12 @@ class PropertyDisplays
      */
     public function getSkinTypes($propertyId)
     {
-        $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
+        if ($_SESSION['isGod']) {
+            $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin';
+        } else {
+            $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
+        }
+
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
         $statement->execute();

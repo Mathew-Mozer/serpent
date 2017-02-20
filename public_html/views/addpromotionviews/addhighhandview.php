@@ -89,6 +89,8 @@ if (!isset($_POST['promotion_template'])) {
                                     <label for="previous"> 7 Cards </label>
                                     <br/>
                                     <br/>
+
+                                    <br/>
                                 </div>
                             </td>
                             <td style="width: 250px">
@@ -105,10 +107,14 @@ if (!isset($_POST['promotion_template'])) {
 
                                     <input class="high-hand-checkbox" id="custom-payout" name="high_hand_custom_payout"
                                            type="checkbox"/>
-                                    <label class="high-hand-label">Custom Payout</label>
+                                    <label class="high-hand-label">Custom Payout</label><br>
+                                    <input class="high-hand-checkbox" id="high_hand_locktotime" name="high_hand_locktotime"
+                                           type="checkbox"/>
+                                    <label class="high-hand-label">Lock Hand To Time</label>
 
                                     <input type="hidden" id="scene-id" name="scene_id" value="2"/>
                                     <input type="hidden" id="enable-scene-select" name="enable_scene_id" value="true"/>
+
                                 </div>
                             </td>
                         </tr>

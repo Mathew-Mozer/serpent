@@ -16,6 +16,7 @@
     box-shadow: 2px 2px 5px #969696;
     vertical-align: top;
     margin-bottom: 25px;
+
 }
 
 .display-background-normal{
@@ -37,15 +38,24 @@
 
 .display-header{
 
+    padding: 0px;
+    margin: 0px;
+    background-color: #acadaf;
 }
-
+h3.header-text{
+    margin: 15px 0px 0px 0px;
+}
+hr.display{
+    margin:0px 0px 5px 0px;
+}
 h3.display-friendly-name{
     text-align: left;
 }
 
 .edit-display-btn{
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .edit-display-div{

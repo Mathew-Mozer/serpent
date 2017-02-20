@@ -65,7 +65,7 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
             <label class="display-modal-label">Skin Id </label>
 
             <select class="skin-id" id="skin-id-<?php echo $assignedPromotion['promo_id']; ?>" name="<?php echo $assignedPromotion['promo_id']; ?>">
-
+                <option value="0">Select Skin</option>
                 <?php foreach ($skins as $skin) {
 
                     if ($assignedPromotion['skin_id'] == $skin['skin_id']) {

@@ -190,8 +190,9 @@ var selectSkin = function () {
             var accountId = 1;
             var selectedSkin = $('#skin-chooser').val();
             var promotionlabel = $('#Promotion-Label').val();
+            var animation = $('#Promotion-Animation').is(":checked");
             $("#promotion-details").hide();
-            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel);
+            addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel,animation);
         });
     }else {
         $('#use-template-prompt').hide();
@@ -241,8 +242,9 @@ var CreateTemplatePrompt = function () {
         var selectedSkin = $('#skin-chooser').val();
         var accountId = 1;
         var promotionlabel = $('#Promotion-Label').val();
+        var animation = $('#Promotion-Animation').is(":checked");
         $("#promotion-details").hide();
-        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel);
+        addPromotionByType(propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel,animation);
     });
 };
 

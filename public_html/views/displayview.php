@@ -42,7 +42,7 @@ if (isset($_POST['property_name'])) {
         ?>
 
         <div class="display-outer">
-            <div class="display-body display-background-normal container"
+            <div class="display-body display-background-normal"
                  id="<?php echo "display-box-id-" . $display->getId(); ?>">
                 <div class="display-header row">
                     <div class="col-md-4">
@@ -92,18 +92,24 @@ if (isset($_POST['property_name'])) {
                     }
                     ?>
 
-                    <div class="<?php echo $lockcontainerclass ?> promolockbtn-<?php echo $promo['promotion_id'] ?> promotionLockBtn"
+                    <div class="<?php echo $lockcontainerclass ?>  promolockbtn-<?php echo $promo['promotion_id'] ?> promotionLockBtn"
                          data-property-id="<?php echo $property['property_id']; ?>"
                          data-property-name="<?php echo $property['property_name']; ?>"
                          data-promo-lockstatus="<?php echo $lockstatus; ?>"
                          data-promo-id="<?php echo $promo['promotion_id'] ?>"
                          data-display-id="<?php echo $display->getId() ?>" data-toggle="tooltip"
-                         title="<?php echo $apromoname . " " . $promo['promotion_id']?>">
+                         title="<?php echo $apromoname . " " . $promo['promotion_id']?>" style="background-size: contain; background-image: url('dependencies/images/<?php echo $image['image']; ?>')">
+                        <div class="tile-promotion-title" style="float:left; display:block;clear: both;overflow: hidden; min-width: 75px;font-size: small;font-variant: small-caps;">
+                        <?php echo substr($promo['promotion_label'],0,9);
+                            if(strlen($promo['promotion_label'])>10){
+                                echo('..');
+                            }
+
+                            ?></div>
                         <div class="lock-glyphicon-container">
                             <?php echo $lockglyphclass; ?>
                         </div>
-                        <img class="promotion-preview-icon"
-                             src="dependencies/images/<?php echo $image['image']; ?>">
+
                        <!-- <div class="promotion-artifact-preview">
                            <!-- <i class="font-awesome fa <?php //echo $artifact; ?>"></i>
                         </div>-->

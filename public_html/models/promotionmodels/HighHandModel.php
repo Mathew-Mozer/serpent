@@ -25,9 +25,9 @@ class HighHandModel{
      */
     public function add($values) {
         $sql = "INSERT INTO high_hand (promotion_id, title_message, use_joker, high_hand_attachmc,
-            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout, high_hand_isodd,high_hand_cardcount)
+            horn_timer, payout_value, session_timer, multiple_hands, high_hand_custom_payout, high_hand_isodd,high_hand_cardcount,high_hand_locktotime)
             VALUES (:promotionId,:title_message,:use_joker,:high_hand_gold,:horn_timer,:payout_value,
-                    :session_timer,:multiple_hands, :custom_payout, :is_odd,:cardcount);";
+                    :session_timer,:multiple_hands, :custom_payout, :is_odd,:cardcount,:locktotime);";
 
         $result = $this->conn->prepare($sql);
         $result->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
@@ -41,6 +41,7 @@ class HighHandModel{
         $result->bindValue(':custom_payout', $values['high_hand_custom_payout'], PDO::PARAM_STR);
         $result->bindValue(':is_odd', $values['isodd'], PDO::PARAM_STR);
         $result->bindValue(':cardcount', $values['high_hand_cardcount'], PDO::PARAM_STR);
+        $result->bindValue(':locktotime', $values['high_hand_locktotime'], PDO::PARAM_STR);
 
         $result->execute();
     }
@@ -60,8 +61,7 @@ class HighHandModel{
      */
     public function get($id){
 
-        $sql = "SELECT * FROM high_hand WHERE promotion_id=:id ORDER BY id DESC LIMIT 1;
-               ";
+        $sql = "SELECT * FROM high_hand WHERE promotion_id=:id ORDER BY id DESC LIMIT 1;";
         $result = $this->conn->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
@@ -145,6 +145,7 @@ class HighHandModel{
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
         $response = $result->fetchAll(PDO::FETCH_ASSOC);
+
         return $response;
 
     }

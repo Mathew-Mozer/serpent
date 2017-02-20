@@ -2,7 +2,7 @@
 require "../../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../../models/PromotionModel.php";
-require('../../models/promotionmodels/KickForCashModel.php');
+require('../../models/promotionmodels/pointsgtmodel.php');
 $conn = new DbCon();
 //if call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -14,8 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $kick_for_cash = new KickForCashModel($conn->insert_database());
 
       $addPromotion= $promotion->addPromotion($_POST['promotionId'], $_POST['casinoId'], $sceneType);
-      $kick_for_cash->addKickForCash($addPromotion,$_POST['cashPrize'],$_POST['targetNumber']);
-
       $response = array();
       $response['image'] = $promotion->getPromotionImageByPromotionType($_POST['promotionId']);
       $reponse['promotion-id'] = $addPromotion;
