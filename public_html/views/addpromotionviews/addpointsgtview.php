@@ -77,8 +77,7 @@
                                        placeholder="25"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner1-threshold" name="pgt_points1" type="number" min="0"
                                        placeholder="250"></td>
-                            <td><input name="pgt_color1" type="text" class="jscolor" id="pgt_color1" style="width:75px;"/>
-                                <button class="jscolor {valueElement:'pgt_color1'}">&nbsp;</button></td>
+                            <td><input name="pgt_color1" type="text" class="spectrumcl" id="pgt_color1" style="width:75px;"/></td>
                         </tr>
                         <tr>
                             <td> <input name="pgt_instant_winner_id2" type="hidden"><input id="pgt_enable_instant_winner2" name="pgt_enable_instant_winner2" type="checkbox"></td>
@@ -86,10 +85,8 @@
                                        placeholder="50"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner2-threshold" name="pgt_points2" type="number" min="0"
                                        placeholder="500"></td>
-                            <td><input name="pgt_color2" type="text" class="jscolor" id="pgt_color2" style="width:75px;"/>
-                                <button class="jscolor {valueElement:'pgt_color2'}">
-                                    &nbsp;
-                                </button></td>
+                            <td><input name="pgt_color2" type="text" class="spectrumcl" id="pgt_color2" style="width:75px;"/>
+                                </td>
                         </tr>
                         <tr>
                             <td><input name="pgt_instant_winner_id3" type="hidden"><input id="pgt_enable_instant_winner2" name="pgt_enable_instant_winner3" type="checkbox"></td>
@@ -97,10 +94,8 @@
                                        placeholder="75"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner3-threshold" name="pgt_points3" type="number" min="0"
                                        placeholder="750"></td>
-                            <td><input name="pgt_color3" type="text" class=" jscolor" id="pgt_color3" style="width:75px;"/>
-                                <button class="jscolor {valueElement:'pgt_color3'}">
-                                    &nbsp;
-                                </button></td>
+                            <td><input name="pgt_color3" type="text" class="spectrumcl" id="pgt_color3" style="width:75px;" value="#440000"/>
+                                </td>
                         </tr>
                         </tbody>
                     </table>
@@ -158,7 +153,7 @@
         $fp2.filthypillow( "hide" );
     } );
 </script>
-<script type="text/javascript" src="dependencies/js/jscolor.js"></script>
+
 <script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>
 
 <?php
@@ -171,3 +166,4 @@ if (isset($_POST['promotion_settings'])) {
     }
 }
 ?>
+

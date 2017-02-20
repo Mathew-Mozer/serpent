@@ -23,6 +23,11 @@
     visibility: hidden;
 
 }
+.centerText{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 .edit-user-button{
     margin: 2px;
     text-align: center;
@@ -77,4 +82,8 @@
  }
 .time-table-button-black {
     background-color: black;
+}
+.file-div{
+    width:200px;
+    float: left;
 }

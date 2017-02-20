@@ -92,20 +92,20 @@ echo('updating Settings of PointsGT');
     $result->bindValue(':pgt_instant_winner_id1', $values['pgt_instant_winner_id1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points1', $values['pgt_points1'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount1', $values['pgt_prize_amount1'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_color1', $values['pgt_color1'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color1', str_replace('#','',$values['pgt_color1']) , PDO::PARAM_STR);
     $result->bindValue(':pgt_enable_instant_winner1', $values['pgt_enable_instant_winner1'], PDO::PARAM_STR);
 
     $result->bindValue(':pgt_instant_winner_id2', $values['pgt_instant_winner_id2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points2', $values['pgt_points2'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount2', $values['pgt_prize_amount2'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_color2', $values['pgt_color2'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color2', str_replace('#','',$values['pgt_color2']), PDO::PARAM_STR);
     $result->bindValue(':pgt_enable_instant_winner2', $values['pgt_enable_instant_winner2'], PDO::PARAM_STR);
 
 
     $result->bindValue(':pgt_instant_winner_id3', $values['pgt_instant_winner_id3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_points3', $values['pgt_points3'], PDO::PARAM_STR);
     $result->bindValue(':pgt_prize_amount3', $values['pgt_prize_amount3'], PDO::PARAM_STR);
-    $result->bindValue(':pgt_color3', $values['pgt_color3'], PDO::PARAM_STR);
+    $result->bindValue(':pgt_color3', str_replace('#','',$values['pgt_color3']), PDO::PARAM_STR);
     $result->bindValue(':pgt_enable_instant_winner3', $values['pgt_enable_instant_winner3'], PDO::PARAM_STR);
 
     $result->execute();
@@ -263,21 +263,21 @@ public function checkforbindvalues($val){
    */
    public function getPointsGTInstantWinners($id){
 
-     $sql = "SELECT
-               *
+     $sql = "SELECT `pgt_instant_winner_id`,`pgt_points`,`pgt_prize_amount`,`pgt_id`,`pgt_enable_instant_winner`,`pgt_timestamp`,CONCAT('#',points_gt_instant_winner.pgt_color) as pgt_color 
              FROM
                points_gt_instant_winner
              WHERE
-               pgt_id=:id;
+               pgt_id=:id
              ORDER BY
-               pgt_timestamp DESC
-             LIMIT 3;";
+               pgt_points DESC 
+                            LIMIT 3;";
      $result = $this->db->prepare($sql);
 
       $result->bindValue(':id', $id, PDO::PARAM_STR);
      $result->execute();
 
      $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+
      $result->closeCursor();
 
      return $this->formatRowWithNumberIndex($promoResult);

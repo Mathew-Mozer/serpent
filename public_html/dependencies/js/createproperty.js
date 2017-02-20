@@ -11,6 +11,7 @@ var createPropertyModal = $('#createProperty').dialog({
     height: 610,
     width: 350,
     modal: true,
+    title: 'Create Property',
     buttons: {
         Submit: function () {
             createProperty();

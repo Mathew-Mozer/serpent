@@ -132,7 +132,10 @@ $(document).on("keyup change", ".scene-duration", function () {
     $('.remove-from-display').hide();
     $('#save-btn-' + this.name).show();
 });
-
+$(document).on("change",".skin-id",function () {
+    $('.remove-from-display').hide();
+    $('#save-btn-' + this.name).show();
+})
 $('select').change(function () {
     $('#save-btn-' + this.name).show();
 });

@@ -14,6 +14,7 @@
 <script src="dependencies/js/addusermodal.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/editusermodal.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/editusers.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/viewdocuments.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/multipliermadness.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/sessionmanager.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/timetracker.js?t=<?php echo microtime() ?>"></script>
@@ -144,6 +145,10 @@
          */
         $("#create-property-btn").click(function () {
             createPropertyModal.dialog('open');
+        });
+        $("#view-documents-btn").click(function () {
+            $('#createProperty').load("views/documentsview.php", {propertyId: this.id});
+            viewDocumentsModal.dialog('open');
         });
 
         /**

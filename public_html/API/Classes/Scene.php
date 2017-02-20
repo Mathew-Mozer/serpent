@@ -99,6 +99,7 @@ class Scene
             $this->highHandData->HHtype = $result['promotion_id'];
             $this->highHandData->paytype = $result['high_hand_paytype'];
             $this->highHandData->handcount = $result['high_hand_handcount'];
+            $this->highHandData->LockToTime = $result['high_hand_locktotime'];
             $this->highHandData->loadHighHands($this->highHandData->session, $this->highHandData->handcount);
         }
     }
@@ -200,7 +201,8 @@ class Scene
 
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * FROM points_gt_instant_winner where pgt_id=? limit 3';
+        $sql = 'SELECT * FROM points_gt_instant_winner where pgt_id=? ORDER BY
+               pgt_points DESC limit 3';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $tmpInstantWinnerList = array();

@@ -47,8 +47,7 @@ if(!isset($_SESSION)) {
 	 <!-- Bootstrap Core JavaScript -->
     <script src="startbootstrap-admin/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	 <!-- Metis Menu Plugin JavaScript
-    <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>-->
+
 
     <!--Font Awesome-->
     <link rel="stylesheet" href="dependencies/fontawesome/css/font-awesome.min.css">
@@ -58,7 +57,7 @@ if(!isset($_SESSION)) {
 
 
 
-	<!-- TPS Generated Content -->
+    <!-- TPS Generated Content -->
 	<link href="dependencies/css/tiles.css" rel="stylesheet">
 	<link href="dependencies/css/text.css" rel="stylesheet">
     <link href="dependencies/css/displays.css" rel="stylesheet">
@@ -101,4 +100,10 @@ if(!isset($_SESSION)) {
     <link href="dependencies/js/jQuery-switchButton-master/jquery.switchButton.css" rel="stylesheet">
     <link href="dependencies/js/jQuery-switchButton-master/main.css" rel="stylesheet">
 
+    <!-- Spectrum Color Picker -->
+    <script type="text/javascript" src="dependencies/js/spectrum/spectrum.js"></script>
+    <!-- Metis Menu Plugin JavaScript-->
+    <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <link href="dependencies/js/spectrum/spectrum.css" rel="stylesheet">
 </head>
