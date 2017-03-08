@@ -20,8 +20,8 @@ class PromotionModel
     {
         $sql = "SELECT
                 promotion.promotion_id as promo_id,
-                promotion_type.title as promo_title,
-                promotion_type.image as promo_image
+                promotion_type.promotion_type_title as promo_title,
+                promotion_type.promotion_type_image as promo_image
               FROM
                 promotion, promotion_type
               WHERE
@@ -115,6 +115,7 @@ class PromotionModel
              FROM
                promotion_type
             WHERE promotion_type.promotion_type_file_name!=''
+            order by promotion_type_id asc
                ;";
             $result = $this->db->prepare($sql);
 
@@ -129,6 +130,7 @@ class PromotionModel
              WHERE
                promotion_type.promotion_type_id = subscription.promotion_type_id AND
                subscription.property_id = :propertyId
+             order by promotion_type_id asc
                ;";
             $result = $this->db->prepare($sql);
             $result->bindValue(':propertyId', $propertyId);

@@ -43,7 +43,8 @@ var addPromotionByType = function (propertyId, promotionTypeId, promotionType, a
 
         },
         error: function (xhr, desc, err) {
-            console.log(xhr + "\n" + err);
+            console.log(xhr + "\n" + err + "\n" + desc);
+
         },
         complete: function(){
             $(".loader").addClass("hidden");
@@ -238,13 +239,25 @@ var setFormData = function (formId, data) {
     }
     $('#instant-winner-options').show();
 
-
     if($('#pgt_enable_instant_winners').is(':checked')){
         $('#instant-winner-options').show();
     }else{
         $('#instant-winner-options').hide();
     }
+//
+    $('#2hr-option').show();
+    checkhr();
+    $("input[name='session_timer']").click(function() {
+        checkhr();
 
+    });
+    function checkhr() {
+        if($('input:radio[name="session_timer"]:checked').val() =="1"){
+            $('#2hr-option').show();
+        }else{
+            $('#2hr-option').hide();
+        }
+    }
     //spectrum
     $(".spectrumcl").spectrum({
         showInput: true,

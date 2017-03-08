@@ -39,7 +39,7 @@ class HighHandModel{
         $result->bindValue(':session_timer', $values['session_timer'], PDO::PARAM_STR);
         $result->bindValue(':multiple_hands', $values['multiple_hands'], PDO::PARAM_INT);
         $result->bindValue(':custom_payout', $values['high_hand_custom_payout'], PDO::PARAM_STR);
-        $result->bindValue(':is_odd', $values['isodd'], PDO::PARAM_STR);
+        $result->bindValue(':is_odd', $values['high_hand_isodd'], PDO::PARAM_STR);
         $result->bindValue(':cardcount', $values['high_hand_cardcount'], PDO::PARAM_STR);
         $result->bindValue(':locktotime', $values['high_hand_locktotime'], PDO::PARAM_STR);
 

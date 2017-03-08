@@ -15,9 +15,13 @@
 <script src="dependencies/js/editusermodal.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/editusers.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/viewdocuments.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/viewAccount.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/multipliermadness.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/sessionmanager.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/timetracker.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/promotion/prizeevent.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/skinmanager.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/changepromostatus.js?t=<?php echo microtime() ?>"></script>
 
 
 <script>
@@ -129,7 +133,6 @@
             $("#select-scene-style").hide();
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
-
         });
 
         //Open add/remove user panel
@@ -146,6 +149,15 @@
         $("#create-property-btn").click(function () {
             createPropertyModal.dialog('open');
         });
+        $("#view-account-btn").click(function () {
+            $('#createProperty').load("views/accountview.php", {propertyId: this.id});
+            viewAccountModal.dialog('open');
+        });
+        $("#skin-manager-btn").click(function () {
+            $('#createProperty').load("views/SkinManager.php", {propertyId: this.id});
+            viewAccountModal.dialog('open');
+        });
+
         $("#view-documents-btn").click(function () {
             $('#createProperty').load("views/documentsview.php", {propertyId: this.id});
             viewDocumentsModal.dialog('open');
@@ -155,8 +167,6 @@
          * Toggles display and promotion view
          */
         $(".toggle-display-btn").click(function () {
-
-
             $(this).addClass("hidden");
             if ($(this).attr("id") === "toggle-display") {
                 //code to switch to display view

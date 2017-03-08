@@ -26,7 +26,7 @@ class PointsGTModel{
 
     $this->addPointsGT($values);
     if($values['updateSettings']){
-echo('updating Settings of PointsGT');
+//echo('updating Settings of PointsGT');
     //Adds instant winners for Points GT.
     $sql = "REPLACE INTO points_gt_instant_winner (
         pgt_instant_winner_id,

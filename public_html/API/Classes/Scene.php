@@ -59,7 +59,8 @@ class Scene
                 $this->loadPointsGTData($promoID);
                 break;
             //Monster Carlo
-            case 9:
+            case 8:
+                $this->loadPrizeEventData($promoID);
                 break;
             //Jackpot Display
             case 10:
@@ -68,6 +69,7 @@ class Scene
                 $this->loadKickForCashData($promoID);
                 break;
             case 14:
+
                 $this->loadTimeTargetData($promoID);
                 break;
         }
@@ -103,7 +105,32 @@ class Scene
             $this->highHandData->loadHighHands($this->highHandData->session, $this->highHandData->handcount);
         }
     }
+    function loadPrizeEventData($pSceneID)
+    {
+        global $conn;
 
+        $dbcon = new DbCon();
+        $conn = $dbcon->read_database();
+        $sql = 'SELECT * from prize_event where prize_event_promo_id=? order by prize_event_id desc limit 1';
+        $statement = $conn->prepare($sql);
+        //echo ("sceneid".$pSceneID);
+        $statement->execute(array($pSceneID));
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            $this->PrizeEventData = new PrizeEvent();
+            $this->PrizeEventData->ID = $result['prize_event_id'];
+            $this->PrizeEventData->session = $result['prize_event_promo_id'];
+            $this->PrizeEventData->Title = $result['prize_event_title'];
+            $this->PrizeEventData->JackPotAmount = $result['prize_event_odoamount'];
+            $this->PrizeEventData->IncrementNumber = $result['prize_event_incrementnumber'];
+            $this->PrizeEventData->isOddHr = $result['prize_event_isoddhr'];
+            $this->PrizeEventData->RandomPrize = $result['prize_event_randomprize'];
+            $this->PrizeEventData->TimerType = $result['prize_event_timertype'];
+            $this->PrizeEventData->clockRemainingVisible = $result['prize_event_clockvisible'];
+            $this->PrizeEventData->NextTimeVisible = $result['prize_event_nexttimevisible'];
+            $this->PrizeEventData->secondsToHorn = $result['prize_event_secondtohorn'];
+            $this->PrizeEventData->loadPrizeWinners($this->PrizeEventData->session);
+        }
+    }
     function loadTimeTargetData($pSceneID)
     {
         global $conn;
@@ -112,8 +139,6 @@ class Scene
         $conn = $dbcon->read_database();
         $sql = 'SELECT * FROM `time_target_sessions`,time_target where time_target_archive=\'0\' and time_target_promoid=? and time_target_session_promoid=time_target_promoid ORDER BY time_target_session_id desc,time_target_id desc limit 1 ';
         $statement = $conn->prepare($sql);
-        //echo ("sceneid".$pSceneID);
-
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $this->timeTargetData = new TimeTarget();
@@ -151,10 +176,14 @@ class Scene
                 }else{
                     $this->pointsGTData->finished=False;
                 }
+            if($date1>$date3){
+                $dt =0;
+            }else{
+            $dt=$this->dateDifference($date3, $date1, '%d') + 1;
+            }
+            $this->pointsGTData->DayOfSession = $dt;
 
 
-
-            $this->pointsGTData->DayOfSession = $this->dateDifference($date3, $date1, '%d') + 1;
             $this->pointsGTData->DaysInSession = $this->dateDifference($date2, $date1, '%d') + 1;
 
             $this->pointsGTData->lastUpdated = $result['pgt_timestamp'];
@@ -166,7 +195,9 @@ class Scene
             $this->pointsGTData->Value3Title = $result['pgt_right_title'];
             $this->pointsGTData->SpriteAtlas = $result['pgt_atlas'];
             $this->pointsGTData->PayoutList = $result['pgt_payout'];
-
+            $this->pointsGTData->datestart = $date3;
+                $this->pointsGTData->dateend = $date2;
+                    $this->pointsGTData->datenow = $date3;
             if ($result['pgt_enable_instant_winners']) {
                 $this->pointsGTData->InstantWinners = $this->getPointsGTInstantWinners($pSceneID);
             }

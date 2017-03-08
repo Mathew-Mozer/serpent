@@ -3,13 +3,15 @@ require '../../dependencies/php/HelperFunctions.php';
 require getServerPath() . "dbcon.php";
 include '../Classes/DisplayData.php';
 include '../Classes/Scene.php';
+include '../Classes/ChimeraNet/ChimeraNetData.php';
+include '../Classes/ChimeraNet/customer.php';
 require_once "../../models/PromotionModel.php";
 require "../../models/promotionmodels/TimeTargetModel.php";
-
 require_once(getServerPath() . "dbcon.php");
 $dbcon = NEW DbCon();
 $TimeTargetModel = new TimeTargetModel($dbcon->insert_database());
 $promotion = new PromotionModel($dbcon->insert_database());
+$chimeraNetData = new ChimeraNetData();
 header('Content-Type: application/json; charset=utf-8');
 date_default_timezone_set('America/Los_Angeles');
 /**
@@ -51,6 +53,12 @@ if (isset($_POST["action"])) {
         case "SaveSkinSettings":
             $skinElement = json_decode($_POST['skinData']);
             echo("The current Text Color is:".$skinElement->{'textcolor'});
+            break;
+        case "getUsers":
+                getUsers();
+            break;
+        case "getData":
+            getData();
             break;
     }
 } else {
@@ -157,8 +165,6 @@ function loadSceneData()
         $displayData->height = $result['display_height'];
         $displayData->fitw = (bool)$result['display_fitw'];
         $displayData->fith = (bool)$result['display_fith'];
-        $displayData->flip = (bool)$result['display_flip'];
-        $displayData->debug = (bool)$result['display_debug'];
         $displayData->sceneList = loadScenes($result);
         //Add Scenes to Display
         //echo("Promoid:".$result[promotion_id]." Promotion Type ID".$result[promotion_type_id]." skinid:".$result[skin_id]." sceneid".$result[promotion_sceneid]."<br><br><br>");
@@ -386,5 +392,31 @@ function isBoxedRegistered($macAddress)
     }
 
 }
+function getUsers(){
+    $dbcon = new DbCon();
+    $conn = $dbcon->read_database();
+    $sql = 'SELECT * FROM customer';
+    $statement = $conn->prepare($sql);
+    $statement->execute();
+    $customerlist = array();
 
+    foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $customer) {
+        $tmpCustomer = new customer();
+        $tmpCustomer->CustomerID = $customer['customer_id'];
+        $tmpCustomer->FirstName = $customer['customer_first_name'];
+        $tmpCustomer->LastName = $customer['customer_last_name'];
+        $tmpCustomer->LoyaltyPoints = 50;
+        array_push($customerlist,$tmpCustomer);
+    }
+
+    return($customerlist);
+
+}
+function getData(){
+    global $promotion, $chimeraNetData;
+    $chimeraNetData = new ChimeraNetData();
+    $chimeraNetData->CustomerList = getUsers();
+    $chimeraNetData->PromotionList = $promotion->getAllPromotionsByProperty(13);
+    print_r(json_encode($chimeraNetData));
+}
 ?>

@@ -12,6 +12,8 @@ include 'PointsGT.php';
 include 'TimeTarget.php';
 include 'PointsGTPlayer.php';
 include 'PgtInstantWinner.php';
+include 'PrizeEvent.php';
+include 'PrizeEventWinner.php';
 include 'Skin.php';
 include 'PokerHand.php';
 include '../Modules/SlackTool.php';

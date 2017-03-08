@@ -196,11 +196,13 @@ class PropertyDisplays
      */
     public function getSkinTypes($propertyId)
     {
+        $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
+        if(isset($_SESSION['isGod']))
         if ($_SESSION['isGod']) {
             $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin';
-        } else {
-            $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_casino = 0 OR skin.skin_casino = :propertyId;';
         }
+
+
 
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
@@ -240,6 +242,16 @@ class PropertyDisplays
         }else{
             $values['display_fith']='0';
         }
+        if($values['display_flip']=="true"){
+            $values['display_flip']='1';
+        }else{
+            $values['display_flip']='0';
+        }
+        if($values['display_debug']=="true"){
+            $values['display_debug']='1';
+        }else{
+            $values['display_debug']='0';
+        }
         $sql = 'UPDATE display 
                 SET 
                   display_mac_address=:mac,
@@ -248,7 +260,9 @@ class PropertyDisplays
                   display_width=:dwidth,
                   display_height=:dheight,
                   display_fitw=:fitw,
-                  display_fith=:fith
+                  display_fith=:fith,
+                  display_flip=:flip,
+                  display_debug=:debug
                 WHERE 
                   display_id=:displayId';
         $statement = $this->conn->prepare($sql);
@@ -260,6 +274,8 @@ class PropertyDisplays
             $statement->bindValue(':dheight', $values['display_height'], PDO::PARAM_STR);
             $statement->bindValue(':fitw', $values['display_fitw'], PDO::PARAM_STR);
             $statement->bindValue(':fith', $values['display_fith'], PDO::PARAM_STR);
+            $statement->bindValue(':flip', $values['display_flip'], PDO::PARAM_STR);
+            $statement->bindValue(':debug', $values['display_debug'], PDO::PARAM_STR);
         $statement->execute();
 
         return $values;
