@@ -48,9 +48,9 @@ class Skin
             array_push($tmpArray,$tmpdata);
         }
         //echo('Skin info- sceneid:'.$sceneid." skinid:".$pskinID." propertyid:".$propertyId."/n");
-        $sql = 'SELECT * FROM `skin_logo` where skin_logo.skin_logo_propertyid=? and skin_logo_skinid=? and skin_logo_sceneid=? limit 1';
+        $sql = 'SELECT * FROM `skin_logo` where skin_logo.skin_logo_propertyid=? and skin_logo_sceneid=? limit 1';
         $statement = $conn->prepare($sql);
-        $statement->execute(array($propertyId,$pskinID,$sceneid));
+        $statement->execute(array($propertyId,$sceneid));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $tmpdata = new SkinData();
             $tmpdata->tagname="Logo";

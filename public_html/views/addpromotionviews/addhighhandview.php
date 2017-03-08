@@ -35,6 +35,10 @@ if (!isset($_POST['promotion_template'])) {
                     <table>
                         <tr>
                             <td style="width: 250px"><label>Session Timer</label><br>
+                                <table class="option-group">
+                                    <tr>
+                                        <td>
+
                                 <div class="option-group" id="session-timer">
                                     <input class="high-hand-radio" value="2" name="session_timer" id="15" type="radio"
                                            checked/>
@@ -43,36 +47,46 @@ if (!isset($_POST['promotion_template'])) {
                                     <input class="high-hand-radio" value="3" name="session_timer" id="30" type="radio"/>
                                     <label for="30">30 min</label>
                                     <br>
-                                    <input class="high-hand-radio" value="1" name="session_timer" id="hr" type="radio"/>
-                                    <label for="hr">1 hr</label>
+                                    <input class="high-hand-radio" value="0" name="session_timer" id="1hr"
+                                           type="radio"/>
+                                    <label for="30">1 hr</label>
                                     <br>
-                                    <div id="hr-option" hidden>
-                                        <input class="high-hand-radio" value="0" name="isodd" id="odd" type="radio"
-                                               checked/>
-                                        <label for="odd">Odd</label>
-                                        <br>
-                                        <input class="high-hand-radio" value="1" name="isodd" id="even" type="radio"/>
-                                        <label for="even">Even</label>
-                                    </div>
+                                    <input class="high-hand-radio" value="1" name="session_timer" id="2hr"
+                                           type="radio"/><label for="hr">2 hr</label>
+
                                 </div>
                             </td>
-                            <td style="width: 250px"><label>Show Multiple Hands</label> <br>
-                                <div class="option-group">
-                                    <input class="high-hand-radio" value="0" name="multiple_hands" id="disabled"
-                                           type="radio"
+                            <td>
+                                <br>
+                                <div id="2hr-option" class="option-group" hidden>
+                                    <input class="high-hand-radio" value="1" name="high_hand_isodd" id="odd" type="radio"
                                            checked/>
-                                    <label for="disabled"> Disabled (Show Title Message) </label>
-                                    <br/>
-                                    <input class="high-hand-radio" value="1" name="multiple_hands" id="previous"
-                                           type="radio"/>
-                                    <label for="previous"> Previous Winners </label>
-                                    <br/>
-                                    <input class="high-hand-radio" value="2" name="multiple_hands" id="ranked"
-                                           type="radio"/>
-                                    <label for="ranked"> Ranked Hands </label>
-                                    <br/>
+                                    <label for="odd">Odd</label>
+                                    <br>
+                                    <input class="high-hand-radio" value="0" name="high_hand_isodd" id="even" type="radio"/>
+                                    <label for="even">Even</label>
                                 </div>
                             </td>
+                        </tr>
+                                </table>
+                        </td>
+                        <td style="width: 250px"><label>Show Multiple Hands</label> <br>
+                            <div class="option-group">
+                                <input class="high-hand-radio" value="0" name="multiple_hands" id="disabled"
+                                       type="radio"
+                                       checked/>
+                                <label for="disabled"> Disabled (Show Title Message) </label>
+                                <br/>
+                                <input class="high-hand-radio" value="1" name="multiple_hands" id="previous"
+                                       type="radio"/>
+                                <label for="previous"> Previous Winners </label>
+                                <br/>
+                                <input class="high-hand-radio" value="2" name="multiple_hands" id="ranked"
+                                       type="radio"/>
+                                <label for="ranked"> Ranked Hands </label>
+                                <br/>
+                            </div>
+                        </td>
 
                         </tr>
                         <tr>
@@ -108,7 +122,8 @@ if (!isset($_POST['promotion_template'])) {
                                     <input class="high-hand-checkbox" id="custom-payout" name="high_hand_custom_payout"
                                            type="checkbox"/>
                                     <label class="high-hand-label">Custom Payout</label><br>
-                                    <input class="high-hand-checkbox" id="high_hand_locktotime" name="high_hand_locktotime"
+                                    <input class="high-hand-checkbox" id="high_hand_locktotime"
+                                           name="high_hand_locktotime"
                                            type="checkbox"/>
                                     <label class="high-hand-label">Lock Hand To Time</label>
 

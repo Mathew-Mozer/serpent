@@ -166,7 +166,9 @@ $(document).on("click", "#save-display-options", function () {
             display_width:$('#display-width').val(),
             display_fitw:$('#display-fitw').is(":checked"),
             display_fith:$('#display-fith').is(":checked"),
-            displayId:$('#display-id').val()
+            displayId:$('#display-id').val(),
+            display_flip:$('#display-flip').is(":checked"),
+            display_debug:$('#display-debug').is(":checked")
         },
         cache: false,
         success: function ($results) {

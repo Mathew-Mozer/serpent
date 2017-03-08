@@ -123,6 +123,19 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
     }
 
 };
+
+var selectedElement;
+var promoStffatusButtonClick = function (e) {
+    e.stopPropagation();
+    $("#createProperty").load("views/changepromostatusview.php");
+    selectedElement = this;
+    changePromotionStatusModal.dialog('open');
+    $('.ui-dialog').position({
+        my: "bottom",
+        at: "bottom",
+        of: selectedElement
+    });
+}
 var promoStatusButtonClick = function (e) {
     e.stopPropagation();
     var currentObject = $(this);

@@ -21,6 +21,7 @@ class DisplayModel
     private $width;
     private $fitw;
     private $fith;
+    private $flip;
 
     /**
      * DisplayModel constructor.
@@ -51,6 +52,8 @@ class DisplayModel
         $this->setWidth($fieldArray['display_width']);
         $this->setFitW($fieldArray['display_fitw']);
         $this->setFitH($fieldArray['display_fith']);
+        $this->setFlip($fieldArray['display_flip']);
+        $this->setDebug($fieldArray['display_debug']);
 //var_dump($fieldArray);
     }
 
@@ -105,7 +108,14 @@ class DisplayModel
     {
         $this->fith = $val;
     }
-
+    public function setFlip($val)
+    {
+        $this->flip = $val;
+    }
+    public function setDebug($val)
+    {
+        $this->debug = $val;
+    }
     public function setLockedPromo($promoid)
     {
         $this->lockedPromoId = $promoid;
@@ -190,7 +200,14 @@ class DisplayModel
     {
         return $this->fith;
     }
-
+    public function getFlip()
+    {
+        return $this->flip;
+    }
+    public function getDebug()
+    {
+        return $this->debug;
+    }
     public function getLockedPromoId()
     {
         return $this->lockedPromoId;
