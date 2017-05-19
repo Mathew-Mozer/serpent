@@ -32,9 +32,10 @@ if (isset($_POST["action"])) {
             //Get Box Settings
             if (isBoxedRegistered($_POST["macAddress"])) {
                 loadSceneData();
-
+                if(isset($_POST["FireBaseToken"])) {
+                    UpdateFireBaseToken($_POST["macAddress"], $_POST["FireBaseToken"]);
+                }
             } else {
-
                 registerDisplay($_POST["macAddress"]);
             }
             break;
@@ -42,6 +43,9 @@ if (isset($_POST["action"])) {
             $msg = "-" . $username . "- " . $_POST["logdata"];
             SlackTool::slack($msg, "#displaylog", $_POST["displayname"]);
             echo("success");
+            break;
+        case "UpdateFireBaseToken":
+            UpdateFireBaseToken($_POST["macAddress"],$_POST["FireBaseToken"]);
             break;
         case "endTimeTarget":
             $TimeTargetModel->endTimeTarget($_POST);
@@ -56,13 +60,21 @@ if (isset($_POST["action"])) {
 } else {
     echo "test";
 }
+function UpdateFireBaseToken($mac,$token){
+    $dbcon = new DbCon();
+    $conn = $dbcon->update_database();
+    $sql = "UPDATE display SET display_gcmid=:newvalue WHERE display_mac_address=:mac;";
+    $result = $conn->prepare($sql);
+    $result->bindValue(':newvalue', $token, PDO::PARAM_STR);
+    $result->bindValue(':mac', $mac, PDO::PARAM_STR);
+    $result->execute();
+}
 function UpdateDisplayData($field, $value, $oldvalue, $displayid, $logtoslack)
 {
     if ($logtoslack) {
         $msg = 'Attempting to Update ' . $displayid . ' ' . $field . ' from:' . $oldvalue . 'to:' . $value;
         SlackTool::slack($msg, "#api-log", 'DisplayBox');
     }
-
     global $conn;
     $dbcon = new DbCon();
     $conn = $dbcon->update_database();
@@ -182,7 +194,7 @@ function loadSceneData()
     //Update Checkin Time
 
     if ($displayData->sceneList === null) {
-        $tmpScene = new Scene(0, 0, 0, 0, 0, 0, 0, 0);
+        $tmpScene = new Scene(0, 0, 0, 0, 0, 0, 0, 0,0);
         $tmpScene->promotionStatus = 0;
         array_push($tmpSceneArray, $tmpScene);
         $displayData->sceneList = $tmpSceneArray;
@@ -206,11 +218,16 @@ function loadScenes($display)
     $statement->execute(array($display['display_id']));
     $tmpSceneArray = array();
     foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+
+        //if ($result['promotion_skin'] != 0) {
+         //   $tmpSkinID = $result['promotion_skin'];
+        //}else{
+
+        //}
         $tmpSkinID = $result['skin_id'];
-        if ($result['promotion_skin'] != 0) {
-            $tmpSkinID = $result['promotion_skin'];
-        }
         $tmpScene = new Scene($result['promotion_id'], $result['promotion_type_id'], $result['scene_duration'], $tmpSkinID, $result['promotion_sceneid'], $result['promotion_lastupdated'], $result['scene_effectid'], $display['prid'],$result['promotion_animation']);
+        $tmpScene->PromoPropertyID=$result['promotion_property_id'];
+        $tmpScene->tmpSkinID = $tmpSkinID;
         switch ($result['promotion_status']) {
             case 0:
             case 1:

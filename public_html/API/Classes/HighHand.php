@@ -24,15 +24,17 @@ class HighHand
     public $HandListType;
     public $timestamp;
     public $HandList= array();
-
+    private $conn;
+    public function __construct()
+    {
+        $dbcon = new DbCon();
+        $this->conn = $dbcon->read_database();
+    }
     public function loadHighHands($pSessionID)
     {
 
-        global $conn;
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
-        $sql = 'SELECT * from high_hand_records where  high_hand_session=? and high_hand_record_archive=0 order by high_hand_record_id DESC limit 25';
-        $statement = $conn->prepare($sql);
+         $sql = 'SELECT * from high_hand_records where  high_hand_session=? and high_hand_record_archive=0 order by high_hand_record_id DESC limit 25';
+        $statement =$this->conn->prepare($sql);
         $statement->execute(array($pSessionID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             if($result['high_hand_isWinner']==0){

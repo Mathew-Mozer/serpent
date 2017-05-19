@@ -22,10 +22,9 @@ class Skin
 
         $this->skinID=$pskinID;
         $this->SceneID=$sceneid;
-
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT skin.skin_name,skin_tag.skin_tag_id,skin_tag.skin_tag_name,skin_tag.skin_tag_sceneid,skin_tag_data.skin_tag_data_x,skin_tag_data.skin_tag_data_y,skin_tag_data.skin_tag_data_forecolor,skin_tag_data.skin_tag_data_backcolor,skin_tag_data.skin_tag_data_textcolor,skin_tag_data.skin_tag_data_width,skin_tag_data.skin_tag_data_height,skin_tag_data.skin_tag_data_backsprite,skin_tag_data.skin_tag_data_foresprite,skin_tag_data.skin_tag_data_bordercolor FROM `skin`,skin_tag_data,skin_tag where skin_tag_data_skinid=skin.skin_id and skin_tag.skin_tag_id=skin_tag_data.skin_tag_data_tagid and skin.skin_id=? and skin_tag.skin_tag_sceneid=?';
+        $sql = 'SELECT skin.skin_id,skin.skin_name,skin_tag.skin_tag_id,skin_tag.skin_tag_name,skin_tag.skin_tag_sceneid,skin_tag_data.skin_tag_data_x,skin_tag_data.skin_tag_data_y,skin_tag_data.skin_tag_data_forecolor,skin_tag_data.skin_tag_data_backcolor,skin_tag_data.skin_tag_data_textcolor,skin_tag_data.skin_tag_data_width,skin_tag_data.skin_tag_data_height,skin_tag_data.skin_tag_data_backsprite,skin_tag_data.skin_tag_data_foresprite,skin_tag_data.skin_tag_data_bordercolor FROM `skin`,skin_tag_data,skin_tag where skin_tag_data_skinid=skin.skin_id and skin_tag.skin_tag_id=skin_tag_data.skin_tag_data_tagid and skin.skin_id=? and skin_tag.skin_tag_sceneid=?';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pskinID,$sceneid));
         $tmpArray = array();
@@ -33,6 +32,7 @@ class Skin
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $this->skinName=$result['skin_name'];
             $tmpdata = new SkinData();
+            $this->skinRecordID=$result['skin_id'];
             $tmpdata->id=$result['skin_tag_id'];
             $tmpdata->tagname=$result['skin_tag_name'];
             $tmpdata->xCoord=$result['skin_tag_data_x'];

@@ -59,7 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $highHand->archiveHands($_POST);
         $promotion->setUpdatedTimestamp($_POST['promotionId']);
 
+    }else if ($_POST['action'] == 'deleteHand'){
+        $highHand = new HighHandModel($conn->update_database());
+        $highHand->deleteHand($_POST);
+        $promotion->setUpdatedTimestamp($_POST['promotionId']);
+
     }
+
+
 
 
 }

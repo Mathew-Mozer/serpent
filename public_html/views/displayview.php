@@ -50,7 +50,12 @@ if (isset($_POST['property_name'])) {
                             <?php if ($permission->hasPermissionByAccount('display_manager', 'U')||$_SESSION['isGod']) { ?>
                                 <div class="glyphicon <?php echo $glyphmonitor; ?>  toggleMonitorStatusBtn"
                                      data-display-id="<?php echo $display->getId(); ?>"
-                                     data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php } ?><?php echo $display->getName(); ?>
+                                     data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php } ?>
+                            <?php if ($permission->hasPermissionByAccount('display_manager', 'U')||$_SESSION['isGod']) {
+                                if(strlen($display->getFCMToken())>10){?>
+                                <div class="send-fcm-command glyphicon glyphicon-repeat"
+                                     data-display-id="<?php echo $display->getId(); ?>"
+                                     data-command="RestartApp"data-command="RestartApp"></div> <?php }} ?><?php echo $display->getName(); ?>
                         </h3>
                     </div>
                     <div class="col-md-4"><h3 id="display-location" class="header-text display-font">

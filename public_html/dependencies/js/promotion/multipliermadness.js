@@ -106,8 +106,8 @@ function deleteCurrent() {
         if(document.getElementById('itm' + tp[i])!=null){
             document.getElementById('itm' + tp[i]).remove();
         }
-
     }
+    countMultipliers();
 }
 function countMultipliers() {
     document.getElementById('HiddenField1').value = arr;

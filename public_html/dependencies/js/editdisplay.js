@@ -152,6 +152,26 @@ $(document).on("click", ".save-btn", function () {
     savePromotionDisplaySettings(this.name, sceneDuration, skinId);
 });
 
+$(document).on("click", ".send-fcm-command", function () {
+
+    $.ajax({
+        url: 'controllers/displaycontroller.php',
+        type: 'post',
+        data: {
+            action: 'SendCommandToDisplay',
+            display_id:$(this).data("display-id"),
+            command:$(this).data("command"),
+            packageName:$(this).data("package-name")
+        },
+        cache: false,
+        success: function ($results) {
+            $("<div style='text-align: center'>Please allow 30 seconds for the app to restart.<br> If it does not restart please contact customer support.</div>").dialog();
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+    });
+});
 $(document).on("click", "#save-display-options", function () {
 
     $.ajax({
@@ -173,6 +193,7 @@ $(document).on("click", "#save-display-options", function () {
         cache: false,
         success: function ($results) {
             location.reload();
+            //console.log($results);
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);

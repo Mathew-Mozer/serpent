@@ -52,6 +52,7 @@
                 <Select id="pgt-atlas" name="pgt_atlas">
                     <option value="0">Race Cars</option>
                     <option value="1">Chinese Dragon</option>
+                    <option value="2">Baseball</option>
                 </Select>
 
 

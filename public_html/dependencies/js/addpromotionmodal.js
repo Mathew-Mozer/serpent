@@ -38,7 +38,7 @@ var addPromotion = function (data) {
  */
 var addPromotionModal = $("#addPromotion").dialog({
     autoOpen: false,
-        height: 'auto',
+        height: '800',
         width: 'auto',
     position:'center',
     modal: true
@@ -143,7 +143,7 @@ var addPromotionUsingTemplate = function (promotionId,promotionTypeId) {
 
 var noTemplate = function () {
     $('#use-template-prompt').hide();
-    $("#promotion-details").load("views/addpromotionviews/add" + promotionName + "view.php",{promotion_template:true});
+    $("#promotion-details").load("views/addpromotionviews/add" + promotionName + "view.php",{promotion_template:true,propertyId:$('input[name=propertyId]').val()});
     $('#promotion-details').show();
     $('#add-promotion-buttons').empty();
     $('#add-promotion-buttons').append("<button type='button' id='next-page'>Next</button>");
