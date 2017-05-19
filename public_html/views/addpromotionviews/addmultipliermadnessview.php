@@ -1,7 +1,4 @@
 <?php
-/**
- * This is the kick for cash form
- */
 ?>
 
 

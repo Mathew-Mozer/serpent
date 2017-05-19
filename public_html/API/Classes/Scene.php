@@ -28,6 +28,7 @@ class Scene
     public $pointsGTData;
     public $highHandData;
     public $timeTargetData;
+    public $monsterCarloData;
     public $sceneSkin;
 
 
@@ -37,6 +38,8 @@ class Scene
 
     function __construct($promoID, $promo_type_id, $pSceneDuration, $pSkinId, $psceneID, $lastupdated, $pEffectID, $propertyId,$animation)
     {
+        $dbcon = new DbCon();
+        $this->conn = $dbcon->read_database();
         //Set Scene Variables
         $this->promoID = $promoID;
         $this->sceneDuration = $pSceneDuration;
@@ -45,14 +48,19 @@ class Scene
         $this->EffectID = $pEffectID;
         $this->lastUpdated = $lastupdated;
         $this->animation = (bool)$animation;
+        $this->skinDataID = $pSkinId;
         $this->sceneSkin = new Skin($psceneID, $pSkinId, $propertyId);
+
+
+
+
 
         //Query data for the scene and put relevant data in $sceneData
         switch ($promo_type_id) {
             //High Hand
             case 1:
                 //$this->loadHighHandData();
-                $this->loadHighHandData($promoID);
+                $this->highHandData=$this->loadHighHandData($promoID,true);
                 break;
             //PointsGT
             case 4:
@@ -68,6 +76,9 @@ class Scene
             case 11:
                 $this->loadKickForCashData($promoID);
                 break;
+            case 9:
+               $this->monsterCarloData = $this->loadMonsterCarloData($promoID);
+                break;
             case 14:
 
                 $this->loadTimeTargetData($promoID);
@@ -75,44 +86,74 @@ class Scene
         }
     }
 
-    function loadHighHandData($pSceneID)
+    function loadHighHandData($pSceneID,$loadMonsterCarlo)
     {
-        global $conn;
-
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
         $sql = 'SELECT * from high_hand where promotion_id=? order by high_hand.id desc limit 1';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         //echo ("sceneid".$pSceneID);
         $statement->execute(array($pSceneID));
+        $hhdata = new HighHand();
+        $mmdata = new MonsterCarlo();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-            $this->highHandData = new HighHand();
-            $this->highHandData->active = 1;
-            $this->highHandData->id = $result['id'];
-            $this->highHandData->session = $result['promotion_id'];
-            $this->highHandData->payouts = $result['payout_value'];
-            $this->highHandData->TitleMsg = $result['title_message'];
-            $this->highHandData->sessionTimer = $result['session_timer'];
-            $this->highHandData->isOdd = $result['high_hand_isodd'];
-            $this->highHandData->preface = $result['high_hand_preface'];
-            $this->highHandData->attachMC = $result['high_hand_attachmc'];
-            $this->highHandData->secondstohorn = $result['horn_timer'];
-            $this->highHandData->HandListType = $result['multiple_hands'];
-            $this->highHandData->HHtype = $result['promotion_id'];
-            $this->highHandData->paytype = $result['high_hand_paytype'];
-            $this->highHandData->handcount = $result['high_hand_handcount'];
-            $this->highHandData->LockToTime = $result['high_hand_locktotime'];
-            $this->highHandData->loadHighHands($this->highHandData->session, $this->highHandData->handcount);
+
+            $hhdata->active = 1;
+            $hhdata->id = $result['id'];
+            $hhdata->session = $result['promotion_id'];
+            $hhdata->payouts = $result['payout_value'];
+            $hhdata->TitleMsg = $result['title_message'];
+            $hhdata->sessionTimer = $result['session_timer'];
+            $hhdata->isOdd = $result['high_hand_isodd'];
+            $hhdata->preface = $result['high_hand_preface'];
+            $hhdata->attachMC = $result['high_hand_attachmc'];
+            $hhdata->secondstohorn = $result['horn_timer'];
+            $hhdata->HandListType = $result['multiple_hands'];
+            $hhdata->HHtype = $result['promotion_id'];
+            $hhdata->paytype = $result['high_hand_paytype'];
+            $hhdata->handcount = $result['high_hand_handcount'];
+            $hhdata->LockToTime = $result['high_hand_locktotime'];
+            $hhdata->loadHighHands($hhdata->session, $hhdata->handcount);
+            if($loadMonsterCarlo) {
+                $tmpMonsterCarloID = $mmdata->findMonsterCarlo($hhdata->session);
+                if($tmpMonsterCarloID!=0) {
+                    //echo($tmpMonsterCarloID);
+                    $this->monsterCarloData = $this->loadMonsterCarloData($tmpMonsterCarloID);
+                    $hhdata->paytype = 2;
+                    $payouts = explode(",", $this->monsterCarloData->payout);
+                    $hhdata->payouts = $this->monsterCarloData->payout;//$payouts;//$payouts[count($this->monsterCarloData->cardList)];
+                }
+            }
         }
+
+        return $hhdata;
+    }
+    function loadMonsterCarloData($pSceneID)
+    {
+            $sql = 'SELECT * from monster_carlo_settings where monster_carlo_settings_promotion_id=? order by monster_carlo_settings_id desc limit 1';
+        $statement = $this->conn->prepare($sql);
+        //echo ("sceneid".$pSceneID);
+        $statement->execute(array($pSceneID));
+        $mmdata  = new MonsterCarlo();
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            $mmdata->active = 1;
+            $mmdata->id = $result['monster_carlo_settings_id'];
+            $mmdata->session = $result['monster_carlo_settings_promotion_id'];
+            $mmdata->hhid = $result['monster_carlo_settings_hhid'];
+
+            $mmdata->payout = $result['monster_carlo_settings_payouts'];
+            if($mmdata->hhid!=0) {
+                $this->highHandData = $this->loadHighHandData($mmdata->hhid, false);
+                $this->highHandData->payouts = $mmdata->payout;
+                $this->highHandData->paytype=2;
+            }
+            $mmdata->loadMonsterCarloCards($mmdata->hhid);
+        }
+
+        return $mmdata;
     }
     function loadPrizeEventData($pSceneID)
     {
-        global $conn;
-
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
         $sql = 'SELECT * from prize_event where prize_event_promo_id=? order by prize_event_id desc limit 1';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         //echo ("sceneid".$pSceneID);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
@@ -133,12 +174,9 @@ class Scene
     }
     function loadTimeTargetData($pSceneID)
     {
-        global $conn;
 
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
         $sql = 'SELECT * FROM `time_target_sessions`,time_target where time_target_archive=\'0\' and time_target_promoid=? and time_target_session_promoid=time_target_promoid ORDER BY time_target_session_id desc,time_target_id desc limit 1 ';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $this->timeTargetData = new TimeTarget();
@@ -157,12 +195,9 @@ class Scene
 
     function loadPointsGTData($pSceneID)
     {
-        global $conn;
 
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
         $sql = 'SELECT * FROM `points_gt` where pgt_promotion_id=? ORDER by points_gt.pgt_id DESC limit 1';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
 
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
@@ -206,7 +241,7 @@ class Scene
 
         }
         $sql = 'SELECT * FROM points_gt_players where points_gt_players.pgt_id=? limit 20';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $tmpPlayerList = array();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
@@ -228,13 +263,10 @@ class Scene
 
     function getPointsGTInstantWinners($pSceneID)
     {
-        global $conn;
 
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
         $sql = 'SELECT * FROM points_gt_instant_winner where pgt_id=? ORDER BY
                pgt_points DESC limit 3';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $tmpInstantWinnerList = array();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
@@ -249,12 +281,9 @@ class Scene
 
     function loadKickForCashData($pSceneID)
     {
-        global $conn;
 
-        $dbcon = new DbCon();
-        $conn = $dbcon->read_database();
         $sql = 'SELECT * from kick_for_cash where kfc_promotion_id=? order by kfc_id DESC limit 1';
-        $statement = $conn->prepare($sql);
+        $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $this->kickForCashData = new KickForCash();

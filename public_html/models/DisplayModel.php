@@ -22,7 +22,7 @@ class DisplayModel
     private $fitw;
     private $fith;
     private $flip;
-
+    private $fcmid;
     /**
      * DisplayModel constructor.
      * @param $values
@@ -54,6 +54,7 @@ class DisplayModel
         $this->setFitH($fieldArray['display_fith']);
         $this->setFlip($fieldArray['display_flip']);
         $this->setDebug($fieldArray['display_debug']);
+        $this->setFCMToken($fieldArray['display_gcmid']);
 //var_dump($fieldArray);
     }
 
@@ -83,7 +84,9 @@ class DisplayModel
     {
         $this->apiId = $val;
     }
-
+    public function setFCMToken($val){
+        $this->fcmid = $val;
+    }
     public function setAppVersion($val)
     {
         $this->appVersion = $val;
@@ -170,7 +173,9 @@ class DisplayModel
     {
         return $this->id;
     }
-
+    public function getFCMToken(){
+        return $this->fcmid;
+    }
     public function getApiId()
     {
         return $this->apiId;
@@ -293,5 +298,39 @@ class DisplayModel
     public function getDisplayLocation()
     {
         return $this->displayLocation;
+    }
+    public function sendMessage($data, $target)
+    {
+//FCM api URL
+        $url = 'https://fcm.googleapis.com/fcm/send';
+//api_key available in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
+        $server_key = 'AAAAhPnCBB8:APA91bHgbUuDFr3WqW6c8nNi_z7VHJhcE46O6cxZPaNf2u-nnGKsLo14mascocTvsjcuWsmaWynudC7aKrOA3yUi7fwxeRNXaRvsgYiAdv_pIWr-A7EY4lOKaC1UZEeVUGeh8eHiiee-';
+        $fields = array();
+        $fields['data'] =  $data;
+        if (is_array($target)) {
+            $fields['registration_ids'] = $target;
+        } else {
+            $fields['to'] = $target;
+        }
+//header with content_type api key
+        $headers = array(
+            'Content-Type:application/json',
+            'Authorization:key=' . $server_key
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        $result = curl_exec($ch);
+        if ($result === FALSE) {
+            die('FCM Send Error: ' . curl_error($ch));
+        }
+        curl_close($ch);
+        return $result;
     }
 }

@@ -208,7 +208,8 @@ var getAllHands = function (id) {
 
                 html+="<td> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
                     "<button class='to-pending' id='set-to-pending-" + handID + "' name='"+handID+"'  type='button'>Pending</button>"+
-                    "<button class='to-last' id='set-to-last-" + handID + "' name='"+handID+"'  type='button'>Last Hand</button></td>";
+                    "<button class='to-last' id='set-to-last-" + handID + "' name='"+handID+"'  type='button'>Last Hand</button>"+
+                    "<button class='to-delete' id='delete-last-" + handID + "' name='"+handID+"'  type='button'>Delete Hand</button></td>";
 
                 $('#high_hand_table > tbody:last-child ').append(html);
                 updateCurrentStatus(handID,isWinner);
@@ -236,6 +237,14 @@ var getAllHands = function (id) {
             $('.to-last').click(function() {
                 updateHandStatus(2,0,this.name,id);
                 updateCurrentStatus(this.name,2);
+            });
+            $('.to-delete').click(function() {
+                var tmp = confirm("Delete Current Hand?");
+                if(tmp){
+                    deleteHand(this.name,id);
+                    RemoveHand(this);
+                }
+
             });
 
             $(document).ready(function() {
@@ -332,7 +341,31 @@ var updateHandStatus = function (isWinner, payout, handId,id) {
 
     });
 };
+var deleteHand = function (handId,id) {
 
+    $.ajax({
+
+        url: 'controllers/promotioncontrollers/highhandcontroller.php',
+        type: 'post',
+        data: {
+            action: 'deleteHand',
+            handId: handId,
+            promotionId:id
+        },
+        cache: false,
+        success: function () {
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        }
+
+    });
+};
+
+var RemoveHand = function (handID) {
+    $(handID).parent().parent().empty();
+
+};
 var updateCurrentStatus = function (handID,isWinner) {
     $('#currentStatus-'+handID).empty();
     if(isWinner == 0){

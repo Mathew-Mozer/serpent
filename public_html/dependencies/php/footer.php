@@ -17,6 +17,7 @@
 <script src="dependencies/js/viewdocuments.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/viewAccount.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/multipliermadness.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/promotion/monstercarlo.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/sessionmanager.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/timetracker.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/promotion/prizeevent.js?t=<?php echo microtime() ?>"></script>

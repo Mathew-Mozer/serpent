@@ -193,7 +193,7 @@ var settingsButtonClick = function (e) {
     //getSettings(ids[1],ids[2], perm);
     $("#settings").data('promo-id', $(this).data("promo-id"));
     $("#settings").data('promo-type-id', $(this).data("promo-type-id"));
-    $("#settings").load("views/addpromotionviews/add"+$(this).data("promo-type")+"view.php",{promotion_settings:true, promotion_id:$(this).data("promo-id"), promotion_type:$(this).data("promo-type-id")});
+    $("#settings").load("views/addpromotionviews/add"+$(this).data("promo-type")+"view.php",{propertyId: $(this).data("promo-property-id") ,promotion_settings:true, promotion_id:$(this).data("promo-id"), promotion_type:$(this).data("promo-type-id")});
 
     openSettingsModal();
 };

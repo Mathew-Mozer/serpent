@@ -130,7 +130,7 @@ class PromotionModel
              WHERE
                promotion_type.promotion_type_id = subscription.promotion_type_id AND
                subscription.property_id = :propertyId
-             order by promotion_type_id asc
+             order by promotion_type.promotion_type_id asc
                ;";
             $result = $this->db->prepare($sql);
             $result->bindValue(':propertyId', $propertyId);

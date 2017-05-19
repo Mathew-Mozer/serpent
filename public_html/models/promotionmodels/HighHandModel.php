@@ -70,7 +70,15 @@ class HighHandModel{
 
         return $promoResult;
     }
+    public function getCurrentHighHands($id){
 
+        $sql = "SELECT DISTINCT * FROM promotion,promotion_property WHERE promotion.promotion_type_id=1 and promotion_property.property_id=:id and promotion_property.promotion_id=promotion.promotion_id ORDER BY promotion.promotion_id DESC;";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
     /**
      * Insert a new high hand into the database
      * @param $promotionID
@@ -168,4 +176,11 @@ class HighHandModel{
         $result->bindValue(':promoid', $value['promotionId'], PDO::PARAM_STR);
         $result->execute();
     }
+    public function deleteHand($value){
+        $sql = "UPDATE high_hand_records SET high_hand_record_archive='1' WHERE high_hand_record_id=:handId";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':handId', $value['handId'], PDO::PARAM_STR);
+        $result->execute();
+    }
+
 }

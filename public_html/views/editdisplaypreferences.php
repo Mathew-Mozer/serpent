@@ -17,6 +17,7 @@ $promotion = new PromotionModel($dbcon->read_database());
             <tr>
                 <td style="padding: 5px; text-align: center" colspan="3"><label
                         for="top-title-box"><?php echo($display->getName()) ?></label></td>
+<input type="hidden" id="display-id" value="<?php echo($_POST['displayid'])?>">
             </tr>
             <tr>
                 <td style="padding: 5px"><label for="top-title-box">Mac Address: </label>
@@ -77,6 +78,11 @@ $promotion = new PromotionModel($dbcon->read_database());
     </table>
     </div>
     <button type="button" id="save-display-options"> Save Display Info</button>
+<br>
+    <button type="button" class="send-fcm-command" data-display-id="<?php echo($_POST['displayid'])?>" data-command="getSettings">Update Display Settings</button>
+    <button type="button" class="send-fcm-command" data-display-id="<?php echo($_POST['displayid'])?>" data-command="stopCharon">Stop Charon</button>
+    <button type="button" class="send-fcm-command" data-display-id="<?php echo($_POST['displayid'])?>" data-command="LaunchApp" data-package-name="com.teamviewer.host.market">Restart TeamViewer</button>
+
 <?php
 function isChecked($val)
 {

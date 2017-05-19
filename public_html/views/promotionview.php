@@ -61,6 +61,7 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
                 <div class="tile-menu-item settingsBtn" data-promo-id="<?php echo $row['promo_id']; ?>"
                      data-promo-type="<?php echo $row['file_name']; ?>"
                      data-promo-type-id="<?php echo $row['promo_type_id']; ?>"
+                     data-promo-property-id="<?php echo $row['property_id']; ?>"
                      id="<?php echo $row['property_id'] . '-' . $row['promo_id']; ?>">
                     <span class="glyphicon glyphicon-cog glyphicon-menu black" aria-hidden="true"></span>
                 </div> <?php } ?></div>
