@@ -110,6 +110,7 @@ class Scene
             $hhdata->HHtype = $result['promotion_id'];
             $hhdata->paytype = $result['high_hand_paytype'];
             $hhdata->handcount = $result['high_hand_handcount'];
+
             $hhdata->LockToTime = $result['high_hand_locktotime'];
             $hhdata->loadHighHands($hhdata->session, $hhdata->handcount);
             if($loadMonsterCarlo) {
@@ -119,7 +120,7 @@ class Scene
                     $this->monsterCarloData = $this->loadMonsterCarloData($tmpMonsterCarloID);
                     $hhdata->paytype = 2;
                     $payouts = explode(",", $this->monsterCarloData->payout);
-                    $hhdata->payouts = $this->monsterCarloData->payout;//$payouts;//$payouts[count($this->monsterCarloData->cardList)];
+                    $hhdata->payouts = $payouts[count($this->monsterCarloData->cardList)];
                 }
             }
         }

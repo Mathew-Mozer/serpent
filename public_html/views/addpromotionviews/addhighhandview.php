@@ -84,6 +84,11 @@ if (!isset($_POST['promotion_template'])) {
                                 <input class="high-hand-radio" value="2" name="multiple_hands" id="ranked"
                                        type="radio"/>
                                 <label for="ranked"> Ranked Hands </label>
+                                <select id="hrank" name="high_hand_handcount">
+                                    <option value="1">Top Hand</option>
+                                    <option value="2">Top 2 Hands</option>
+                                    <option value="3">Top 3 Hands</option>
+                                </select>
                                 <br/>
                             </div>
                         </td>

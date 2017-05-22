@@ -7,10 +7,16 @@ require_once("../../dependencies/php/HelperFunctions.php");
 require_once(getServerPath() . "dbcon.php");
 $dbcon = NEW DbCon();
 require "../../models/promotionmodels/HighHandModel.php";
+require "../../models/promotionmodels/MonsterCarloModel.php";
 $HighHandModel = new HighHandModel($dbcon->read_Database());
 $HighHand = $HighHandModel->get($_POST['promoid']);
+$MonsterCarloModel = new MonsterCarloModel($dbcon->read_Database());
+$MonsterCarloCards = $MonsterCarloModel->loadMonsterCarloCards($_POST['promoid']);
 ?>
+<label>
 
+
+</label>
 <div id="new-hand">
     <button id="view-hands-btn"> View Hands</button>
     <form id="hhname">
@@ -132,6 +138,6 @@ $HighHand = $HighHandModel->get($_POST['promoid']);
     loadViewHands();
     getAllHands($("#promotion-view-modal").data('promo-id'));
     $('#promotion-view-modal').width = "800px";
-
+    var ar = <?php echo(json_encode($MonsterCarloCards));?>
 </script>
 
