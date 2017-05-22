@@ -115,8 +115,21 @@ function setSelectionIndex(clicked_id){
     $("#hh_index" + handIndex).removeClass("card-index-highlight");
         handIndex = clicked_id.substr(clicked_id.length - 1);
         moveHighlightToNextCard(clicked_id);
+    if(clicked_id=='hh_index7'){
+     DisableCards(true)
+     }else{
+        DisableCards(false)
+     }
+
     }
 
+function DisableCards(val){
+    console.log("attempting to disable cards");
+    $.each(ar,function( key, value ){
+        $("#"+value).toggle(!val);
+        //console.log(value);
+    });
+}
 /**
  * Lock used card so duplicates can't be used
  * @param clicked_id
@@ -145,6 +158,12 @@ function moveHighlightToNextCard(clicked_id) {
         $("#hh_index" + (handIndex)).addClass("card-index-highlight");
     } else if (handIndex >= (cardcount+1)) {
         $("#hh_index1").addClass("card-index-highlight");
+    }
+    console.log("hi:" + handIndex)
+    if(handIndex=='7'){
+        DisableCards(true)
+    }else{
+        DisableCards(false)
     }
 }
 var payout;

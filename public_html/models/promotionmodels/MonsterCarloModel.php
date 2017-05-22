@@ -72,6 +72,17 @@ class MonsterCarloModel{
         return $promoResult;
 
     }
+    public function loadMonsterCarloCards($pSessionID)
+    {
+        $cardList = array();
+        $sql = 'SELECT high_hand_card8 from high_hand_records where  high_hand_session=? and high_hand_record_archive=0 and high_hand_card8!=\'CB\' and high_hand_isWinner >0  order by high_hand_record_id';
+        $statement = $this->conn->prepare($sql);
+        $statement->execute(array($pSessionID));
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            array_push($cardList,$result['high_hand_card8']);
+        }
+        return $cardList;
+    }
     public function getCurrentHighHands($id){
 
 
