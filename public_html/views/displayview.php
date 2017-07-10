@@ -47,21 +47,23 @@ if (isset($_POST['property_name'])) {
                 <div class="display-header row">
                     <div class="col-md-4">
                         <h3 id="display-name" class="header-text display-friendly-name display-font">
-                            <?php if ($permission->hasPermissionByAccount('display_manager', 'U')||$_SESSION['isGod']) { ?>
+                            <?php if ($permission->hasPermissionByAccount('display_manager', 'U') || $_SESSION['isGod']) { ?>
                                 <div class="glyphicon <?php echo $glyphmonitor; ?>  toggleMonitorStatusBtn"
                                      data-display-id="<?php echo $display->getId(); ?>"
                                      data-monitor-state="<?php echo $display->getMonitorState(); ?>"></div> <?php } ?>
-                            <?php if ($permission->hasPermissionByAccount('display_manager', 'U')||$_SESSION['isGod']) {
-                                if(strlen($display->getFCMToken())>10){?>
-                                <div class="send-fcm-command glyphicon glyphicon-repeat"
-                                     data-display-id="<?php echo $display->getId(); ?>"
-                                     data-command="RestartApp"data-command="RestartApp"></div> <?php }} ?><?php echo $display->getName(); ?>
+                            <?php if ($permission->hasPermissionByAccount('display_manager', 'U') || $_SESSION['isGod']) {
+                                if (strlen($display->getFCMToken()) > 10) {
+                                    ?>
+                                    <div class="send-fcm-command glyphicon glyphicon-repeat"
+                                         data-display-id="<?php echo $display->getId(); ?>"
+                                         data-command="RestartApp" data-command="RestartApp"></div> <?php }
+                            } ?><?php echo $display->getName(); ?>
                         </h3>
                     </div>
                     <div class="col-md-4"><h3 id="display-location" class="header-text display-font">
                             <?php echo $display->getDisplayLocation(); ?></h3></div>
                     <div class="col-md-4 edit-display-div">
-                        <?php if ($permission->hasPermissionById('display', $property['property_id'], 'U')||$_SESSION['isGod']) { ?>
+                        <?php if ($permission->hasPermissionById('display', $property['property_id'], 'U') || $_SESSION['isGod']) { ?>
                             <button type="button" data-property-id="<?php echo $property['property_id']; ?>"
                                     data-property-name="<?php echo $property['property_name']; ?>"
                                     data-display-id="<?php echo $display->getId(); ?>"
@@ -89,24 +91,27 @@ if (isset($_POST['property_name'])) {
                         $lockglyphclass = "<i class='font-awesome fa lock-glyphicon hidden unlocked'></i>";
                         $lockstatus = "0";
                     }
-                    if($promo['promotion_label']==""){
-                        $apromoname=$promoType['promotion_type_title'];
-                    }else{
-                        $apromoname=$promo['promotion_label'];
+                    if ($promo['promotion_label'] == "") {
+                        $apromoname = $promoType['promotion_type_title'];
+                    } else {
+                        $apromoname = $promo['promotion_label'];
 
                     }
                     ?>
 
-                    <div class="<?php echo $lockcontainerclass ?>  promolockbtn-<?php echo $promo['promotion_id'] ?> promotionLockBtn"
-                         data-property-id="<?php echo $property['property_id']; ?>"
-                         data-property-name="<?php echo $property['property_name']; ?>"
-                         data-promo-lockstatus="<?php echo $lockstatus; ?>"
-                         data-promo-id="<?php echo $promo['promotion_id'] ?>"
-                         data-display-id="<?php echo $display->getId() ?>" data-toggle="tooltip"
-                         title="<?php echo $apromoname . " " . $promo['promotion_id']?>" style="background-size: contain; background-image: url('dependencies/images/<?php echo $image['image']; ?>')">
-                        <div class="tile-promotion-title" style="float:left; display:block;clear: both;overflow: hidden; min-width: 75px;font-size: small;font-variant: small-caps;">
-                        <?php echo substr($promo['promotion_label'],0,9);
-                            if(strlen($promo['promotion_label'])>10){
+                    <div
+                        class="<?php echo $lockcontainerclass ?>  promolockbtn-<?php echo $promo['promotion_id'] ?> promotionLockBtn"
+                        data-property-id="<?php echo $property['property_id']; ?>"
+                        data-property-name="<?php echo $property['property_name']; ?>"
+                        data-promo-lockstatus="<?php echo $lockstatus; ?>"
+                        data-promo-id="<?php echo $promo['promotion_id'] ?>"
+                        data-display-id="<?php echo $display->getId() ?>" data-toggle="tooltip"
+                        title="<?php echo $apromoname . " " . $promo['promotion_id'] ?>"
+                        style="background-size: contain; background-image: url('dependencies/images/<?php echo $image['image']; ?>')">
+                        <div class="tile-promotion-title"
+                             style="float:left; display:block;clear: both;overflow: hidden; min-width: 75px;font-size: small;font-variant: small-caps;">
+                            <?php echo substr($promo['promotion_label'], 0, 9);
+                            if (strlen($promo['promotion_label']) > 10) {
                                 echo('..');
                             }
 
@@ -115,7 +120,7 @@ if (isset($_POST['property_name'])) {
                             <?php echo $lockglyphclass; ?>
                         </div>
 
-                       <!-- <div class="promotion-artifact-preview">
+                        <!-- <div class="promotion-artifact-preview">
                            <!-- <i class="font-awesome fa <?php //echo $artifact; ?>"></i>
                         </div>-->
                     </div>

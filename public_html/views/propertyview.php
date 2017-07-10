@@ -9,7 +9,7 @@
     <?php
     if ($permission->hasPermissionById('promotion', $property['property_id'], 'C') || $_SESSION['isGod']){
     ?>
-    <div title="New Promotion" data-toggle="tooltip"
+    <div title="New Promotion" data-toggle="tooltip" data-point-storage="<?php echo($property['property_point_storage']) ?>"
          id=<?php echo "\"" . $property['property_id'] . "\""; ?> class="add-promotion-btn tile-body tile-insert
     ">
     <img class="tile-icon" src="dependencies/images/clear.png">

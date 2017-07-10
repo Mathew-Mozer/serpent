@@ -2,7 +2,7 @@
 require "../../dependencies/php/HelperFunctions.php";
 require getServerPath()."dbcon.php";
 require "../../models/PromotionModel.php";
-require('../../models/promotionmodels/pointsgtmodel.php');
+require('../../models/promotionmodels/PointsGTModel.php');
 $conn = new DbCon();
 //if call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

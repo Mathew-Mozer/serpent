@@ -23,8 +23,10 @@
 <script src="dependencies/js/promotion/prizeevent.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/skinmanager.js?t=<?php echo microtime() ?>"></script>
 <script src="dependencies/js/changepromostatus.js?t=<?php echo microtime() ?>"></script>
-
-
+<script src="dependencies/js/uploadpicture.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/promotion/pointsgt.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/JqueryTemplates/jquery.loadTemplate-1.4.4.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -35,6 +37,7 @@
             unloadThinkingDonut();
         });
         var isMobile = false; //initiate as false
+
 // device detection
 
         detectMobile();
@@ -132,6 +135,7 @@
             $('input[name=propertyId]').val(this.id);
             $("#select-skin-container").hide();
             $("#select-scene-style").hide();
+            $('#promotion_type_select').data("point-storage",$(this).data("point-storage"));
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
         });
@@ -248,9 +252,9 @@
                 url: "controllers/boxstatuscheck.php",
                 global: false,
                 dataType: "json",
+                data: {TypeOfStatus:"box"},
                 cache: false,
                 success: function (response) {
-
                     $.each(response, function (index, value) {
 
                         if (parseInt(value['display_monitor']) == 1) {
@@ -274,7 +278,21 @@
             });
 
         }
+        function checkAPI() {
 
+            $.ajax({
+                type: "GET",
+                url: "controllers/boxstatuscheck.php",
+                global: false,
+                dataType: "json",
+                data: {TypeOfStatus:"API"},
+                cache: false,
+                success: function (response) {
+
+                }
+            });
+
+        }
 
         /**
          * Switch the display to alert mode

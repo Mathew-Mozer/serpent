@@ -77,6 +77,32 @@
     display: inline-block;
     box-shadow: 2px 2px 5px #969696;
 }
+.pointbox{
+    width: 70px;
+}
+.pgt-active-player{
+    background-color: deepskyblue;
+    padding: 3px;
+}
+.btn-wide{
+    width: 90px;
+    height: 90px;
+}
+.pull-tab-button-clear{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    border-style: outset;
+    background-color: gray;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    border-color: black;
+    padding: 4px;
+    margin: 4px;
+}
+
 .time-table-button-red {
      background-color: red;
  }
@@ -92,4 +118,9 @@ td.promostatus{
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 5px;
+}
+div.FloatLeft {
+    width:275px;
+    height: 200px;
+    float:left;
 }

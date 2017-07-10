@@ -29,6 +29,7 @@ class Scene
     public $highHandData;
     public $timeTargetData;
     public $monsterCarloData;
+    public $PictureViewerData;
     public $sceneSkin;
 
 
@@ -46,7 +47,7 @@ class Scene
         $this->sceneType = $promo_type_id;
         $this->sceneID = $psceneID;
         $this->EffectID = $pEffectID;
-        $this->lastUpdated = $lastupdated;
+        $this->lastUpdated = $this->convertTime($lastupdated);
         $this->animation = (bool)$animation;
         $this->skinDataID = $pSkinId;
         $this->sceneSkin = new Skin($psceneID, $pSkinId, $propertyId);
@@ -65,6 +66,10 @@ class Scene
             //PointsGT
             case 4:
                 $this->loadPointsGTData($promoID);
+                break;
+            //Picture Viewer
+            case 5:
+                $this->loadPictureData($promoID);
                 break;
             //Monster Carlo
             case 8:
@@ -151,6 +156,19 @@ class Scene
 
         return $mmdata;
     }
+    function loadPictureData($pSceneID){
+        $sql = 'SELECT * from picview_settings where picview_settings_promoid=? order by picview_settings_id desc limit 1';
+        $statement = $this->conn->prepare($sql);
+        //echo ("sceneid".$pSceneID);
+        $statement->execute(array($pSceneID));
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            $this->PictureViewerData = new PictureViewer();
+            $this->PictureViewerData->ID = $result['picview_settings_id'];
+            $this->PictureViewerData->session = $result['picview_settings_promoid'];
+            $this->PictureViewerData->type = $result['picview_settings_type'];
+            $this->PictureViewerData->loadPictureData($this->PictureViewerData->session);
+        }
+    }
     function loadPrizeEventData($pSceneID)
     {
         $sql = 'SELECT * from prize_event where prize_event_promo_id=? order by prize_event_id desc limit 1';
@@ -217,11 +235,19 @@ class Scene
             }else{
             $dt=$this->dateDifference($date3, $date1, '%d') + 1;
             }
-            $this->pointsGTData->DayOfSession = $dt;
-
 
             $this->pointsGTData->DaysInSession = $this->dateDifference($date2, $date1, '%d') + 1;
-
+            if($dt>$this->dateDifference($date2, $date1, '%d') + 1   ){
+                $dt=$this->dateDifference($date2, $date1, '%d') + 1;
+                $fin = true;
+                //echo("is");
+            }else{
+                //echo("is not");
+                $fin = false;
+            }
+            //echo("dt:".$dt." - dd ".());
+            $this->pointsGTData->DayOfSession = $dt;
+            $this->pointsGTData->finished=$fin;
             $this->pointsGTData->lastUpdated = $result['pgt_timestamp'];
             $this->pointsGTData->title = $result['pgt_title'];
             $this->pointsGTData->Value1 = $result['pgt_subtitle'];
@@ -299,6 +325,16 @@ class Scene
             $this->kickForCashData->winningBall = $result['kfc_target_number'];
         }
 
+
+    }
+    function convertTime($time){
+        $dt = new DateTime($time, new DateTimeZone('UTC'));
+
+// change the timezone of the object without changing it's time
+        $dt->setTimezone(new DateTimeZone('America/Los_Angeles'));
+
+// format the datetime
+        return $dt->format('Y-m-d h:ia T');
 
     }
 }

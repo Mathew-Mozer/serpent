@@ -15,6 +15,7 @@ var promotionViewModal = $("#promotion-view-modal").dialog({
     position: 'center',
     buttons: {
         Update: function () {
+            console.log("update promotion");
             updatePromotion($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('promo-type-id'),1);
             $("#promotion-view-modal").dialog('close');
           }

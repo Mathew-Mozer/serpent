@@ -116,7 +116,15 @@ $MonsterCarloCards = $MonsterCarloModel->loadMonsterCarloCards($_POST['promoid']
             <img src="dependencies/images/cards/QS.png" class="card standard-card" id="QS">
             <img src="dependencies/images/cards/KS.png" class="card standard-card" id="KS">
         </div>
-
+        <?php
+        if ($HighHand['use_joker'] == 1) {
+        ?>
+        <div class="row">
+            <img src="dependencies/images/cards/JK.png" class="card standard-card" id="JK">
+        </div>
+        <?php
+        }
+        ?>
         <br>
         <br>
 

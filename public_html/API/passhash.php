@@ -6,6 +6,6 @@
  * Time: 12:27 PM
  */
 $options = ['cost' => 11];
-$hashed_password = password_hash($_GET["pw"], PASSWORD_BCRYPT, $options);
+$hashed_password = password_hash("test123", PASSWORD_BCRYPT, $options);
 echo ($hashed_password);
 ?>

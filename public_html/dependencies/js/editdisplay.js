@@ -172,6 +172,11 @@ $(document).on("click", ".send-fcm-command", function () {
         }
     });
 });
+$(document).on("click", "#view-api-data", function () {
+    window.open(window.location.href+'API/104/index.php?action=GetSettings&mac='+$("#display-mac").val(),"");
+    return false;
+});
+
 $(document).on("click", "#save-display-options", function () {
 
     $.ajax({

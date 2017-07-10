@@ -77,7 +77,7 @@ $promotion = new PromotionModel($dbcon->read_database());
         </tr>
     </table>
     </div>
-    <button type="button" id="save-display-options"> Save Display Info</button>
+    <button type="button" id="save-display-options">Save Display Info</button><button type="button" id="view-api-data">View API Data</button>
 <br>
     <button type="button" class="send-fcm-command" data-display-id="<?php echo($_POST['displayid'])?>" data-command="getSettings">Update Display Settings</button>
     <button type="button" class="send-fcm-command" data-display-id="<?php echo($_POST['displayid'])?>" data-command="stopCharon">Stop Charon</button>
