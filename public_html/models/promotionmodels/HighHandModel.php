@@ -123,7 +123,6 @@ class HighHandModel{
         $result->bindValue(':card6', $cards[5], PDO::PARAM_STR);
         $result->bindValue(':card7', $cards[6], PDO::PARAM_STR);
         $result->bindValue(':card8', $cards[7], PDO::PARAM_STR);
-        $result->bindValue(':card8', $cards[7], PDO::PARAM_STR);
         $result->bindValue(':hhrank', $this->getRank($curHand), PDO::PARAM_STR);
 
 
@@ -138,20 +137,25 @@ class HighHandModel{
     function getRank($hand){
         $hands = array("22233", "22244", "22255", "22266", "22277", "22288", "22299", "22211", "222JJ", "222QQ", "222KK", "222AA", "33322", "33344", "33355", "33366", "33377", "33388", "33399", "33311", "333JJ", "333QQ", "333KK", "333AA", "44422", "44433", "44455", "44466", "44477", "44488", "44499", "44411", "444JJ", "444QQ", "444KK", "444AA", "55522", "55533", "55544", "55566", "55577", "55588", "55599", "55511", "555JJ", "555QQ", "555KK", "555AA", "66622", "66633", "66644", "66655", "66677", "66688", "66699", "66611", "666JJ", "666QQ", "666KK", "666AA", "77722", "77733", "77744", "77755", "77766", "77788", "77799", "77711", "777JJ", "777QQ", "777KK", "777AA", "88822", "88833", "88844", "88855", "88866", "88877", "88899", "88811", "888JJ", "888QQ", "888KK", "888AA", "99922", "99933", "99944", "99955", "99966", "99977", "99988", "99911", "999JJ", "999QQ", "999KK", "999AA", "11122", "11133", "11144", "11155", "11166", "11177", "11188", "11199", "111JJ", "111QQ", "111KK", "111AA", "JJJ22", "JJJ33", "JJJ44", "JJJ55", "JJJ66", "JJJ77", "JJJ88", "JJJ99", "JJJ11", "JJJQQ", "JJJKK", "JJJAA", "QQQ22", "QQQ33", "QQQ44", "QQQ55", "QQQ66", "QQQ77", "QQQ88", "QQQ99", "QQQ11", "QQQJJ", "QQQKK", "QQQAA", "KKK22", "KKK33", "KKK44", "KKK55", "KKK66", "KKK77", "KKK88", "KKK99", "KKK11", "KKKJJ", "KKKQQ", "KKKAA", "AAA22", "AAA33", "AAA44", "AAA55", "AAA66", "AAA77", "AAA88", "AAA99", "AAA11", "AAAJJ", "AAAQQ", "AAAKK", "22223", "22223", "22224", "22225", "22226", "22227", "22228", "22229", "22221", "2222J", "2222Q", "2222K", "2222A", "33332", "33334", "33335", "33336", "33337", "33338", "33339", "33331", "3333J", "3333Q", "3333K", "3333A", "44442", "44443", "44445", "44446", "44447", "44448", "44449", "44441", "4444J", "4444Q", "4444K", "4444A", "55552", "55553", "55554", "55556", "55557", "55558", "55559", "55551", "5555J", "5555Q", "5555K", "5555A", "66662", "66663", "66664", "66665", "66667", "66668", "66669", "66661", "6666J", "6666Q", "6666K", "6666A", "77772", "77773", "77774", "77775", "77776", "77778", "77779", "77771", "7777J", "7777Q", "7777K", "7777A", "88882", "88883", "88884", "88885", "88886", "88887", "88889", "88881", "8888J", "8888Q", "8888K", "8888A", "99992", "99993", "99994", "99995", "99996", "99997", "99998", "99991", "9999J", "9999Q", "9999K", "9999A", "11112", "11113", "11114", "11115", "11116", "11117", "11118", "11119", "1111J", "1111Q", "1111K", "1111A", "JJJJ2", "JJJJ3", "JJJJ4", "JJJJ5", "JJJJ6", "JJJJ7", "JJJJ8", "JJJJ9", "JJJJ1", "JJJJQ", "JJJJK", "JJJJA", "QQQQ2", "QQQQ3", "QQQQ4", "QQQQ5", "QQQQ6", "QQQQ7", "QQQQ8", "QQQQ9", "QQQQ1", "QQQQJ", "QQQQK", "QQQQA", "KKKK2", "KKKK3", "KKKK4", "KKKK5", "KKKK6", "KKKK7", "KKKK8", "KKKK9", "KKKK1", "KKKKJ", "KKKKQ", "KKKKA", "AAAA2", "AAAA3", "AAAA4", "AAAA5", "AAAA6", "AAAA7", "AAAA8", "AAAA9", "AAAA1", "AAAAJ", "AAAAQ", "AAAAK", "65432", "76543", "87654", "98765", "19876", "J1987", "QJ198", "KQJ19", "A2345", "A5432", "AKQJ1", "AAAAA");
         $rank = array_search($hand,$hands);
-//        echo"Hand: ".$hand."<hr>";
+        //echo"Hand: ".$hand."<hr>";
+        if($rank<=0){
+            $rhand = strrev($hand);
+            $rank = array_search($rhand,$hands);
+            //echo"reversed Hand: ".$rhand." - rank:".$rank."<hr>";
+        }
         if($rank<=0){
             $sort = str_split($hand);
             sort($sort);
             $sort=implode($sort);
             $rank = array_search($sort,$hands);
-  //              echo"Sorted Hand: ".$sort." - rank:".$rank."<hr>";
+                //echo"Sorted Hand: ".$sort." - rank:".$rank."<hr>";
         }
         if($rank<=0){
             $sort = str_split($hand);
             rsort($sort);
             $sort=implode($sort);
             $rank = array_search($sort,$hands);
-    //              echo"Sorted Hand: ".$sort." - rank:".$rank."<hr>";
+                  //echo"RSorted Hand: ".$sort." - rank:".$rank."<hr>";
         }
     //echo 'Final Rank: '.$rank.'<hr>';
         return $rank;

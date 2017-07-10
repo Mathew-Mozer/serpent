@@ -13,10 +13,11 @@ function detectMobile() {
  * When a tile is clicked, open the edit modal
  */
 var tileBodyClick = function () {
-
+//alert('data:' + $(this).data("property-point-storage"));
     $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
     $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
-    $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php",{promoid:$(this).data("promo-id")});
+    $("#promotion-view-modal").data('promo-point-storage', $(this).data("property-point-storage"));
+    $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php",{promoid:$(this).data("promo-id"),pointstorage:$(this).data("property-point-storage")});
     promotionViewModal.dialog('open');
 };
 

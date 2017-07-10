@@ -2,8 +2,6 @@
     <input type="text" value="GetSettings" name="action"><br>
    <br>
     Mac Address<input type="text" value="00000000000000E0" name="macAddress"><br>
-    App Version<input type="text" value="1.038.1" name="appVersion">
-
     <input type="submit" value="Submit">
 </form>
 <hr>

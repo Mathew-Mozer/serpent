@@ -22,18 +22,23 @@ date_default_timezone_set('America/Los_Angeles');
 $displayData = new DisplayData();
 $conn;
 CheckDeviceCheck();
-if (isset($_POST["action"])) {
+if (isset($_POST["action"])||isset($_GET["action"])) {
     if (isset($_POST["macAddress"])) {
         $macAddress = $_POST["macAddress"];
+        $action = $_POST["action"];
+    }
+    if (isset($_GET["mac"])) {
+        $macAddress = $_GET["mac"];
+        $action = $_GET["action"];
     }
 
-    switch ($_POST["action"]) {
+    switch ($action) {
         case "GetSettings":
             //Get Box Settings
-            if (isBoxedRegistered($_POST["macAddress"])) {
+            if (isBoxedRegistered($macAddress)) {
                 loadSceneData();
                 if(isset($_POST["FireBaseToken"])) {
-                    UpdateFireBaseToken($_POST["macAddress"], $_POST["FireBaseToken"]);
+                    UpdateFireBaseToken($macAddress, $_POST["FireBaseToken"]);
                 }
             } else {
                 registerDisplay($_POST["macAddress"]);
@@ -178,18 +183,20 @@ function loadSceneData()
     }
 
     if ($displayData->displayID != 0) {
-        if ($_POST["appVersion"] != $displayData->AppVersion) {
-            UpdateDisplayData('display_appversion', $_POST["appVersion"], $displayData->AppVersion, $displayData->displayID, true);
+        if(isset($_POST["appVersion"])) {
+            if ($_POST["appVersion"] != $displayData->AppVersion) {
+                UpdateDisplayData('display_appversion', $_POST["appVersion"], $displayData->AppVersion, $displayData->displayID, true);
 
-        }
-        UpdateDeviceTimeStamp($displayData->displayID, 'display_lastcheckin');
-        if ($displayData->monitor == 2) {
-            UpdateDisplayData('display_monitor', 1, 1, $displayData->displayID, false);
-            UpdateDeviceTimeStamp($displayData->displayID, 'display_uptimestart');
-            $msg = 'That was rough but i\'m working again';
-            SlackTool::slack($msg, "#boxhealth", $displayData->DisplayName);
-        }
+            }
 
+            UpdateDeviceTimeStamp($displayData->displayID, 'display_lastcheckin');
+            if ($displayData->monitor == 2) {
+                UpdateDisplayData('display_monitor', 1, 1, $displayData->displayID, false);
+                UpdateDeviceTimeStamp($displayData->displayID, 'display_uptimestart');
+                $msg = 'That was rough but i\'m working again';
+                SlackTool::slack($msg, "#boxhealth", $displayData->DisplayName);
+            }
+        }
     }
     //Update Checkin Time
 

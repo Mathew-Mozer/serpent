@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /**
  * Class PointsGTModel
@@ -23,7 +23,9 @@ class PointsGTModel{
    */
    public function add($values){
      //Adds Points GT.
-
+if(!isset($values['updateSettings'])){
+    $values['updateSettings']=false;
+}
     $this->addPointsGT($values);
     if($values['updateSettings']){
 //echo('updating Settings of PointsGT');
@@ -125,14 +127,14 @@ class PointsGTModel{
         pgt_id,
         pgt_account_id
       ) VALUES";
-       for($i = 1; $i <= 20; $i++){
+       for($i = 1; $i <= $values['playerCount']; $i++){
            $sql .= "(:pgt_player_id$i,:pgt_player_name$i, :pgt_current_points$i, :pgt_car_icon$i, :pgt_id, :pgt_account_id)";
-           $sql .= $i < 20 ? "," : ";";
+           $sql .= $i < $values['playerCount'] ? "," : ";";
 
        }
 
        $result = $this->db->prepare($sql);
-       for($i = 1; $i <= 20; $i++){
+       for($i = 1; $i <= $values['playerCount']; $i++){
            if(!isset($values["pgt_player_id$i"])){
                $values["pgt_player_id$i"]='';
            }
@@ -145,6 +147,7 @@ class PointsGTModel{
            if(!isset($values['pgt_car_icon'])){
                $values["pgt_car_icon$i"]='0';
            }
+           //echo("binding:".$values["pgt_player_name$i"]);
            $result->bindValue(":pgt_player_id$i", $values["pgt_player_id$i"], PDO::PARAM_STR);
            $result->bindValue(":pgt_player_name$i", $values["pgt_player_name$i"], PDO::PARAM_STR);
            $result->bindValue(":pgt_current_points$i", $values["pgt_current_points$i"], PDO::PARAM_STR);
@@ -152,8 +155,6 @@ class PointsGTModel{
        }
        $result->bindValue(':pgt_id', $values['promotionId'], PDO::PARAM_STR);
        $result->bindValue(':pgt_account_id', $values['accountId'], PDO::PARAM_STR);
-
-
        $result->execute();
    }
 public function checkforbindvalues($val){
@@ -295,8 +296,7 @@ public function checkforbindvalues($val){
              WHERE
                pgt_id=:id
              ORDER BY
-               pgt_current_points desc 
-             LIMIT 20;";
+               pgt_current_points desc;";
      $result = $this->db->prepare($sql);
      $result->bindValue(':id', $id, PDO::PARAM_STR);
      $result->execute();
@@ -304,7 +304,6 @@ public function checkforbindvalues($val){
      $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
 
      $result->closeCursor();
-
      return $this->formatRowWithNumberIndex($promoResult);
    }
 
@@ -316,13 +315,14 @@ public function checkforbindvalues($val){
      */
    public function formatRowWithNumberIndex($rows){
      $result = array();
-     $i = 1;
+     $i = 0;
      foreach($rows as $row){
-       foreach($row as $key=>$field){
+         $i++;
+         foreach($row as $key=>$field){
          $result[$key . $i] = $field;
        }
-       $i++;
      }
+        $result['pgtPlayerCount']= $i;
      return $result;
    }
 }

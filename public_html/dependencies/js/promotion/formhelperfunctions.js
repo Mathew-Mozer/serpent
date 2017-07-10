@@ -9,7 +9,7 @@
  * @param promotionType
  * @param accountId
  */
-console.log('Loaded FormHelperFunctions.js');
+
 var addPromotionByType = function (propertyId, promotionTypeId, promotionType, accountId,selectedSkin,promotionlabel, animation) {
     var data = getFormData('add-promotion');
     data['action'] = 'add';
@@ -137,7 +137,6 @@ var getModalData = function (promotionId, promotionTypeId) {
             $(".loader").removeClass("hidden");
         },
         success: function (response) {
-            console.log('Get Modal Data:'+ response);
             setFormData('add-promotion', response)
         },
         error: function (xhr, desc, err) {
@@ -222,7 +221,7 @@ var setFormData = function (formId, data) {
                     formDataInput[i].checked = false;
                 }
             } else {
-                //console.log(formDataInput[i].name);
+
                 formDataInput[i].value = data[formDataInput[i].name];
             }
         }
@@ -238,7 +237,15 @@ var setFormData = function (formId, data) {
         }
     }
     $('#instant-winner-options').show();
+    if(parseInt(data['pgtPlayerCount'])>0){
+        playerarray = [];
+        //alert('should be parsing');
+        for(i=1;i<data['pgtPlayerCount']+1;i++){
+            loadTemplate(data['pgt_player_name'+i],data['pgt_current_points'+i],data['pgt_player_id'+i])
 
+        }
+
+    }
     if($('#pgt_enable_instant_winners').is(':checked')){
         $('#instant-winner-options').show();
     }else{

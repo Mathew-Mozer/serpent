@@ -16,5 +16,6 @@ include 'PrizeEvent.php';
 include 'PrizeEventWinner.php';
 include 'Skin.php';
 include 'PokerHand.php';
+include 'PictureViewer.php';
 include '../Modules/SlackTool.php';
 ?>

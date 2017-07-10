@@ -5,6 +5,7 @@ require "../models/PromotionModel.php";
 date_default_timezone_set('America/Los_Angeles');
 $conn = new DbCon();
 //if call is sent by post
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'add') {
         $promotion = new PromotionModel($conn->insert_database());

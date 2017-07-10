@@ -8,8 +8,10 @@
  */
 var isTemplate=false;
 var addPromotion = function (data) {
+    alert("data2:" + $('#promotion_type_select').data("point-storage"));
     data['append_promotion'] = true;
     data['promo_status']=1;
+    data['property_point_storage']=$("#promotion-view-modal").data("point-storage");
     $.ajax({
         url: 'views/promotionview.php',
         type: 'post',
@@ -50,7 +52,7 @@ var promotionName;
  * When a promotion type is selected from menu
  */
 $("div.addPromotion").on('click', function (e) {
-
+    alert("data2:" + $("#promotion-view-modal").data("point-storage"));
     e.preventDefault();
     var promotionTypeId = this.id;
     $("#promotion-details").data("promotion-id", $(this).data('promotion-id'));
