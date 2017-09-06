@@ -8,10 +8,14 @@
  */
 var createPropertyModal = $('#createProperty').dialog({
     autoOpen: false,
-    height: 610,
-    width: 350,
+    minWidth:'600',
+    minHeight: '600',
     modal: true,
     title: 'Create Property',
+    open: function(event, ui) {
+        // Height setter has no effect after init either
+        $(this).dialog("option", "height", 200);
+    },
     buttons: {
         Submit: function () {
             createProperty();

@@ -158,8 +158,8 @@ function loadSceneData()
     $tmpSceneArray = array();
     foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
         //$displayData->BundleAndroidUrl="http://connect.typhonpacificstudios.com/tv/assetbundles/tpsAndroid.unity3d";
-        $displayData->BundleAndroidUrl = "http://svr1.typhonpacific.com/Chimera/Connect/TV/AssetBundles/" . $result['property_asset_bundle_url'];
-        $displayData->BundleWindowsURL = "http://svr1.typhonpacific.com/Chimera/Connect/TV/AssetBundles/" . $result['property_asset_bundle_windows'];
+        $displayData->BundleAndroidUrl ='http://serpent.typhonconnect.com/API/AssetBundles/'. $result['property_asset_bundle_url'];
+        $displayData->BundleWindowsURL ='http://'.$_SERVER['HTTP_HOST']."/API/AssetBundles/" . $result['property_asset_bundle_windows'];
         $displayData->propertyID = $result['prid'];
         $displayData->BundleVer = 1;
         $displayData->AssetName = $result['property_asset_name'];

@@ -268,7 +268,7 @@ var setFormData = function (formId, data) {
     //spectrum
     $(".spectrumcl").spectrum({
         showInput: true,
-        className: "full-spectrum",
+        //className: "full-spectrum",
         showInitial: true,
         showPalette: true,
         showSelectionPalette: true,
@@ -310,6 +310,11 @@ var setFormData = function (formId, data) {
     if(document.getElementById('monster_carlo_settings_payouts')){
         arr = document.getElementById('monster_carlo_settings_payouts').value.split(',');
         countMonsterCarlo();
+    }
+    if(document.getElementById('multi_madness_values')){
+        arr = document.getElementById('multi_madness_values').value.split(',');
+        countMMMultipliers();
+        hideStartButton();
     }
 
 };

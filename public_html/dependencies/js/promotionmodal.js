@@ -19,7 +19,11 @@ var promotionViewModal = $("#promotion-view-modal").dialog({
             updatePromotion($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('promo-type-id'),1);
             $("#promotion-view-modal").dialog('close');
           }
-        }
+        },
+    close: function( event, ui ) {
+        $(".ui-dialog-buttonset").toggle(true);
+    }
+
     });
 var updateCurrentPromotion = function(){
 

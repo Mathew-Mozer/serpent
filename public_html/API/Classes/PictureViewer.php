@@ -23,7 +23,7 @@ public $picturelist= array();
         $sql = 'SELECT * from picview_pictures where picview_pictures_promoid=? order by picview_pictures_id DESC ';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSessionID));
-        echo("found something".$pSessionID);
+        //echo("found something".$pSessionID);
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
 
             $pd = new PictureData();

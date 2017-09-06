@@ -19,15 +19,17 @@ public $clockRemainingVisible;
 public $NextTimeVisible;
 public $isOddHr;
 public $secondsToHorn;
+public $TotalPrizeAmount;
 public $winnerlist= array();
 
     function __construct()
     {
 
     }
+
     public function loadPrizeWinners($pSessionID)
     {
-
+        $num = 0;
         global $conn;
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
@@ -43,8 +45,11 @@ public $winnerlist= array();
             $pew->righticon = $result['prize_event_winner_right_icon'];
             $pew->lefticon = $result['prize_event_winner_left_icon'];
             $pew->timestamp = $result['prize_event_winner_timestamp'];
+            $num+=$result['prize_event_winner_prize'];
+            $this->TotalPrizeAmount +=$result['prize_event_winner_prize'];
                 array_push($this->winnerlist,$pew);
         }
+        //$this->TotalPrizeAmount = '$'.$this->TotalPrizeAmount;
     }
 }
 

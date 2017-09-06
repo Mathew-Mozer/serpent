@@ -71,7 +71,7 @@ class Scene
             case 5:
                 $this->loadPictureData($promoID);
                 break;
-            //Monster Carlo
+
             case 8:
                 $this->loadPrizeEventData($promoID);
                 break;
@@ -83,6 +83,9 @@ class Scene
                 break;
             case 9:
                $this->monsterCarloData = $this->loadMonsterCarloData($promoID);
+                break;
+            case 13:
+                $this->MatchMadnessData = $this->loadMultiplierMadnessData($promoID);
                 break;
             case 14:
 
@@ -131,6 +134,27 @@ class Scene
         }
 
         return $hhdata;
+    }
+
+    function loadMultiplierMadnessData($pSceneID)
+    {
+       // public MmCardList cardList;
+
+
+        $sql = 'SELECT * from multi_madness where multi_madness_promoid=? order by multi_madness_id desc limit 1';
+        $statement = $this->conn->prepare($sql);
+        //echo ("sceneid".$pSceneID);
+        $statement->execute(array($pSceneID));
+        $mmdata  = new MatchMadness();
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            $mmdata->active = 1;
+            $mmdata->id = $result['multi_madness_id'];
+            $mmdata->session = $result['multi_madness_promoid'];
+            //$mmdata->buzzerTimer;
+            $mmdata->timerActive=0;
+            $mmdata->loadMMCards($mmdata->session);
+        }
+        return $mmdata;
     }
     function loadMonsterCarloData($pSceneID)
     {
@@ -189,6 +213,9 @@ class Scene
             $this->PrizeEventData->NextTimeVisible = $result['prize_event_nexttimevisible'];
             $this->PrizeEventData->secondsToHorn = $result['prize_event_secondtohorn'];
             $this->PrizeEventData->loadPrizeWinners($this->PrizeEventData->session);
+            if($result['prize_event_useprizes']){
+                $this->PrizeEventData->JackPotAmount = $this->PrizeEventData->TotalPrizeAmount;
+            }
         }
     }
     function loadTimeTargetData($pSceneID)
@@ -247,7 +274,7 @@ class Scene
             }
             //echo("dt:".$dt." - dd ".());
             $this->pointsGTData->DayOfSession = $dt;
-            $this->pointsGTData->finished=$fin;
+            $this->pointsGTData->finished=false;
             $this->pointsGTData->lastUpdated = $result['pgt_timestamp'];
             $this->pointsGTData->title = $result['pgt_title'];
             $this->pointsGTData->Value1 = $result['pgt_subtitle'];
@@ -267,17 +294,16 @@ class Scene
             //$sPlayerName, $sPoints, $sCarID,$saccountid
 
         }
-        $sql = 'SELECT * FROM points_gt_players where points_gt_players.pgt_id=? limit 20';
+        $sql = 'SELECT * FROM points_gt_players where points_gt_players.pgt_id=? ORDER by pgt_current_points DESC,points_gt_player_timestamp DESC limit 20';
         $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $tmpPlayerList = array();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-            $tmpPlayer = new PointsGTPlayer($result['pgt_player_name'], $result['pgt_current_points'], $result['pgt_car_icon'], $result['pgt_account_id']);
+            $tmpPlayer = new PointsGTPlayer(trim($result['pgt_player_name']), $result['pgt_current_points'], $result['pgt_car_icon'], $result['pgt_account_id']);
             array_push($tmpPlayerList, $tmpPlayer);
         }
         if (!empty($tmpPlayerList))
             $this->pointsGTData->playerListJson = $tmpPlayerList;
-
     }
 
     function dateDifference($date_1, $date_2, $differenceFormat = '%d')

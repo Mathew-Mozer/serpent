@@ -265,6 +265,14 @@ WHERE promotion.promotion_id = :id;";
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         return $promoResult;
     }
+    public function getAllPromotionTypes()
+    {
+        $sql = "SELECT * FROM promotion_type";
+        $result = $this->db->prepare($sql);
+        $result->execute();
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
 
     public function setUpdatedTimestamp($promotionId)
     {
@@ -332,7 +340,7 @@ WHERE promotion.promotion_id = :id;";
     {
 
         if ($_SESSION['isGod']) {
-            $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
+            $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion, property 
                 WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
                 WHERE d.promotion_id = p.promo_property_promo_id 
                 AND d.display_id=:display_id) 
@@ -341,6 +349,7 @@ WHERE promotion.promotion_id = :id;";
                 AND promotion.promotion_id =p.promo_property_promo_id 
                 AND p.promo_property_property_id=account_permissions.excess_id 
                 AND promotion.promotion_type_id = promotion_type.promotion_type_id 
+                AND property.property_id = promo_property_property_id
                 GROUP BY p.promo_property_promo_id";
         } else {
             $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 

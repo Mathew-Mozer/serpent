@@ -22,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response=$permissions->updateUserPermission($_POST['userId'],$_POST['propertyId'],$_POST['modType'],$_POST['permValue'],$_POST['tagId']);
         header('content-type:application/json');
         echo json_encode($response);
+    }else if($_POST['action'] == 'updateUserPassword') {
+        $user = new UsersModel($dbcon->update_database());
+        $addResponse = $user->updateUserPassword($_POST['userId'], $_POST['userPassword']);
+        header('content-type:application/json');
+        echo json_encode($addResponse);
     }
 }
 ?>

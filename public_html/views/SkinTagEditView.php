@@ -136,7 +136,6 @@ $colorlist = '"'.implode('","', $skinColors).'"';
             showInitial: true,
             showPalette: true,
             preferredFormat: "hex",
-            toggle
             palette: [
                 [<?php echo($colorlist)?>]
             ]

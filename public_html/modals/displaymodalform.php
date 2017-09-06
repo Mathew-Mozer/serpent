@@ -52,8 +52,11 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
                 $apromoname=$assignedPromotion['promotion_label'];
 
             }
-                echo '<div class="display-list-artifact"><i class="font-awesome fa ' . $displayOptions->getPromotionArtifactById($assignedPromotion["promo_id"]) . '"></i></div> <img class=checkbox-image src="dependencies/images/' . $assignedPromotion['promotion_type_image'] . '"> &nbsp';
-                echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $assignedPromotion['promo_id'] ."\n".$apromoname. "'>" . $apromoname . "</label>";
+               // echo '<div class="display-list-artifact"><i class="font-awesome fa ' . $displayOptions->getPromotionArtifactById($assignedPromotion["promo_id"]) . '"></i></div>';
+
+            echo '['.$assignedPromotion['property_abbr'].']<img class=checkbox-image src="dependencies/images/' . $assignedPromotion['promotion_type_image'] . '"> &nbsp';
+
+            echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $assignedPromotion['promo_id'] ."\n".$apromoname. "'>" . $apromoname . "</label>";
             ?>
             <label class="display-modal-label"><?php echo $assignedPromotion['promotion_type_scene_verbage']; ?> </label>
 
@@ -85,7 +88,7 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
                    name="<?php echo $assignedPromotion['promo_id']; ?>" value="Save" hidden/>
 
             <?php
-                echo "<button type='button'  class='remove-from-display' id='{$assignedPromotion['promo_id']}' name='remove-promotion'> Remove </button>";
+                echo "<span class='btn btn-link glyphicon glyphicon-trash remove-from-display' id='{$assignedPromotion['promo_id']}' name='remove-promotion'></span>";
             ?>
 
             </div>
@@ -107,7 +110,7 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
 
             }
 
-            echo '<div class="display-list-artifact"><i class="font-awesome fa ' . $displayOptions->getPromotionArtifactById($unassignedPromotion["promotion_id"]) . '"></i></div> <img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['promotion_type_image'] . '"> &nbsp';
+            echo '['.$unassignedPromotion['property_abbr'].'] <img class=checkbox-image src="dependencies/images/' . $unassignedPromotion['promotion_type_image'] . '"> &nbsp';
             echo "<label class='display-modal-checkbox' data-toggle='tooltip' title='Promotion ID: " . $unassignedPromotion['promotion_id'] . " '>" . $promoname . "</label>";
             echo "<button type='button' data-default-time='".$unassignedPromotion['promotion_type_default_time']."' data-skin-id='".$unassignedPromotion['promotion_skin']."'  class='add-to-display' id='{$unassignedPromotion['promo_property_promo_id']}' 
                     name='add-promotion'> Add </button>";

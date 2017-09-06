@@ -5,41 +5,46 @@
 var obj = {};
 var tp = [];
 var maxCards = 48;
-function runAdd(e) {
-    if (e.keyCode == 13) {
-        addToArray();
-        return false;
+mmArray = [];
+$(document).on("click", "#addToMMArray", function () {
+        addToMMArray();
+});
+$(document).on("click", "#removeFromMMArray", function () {
+    removeMMVal($(this).data('val'));
+});
+$(document).on("click", "#startMMSession", function () {
+    if(confirm('Are you sure you want to start this session?')) {
+        startMatchMadnessSession($('#add-promotion').data('promo-id'),$('#multi_madness_values').val());
+        console.log('sent to start')
+    }else{
+        console.log('didn\'t start')
     }
-}
-function txtPwField(e) {
-    if (e.keyCode == 13) {
-        launchView(txtpw.value);
-        return false;
-    }
-}
+});
 function addToSession(){
     var sd = document.getElementById('txtsd');
     var st = document.getElementById('txtst');
     var ed = document.getElementById('txted');
     var et = document.getElementById('txtet');
 }
-function addToArray() {
+function addToMMArray() {
     var qty = document.getElementById('txtqty');
     var mul = document.getElementById('txtmul');
     //alert(qty.value + " - " + mul.value);
     for (var i = 0, j = qty.value; i < j; i++) {
-        if (mul.value > 0)
+        if (mul.value.length > 0){
             arr.push(mul.value);
+        }
+
         //alert('added:' + mul.value);
     }
-    mul.value = '0';
-    qty.value = '0';
+    mul.value = '';
+    qty.value = '1';
     mul.focus();
     mul.select();
-    countMultipliers();
+    countMMMultipliers();
 
 }
-function removeVal(val) {
+function removeMMVal(val) {
     for (var i = arr.length - 1; i >= 0; i--) {
 
         if (arr[i] == val) {
@@ -49,7 +54,7 @@ function removeVal(val) {
             //alert(arr[i] + " != " + val);
         }
     }
-    countMultipliers();
+    countMMMultipliers();
 }
 function countCurrentMultipliers(cnt) {
     var tmp = "";
@@ -74,25 +79,19 @@ function countCurrentMultipliers(cnt) {
     }
     return tmp;
 }
-function addToList(qty, mul) {
-    m1 = document.getElementById('itmTemplate');
-    //alert(obj[tp[i]] + " - " + tp[i]);
-    //alert(mul + " - " + qty);
-
-    var cln = m1.cloneNode(true);
-    cln.style.visibility = 'visible';
-    cln.innerHTML = cln.innerHTML.replace("$qty$", qty).replace("$mul$", mul).replace("$muls$", mul);
-    cln.id = "itm" + mul;
-    m2.insertBefore(cln, document.getElementById('ttlcnt'));
-    var tmp = maxCards - arr.length;
-    if (tmp >= 0) {
-        document.getElementById('tpcount').innerHTML = tmp + " left."
-    } else {
-        document.getElementById('tpcount').innerHTML = "Remove " + Math.abs(tmp);
-    }
-    //document.getElementById('tpcount').innerHTML = arr.length + "/"+maxCards;
-
+function addToMMList(qty, val) {
+    mmArray.push({
+        Qty: qty,
+        Value: val
+    });
+    ;
 }
+mmcnt=0;
+var loadMulitplierMadnessTemplate = function () {
+    mmcnt = mmArray.length + 1;
+    $("#playerlist").loadTemplate($('#playerTemplate'), mmArray,{ append: false});
+    console.log(mmArray);
+};
 function checkInp(x) {
     //var x = document.forms["myForm"]["age"].value;
     //var regex = /^[0-9]+$/;
@@ -101,22 +100,12 @@ function checkInp(x) {
         return false;
     }
 }
-function deleteCurrent() {
-    for (var i = 0, j = tp.length; i < j; i++) {
-        if(document.getElementById('itm' + tp[i])!=null){
-            document.getElementById('itm' + tp[i]).remove();
-        }
-    }
-    countMultipliers();
-}
-function countMultipliers() {
-    document.getElementById('HiddenField1').value = arr;
-    document.getElementById('tpcount').innerHTML = 0;
-    deleteCurrent();
+function countMMMultipliers() {
+    document.getElementById('multi_madness_values').value = arr;
+    document.getElementById('mmtpcount').innerHTML = "Count:" + arr.length;
     tp = [];
     obj = {};
-    // var muls = document.getElementById('hidmul');
-    // var cnt = muls.value.split(',')
+    mmArray=[];
     for (var i = 0, j = arr.length; i < j; i++) {
         if (obj[arr[i]]) {
             obj[arr[i]]++;
@@ -128,10 +117,9 @@ function countMultipliers() {
     }
 
     for (var i = 0, j = tp.length; i < j; i++) {
-
-        addToList(obj[tp[i]], tp[i]);
+        addToMMList(obj[tp[i]], tp[i]);
     }
-
+    loadMulitplierMadnessTemplate();
     console.log(obj);
 }
 $(function () {
@@ -141,4 +129,46 @@ $(function () {
         $('#SetWinner').hide();
     });
 });
+var hideStartButton = function () {
 
+    if($('#multi_madness_started').val().length > 0){
+        //$('#startMMSession').toggle(false);
+        $('.mmclose').toggle(false);
+        $('#addMMValues').toggle(false);
+        $('#startSessionMessage').toggle(true);
+        $('#ui-button #ui-corner-all #ui-widget').toggle(false);
+//        console.log('found' + $('#multi_madness_started').val().indexOf("0000-00-00"));
+    }else{
+        $('#ui-button #ui-corner-all #ui-widget').toggle(true);
+        $('#startSessionMessage').toggle(false);
+    }
+}
+
+var startMatchMadnessSession = function (promotionId,mmvals) {
+console.log("vals:" + mmvals);
+    $.ajax({
+        url: 'controllers/promotioncontrollers/matchmadnesscontroller.php',
+        type: 'post',
+        data: {
+            action: 'startMM',
+            promotionId: promotionId,
+            mmvals:mmvals
+        },
+        cache: false,
+        beforeSend: function(){
+            $(".loader").removeClass("hidden");
+        },
+        success: function (response) {
+            $(".ui-dialog-titlebar-close").trigger('click');
+        },
+        error: function (xhr, desc, err) {
+            console.log(xhr + "\n" + err);
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
+        },
+        complete: function(){
+            $(".loader").addClass("hidden");
+        }
+    });
+};

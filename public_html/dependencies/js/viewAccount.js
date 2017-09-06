@@ -12,6 +12,10 @@ var viewAccountModal = $('#createProperty').dialog({
     width: 1024,
     modal: true,
     title: 'View Account Information',
+    open: function(event, ui) {
+        // Height setter has no effect after init either
+        $(this).dialog("option", "height", 400);
+    },
     buttons: {
         Close: function () {
             viewPropertyModal.dialog('close');

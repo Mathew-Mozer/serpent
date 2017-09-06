@@ -23,16 +23,13 @@ class MultiplierMadnessModel{
      * @param $values
      */
    public function add($values){
-     $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number)
-                                 VALUES (:promotion_id, :cash, :target_number);";
+       //var_dump($values);
+     $sql = "INSERT INTO multi_madness (multi_madness_promoid, multi_madness_values)
+                                 VALUES (:promotion_id, :prizes);";
      $result = $this->db->prepare($sql);
      $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-     $result->bindValue(':cash', $values['kfc_cash_prize'], PDO::PARAM_STR);
-     $result->bindValue(':target_number', $values['kfc_target_number'], PDO::PARAM_STR);
-
+     $result->bindValue(':prizes', $values['multi_madness_values'], PDO::PARAM_STR);
      $result->execute();
-
-
    }
 
     /**
@@ -40,30 +37,7 @@ class MultiplierMadnessModel{
      * @param $values
      */
    public function update($values){
-
-       if($values['update_player']=='true'){
-           if($values['kfc_target_number']==$values['kfc_chosen_number']){
-               $values['kfc_failedattempts'] = 0;
-           }else {
-               $values['kfc_failedattempts'] = intval($values['kfc_failedattempts'])+1;
-           }
-       }
-     $sql = "INSERT INTO kick_for_cash (kfc_promotion_id, kfc_cash_prize, kfc_target_number, kfc_name, kfc_chosen_number, kfc_failedattempts, kfc_gamelabel, kfc_team1,kfc_team2,kfc_vs)
-            VALUES (:promotion_id, :cash, :target_number,:current_name, :chosen_number, :failedattempts, :gamelabel, :team1, :team2, :vs);";
-
-
-     $result = $this->db->prepare($sql);
-     $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-     $result->bindValue(':cash', $values['kfc_cash_prize'], PDO::PARAM_STR);
-     $result->bindValue(':target_number', $values['kfc_target_number'], PDO::PARAM_STR);
-     $result->bindValue(':current_name', $values['kfc_name'], PDO::PARAM_STR);
-     $result->bindValue(':failedattempts', $values['kfc_failedattempts'], PDO::PARAM_STR);
-     $result->bindValue(':chosen_number', $values['kfc_chosen_number'], PDO::PARAM_STR);
-     $result->bindValue(':gamelabel', $values['kfc_gamelabel'], PDO::PARAM_STR);
-     $result->bindValue(':team1', $values['kfc_team1'], PDO::PARAM_STR);
-     $result->bindValue(':team2', $values['kfc_team2'], PDO::PARAM_STR);
-     $result->bindValue(':vs', $values['kfc_vs'], PDO::PARAM_STR);
-     $result->execute();
+        $this->add($values);
    }
 
     /**
@@ -75,11 +49,11 @@ class MultiplierMadnessModel{
      $sql = "SELECT
                *
              FROM
-               kick_for_cash
+               multi_madness
              WHERE
-               kfc_promotion_id=:id
+               multi_madness_promoid=:id
              ORDER BY
-              kfc_timestamp DESC
+              multi_madness_id DESC
                LIMIT 1;";
      $result = $this->db->prepare($sql);
       $result->bindValue(':id', $id, PDO::PARAM_STR);
@@ -88,39 +62,36 @@ class MultiplierMadnessModel{
      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
      return $promoResult;
    }
+    public function startMM($post){
+    $cardlist = ["AH","AC", "AD", "AS", "2H", "2C", "2D", "2S", "3H", "3C", "3D", "3S", "4H", "4C", "4D", "4S", "5H", "5C", "5D", "5S", "6H", "6C", "6D", "6S", "7H", "7C", "7D", "7S", "8H", "8C", "8D", "8S", "9H", "9C", "9D", "9S", "JH", "JC", "JD", "JS", "QH", "QC", "QD", "QS", "KH", "KC", "KD", "KS"];
+    $myArray = explode(',', $post['mmvals']);
+        shuffle($cardlist);
+        shuffle($myArray);
+//update start Timestamp
+        $sql = "update multi_madness set multi_madness_started=now()
+             WHERE
+               multi_madness_promoid=:id
+             LIMIT 1;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $post['promotionId'], PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->execute();
+        $cnt = 0;
+        foreach ($cardlist as $card) {
+            if($cnt<sizeof($myArray)-1) {
+                $sql = "INSERT INTO multi_madness_cards (multi_madness_cards_card, multi_madness_cards_value,multi_madness_cards_promoid)
+                                 VALUES (:card,:val,:promotion_id);";
+                $result = $this->db->prepare($sql);
+                $result->bindValue(':promotion_id', $post['promotionId'], PDO::PARAM_STR);
+                $result->bindValue(':card', $card, PDO::PARAM_STR);
+                $result->bindValue(':val', $myArray[$cnt], PDO::PARAM_STR);
+                $result->execute();
+                $cnt++;
+            }
+        }
 
-    /**
-     * DELETE
-     * @param $values
-     * @return array
-     */
-   public function updateExcess($values){
 
-     $sql=
-     "UPDATE
-          kick_for_cash
-      SET
-          name=:current_name,
-          chosen_number=:chosen_number,
-          kfc_failedattempts=kfc_failedattempts+1,
-          kfc_gamelabel=:kfc_gamelabel,
-          kfc_team1=:kfc_team1,
-          kfc_team2=:kfc_team2,
-          kfc_vs=:kfc_vs
-     WHERE
-          promotion_id=:promotion_id;";
 
-       $result = $this->db->prepare($sql);
-       $result->bindValue(':current_name', $values['name'], PDO::PARAM_STR);
-       $result->bindValue(':chosen_number', $values['chosen_number'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_gamelabel', $values['kfc_gamelabel'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_team1', $values['kfc_team1'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_team2', $values['kfc_team2'], PDO::PARAM_STR);
-       $result->bindValue(':kfc_vs', $values['kfc_vs'], PDO::PARAM_STR);
-       $result->bindValue(':promotion_id', $values['promotion_id'], PDO::PARAM_STR);
-       $result->execute();
-       return array("id"=>$promotionId,"name"=>$name,"target_number"=>$targetNumber,"game_label"=>$gameLabel);
-   }
-
- }
+    }
+}
 ?>

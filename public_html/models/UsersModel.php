@@ -28,15 +28,16 @@ class UsersModel{
      * @param $userPassword
      * @param $propertyID
      */
+    var $options = ['cost' => 11];
     public function addUser($userName, $userPassword, $propertyID) {
 
 
         //How expensive should the hash be? The more expensive, the harder it is to break
         //and the more time it takes the server to perform
-        $options = ['cost' => 11];
+
 
         //Hash password using bcrypt
-        $hashed_password = password_hash($userPassword, PASSWORD_BCRYPT, $options);
+        $hashed_password = password_hash($userPassword, PASSWORD_BCRYPT, $this->options);
 
         $sql = "INSERT INTO account (account_name, account_password) VALUES(:userName, :userPassword);
                 INSERT INTO account_permissions (account_id, tag_id, permissions, excess_id) VALUES(LAST_INSERT_ID(), 1, 'RU', :propertyID);";
@@ -49,6 +50,22 @@ class UsersModel{
 
         $result->execute();
         return $result;
+    }
+    public function updateUserPassword($userId,$userPassword){
+
+
+        //Hash password using bcrypt
+        $hashed_password = password_hash($userPassword, PASSWORD_BCRYPT, $this->options);
+        $sql = "UPDATE account set account_password=:userPassword where account_id=:userId limit 1;";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':userId', $userId, PDO::PARAM_STR);
+        $result->bindValue(':userPassword', $hashed_password, PDO::PARAM_STR);
+        if($result->execute()){
+            return ("Password Updated Successfully");
+        }else{
+            return ("Password Update Failed");
+        }
+
     }
     private function formatInput ($data) {
         $data = trim($data);

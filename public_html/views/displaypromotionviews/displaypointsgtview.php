@@ -12,6 +12,7 @@
         case 0:
 
             ?>
+
             <table>
                 <tr>
                     <td>
@@ -45,16 +46,14 @@
             break;
         case 1:
             ?>
+        <script>
+            $(".ui-dialog-buttonset").toggle(false);
+        </script>
             <table>
                 <tr>
                     <td style="vertical-align: top">
                         Click points to modify
                         <table>
-                            <tr>
-                                <td id="playerlist" width="400px" style="vertical-align: top">
-
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <div class="newPlayer">
@@ -63,12 +62,19 @@
                                         </button>
                                     </div>
                                 </td>
-
                             </tr>
+                            <tr>
+                                <td>
+                                    <div id="playerlist" width="450px" style="vertical-align: top; overflow: scroll; height: 500px">
+
+                                    </div>
+                                </td>
+                            </tr>
+
                         </table>
                     </td>
-                    <td>
-                        <table id="pulltab-button-layout" hidden>
+                    <td  style="vertical-align: top;">
+                        <table id="pulltab-button-layout"  hidden>
                             <tr>
                                 <td>
                                     <span id="pgtoperator">+</span><span id="newpoints"
@@ -99,15 +105,15 @@
                             <tr>
                                 <td>
 
-                            <tr>
+                            <tr hidden>
                                 <td colspan="3" style="text-align: center">&nbsp;Quick Add Points</td>
                             </tr>
-                            <tr>
+                            <tr hidden>
                                 <td class="btn btn-info btn-lg pull-tab-button-quick-add">25</td>
                                 <td class="btn btn-info btn-lg pull-tab-button-quick-add">100</td>
                                 <td class="btn btn-info btn-lg pull-tab-button-quick-add">33</td>
                             </tr>
-                            <tr>
+                            <tr hidden>
                                 <td class="btn btn-info btn-lg pull-tab-button-quick-add">66</td>
                                 <td class="btn btn-info btn-lg pull-tab-button-quick-add">99</td>
                                 <td class="btn btn-info btn-lg pull-tab-button-quick-add">250</td>
@@ -155,7 +161,7 @@
         if (pastebox.value.indexOf('Last Time\n') != -1) {
             var tmp = pastebox.value.split('Last Time\n');
             if (tmp[1] == undefined) {
-                alert("Last Time");
+                //alert("Last Time");
             } else {
                 pastebox.value = tmp[1];
                 newstr = tmp[1];
@@ -163,9 +169,9 @@
         }
         if (pastebox.value.indexOf('Customer\n') != -1) {
             var tmp = pastebox.value.split('Customer \n');
-            alert(tmp[1]);
+            //alert(tmp[1]);
             if (tmp[1] == undefined) {
-                alert("Customer");
+                //alert("Customer");
             } else {
                 pastebox.value = tmp[1];
                 newstr = tmp[1];
@@ -197,10 +203,13 @@
                         //alert(dnewstr[1]);
                         document.getElementById('txtName' + (cnt)).value = dnewstr[1];
                         document.getElementById('txtPoints' + (cnt)).value = dnewstr[2].replace(',', '');
+                        $('#playerCount').val(cnt);
                         cnt++;
                     } else {
                         //alert(dnewstr[0]);
                     }
+
+
                 }
                 //    alert(dnewstr[1] + " has " + dnewstr[2] + " points");
                 //alert(eachLine[l]);

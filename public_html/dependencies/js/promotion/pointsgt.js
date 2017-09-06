@@ -79,6 +79,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn-new-player", function () {
         loadTemplate($("#pgt_player_newname").val(),0,null)
         updatePromotion($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('promo-type-id'),1);
+        $("#pgt_player_newname").val("");
     });
 
     var ptButtonClear = function () {

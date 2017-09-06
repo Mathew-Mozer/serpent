@@ -162,11 +162,21 @@
             $('#createProperty').load("views/SkinManager.php", {propertyId: this.id});
             viewAccountModal.dialog('open');
         });
+        $(".view-subscriptions-btn").click(function () {
+            $('#createProperty').load("views/SubscriptionManager.php", {propertyId: $(this).data("property-id")});
+            viewAccountModal.dialog('open');
+        });
 
         $("#view-documents-btn").click(function () {
             $('#createProperty').load("views/documentsview.php", {propertyId: this.id});
             viewDocumentsModal.dialog('open');
         });
+        $(".property-isviewing").click(function () {
+            $("#promotioncontainer"+$(this).data("property-id")).toggle();
+            $(this).toggleClass("fa-caret-square-o-down");
+            $(this).toggleClass("fa-caret-square-o-right");
+        });
+
 
         /**
          * Toggles display and promotion view

@@ -132,7 +132,7 @@ if(!isset($values['updateSettings'])){
            $sql .= $i < $values['playerCount'] ? "," : ";";
 
        }
-
+        echo('playercount:'.$values['playerCount']);
        $result = $this->db->prepare($sql);
        for($i = 1; $i <= $values['playerCount']; $i++){
            if(!isset($values["pgt_player_id$i"])){

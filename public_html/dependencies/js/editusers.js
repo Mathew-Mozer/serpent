@@ -9,13 +9,28 @@ $(document).on("click", "#viewUserBtn", function(){
 
 $(document).on("click", ".edit-user-button", function(){
     $('#UserModalContent').load("views/EditUserPermissionsView.php", {propertyId: $(this).data('property-id'),userId: $(this).data('account-id')});
+    $("#userid").val($(this).data('account-id'));
+    $("#account-name").text($(this).text().trim() + "'s");
+
 });
 
 $(document).on("click", "#createUserBtn", function(){
     createUser();
 });
+$(document).on("input", ".confirm-password-field", function(){
+if($("#confirm_password").val()==$("#new_password").val()){
+    $("#changeUserPasswordBtn").removeAttr("disabled");
+    $msg=""
 
-console.log('loaded editusers.js');
+}else{
+    $("#changeUserPasswordBtn").attr("disabled", "disabled");
+    $msg="Passwords Do Not Match";
+}
+    $("#changeUserPasswordMsg").text($msg)
+});
+$(document).on("click", "#changeUserPasswordBtn", function(){
+    updateUserPassword($("#userid").val(),$("#new_password").val());
+});
 
 var updateUserPermissions = function (userid,propertyid,tagid,modtype,permvalue) {
     var userId = userid;
@@ -32,6 +47,21 @@ var updateUserPermissions = function (userid,propertyid,tagid,modtype,permvalue)
         data: {
             action: 'updateUserPermission',userId: userId, tagId:tagId, propertyId: propertyID,modType:modtype,permValue:permvalue}
 
+    })
+};
+var updateUserPassword = function (userid,newpassword) {
+    var userId = userid;
+    var newPassword  = newpassword;
+    $.ajax({
+
+        url: 'controllers/newusercontroller.php',
+        global: true,
+        type: 'post',
+        success: function (response){
+            $("#changeUserPasswordMsg").text(response);
+        },
+        data: {
+            action: 'updateUserPassword',userId: userId, userPassword:newPassword}
     })
 };
 var createUser = function () {

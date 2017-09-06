@@ -182,11 +182,12 @@ class PropertyDisplays
     {
         $sql = 'DELETE FROM `promotion_property` 
  WHERE promotion_property.promotion_id = :promotionId 
- AND promotion_property.display_id = :displayId';
+ AND promotion_property.display_id = :displayId;UPDATE display set display_lockedpromo=0 where display_lockedpromo=:promotionId';
         $statement = $this->conn->prepare($sql);
         $statement->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
         $statement->bindValue(':displayId', $displayId, PDO::PARAM_STR);
         $statement->execute();
+
     }
 
     /**
