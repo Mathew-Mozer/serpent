@@ -41,6 +41,9 @@
                 <input id="payout" name="pgt_payout" type="text" placeholder="Payout">
 
                 <br><br>
+
+                <button id="btnminusDayPGT" type="button">-</button><button id="btnAddDayPGT" type="button">+</button><button id="btnAddDaysPGT" type="button">+7</button>
+
                 <label for="start-date">Starts</label><br>
                 <input id="start-date" class="filthypillow" name="pgt_race_begin">
 
@@ -54,6 +57,7 @@
                     <option value="1">Chinese Dragon</option>
                     <option value="2">Baseball</option>
                     <option value="3">Motorcycles</option>
+                    <option value="4">Chip Drop</option>
                 </Select>
 
 
@@ -119,41 +123,67 @@
         }
     });
     //first fp
-    var $fp1 = $( "#start-date" ),
-        now = moment( ).subtract( "seconds", 1 );
-    $fp1.val( moment().format( "YYYY-MM-DD HH:mm:00") );
-    $fp1.filthypillow( {
-        calendar: {
-            saveOnDateSelect: true,
-            isPinned: true
+    var enableFP = function () {
+        var $fp1 = $( "#start-date" ),
+            now = moment().subtract( "seconds", 1 );
+        $fp1.val( moment($( "#start-date" ).val()).format( "YYYY-MM-DD HH:mm:00") );
+        $fp1.filthypillow( {
+            calendar: {
+                saveOnDateSelect: false,
+                isPinned: true
 
-        }
-    });
-    $fp1.on( "focus", function( ) {
-        $fp1.filthypillow( "show" );
-    } );
-    $fp1.on( "fp:save", function( e, dateObj ) {
-        $fp1.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
-        $fp1.filthypillow( "hide" );
-    } );
-    //second fp
-    var $fp2 = $( "#end-date" ),
-        now = moment( ).subtract( "seconds", 1 );
-    $fp2.val( moment().format( "YYYY-MM-DD HH:mm:00") );
-    $fp2.filthypillow( {
-        calendar: {
-            saveOnDateSelect: true,
-            isPinned: true
+            },
+            initialDateTime: function( m ) {
 
-        }
-    });
-    $fp2.on( "focus", function( ) {
-        $fp2.filthypillow( "show" );
-    } );
-    $fp2.on( "fp:save", function( e, dateObj ) {
-        $fp2.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
-        $fp2.filthypillow( "hide" );
-    } );
+                return moment($( "#start-date" ).val());
+            }
+        });
+        $fp1.on( "focus", function( ) {
+            $fp1.filthypillow( "show" );
+        } );
+        $fp1.on( "fp:save", function( e, dateObj ) {
+            $fp1.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+            $fp1.filthypillow( "hide" );
+        } );
+        //second fp
+        var $fp2 = $( "#end-date" ),
+            now = moment().subtract( "seconds", 1 );
+        $fp2.val( moment($( "#end-date" ).val()).format( "YYYY-MM-DD HH:mm:00") );
+        $fp2.filthypillow( {
+            calendar: {
+                saveOnDateSelect: false,
+                isPinned: true
+
+            },
+            initialDateTime: function( m ) {
+
+                return moment($( "#end-date" ).val());
+            }
+        });
+        $fp2.on( "focus", function( ) {
+            $fp2.filthypillow( "show" );
+        } );
+        $fp2.on( "fp:save", function( e, dateObj ) {
+            $fp2.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+            $fp2.filthypillow( "hide" );
+        } );
+        $("#btnAddDayPGT").on("click", function (event) {
+            $fp1.val(moment($fp1.val()).add("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+            $fp2.val(moment($fp2.val()).add("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+        });
+        $("#btnminusDayPGT").on("click", function (event) {
+            $fp1.val(moment($fp1.val()).subtract("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+            $fp2.val(moment($fp2.val()).subtract("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+        });
+        $("#btnAddDaysPGT").on("click", function (event) {
+            $fp1.val(moment($fp1.val()).add("Days",7).format( "YYYY-MM-DD HH:mm:00") );
+            $fp2.val(moment($fp2.val()).add("Days",7).format( "YYYY-MM-DD HH:mm:00") );
+        });
+
+    }
+
+
+
 </script>
 
 <script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>

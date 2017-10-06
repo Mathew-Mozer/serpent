@@ -22,6 +22,7 @@ class DisplayModel
     private $fitw;
     private $fith;
     private $flip;
+    private $isVertical;
     private $fcmid;
     /**
      * DisplayModel constructor.
@@ -55,6 +56,7 @@ class DisplayModel
         $this->setFlip($fieldArray['display_flip']);
         $this->setDebug($fieldArray['display_debug']);
         $this->setFCMToken($fieldArray['display_gcmid']);
+        $this->setVertical($fieldArray['display_vertical']);
 //var_dump($fieldArray);
     }
 
@@ -86,6 +88,9 @@ class DisplayModel
     }
     public function setFCMToken($val){
         $this->fcmid = $val;
+    }
+    public function setVertical($val){
+        $this->isVertical=$val;
     }
     public function setAppVersion($val)
     {
@@ -212,6 +217,10 @@ class DisplayModel
     public function getDebug()
     {
         return $this->debug;
+    }
+    public function getVertical()
+    {
+        return $this->isVertical;
     }
     public function getLockedPromoId()
     {

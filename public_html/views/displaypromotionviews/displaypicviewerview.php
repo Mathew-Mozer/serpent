@@ -7,7 +7,9 @@
  */
 ?>
 <label id="lblResponse"></label><br>
-<input id="fileToUpload" type="file" name="uploadfile"/>
+Step 1:<input id="fileToUpload" type="file" name="uploadfile"/>
+<br>
+Step 2:<br>
 <button id="uploadfile">Upload</button>
 
 

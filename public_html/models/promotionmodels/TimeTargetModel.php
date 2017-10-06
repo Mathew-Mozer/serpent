@@ -41,14 +41,23 @@ class TimeTargetModel{
      * @param $values
      */
    public function add($values){
-       $sql = "INSERT INTO time_target (time_target_promoid, time_target_title,time_target_contenttitle,time_target_content,time_target_cards)
-                                 VALUES (:promotion_id,:title,:contenttitle,:content,:cards);";
+       $sql = "INSERT INTO time_target (time_target_promoid, time_target_title,time_target_contenttitle,time_target_content,time_target_cards,time_target_default_seed,time_target_default_Increment,time_target_default_add_amt,time_target_progressive,time_target_lock_defaults,time_target_maxpayout,time_target_def_hour,time_target_def_minute)
+                                 VALUES (:promotion_id,:title,:contenttitle,:content,:cards,:defseed,:defincr,:defadd,:isprog,:deflock,:maxpayout,:defhour,:defminute);";
        $result = $this->db->prepare($sql);
        $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
        $result->bindValue(':contenttitle', $values['time_target_contenttitle'], PDO::PARAM_STR);
        $result->bindValue(':content', $values['time_target_content'], PDO::PARAM_STR);
        $result->bindValue(':title', $values['time_target_title'], PDO::PARAM_STR);
        $result->bindValue(':cards', $values['time_target_cards'], PDO::PARAM_STR);
+       $result->bindValue(':defseed', $values['time_target_default_seed'], PDO::PARAM_STR);
+       $result->bindValue(':defincr', $values['time_target_default_Increment'], PDO::PARAM_STR);
+       $result->bindValue(':defadd', $values['time_target_default_add_amt'], PDO::PARAM_STR);
+       $result->bindValue(':isprog', $values['time_target_progressive'], PDO::PARAM_STR);
+       $result->bindValue(':deflock', $values['time_target_lock_defaults'], PDO::PARAM_STR);
+       $result->bindValue(':maxpayout', $values['time_target_maxpayout'], PDO::PARAM_STR);
+       $result->bindValue(':defhour', $values['time_target_def_hour'], PDO::PARAM_STR);
+       $result->bindValue(':defminute', $values['time_target_def_minute'], PDO::PARAM_STR);
+        echo("it tried");
        $result->execute();
        return $result;
    }
@@ -84,6 +93,7 @@ class TimeTargetModel{
                time_target_sessions
              WHERE time_target_archive='0' and
                time_target_session_promoid=:id
+                
              ORDER BY
               time_target_session_id DESC
                ;";

@@ -246,6 +246,7 @@ var setFormData = function (formId, data) {
         }
 
     }
+    $('#ttlockDef').trigger('change');
     if($('#pgt_enable_instant_winners').is(':checked')){
         $('#instant-winner-options').show();
     }else{
@@ -316,7 +317,7 @@ var setFormData = function (formId, data) {
         countMMMultipliers();
         hideStartButton();
     }
-
+    enableFP();
 };
 
 

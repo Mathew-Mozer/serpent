@@ -170,11 +170,13 @@ function loadSceneData()
         $displayData->displayID = $result['display_id'];
         $displayData->monitor = $result['display_monitor'];
         $displayData->apiurl = $result['api_url'];
-        $displayData->width = $result['display_width'];
-        $displayData->height = $result['display_height'];
+
         $displayData->fitw = (bool)$result['display_fitw'];
         $displayData->fith = (bool)$result['display_fith'];
         $displayData->flip = (bool)$result['display_flip'];
+        $displayData->isVertical = (bool)$result['display_vertical'];
+        $displayData->width = $result['display_width'];
+        $displayData->height = $result['display_height'];
         $displayData->debug = (bool)$result['display_debug'];
         $displayData->sceneList = loadScenes($result);
         //Add Scenes to Display

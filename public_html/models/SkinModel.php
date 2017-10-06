@@ -156,17 +156,17 @@ class SkinModel
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($result as $color) {
 
-                if (!in_array("#" . $color['skin_tag_data_forecolor'], $usedColors)&&!empty($color['skin_tag_data_forecolor'])&&$color['skin_tag_data_forecolor']!=" ") {
-                    array_push($usedColors, "#" . $color['skin_tag_data_forecolor']);
+                if (!in_array("#" . strtoupper($color['skin_tag_data_forecolor']), $usedColors)&&!empty(strtoupper($color['skin_tag_data_forecolor']))&&$color['skin_tag_data_forecolor']!=" ") {
+                    array_push($usedColors, "#" . strtoupper($color['skin_tag_data_forecolor']));
                 }
-                if (!in_array("#" . $color['skin_tag_data_backcolor'], $usedColors)&&!empty($color['skin_tag_data_backcolor'])&&$color['skin_tag_data_backcolor']!=" ") {
-                    array_push($usedColors, "#" . $color['skin_tag_data_backcolor']);
+                if (!in_array("#" . strtoupper($color['skin_tag_data_backcolor']), $usedColors)&&!empty($color['skin_tag_data_backcolor'])&&$color['skin_tag_data_backcolor']!=" ") {
+                    array_push($usedColors, "#" . strtoupper($color['skin_tag_data_backcolor']));
                 }
-                if (!in_array("#" . $color['skin_tag_data_textcolor'], $usedColors)&&!empty($color['skin_tag_data_textcolor'])&&$color['skin_tag_data_textcolor']!=" ") {
-                    array_push($usedColors, "#" . $color['skin_tag_data_textcolor']);
+                if (!in_array("#" . strtoupper($color['skin_tag_data_textcolor']), $usedColors)&&!empty($color['skin_tag_data_textcolor'])&&$color['skin_tag_data_textcolor']!=" ") {
+                    array_push($usedColors, "#" . strtoupper ($color['skin_tag_data_textcolor']));
                 }
-                if (!in_array("#" . $color['skin_tag_data_bordercolor'], $usedColors)&&!empty($color['skin_tag_data_bordercolor'])&&$color['skin_tag_data_bordercolor']!=" ") {
-                    array_push($usedColors, "#" . $color['skin_tag_data_bordercolor']);
+                if (!in_array("#" . strtoupper($color['skin_tag_data_bordercolor']), $usedColors)&&!empty($color['skin_tag_data_bordercolor'])&&$color['skin_tag_data_bordercolor']!=" ") {
+                    array_push($usedColors, "#" . strtoupper($color['skin_tag_data_bordercolor']));
 
                 }
 

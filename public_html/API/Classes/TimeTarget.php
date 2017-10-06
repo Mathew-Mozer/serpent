@@ -14,4 +14,5 @@ class TimeTarget
     public $endTime;
     public $min;
     public $add;
+    public $MaxPayout;
 }

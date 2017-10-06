@@ -2,6 +2,7 @@
 /*
 * This page controls the footer and closing material for the website
 */
+
 ?>
 
 <script src="dependencies/js/optionsmodal.js?t=<?php echo microtime() ?>"></script>

@@ -177,7 +177,7 @@ class HighHandModel{
      */
     public function getAllHands($id){
        $sql = "SELECT * FROM high_hand_records
-                WHERE high_hand_records.high_hand_session = :id and high_hand_record_archive='0' order by high_hand_record_id DESC ";
+                WHERE high_hand_records.high_hand_session = :id and high_hand_record_archive='0' order by high_hand_record_id DESC limit 75 ";
         $result = $this->conn->prepare($sql);
 
         $result->bindValue(':id', $id, PDO::PARAM_STR);

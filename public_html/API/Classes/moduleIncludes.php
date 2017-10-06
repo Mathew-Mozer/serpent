@@ -10,6 +10,7 @@ include 'MonsterCarlo.php';
 include 'KickForCash.php';
 include 'PointsGT.php';
 include 'TimeTarget.php';
+include 'TimeTargetX.php';
 include 'PointsGTPlayer.php';
 include 'PgtInstantWinner.php';
 include 'PrizeEvent.php';

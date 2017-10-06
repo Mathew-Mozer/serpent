@@ -35,13 +35,21 @@ class PromotionModel
 
     public function getPromotionProperties()
     {
-        $sql = "SELECT * FROM property;";
+        $sql = "SELECT * FROM property where property_active=1;";
         $result = $this->db->prepare($sql);
         $result->execute();
         $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
         return $promoResult;
     }
 
+    public function getPropertyInformation($promotionID)
+    {
+        $sql = "SELECT * FROM property where property_id = (select promo_property_property_id from promo_property where promo_property_promo_id=?);";
+        $result = $this->db->prepare($sql);
+        $result->execute(array($promotionID));
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
     /**
      * Get list of properties that logged in user can access
      * @return PDOStatement

@@ -119,6 +119,17 @@ if(!isset($values['updateSettings'])){
    }
    public function updatePlayers($values){
        //echo('updating Players of PointsGT');
+       //echo($values['pastedReport']);
+       $sql = "insert INTO pgt_reports (
+        pgt_reports_promoid,
+        pgt_reports_report
+      ) VALUES
+      (:pgt_promoid,:pgt_report)";
+       $result = $this->db->prepare($sql);
+       $result->bindValue(':pgt_promoid', $values['promotionId'], PDO::PARAM_STR);
+       $result->bindValue(':pgt_report', $values['pastedReport'], PDO::PARAM_STR);
+       $result->execute();
+
        $sql = "replace INTO points_gt_players (
         pgt_player_id,
         pgt_player_name,

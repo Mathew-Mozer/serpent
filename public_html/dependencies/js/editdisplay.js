@@ -193,12 +193,13 @@ $(document).on("click", "#save-display-options", function () {
             display_fith:$('#display-fith').is(":checked"),
             displayId:$('#display-id').val(),
             display_flip:$('#display-flip').is(":checked"),
-            display_debug:$('#display-debug').is(":checked")
+            display_debug:$('#display-debug').is(":checked"),
+            display_vertical:$('#display-vertical').is(":checked")
         },
         cache: false,
         success: function ($results) {
-            location.reload();
-            //console.log($results);
+            //location.reload();
+            console.log($results);
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);

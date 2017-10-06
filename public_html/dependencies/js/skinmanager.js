@@ -8,7 +8,7 @@
  */
 var viewDocumentsModal = $('#createProperty').dialog({
     autoOpen: false,
-    height: 610,
+    height: 1000,
     width: 800,
     modal: true,
     title: 'Skin Manager',

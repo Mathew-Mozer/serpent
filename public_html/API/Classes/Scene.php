@@ -28,6 +28,7 @@ class Scene
     public $pointsGTData;
     public $highHandData;
     public $timeTargetData;
+    public $timeTargetXData;
     public $monsterCarloData;
     public $PictureViewerData;
     public $sceneSkin;
@@ -89,7 +90,10 @@ class Scene
                 break;
             case 14:
 
-                $this->loadTimeTargetData($promoID);
+                $this->timeTargetData= $this->loadTimeTargetData($promoID);
+                break;
+            case 15:
+                $this->loadTimeTargetXData($promoID);
                 break;
         }
     }
@@ -220,25 +224,39 @@ class Scene
     }
     function loadTimeTargetData($pSceneID)
     {
-
+        $tdata = new TimeTarget();
         $sql = 'SELECT * FROM `time_target_sessions`,time_target where time_target_archive=\'0\' and time_target_promoid=? and time_target_session_promoid=time_target_promoid ORDER BY time_target_session_id desc,time_target_id desc limit 1 ';
         $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-            $this->timeTargetData = new TimeTarget();
-            $this->timeTargetData->id = $result['time_target_session_id'];
-            $this->timeTargetData->seed = $result['time_target_seed'];
-            $this->timeTargetData->startTime = $result['time_target_start'];
-            $this->timeTargetData->endTime = $result['time_target_end'];
-            $this->timeTargetData->min = $result['time_target_increment_min'];
-            $this->timeTargetData->add = $result['time_target_add'];
-            $this->timeTargetData->title = $result['time_target_title'];
-            $this->timeTargetData->contentTitle = $result['time_target_contenttitle'];
-            $this->timeTargetData->content = $result['time_target_content'];
-            $this->timeTargetData->cards = $result['time_target_cards'];
+            $tdata->id = $result['time_target_session_id'];
+            $tdata->seed = $result['time_target_seed'];
+            $tdata->startTime = $result['time_target_start'];
+            $tdata->endTime = $result['time_target_end'];
+            $tdata->min = $result['time_target_increment_min'];
+            $tdata->add = $result['time_target_add'];
+            $tdata->title = $result['time_target_title'];
+            $tdata->contentTitle = $result['time_target_contenttitle'];
+            $tdata->content = $result['time_target_content'];
+            $tdata->cards = $result['time_target_cards'];
+            $tdata->MaxPayout = $result['time_target_maxpayout'];
+            $tdata->progressive = $result['time_target_progressive'];
+        }
+        return $tdata;
+    }
+    function loadTimeTargetXData($pSceneID)
+    {
+
+        $sql = "Select * from promotion,promo_property where promotion.promotion_id=promo_property.promo_property_promo_id AND promo_property.promo_property_property_id = (select promo_property_property_id from promo_property where promo_property_promo_id=?) and promotion_type_id='14' and promotion_status='1' and promotion.promotion_visible='1' limit 4";
+        //echo("sql:".$sql);
+        $statement = $this->conn->prepare($sql);
+        $statement->execute(array($pSceneID));
+        $this->timeTargetXData = new TimeTargetX();
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            //echo("found");
+            array_push($this->timeTargetXData->TimeTargetData, $this->loadTimeTargetData($result['promo_property_promo_id']));
         }
     }
-
     function loadPointsGTData($pSceneID)
     {
 

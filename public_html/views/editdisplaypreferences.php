@@ -74,6 +74,10 @@ $promotion = new PromotionModel($dbcon->read_database());
                 <label for="top-content-box">Debug</label><br>
                 <input  id="display-debug" class="display-field" data-column="display_flip" type="checkbox" <?php echo(isChecked($display->getDebug())) ?>>
             </td>
+            <td>
+                <label for="top-content-box">Vertical</label><br>
+                <input  id="display-vertical" class="display-field" data-column="display_vertical" type="checkbox" <?php echo(isChecked($display->getVertical())) ?>>
+            </td>
         </tr>
     </table>
     </div>

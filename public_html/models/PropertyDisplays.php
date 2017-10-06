@@ -253,6 +253,11 @@ class PropertyDisplays
         }else{
             $values['display_debug']='0';
         }
+        if($values['display_vertical']=="true"){
+            $values['display_vertical']='1';
+        }else{
+            $values['display_vertical']='0';
+        }
         $sql = 'UPDATE display 
                 SET 
                   display_mac_address=:mac,
@@ -263,7 +268,8 @@ class PropertyDisplays
                   display_fitw=:fitw,
                   display_fith=:fith,
                   display_flip=:flip,
-                  display_debug=:debug
+                  display_debug=:debug,
+                  display_vertical=:vertical
                 WHERE 
                   display_id=:displayId';
         $statement = $this->conn->prepare($sql);
@@ -277,6 +283,7 @@ class PropertyDisplays
             $statement->bindValue(':fith', $values['display_fith'], PDO::PARAM_STR);
             $statement->bindValue(':flip', $values['display_flip'], PDO::PARAM_STR);
             $statement->bindValue(':debug', $values['display_debug'], PDO::PARAM_STR);
+            $statement->bindValue(':vertical', $values['display_vertical'], PDO::PARAM_STR);
         $statement->execute();
 
         return $values;

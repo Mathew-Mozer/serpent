@@ -136,6 +136,7 @@ $colorlist = '"'.implode('","', $skinColors).'"';
             showInitial: true,
             showPalette: true,
             preferredFormat: "hex",
+            appendTo:"#createProperty",
             palette: [
                 [<?php echo($colorlist)?>]
             ]

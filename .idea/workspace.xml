@@ -1,68 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="387a5a77-39f5-4f38-b5f9-db8c63230e55" name="Default" comment="Fixed DBcon and Helper Function">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/EmeraldDownsAndroid.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/FortAndroid.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/FortAndroid3.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/FortPAndroid.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/FortWindows.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/FredRentAndroid.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/GACAndroidB.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/IHAuburn.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/emeralddowns.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/emeralddownswin.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/gac1.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/gac2.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/gacA.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/tps.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/tpsAndroid.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/tpswin.unity3d" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/gac.manifest" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/gac1.manifest" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/gac2.manifest" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/AssetBundles/tps.manifest" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/Classes/MultiplierMadness.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/matchmadnesscontroller.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/getdata.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/import.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/import2.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/import3.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/import_working.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/index2.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/models/SubscriptionModel.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/views/SubscriptionManager.php" />
+    <list default="true" id="387a5a77-39f5-4f38-b5f9-db8c63230e55" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/dependencies/images/timetargetX.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/API/Classes/TimeTargetX.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/jay/float.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetXModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetxview.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/104/index.php" afterPath="$PROJECT_DIR$/public_html/API/104/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/Classes/PictureViewer.php" afterPath="$PROJECT_DIR$/public_html/API/Classes/PictureViewer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/Classes/PrizeEvent.php" afterPath="$PROJECT_DIR$/public_html/API/Classes/PrizeEvent.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/Classes/Scene.php" afterPath="$PROJECT_DIR$/public_html/API/Classes/Scene.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/Classes/TimeTarget.php" afterPath="$PROJECT_DIR$/public_html/API/Classes/TimeTarget.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/Classes/moduleIncludes.php" afterPath="$PROJECT_DIR$/public_html/API/Classes/moduleIncludes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/API/Modules/SlackTool.php" afterPath="$PROJECT_DIR$/public_html/API/Modules/SlackTool.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/newusercontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/newusercontroller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/promotioncontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/promotioncontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/picviewercontroller.php" afterPath="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/picviewercontroller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/cards.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/cards.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/css/styling.css" afterPath="$PROJECT_DIR$/public_html/dependencies/css/styling.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/createproperty.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/createproperty.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/editusers.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/editusers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/multipliermadness.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/multipliermadness.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/viewAccount.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/viewAccount.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/skinmanager.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/skinmanager.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/js/uploadpicture.js" afterPath="$PROJECT_DIR$/public_html/dependencies/js/uploadpicture.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/footer.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/modals/displaymodalform.php" afterPath="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/dependencies/php/uploadpictures.php" afterPath="$PROJECT_DIR$/public_html/dependencies/php/uploadpictures.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/DisplayModel.php" afterPath="$PROJECT_DIR$/public_html/models/DisplayModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/PromotionModel.php" afterPath="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" afterPath="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/UsersModel.php" afterPath="$PROJECT_DIR$/public_html/models/UsersModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/MultiplierMadnessModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/MultiplierMadnessModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/SkinModel.php" afterPath="$PROJECT_DIR$/public_html/models/SkinModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/PicViewerModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/PicViewerModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetModel.php" afterPath="$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/SkinTagEditView.php" afterPath="$PROJECT_DIR$/public_html/views/SkinTagEditView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/addmultipliermadnessview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addmultipliermadnessview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetview.php" afterPath="$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypicviewerview.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypicviewerview.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/editusersview.php" afterPath="$PROJECT_DIR$/public_html/views/editusersview.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/propertyview.php" afterPath="$PROJECT_DIR$/public_html/views/propertyview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaytimetargetview.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaytimetargetview.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/picturelist.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/picturelist.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/displaypromotionviews/timetrackerlist.php" afterPath="$PROJECT_DIR$/public_html/views/displaypromotionviews/timetrackerlist.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/editdisplaypreferences.php" afterPath="$PROJECT_DIR$/public_html/views/editdisplaypreferences.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/views/promotionview.php" afterPath="$PROJECT_DIR$/public_html/views/promotionview.php" />
     </list>
     <list id="fadce8cb-ac12-442e-b620-c7ad87d06d23" name="Rejected commit: Default" comment="Fixed DBcon and Helper Function" />
     <ignored path="serpent.iws" />
@@ -92,58 +68,144 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="displaycontroller.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/controllers/displaycontroller.php">
+      <file leaf-file-name="displaypointsgtview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="544">
+              <caret line="205" column="92" selection-start-line="205" selection-start-column="92" selection-end-line="205" selection-end-column="92" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/footer.php">
+      <file leaf-file-name="addpointsgtview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="230" column="17" selection-start-line="230" selection-start-column="17" selection-end-line="230" selection-end-column="17" />
+            <state relative-caret-position="521">
+              <caret line="44" column="89" selection-start-line="44" selection-start-column="89" selection-end-line="44" selection-end-column="89" />
               <folding>
-                <marker date="1499828922237" expanded="true" signature="13499:16379" ph="{...}" />
+                <marker date="1507221746611" expanded="true" signature="9072:9084" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="displaymodalform.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
+      <file leaf-file-name="uploadpicture.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/uploadpicture.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-              <folding>
-                <marker date="1504692517864" expanded="true" signature="2940:2974" ph="..." />
-                <marker date="1504692517864" expanded="true" signature="4524:4579" ph="..." />
-                <marker date="1504692517864" expanded="true" signature="5555:5628" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="promotionview.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/views/promotionview.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="255">
               <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="displayview.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
+      <file leaf-file-name="uploadpictures.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/uploadpictures.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-306">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="470">
+              <caret line="65" column="113" selection-start-line="65" selection-start-column="113" selection-end-line="65" selection-end-column="113" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1077">
+              <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/mainview.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PromotionModel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+              <folding>
+                <marker date="1507284620746" expanded="true" signature="419:757" ph="SELECT promo... promotion" />
+                <marker date="1507284620746" expanded="true" signature="1011:1033" ph="SELECT * FRO... property" />
+                <marker date="1507284620746" expanded="true" signature="1011:1057" ph="SELECT * FRO... property" />
+                <marker date="1507284620746" expanded="true" signature="1308:1438" ph="SELECT * FRO... property" />
+                <marker date="1507284620746" expanded="true" signature="1352:1437" ph="select promo... promo_property" />
+                <marker date="1507284620746" expanded="true" signature="1841:1904" ph="SELECT prope... property" />
+                <marker date="1507284620746" expanded="true" signature="1944:2276" ph="SELECT prope... property" />
+                <marker date="1507284620746" expanded="true" signature="2501:2559" ph="SELECT * FRO... promotion_type" />
+                <marker date="1507284620746" expanded="true" signature="2890:4004" ph="SELECT *, pr... promotion" />
+                <marker date="1507284620746" expanded="true" signature="4372:4794" ph="SELECT promo... promotion_type" />
+                <marker date="1507284620746" expanded="true" signature="4900:5448" ph="SELECT promo... promotion_type" />
+                <marker date="1507284620746" expanded="true" signature="5801:5881" ph="update promo... " />
+                <marker date="1507284620746" expanded="true" signature="6118:6239" ph="SELECT promo... promotion" />
+                <marker date="1507284620746" expanded="true" signature="6617:6697" ph="update promo... " />
+                <marker date="1507284620746" expanded="true" signature="6903:6984" ph="delete from " />
+                <marker date="1507284620746" expanded="true" signature="7546:7733" ph="INSERT INTO promotion... " />
+                <marker date="1507284620746" expanded="true" signature="8341:8455" ph="INSERT INTO promo_property... " />
+                <marker date="1507284620746" expanded="true" signature="8693:9181" ph="SELECT *,pro... promotion" />
+                <marker date="1507284620746" expanded="true" signature="9618:9704" ph="SELECT promo... promotion_type" />
+                <marker date="1507284620746" expanded="true" signature="10002:10147" ph="SELECT promo... promotion" />
+                <marker date="1507284620746" expanded="true" signature="10450:10642" ph="SELECT promo... promotion" />
+                <marker date="1507284620746" expanded="true" signature="10866:11074" ph="SELECT promo... promotion_type" />
+                <marker date="1507284620746" expanded="true" signature="11363:11391" ph="SELECT * FRO... promotion_type" />
+                <marker date="1507284620746" expanded="true" signature="11639:11719" ph="update promo... " />
+                <marker date="1507284620746" expanded="true" signature="12213:12268" ph="SELECT artif... promotion" />
+                <marker date="1507284620746" expanded="true" signature="13409:14584" ph="SELECT *, pr... promotion" />
+                <marker date="1507284620746" expanded="true" signature="14965:15697" ph="SELECT * FRO... account_permissions" />
+                <marker date="1507284620746" expanded="true" signature="15089:15238" ph="SELECT null promotion_property" />
+                <marker date="1507284620746" expanded="true" signature="15737:16581" ph="SELECT * FRO... account_permissions" />
+                <marker date="1507284620746" expanded="true" signature="15851:16000" ph="SELECT null promotion_property" />
+                <marker date="1507284620746" expanded="true" signature="16999:17082" ph="INSERT INTO promotion... " />
+                <marker date="1507284620746" expanded="true" signature="17380:17598" ph="INSERT INTO promo_property... " />
+                <marker date="1507284620746" expanded="true" signature="18078:18312" ph="INSERT INTO promotion_session_time... " />
+                <marker date="1507284620746" expanded="true" signature="18843:18919" ph="Delete from " />
+                <marker date="1507284620746" expanded="true" signature="19685:20149" ph="select promo... kick_for_cash" />
+                <marker date="1507284620746" expanded="true" signature="20233:20689" ph="select promo... points_gt" />
+                <marker date="1507284620746" expanded="true" signature="20773:21225" ph="select promo... high_hand" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="propertyview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/propertyview.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="formhelperfunctions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="572">
+              <caret line="319" column="15" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="displaytimetargetview.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaytimetargetview.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="623">
+              <caret line="117" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
+              <folding>
+                <element signature="e#6#54#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,57 +231,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public_html/API/passhash.php" />
-        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addpicviewerview.php" />
-        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/PicViewerModel.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/validationScript.php" />
-        <option value="$PROJECT_DIR$/public_html/views/promotionview.php" />
-        <option value="$USER_HOME$/AppData/Local/Temp/jquery.loadTemplate-1.4.4.js" />
-        <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/Jay/index.php" />
-        <option value="$PROJECT_DIR$/public_html/jay/getdata.php" />
-        <option value="$USER_HOME$/Downloads/import.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/createproperty.js" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/viewAccount.js" />
-        <option value="$PROJECT_DIR$/public_html/models/SubscriptionModel.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/promotioncontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/views/SubscriptionManager.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
-        <option value="$PROJECT_DIR$/public_html/jay/import2.php" />
-        <option value="$PROJECT_DIR$/public_html/jay/import3.php" />
-        <option value="$PROJECT_DIR$/public_html/jay/index.php" />
-        <option value="$USER_HOME$/Downloads/index (1).php" />
-        <option value="$PROJECT_DIR$/public_html/views/propertyview.php" />
-        <option value="$PROJECT_DIR$/public_html/controllers/newusercontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/views/editusersview.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/editusers.js" />
-        <option value="$PROJECT_DIR$/public_html/API/Classes/PictureViewer.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/css/styling.css" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js" />
         <option value="$PROJECT_DIR$/public_html/jay/import.php" />
         <option value="$PROJECT_DIR$/public_html/jay/index2.php" />
-        <option value="$PROJECT_DIR$/public_html/views/SkinTagEditView.php" />
         <option value="$PROJECT_DIR$/public_html/API/Classes/PrizeEvent.php" />
         <option value="$PROJECT_DIR$/public_html/API/Modules/SlackTool.php" />
         <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/matchmadnesscontroller.php" />
-        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/multipliermadness.js" />
         <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addmultipliermadnessview.php" />
         <option value="$PROJECT_DIR$/public_html/models/promotionmodels/MultiplierMadnessModel.php" />
         <option value="$PROJECT_DIR$/public_html/API/Classes/mmcard.php" />
-        <option value="$PROJECT_DIR$/public_html/API/Classes/moduleIncludes.php" />
         <option value="$PROJECT_DIR$/public_html/API/Classes/MultiplierMadness.php" />
-        <option value="$PROJECT_DIR$/public_html/API/Classes/Scene.php" />
-        <option value="$PROJECT_DIR$/public_html/API/104/index.php" />
-        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" />
-        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" />
         <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion.js" />
-        <option value="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" />
         <option value="$PROJECT_DIR$/public_html/modals/displaymodalform.php" />
-        <option value="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
         <option value="$PROJECT_DIR$/public_html/models/UsersModel.php" />
+        <option value="$PROJECT_DIR$/public_html/views/promotionview.php" />
+        <option value="$PROJECT_DIR$/public_html/models/DisplayModel.php" />
+        <option value="$PROJECT_DIR$/public_html/views/editdisplaypreferences.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js" />
+        <option value="$PROJECT_DIR$/public_html/models/PropertyDisplays.php" />
+        <option value="$PROJECT_DIR$/public_html/API/104/index.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php" />
+        <option value="$PROJECT_DIR$/public_html/controllers/promotioncontrollers/picviewercontroller.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/picturelist.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/PicViewerModel.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypicviewerview.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/uploadpicture.js" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/cards.css" />
+        <option value="$PROJECT_DIR$/public_html/jay/float.php" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetxview.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetXModel.php" />
+        <option value="$PROJECT_DIR$/public_html/API/Classes/TimeTargetX.php" />
+        <option value="$PROJECT_DIR$/public_html/API/Classes/moduleIncludes.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/css/styling.css" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetview.php" />
+        <option value="$PROJECT_DIR$/public_html/API/Classes/TimeTarget.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/php/footer.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaytimetargetview.php" />
+        <option value="$PROJECT_DIR$/public_html/API/Classes/Scene.php" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/timetrackerlist.php" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetModel.php" />
+        <option value="$PROJECT_DIR$/public_html/models/SkinModel.php" />
+        <option value="$PROJECT_DIR$/public_html/views/SkinTagEditView.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/skinmanager.js" />
+        <option value="$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js" />
+        <option value="$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php" />
+        <option value="$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php" />
+        <option value="$PROJECT_DIR$/public_html/dependencies/php/uploadpictures.php" />
+        <option value="$PROJECT_DIR$/public_html/models/PromotionModel.php" />
       </list>
     </option>
   </component>
@@ -231,10 +293,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="2" />
-    <option name="width" value="1932" />
-    <option name="height" value="1045" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -261,6 +323,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -515,7 +579,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spectrum" />
+              <option name="myItemId" value="promotion" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -537,11 +601,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="promotion" />
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -604,6 +664,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="promotioncontrollers" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="serpent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="serpent" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public_html" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clientpictures" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -715,8 +797,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -731,21 +811,22 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\controllers\promotioncontrollers" />
-      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\jay" />
-      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\models" />
-      <recent name="C:\Users\Mathew\Downloads" />
-      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\dependencies\js\JqueryTemplates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\API\AssetBundles" />
       <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\dependencies\images" />
       <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\dependencies\php" />
       <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\models" />
       <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\API\Classes" />
+      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\models\promotionmodels" />
+      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\views\addpromotionviews" />
+      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\controllers\promotioncontrollers" />
+      <recent name="C:\Users\Mathew\Documents\GitHub\serpent\public_html\jay" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.php">
@@ -882,7 +963,10 @@
       <workItem from="1502267704409" duration="22405000" />
       <workItem from="1503335621872" duration="2398000" />
       <workItem from="1503598503219" duration="1776000" />
-      <workItem from="1504690527171" duration="3725000" />
+      <workItem from="1504690527171" duration="7109000" />
+      <workItem from="1505691467901" duration="44592000" />
+      <workItem from="1506668025599" duration="10893000" />
+      <workItem from="1507096608683" duration="22288000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed radio and checkbox saving">
       <created>1481066639703</created>
@@ -1010,59 +1094,44 @@
       <option name="project" value="LOCAL" />
       <updated>1495446183766</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fixed DBcon and Helper Function">
+      <created>1504694407095</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1504694407095</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="658588000" />
+    <option name="totallyTimeSpent" value="739745000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="2" width="1932" height="1045" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15848452" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2379936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15814696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24494143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286026" sideWeight="0.5063966" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14332604" sideWeight="0.47228146" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14162162" sideWeight="0.47228146" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1891892" sideWeight="0.4914621" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286026" sideWeight="0.4936034" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32756758" sideWeight="0.4936034" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286026" sideWeight="0.5063966" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14191419" sideWeight="0.47228146" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18995634" sideWeight="0.4914621" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1584318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22019334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286026" sideWeight="0.4936034" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1096,561 +1165,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/propertyview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotionmodal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/jay/import2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="78" />
-          <folding>
-            <marker date="1499852057128" expanded="true" signature="1151:1351" ph="INSERT into records... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/jay/import.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="78" selection-start-line="2" selection-start-column="78" selection-end-line="2" selection-end-column="78" />
-          <folding>
-            <marker date="1501229150371" expanded="true" signature="1261:1461" ph="INSERT into records... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/jay/index2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="49" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
-          <folding>
-            <marker date="1501493886362" expanded="true" signature="713:905" ph="SELECT *,SUM... " />
-            <marker date="1501493886362" expanded="true" signature="713:1011" ph="SELECT *,SUM... " />
-            <marker date="1501493886362" expanded="true" signature="8421:8461" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8465:8505" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8509:8551" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8555:8595" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8599:8639" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8643:8681" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8685:8723" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8727:8767" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8771:8809" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8813:8853" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8857:8904" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8908:8955" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="8959:9007" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9011:9060" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9064:9102" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9106:9146" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9150:9186" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9190:9230" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9234:9281" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9285:9326" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9330:9368" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9372:9419" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9423:9468" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9472:9514" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9518:9560" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9564:9604" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9608:9648" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9652:9694" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9698:9738" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9742:9784" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9788:9837" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9841:9890" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9894:9944" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="9948:9999" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10003:10043" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10047:10089" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10093:10131" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10135:10177" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10181:10230" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10234:10277" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10281:10321" ph="..." />
-            <marker date="1501493886362" expanded="true" signature="10325:10374" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addprizeeventview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/jay/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-          <folding>
-            <marker date="1499917737703" expanded="true" signature="701:882" ph="SELECT *,SUM... records" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/spectrum/spectrum.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/SkinTagView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/PrizeEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="74" selection-start-line="48" selection-start-column="74" selection-end-line="48" selection-end-column="74" />
-          <folding>
-            <marker date="1501538615413" expanded="true" signature="602:738" ph="SELECT * fro... prize_event_winner" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addmonstercarloview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1499687988489" expanded="true" signature="2920:3015" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Modules/SlackTool.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/CharonBot.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1499687988028" expanded="true" signature="526:637" ph="select * fro... display" />
-            <marker date="1499687988028" expanded="true" signature="1781:1864" ph="update charo... " />
-            <marker date="1499687988028" expanded="true" signature="2211:2292" ph="INSERT INTO charon_settings" />
-            <marker date="1499687988028" expanded="true" signature="2632:2721" ph="SELECT count... charon_settings" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/displayview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-543">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/matchmadnesscontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/picviewercontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/monstercarlocontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="316" column="26" selection-start-line="316" selection-start-column="26" selection-end-line="316" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addmultipliermadnessview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
-          <folding>
-            <marker date="1502277835179" expanded="true" signature="217:244" ph="..." />
-            <marker date="1502277835179" expanded="true" signature="405:434" ph="..." />
-            <marker date="1502277835179" expanded="true" signature="516:553" ph="..." />
-            <marker date="1502277835179" expanded="true" signature="895:924" ph="..." />
-            <marker date="1502277835179" expanded="true" signature="3224:3329" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/multipliermadness.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="134" column="10" selection-start-line="134" selection-start-column="10" selection-end-line="134" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/MultiplierMadnessModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="80" column="38" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
-          <folding>
-            <marker date="1502277956160" expanded="true" signature="467:603" ph="INSERT INTO multi_madness... " />
-            <marker date="1502277956160" expanded="true" signature="1107:1318" ph="SELECT * FRO... multi_madness" />
-            <marker date="1502277956160" expanded="true" signature="2011:2144" ph="update multi... " />
-            <marker date="1502277956160" expanded="true" signature="2019:2144" ph="SELECT * FRO... multi_madness" />
-            <marker date="1502277956160" expanded="true" signature="2459:2639" ph="INSERT INTO multi_madness_cards... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/moduleIncludes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/PictureViewer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-          <folding>
-            <marker date="1500529420379" expanded="true" signature="379:476" ph="SELECT * fro... picview_pictures" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/MonsterCarlo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="5" selection-start-line="17" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <marker date="1499687988074" expanded="true" signature="445:632" ph="SELECT high_... high_hand_records" />
-            <marker date="1499687988074" expanded="true" signature="3320:3440" ph="SELECT * fro... monster_carlo_settings" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/MultiplierMadness.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="18" />
-          <folding>
-            <marker date="1502285331291" expanded="true" signature="573:652" ph="SELECT * fro... multi_madness_cards" />
-            <marker date="1502285331291" expanded="true" signature="573:674" ph="SELECT * fro... multi_madness_cards" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/Scene.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="87" column="39" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
-          <folding>
-            <marker date="1502285354933" expanded="true" signature="2842:2921" ph="SELECT * fro... high_hand" />
-            <marker date="1502285354933" expanded="true" signature="4836:4932" ph="SELECT * fro... monster_carlo_settings" />
-            <marker date="1502285354933" expanded="true" signature="5566:5694" ph="SELECT * fro... monster_carlo_settings" />
-            <marker date="1502285354933" expanded="true" signature="6661:6766" ph="SELECT * fro... picview_settings" />
-            <marker date="1502285354933" expanded="true" signature="7443:7534" ph="SELECT * fro... prize_event" />
-            <marker date="1502285354933" expanded="true" signature="9038:9261" ph="SELECT * FRO... time_target_sessions" />
-            <marker date="1502285354933" expanded="true" signature="10320:10409" ph="SELECT * FRO... points_gt" />
-            <marker date="1502285354933" expanded="true" signature="12745:12883" ph="SELECT * FRO... points_gt_players" />
-            <marker date="1502285354933" expanded="true" signature="13681:13782" ph="SELECT * FRO... points_gt_instant_winner" />
-            <marker date="1502285354933" expanded="true" signature="14394:14475" ph="SELECT * fro... kick_for_cash" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/API/104/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="160" column="92" selection-start-line="160" selection-start-column="92" selection-end-line="160" selection-end-column="92" />
-          <folding>
-            <marker date="1502479862507" expanded="true" signature="2345:2418" ph="UPDATE displ... " />
-            <marker date="1502479862507" expanded="true" signature="2970:3026" ph="UPDATE displ... " />
-            <marker date="1502479862507" expanded="true" signature="3364:3409" ph="select * fro... display" />
-            <marker date="1502479862507" expanded="true" signature="4606:4658" ph="UPDATE displ... " />
-            <marker date="1502479862507" expanded="true" signature="4930:4987" ph="INSERT INTO display... " />
-            <marker date="1502479862507" expanded="true" signature="6170:6341" ph="SELECT *,dis... display" />
-            <marker date="1502479862507" expanded="true" signature="9425:9587" ph="SELECT * FRO... promotion_property" />
-            <marker date="1502479862507" expanded="true" signature="15776:15825" ph="SELECT * FRO... display" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2278">
-          <caret line="134" column="50" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
-          <folding>
-            <marker date="1503399736097" expanded="true" signature="6580:7262" ph="INSERT INTO points_gt... " />
-            <marker date="1503399736097" expanded="true" signature="8627:8818" ph="SELECT * FRO... points_gt" />
-            <marker date="1503399736097" expanded="true" signature="9819:10188" ph="SELECT `pgt_... points_gt_instant_winner" />
-            <marker date="1503399736097" expanded="true" signature="10644:10824" ph="SELECT * FRO... points_gt_players" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="8" column="75" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displayprizeeventview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/skinmanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="854">
-          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/SkinTagEditView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/SkinManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/HighHandModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1499688220557" expanded="true" signature="428:905" ph="INSERT INTO high_hand... " />
-            <marker date="1499688220557" expanded="true" signature="2404:2475" ph="SELECT * FRO... high_hand" />
-            <marker date="1499688220557" expanded="true" signature="2766:2988" ph="SELECT DISTI... promotion" />
-            <marker date="1499688220557" expanded="true" signature="3615:4151" ph="INSERT INTO high_hand_records... " />
-            <marker date="1499688220557" expanded="true" signature="9023:9063" ph="SELECT * FRO... high_hand" />
-            <marker date="1499688220557" expanded="true" signature="9397:9559" ph="SELECT * FRO... high_hand_records" />
-            <marker date="1499688220557" expanded="true" signature="9845:9962" ph="UPDATE high_... " />
-            <marker date="1499688220557" expanded="true" signature="10329:10419" ph="UPDATE high_... " />
-            <marker date="1499688220557" expanded="true" signature="10638:10729" ph="UPDATE high_... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/addPromotion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/HelperFunctions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/PropertyDisplays.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="184" column="127" selection-start-line="184" selection-start-column="127" selection-end-line="184" selection-end-column="127" />
-          <folding>
-            <marker date="1503599635958" expanded="true" signature="781:888" ph="SELECT * FRO... display" />
-            <marker date="1503599635958" expanded="true" signature="1927:1966" ph="SELECT * FRO... display" />
-            <marker date="1503599635958" expanded="true" signature="2211:2228" ph="SELECT * FRO... api" />
-            <marker date="1503599635958" expanded="true" signature="2601:2683" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="3006:3207" ph="SELECT * FRO... promotion" />
-            <marker date="1503599635958" expanded="true" signature="3940:4010" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="4245:4301" ph="SELECT displ... display" />
-            <marker date="1503599635958" expanded="true" signature="4630:4732" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="5145:5343" ph="INSERT INTO `promotion_property`... " />
-            <marker date="1503599635958" expanded="true" signature="6133:6269" ph="DELETE FROM " />
-            <marker date="1503599635958" expanded="true" signature="6270:6309" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="6270:6310" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="6270:6349" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="6743:6848" ph="SELECT skin.... skin" />
-            <marker date="1503599635958" expanded="true" signature="6944:6988" ph="SELECT skin.... skin" />
-            <marker date="1503599635958" expanded="true" signature="7532:7709" ph="UPDATE promo... " />
-            <marker date="1503599635958" expanded="true" signature="8789:9249" ph="UPDATE displ... " />
-            <marker date="1503599635958" expanded="true" signature="10322:10403" ph="UPDATE displ... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/controllers/displaycontroller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/promotionview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="230" column="17" selection-start-line="230" selection-start-column="17" selection-end-line="230" selection-end-column="17" />
-          <folding>
-            <marker date="1499828922237" expanded="true" signature="13499:16379" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-          <folding>
-            <marker date="1504692517864" expanded="true" signature="2940:2974" ph="..." />
-            <marker date="1504692517864" expanded="true" signature="4524:4579" ph="..." />
-            <marker date="1504692517864" expanded="true" signature="5555:5628" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/password.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/UsersModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="39" column="80" selection-start-line="39" selection-start-column="80" selection-end-line="39" selection-end-column="80" />
-          <folding>
-            <marker date="1504693111614" expanded="true" signature="934:1019" ph="INSERT INTO account... " />
-            <marker date="1504693111614" expanded="true" signature="1037:1160" ph="INSERT INTO account_permissions... " />
-            <marker date="1504693111614" expanded="true" signature="1730:1812" ph="UPDATE accou... " />
-            <marker date="1504693111614" expanded="true" signature="2452:2647" ph="SELECT * FRO... account" />
-            <marker date="1504693111614" expanded="true" signature="2686:2911" ph="SELECT * FRO... account" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="351" column="69" selection-start-line="351" selection-start-column="69" selection-end-line="351" selection-end-column="69" />
-          <folding>
-            <marker date="1504692655859" expanded="true" signature="419:757" ph="SELECT promo... promotion" />
-            <marker date="1504692655859" expanded="true" signature="1011:1033" ph="SELECT * FRO... property" />
-            <marker date="1504692655859" expanded="true" signature="1418:1481" ph="SELECT prope... property" />
-            <marker date="1504692655859" expanded="true" signature="1521:1853" ph="SELECT prope... property" />
-            <marker date="1504692655859" expanded="true" signature="2078:2136" ph="SELECT * FRO... promotion_type" />
-            <marker date="1504692655859" expanded="true" signature="2467:3581" ph="SELECT *, pr... promotion" />
-            <marker date="1504692655859" expanded="true" signature="3949:4371" ph="SELECT promo... promotion_type" />
-            <marker date="1504692655859" expanded="true" signature="4477:5025" ph="SELECT promo... promotion_type" />
-            <marker date="1504692655859" expanded="true" signature="5378:5458" ph="update promo... " />
-            <marker date="1504692655859" expanded="true" signature="5695:5816" ph="SELECT promo... promotion" />
-            <marker date="1504692655859" expanded="true" signature="6194:6274" ph="update promo... " />
-            <marker date="1504692655859" expanded="true" signature="6480:6561" ph="delete from " />
-            <marker date="1504692655859" expanded="true" signature="7123:7310" ph="INSERT INTO promotion... " />
-            <marker date="1504692655859" expanded="true" signature="7918:8032" ph="INSERT INTO promo_property... " />
-            <marker date="1504692655859" expanded="true" signature="8270:8758" ph="SELECT *,pro... promotion" />
-            <marker date="1504692655859" expanded="true" signature="9195:9281" ph="SELECT promo... promotion_type" />
-            <marker date="1504692655859" expanded="true" signature="9579:9724" ph="SELECT promo... promotion" />
-            <marker date="1504692655859" expanded="true" signature="10027:10219" ph="SELECT promo... promotion" />
-            <marker date="1504692655859" expanded="true" signature="10443:10651" ph="SELECT promo... promotion_type" />
-            <marker date="1504692655859" expanded="true" signature="10940:10968" ph="SELECT * FRO... promotion_type" />
-            <marker date="1504692655859" expanded="true" signature="11216:11296" ph="update promo... " />
-            <marker date="1504692655859" expanded="true" signature="11790:11845" ph="SELECT artif... promotion" />
-            <marker date="1504692655859" expanded="true" signature="12986:14161" ph="SELECT *, pr... promotion" />
-            <marker date="1504692655859" expanded="true" signature="14542:15274" ph="SELECT * FRO... account_permissions" />
-            <marker date="1504692655859" expanded="true" signature="14666:14815" ph="SELECT null promotion_property" />
-            <marker date="1504692655859" expanded="true" signature="15314:16158" ph="SELECT * FRO... account_permissions" />
-            <marker date="1504692655859" expanded="true" signature="15428:15577" ph="SELECT null promotion_property" />
-            <marker date="1504692655859" expanded="true" signature="16576:16659" ph="INSERT INTO promotion... " />
-            <marker date="1504692655859" expanded="true" signature="16957:17175" ph="INSERT INTO promo_property... " />
-            <marker date="1504692655859" expanded="true" signature="17655:17889" ph="INSERT INTO promotion_session_time... " />
-            <marker date="1504692655859" expanded="true" signature="18420:18496" ph="Delete from " />
-            <marker date="1504692655859" expanded="true" signature="19262:19726" ph="select promo... kick_for_cash" />
-            <marker date="1504692655859" expanded="true" signature="19810:20266" ph="select promo... points_gt" />
-            <marker date="1504692655859" expanded="true" signature="20350:20802" ph="select promo... high_hand" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/views/editusersview.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionoptionview.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1659,24 +1173,527 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/editusers.js">
+    <entry file="file://$PROJECT_DIR$/public_html/modals/displaymodalform.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        <state relative-caret-position="524">
+          <caret line="90" column="164" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="164" />
+          <folding>
+            <marker date="1504692517864" expanded="true" signature="2940:2974" ph="..." />
+            <marker date="1504692517864" expanded="true" signature="4524:4579" ph="..." />
+            <marker date="1504692517864" expanded="true" signature="5555:5628" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/PicViewerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <marker date="1505723177313" expanded="true" signature="440:583" ph="INSERT INTO picview_settings... " />
+            <marker date="1505723177313" expanded="true" signature="1045:1265" ph="SELECT * FRO... picview_settings" />
+            <marker date="1505723177313" expanded="true" signature="1564:1711" ph="INSERT INTO picview_pictures... " />
+            <marker date="1505723177313" expanded="true" signature="2070:2139" ph="delete from " />
+            <marker date="1505723177313" expanded="true" signature="2081:2131" ph="INSERT INTO picview_pictures... " />
+            <marker date="1505723177313" expanded="true" signature="2532:2729" ph="SELECT * FRO... picview_pictures" />
+            <marker date="1505723177313" expanded="true" signature="3018:3155" ph="Delete FROM " />
+            <marker date="1505723177313" expanded="true" signature="3395:3569" ph="Update picvi... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/picviewercontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="59" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/picturelist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="345" selection-start-line="29" selection-start-column="338" selection-end-line="29" selection-end-column="345" />
+          <folding>
+            <element signature="e#1316#1322#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypicviewerview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/cards.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetXModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+          <folding>
+            <marker date="1506537602547" expanded="true" signature="430:533" ph="INSERT INTO time_targetx... " />
+            <marker date="1506537602547" expanded="true" signature="915:1123" ph="SELECT * FRO... time_targetx" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetxview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="86" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/jay/float.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/API/104/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="236" column="26" selection-start-line="236" selection-start-column="26" selection-end-line="236" selection-end-column="26" />
+          <folding>
+            <marker date="1505701243241" expanded="true" signature="2345:2418" ph="UPDATE displ... " />
+            <marker date="1505701243241" expanded="true" signature="2970:3026" ph="UPDATE displ... " />
+            <marker date="1505701243241" expanded="true" signature="3364:3409" ph="select * fro... display" />
+            <marker date="1505701243241" expanded="true" signature="4606:4658" ph="UPDATE displ... " />
+            <marker date="1505701243241" expanded="true" signature="4930:4987" ph="INSERT INTO display... " />
+            <marker date="1505701243241" expanded="true" signature="6170:6341" ph="SELECT *,dis... display" />
+            <marker date="1505701243241" expanded="true" signature="9496:9658" ph="SELECT * FRO... promotion_property" />
+            <marker date="1505701243241" expanded="true" signature="15847:15896" ph="SELECT * FRO... display" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaykickforcashview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="49" column="9" selection-start-line="45" selection-start-column="0" selection-end-line="49" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/css/styling.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="134" column="83" selection-start-line="134" selection-start-column="83" selection-end-line="134" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addtimetargetview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/PropertyDisplays.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-900">
+          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
+          <folding>
+            <marker date="1505692681296" expanded="true" signature="781:888" ph="SELECT * FRO... display" />
+            <marker date="1505692681296" expanded="true" signature="1927:1966" ph="SELECT * FRO... display" />
+            <marker date="1505692681296" expanded="true" signature="2211:2228" ph="SELECT * FRO... api" />
+            <marker date="1505692681296" expanded="true" signature="2601:2683" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="3006:3207" ph="SELECT * FRO... promotion" />
+            <marker date="1505692681296" expanded="true" signature="3940:4010" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="4245:4301" ph="SELECT displ... display" />
+            <marker date="1505692681296" expanded="true" signature="4630:4732" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="5145:5343" ph="INSERT INTO `promotion_property`... " />
+            <marker date="1505692681296" expanded="true" signature="6133:6269" ph="DELETE FROM " />
+            <marker date="1505692681296" expanded="true" signature="6270:6309" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="6270:6310" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="6270:6349" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="6743:6848" ph="SELECT skin.... skin" />
+            <marker date="1505692681296" expanded="true" signature="6944:6988" ph="SELECT skin.... skin" />
+            <marker date="1505692681296" expanded="true" signature="7532:7709" ph="UPDATE promo... " />
+            <marker date="1505692681296" expanded="true" signature="8953:9459" ph="UPDATE displ... " />
+            <marker date="1505692681296" expanded="true" signature="10625:10706" ph="UPDATE displ... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/views/displayview.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
+        <state relative-caret-position="391">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <marker date="1506678401530" expanded="true" signature="13500:16380" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/timetrackerlist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/promotionview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/PointsGT.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/pointsgtcontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/monstercarlo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/highhand.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="77" column="12" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/pointsgt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1113">
+          <caret line="31" column="7" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/addpromotionmodal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/addusermodal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/buttons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/changepromostatus.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/displayview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/editdisplay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3417">
+          <caret line="201" column="12" selection-start-line="201" selection-start-column="12" selection-end-line="201" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/controllers/promotioncontrollers/timetargetcontroller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/TimeTargetModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="58" column="71" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="71" />
+          <folding>
+            <marker date="1506685047006" expanded="true" signature="439:659" ph="INSERT INTO time_target_sessions... " />
+            <marker date="1506685047006" expanded="true" signature="1275:1768" ph="INSERT INTO time_target... " />
+            <marker date="1506685047006" expanded="true" signature="3263:3468" ph="SELECT * FRO... time_target" />
+            <marker date="1506685047006" expanded="true" signature="3735:3987" ph="SELECT * FRO... time_target_sessions" />
+            <marker date="1506685047006" expanded="true" signature="4294:4383" ph="Update time_... " />
+            <marker date="1506685047006" expanded="true" signature="4973:5062" ph="Update time_... " />
+            <marker date="1506685047006" expanded="true" signature="5375:5463" ph="Update time_... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/moduleIncludes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/TimeTargetX.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/TimeTarget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/SkinModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="161" column="81" selection-start-line="161" selection-start-column="81" selection-end-line="161" selection-end-column="81" />
+          <folding>
+            <marker date="1506686664708" expanded="true" signature="4394:4438" ph="SELECT skin.... skin" />
+            <marker date="1506686664708" expanded="true" signature="4662:4682" ph="SELECT * FRO... scenes" />
+            <marker date="1506686664708" expanded="true" signature="4916:4965" ph="SELECT * FRO... skin_tag" />
+            <marker date="1506686664708" expanded="true" signature="5268:5312" ph="SELECT * FRO... skin_tag" />
+            <marker date="1506686664708" expanded="true" signature="5645:5703" ph="SELECT * FRO... skin_tag_data" />
+            <marker date="1506686664708" expanded="true" signature="7287:7392" ph="SELECT * FRO... skin_tag_data" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/SkinManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/SkinTagEditView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2346">
+          <caret line="138" column="37" selection-start-line="138" selection-start-column="37" selection-end-line="138" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/skinmanager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/API/Classes/Scene.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="242" column="66" selection-start-line="242" selection-start-column="66" selection-end-line="242" selection-end-column="66" />
+          <folding>
+            <marker date="1506679817623" expanded="true" signature="2992:3071" ph="SELECT * fro... high_hand" />
+            <marker date="1506679817623" expanded="true" signature="4986:5082" ph="SELECT * fro... monster_carlo_settings" />
+            <marker date="1506679817623" expanded="true" signature="5716:5844" ph="SELECT * fro... monster_carlo_settings" />
+            <marker date="1506679817623" expanded="true" signature="6811:6916" ph="SELECT * fro... picview_settings" />
+            <marker date="1506679817623" expanded="true" signature="7593:7684" ph="SELECT * fro... prize_event" />
+            <marker date="1506679817623" expanded="true" signature="9222:9445" ph="SELECT * FRO... time_target_sessions" />
+            <marker date="1506679817623" expanded="true" signature="10461:10799" ph="Select * fro... promotion" />
+            <marker date="1506679817623" expanded="true" signature="10617:10702" ph="select promo... promo_property" />
+            <marker date="1506679817623" expanded="true" signature="11285:11374" ph="SELECT * FRO... points_gt" />
+            <marker date="1506679817623" expanded="true" signature="13710:13848" ph="SELECT * FRO... points_gt_players" />
+            <marker date="1506679817623" expanded="true" signature="14646:14747" ph="SELECT * FRO... points_gt_instant_winner" />
+            <marker date="1506679817623" expanded="true" signature="15359:15440" ph="SELECT * fro... kick_for_cash" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/promotionmodels/PointsGTModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="122" column="38" selection-start-line="122" selection-start-column="38" selection-end-line="122" selection-end-column="38" />
+          <folding>
+            <marker date="1507111848452" expanded="true" signature="4720:4849" ph="insert INTO points_gt_reports... " />
+            <marker date="1507111848452" expanded="true" signature="7004:7686" ph="INSERT INTO points_gt... " />
+            <marker date="1507111848452" expanded="true" signature="9051:9242" ph="SELECT * FRO... points_gt" />
+            <marker date="1507111848452" expanded="true" signature="10243:10612" ph="SELECT `pgt_... points_gt_instant_winner" />
+            <marker date="1507111848452" expanded="true" signature="11068:11248" ph="SELECT * FRO... points_gt_players" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/promotion/formhelperfunctions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="319" column="15" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaytimetargetview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="623">
+          <caret line="117" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
+          <folding>
+            <element signature="e#6#54#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/displaypromotionviews/displaypointsgtview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="205" column="92" selection-start-line="205" selection-start-column="92" selection-end-line="205" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/addpromotionviews/addpointsgtview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="44" column="89" selection-start-line="44" selection-start-column="89" selection-end-line="44" selection-end-column="89" />
+          <folding>
+            <marker date="1507221746611" expanded="true" signature="9072:9084" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/js/uploadpicture.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/dependencies/php/uploadpictures.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="65" column="113" selection-start-line="65" selection-start-column="113" selection-end-line="65" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1077">
+          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/propertyview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/views/mainview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/models/PromotionModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+          <folding>
+            <marker date="1507284620746" expanded="true" signature="419:757" ph="SELECT promo... promotion" />
+            <marker date="1507284620746" expanded="true" signature="1011:1033" ph="SELECT * FRO... property" />
+            <marker date="1507284620746" expanded="true" signature="1011:1057" ph="SELECT * FRO... property" />
+            <marker date="1507284620746" expanded="true" signature="1308:1438" ph="SELECT * FRO... property" />
+            <marker date="1507284620746" expanded="true" signature="1352:1437" ph="select promo... promo_property" />
+            <marker date="1507284620746" expanded="true" signature="1841:1904" ph="SELECT prope... property" />
+            <marker date="1507284620746" expanded="true" signature="1944:2276" ph="SELECT prope... property" />
+            <marker date="1507284620746" expanded="true" signature="2501:2559" ph="SELECT * FRO... promotion_type" />
+            <marker date="1507284620746" expanded="true" signature="2890:4004" ph="SELECT *, pr... promotion" />
+            <marker date="1507284620746" expanded="true" signature="4372:4794" ph="SELECT promo... promotion_type" />
+            <marker date="1507284620746" expanded="true" signature="4900:5448" ph="SELECT promo... promotion_type" />
+            <marker date="1507284620746" expanded="true" signature="5801:5881" ph="update promo... " />
+            <marker date="1507284620746" expanded="true" signature="6118:6239" ph="SELECT promo... promotion" />
+            <marker date="1507284620746" expanded="true" signature="6617:6697" ph="update promo... " />
+            <marker date="1507284620746" expanded="true" signature="6903:6984" ph="delete from " />
+            <marker date="1507284620746" expanded="true" signature="7546:7733" ph="INSERT INTO promotion... " />
+            <marker date="1507284620746" expanded="true" signature="8341:8455" ph="INSERT INTO promo_property... " />
+            <marker date="1507284620746" expanded="true" signature="8693:9181" ph="SELECT *,pro... promotion" />
+            <marker date="1507284620746" expanded="true" signature="9618:9704" ph="SELECT promo... promotion_type" />
+            <marker date="1507284620746" expanded="true" signature="10002:10147" ph="SELECT promo... promotion" />
+            <marker date="1507284620746" expanded="true" signature="10450:10642" ph="SELECT promo... promotion" />
+            <marker date="1507284620746" expanded="true" signature="10866:11074" ph="SELECT promo... promotion_type" />
+            <marker date="1507284620746" expanded="true" signature="11363:11391" ph="SELECT * FRO... promotion_type" />
+            <marker date="1507284620746" expanded="true" signature="11639:11719" ph="update promo... " />
+            <marker date="1507284620746" expanded="true" signature="12213:12268" ph="SELECT artif... promotion" />
+            <marker date="1507284620746" expanded="true" signature="13409:14584" ph="SELECT *, pr... promotion" />
+            <marker date="1507284620746" expanded="true" signature="14965:15697" ph="SELECT * FRO... account_permissions" />
+            <marker date="1507284620746" expanded="true" signature="15089:15238" ph="SELECT null promotion_property" />
+            <marker date="1507284620746" expanded="true" signature="15737:16581" ph="SELECT * FRO... account_permissions" />
+            <marker date="1507284620746" expanded="true" signature="15851:16000" ph="SELECT null promotion_property" />
+            <marker date="1507284620746" expanded="true" signature="16999:17082" ph="INSERT INTO promotion... " />
+            <marker date="1507284620746" expanded="true" signature="17380:17598" ph="INSERT INTO promo_property... " />
+            <marker date="1507284620746" expanded="true" signature="18078:18312" ph="INSERT INTO promotion_session_time... " />
+            <marker date="1507284620746" expanded="true" signature="18843:18919" ph="Delete from " />
+            <marker date="1507284620746" expanded="true" signature="19685:20149" ph="select promo... kick_for_cash" />
+            <marker date="1507284620746" expanded="true" signature="20233:20689" ph="select promo... points_gt" />
+            <marker date="1507284620746" expanded="true" signature="20773:21225" ph="select promo... high_hand" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="webServersAuthStorage">
-    <data>AAABIG/r1akygXn8fUc5eJEVvydkIys44LaaOBfAEgyXo1pXI3vwu1fe/lduw3dDAyD8Iet3Q6nZMQv5gNibNCffGjabOn/qOMF6QiUQx7mAFVpQa1sxygdVELrPCuAz0Lh8NhXi/+MdfiKaFxye8b/ZGebBJb9pKzkIgsVnsYPgX+Ldbb6KcPJ0aK9CMooWI+U9D0D4MGc4SlVd/Ekvx9xAOBX/e7IvLDNCaF2uKDoQpOX+35g9T2teBjc4EMOMaKW1qUvjRj1JgkIbxq8SxrNe9VBPyZ0LGkxgzpay9TgMrkJpYWdlDz4iv/knz5qY0C1i8CfLcVmPoCulxoj5DlIE2GVgsKmY49XaMEb8Fy4jKehVqqcc02b2vNGdc/AQWrsZVGTlUfKpQz/eDWQ9PNStF/U=</data>
+    <data>AAABIB5en5yXh+RBYuZIx6HQ/Se72PnpI52UFY83muZHkOSDl2TFxjkOMVNgxBHTaotDMxp2GW8HPbdBh5loIkRq/khQdsuiGmeBaWA3iiSr/vtju+c4LAUdgDz99sFcrRRRLkF1XSmEIIpp9GWXE3qcgHlFZYdyyj+Pty09rAX8gwfAJMlPjB5VO9w0K6wiAZHORYhE8hcWai9JqH2f9g1syKWDS5CYWSNxekMlfI7Hljwyg72oTMtq1mucDft95Adn+QrAXU5w4Vw8epZQM/xLr9suzNX57o8BOduufrFsIGH06rFASBR427CIfKHu6C2mYSgC3geAckfCX7MXh/m+1hGwxnNcBXY7lxWIlTaH7o5UozqZp9BB7CPQW+3F5VLNP9hmAg/dKrTC+Ey5FS4SopE=</data>
   </component>
 </project>

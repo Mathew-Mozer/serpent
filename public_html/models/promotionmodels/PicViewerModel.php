@@ -75,6 +75,18 @@ class PicViewerModel
         $result->execute();
         return $result;
     }
+    public function deletePictureFromDatabase($values)
+    {
+
+        $sql = "delete from picview_pictures where picview_pictures_id=:picid limit 1;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':picid', $values['pictureid'], PDO::PARAM_STR);
+        $result->execute();
+        $target_dir = "../../clientpictures/uploads/".$_POST['promotionId']."/";
+        unlink($target_dir.$values["picview_pictures_filename"]);
+        return($values);
+    }
+
     public function getAllPictures($id)
     {
         $sql = "SELECT

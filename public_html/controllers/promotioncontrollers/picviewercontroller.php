@@ -15,6 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('content-type:application/json');
         echo json_encode($response);
     }
+    elseif ($_POST['action'] == 'deletePicture') {
+        $PicViewerModel = new PicViewerModel($conn->insert_database());
+        $response = $PicViewerModel->deletePictureFromDatabase($_POST);
+        $promotion->setUpdatedTimestamp($_POST['promotionId']);
+        header('content-type:application/json');
+        echo json_encode($response);
+
+    }
 }
 
 

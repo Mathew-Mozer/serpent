@@ -11,6 +11,7 @@ $dbcon = NEW DbCon();
 require "../../models/promotionmodels/TimeTargetModel.php";
 $TimeTargetModel = new TimeTargetModel($dbcon->read_Database());
 $TimeTargets = $TimeTargetModel->getAllSessions($_POST['promoid']);
+$TimeTarget = $TimeTargetModel->get($_POST['promoid']);
 
 if (count($TimeTargets) > 0) {
     foreach ($TimeTargets as $timeTarget) {
@@ -65,12 +66,32 @@ if (count($TimeTargets) > 0) {
 
 function payTimeTarget($timeTarget)
 {
-    $PerSecondIncrease = $timeTarget['time_target_add'] / ($timeTarget['time_target_increment_min'] * 60);
+    global $TimeTarget;
     $sd = $timeTarget['time_target_seed'];
-    $incAmt = $sd + round((SecondCount($timeTarget['time_target_start'], $timeTarget['time_target_end']) * $PerSecondIncrease), 2);
+    if($timeTarget['time_target_increment_min']==0||$timeTarget['time_target_add']==0) {
+        $incAmt = $sd;
+    }else{
+        if($TimeTarget['time_target_progressive']==1){
+        $min=$timeTarget['time_target_increment_min'];
+        $add = $timeTarget['time_target_add'];
+        $PerSecondIncrease = $add / ($min * 60);
+        $incAmt = $sd + round((SecondCount($timeTarget['time_target_start'], $timeTarget['time_target_end']) * $PerSecondIncrease), 2);
+        }else{
+
+            $tmp = round((SecondCount($timeTarget['time_target_start'], $timeTarget['time_target_end'])),2)/60;
+
+            $tmp =floor($tmp/$timeTarget['time_target_increment_min']);
+            $incAmt =$sd + ($tmp*$timeTarget['time_target_add']);
+        }
+    }
     if($incAmt<0){
         $incAmt=0;
     }
+
+    if($TimeTarget['time_target_maxpayout']<$incAmt){
+        $incAmt=$TimeTarget['time_target_maxpayout'];
+    }
+
     return "$".$incAmt;
 }
 
@@ -84,6 +105,13 @@ function SecondCount($start, $end)
     }
     $seconds = strtotime($start) - $endTime;
     return -$seconds;
+
+}
+function dateDifference($date_1, $date_2, $differenceFormat = '%d')
+{
+    $interval = date_diff($date_1, $date_2);
+
+    return $interval->format($differenceFormat);
 
 }
 

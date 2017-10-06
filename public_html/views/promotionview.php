@@ -50,7 +50,14 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
      data-property-point-storage="<?php echo $row['property_point_storage']; ?>"
      data-toggle="tooltip" title="<?php echo $row['promo_title'] . " " . $row['promo_id']; ?>">
 
-    <div class="tile-promotion-title"><?php echo $row['promotion_label']?></div>
+    <div class="tile-promotion-title"><?php
+        if ($row['promotion_label'] == "") {
+            echo $row['promotion_type_title'];
+        } else {
+            echo $row['promotion_label'];
+
+        }
+        //echo $row['promotion_label']?></div>
     <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image'] ?>">
 
   <!--  <div class="tile-promotion-artifact">

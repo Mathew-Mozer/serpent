@@ -5,6 +5,8 @@ $(document).on("click","#uploadfile",(function() {
     var form_data = new FormData();
     form_data.append('fileToUpload', file_data);
     form_data.append('promoid',$("#promotion-view-modal").data('promo-id'));
+    console.log('Promoid:'+$("#promotion-view-modal").data('promo-id'));
+
     $.ajax({
         url: '../../dependencies/php/uploadpictures.php', // point to server-side PHP script
         dataType: 'text',  // what to expect back from the PHP script, if anything
@@ -12,16 +14,20 @@ $(document).on("click","#uploadfile",(function() {
         contentType: false,
         processData: false,
         data: form_data,
-        type: 'post',
+        type: 'POST',
+        error: function () {
+            console.log('error withpicture');
+        },
         success: function(php_script_response){
             console.log(php_script_response); // display response from the PHP script, if any
-            $("#uploadfile").val('');
+
             switch(parseInt(php_script_response)){
                 case 0:
                     console.log('Failure: 0');
                     break;
                 case 1:
                     $('#lblResponse').text('File Uploaded Successfully .');
+                    loadPictures($("#promotion-view-modal").data('promo-id'));
                     break;
                 case 5:
                     console.log('Failure: 5');
@@ -58,6 +64,35 @@ $(document).on("textInput input",".picviewduration",(function() {
         }
     });
 }));
+$(document).on("click",".delete-picture-slideshow",(function() {
+    if (confirm("Are you sure?")) {
+        // your deletion code
+
+
+        $.ajax({
+            url: 'controllers/promotioncontrollers/picviewercontroller.php',
+            type: 'post',
+            data: {
+                action: 'deletePicture',
+                pictureid: $(this).data('picid'),
+                promotionId: $("#promotion-view-modal").data('promo-id'),
+                picview_pictures_filename: $(this).data('picname')
+            },
+            cache: false,
+            global: false,
+            success: function (html) {
+                console.log(html);
+                loadPictures($("#promotion-view-modal").data('promo-id'));
+            },
+            error: function (xhr, desc, err) {
+                console.log(xhr + "\n" + err);
+            }
+        });
+        return false;
+    }
+}));
+
+
 
 var loadPictures = function (promoid) {
         $('#PictureList').load("views/displaypromotionviews/picturelist.php", {promoid: promoid});

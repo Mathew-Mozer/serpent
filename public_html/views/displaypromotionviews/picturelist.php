@@ -26,7 +26,8 @@ if (count($PicViewerPictures) > 0) {
                     </td>
                 </tr>
                 <tr>
-                    <td>Duration: <input class="picviewduration" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" style="width: 40px;" type="number" value="<?php echo($PicViewerPicture['picview_pictures_duration']) ?>"> Seconds</td>
+
+                    <td>Duration: <input class="picviewduration" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" style="width: 40px;" type="number" value="<?php echo($PicViewerPicture['picview_pictures_duration']) ?>"> Seconds &nbsp; <span class='btn btn-link glyphicon glyphicon-trash delete-picture-slideshow' data-picname="<?php  echo($PicViewerPicture['picview_pictures_filename'])?>" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" name='remove-picture'></span></td>
                 </tr>
             </table>
         </div>
