@@ -3,31 +3,34 @@
 * This page controls the footer and closing material for the website
 */
 
+
 ?>
 
-<script src="dependencies/js/optionsmodal.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/addpromotionmodal.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/createproperty.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/displayview.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotionmodal.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/editdisplay.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/addusermodal.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/editusermodal.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/editusers.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/viewdocuments.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/viewAccount.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/multipliermadness.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/monstercarlo.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/sessionmanager.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/timetracker.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/prizeevent.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/skinmanager.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/changepromostatus.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/uploadpicture.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/pointsgt.js?t=<?php echo microtime() ?>"></script>
-<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>
+<script src="dependencies/js/optionsmodal.js?t=<?php if ($_SESSION['addMicroTime'])echo(microtime()); ?>"></script>
+<script src="dependencies/js/addpromotionmodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/createproperty.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/displayview.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotionmodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/editdisplay.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/addusermodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/editusermodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/editusers.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/viewdocuments.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/viewAccount.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/firebasemanager.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/multipliermadness.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/monstercarlo.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/sessionmanager.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/timetracker.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/prizeevent.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/skinmanager.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/changepromostatus.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/uploadpicture.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/pointsgt.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
 <script src="dependencies/js/JqueryTemplates/jquery.loadTemplate-1.4.4.js"></script>
+
 <script>
 
     $(document).ready(function () {
@@ -42,10 +45,15 @@
 // device detection
 
         detectMobile();
+
+        startFirebaseDisplayListener(<?php echo($_SESSION["isGod"])?>);
+
+
         function detectMobile() {
             if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
                 || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) isMobile = true;
         }
+
         checkDowntime();
 
 
@@ -60,12 +68,12 @@
 
         //Show option bar
 
-        if(isMobile){
-            $(".tile-menu-bar").show();
-        }
-        $(".tile-body").hover(showOptionsBar, hideOptionsBar);
-        $(".tile-status-btn").hover(showStatusBar, hideStatusBar);
+        if (isMobile) {
 
+        }
+        $(".tile-menu-bar").show();
+        //$(".tile-body").hover(showOptionsBar, hideOptionsBar);
+        //$(".tile-status-btn").hover(showStatusBar, hideStatusBar);
 
 
         //toggle lock icon
@@ -102,12 +110,28 @@
 
         //Register tile click
         $(".tile-body").unbind('click').click(tileBodyClick);
+        $(".editPromoName").unbind('click').click(editPromoName);
 
         /**
          * This is for click listeners
          */
         $(".settingsBtn").unbind('click').click(settingsButtonClick);
 ///
+
+
+        var promoStatusButtonClick = function (e) {
+            e.stopPropagation();
+            var currentObject = $(e);
+            changePromotionStatusModal =$("#dialog").dialog();
+            var promoId = $(this).data("promo-id");
+            $("#dialog").load("views/changepromostatusview.php",{promoid:promoId});
+
+            selectedElement = this;
+
+            changePromotionStatusModal.dialog('open');
+            changePromotionStatusModal.dialog({width: 250,height:325});
+
+        };
 ///
         $(".promotionStatusBtn").unbind('click').click(promoStatusButtonClick);
         $(".promotionDeleteBtn").unbind('click').click(promotionDeleteBtnClick);
@@ -136,7 +160,7 @@
             $('input[name=propertyId]').val(this.id);
             $("#select-skin-container").hide();
             $("#select-scene-style").hide();
-            $('#promotion_type_select').data("point-storage",$(this).data("point-storage"));
+            $('#promotion_type_select').data("point-storage", $(this).data("point-storage"));
             $('#promotion_type_select').load("views/addpromotionoptionview.php", {propertyId: this.id});
             addPromotionModal.dialog('open');
         });
@@ -173,7 +197,7 @@
             viewDocumentsModal.dialog('open');
         });
         $(".property-isviewing").click(function () {
-            $("#promotioncontainer"+$(this).data("property-id")).toggle();
+            $("#promotioncontainer" + $(this).data("property-id")).toggle();
             $(this).toggleClass("fa-caret-square-o-down");
             $(this).toggleClass("fa-caret-square-o-right");
         });
@@ -212,6 +236,10 @@
         $("#logoutBtn").click(function () {
             logoutUser();
         });
+        $("#chimeratv-settings-btn").click(function () {
+            $('#createProperty').load("views/chimeratvsettingsview.php", {propertyId: this.id});
+            viewDocumentsModal.dialog('open');
+        });
 
         /**
          * End Click Listeners
@@ -249,7 +277,7 @@
          * Check for box problems every 5 seconds
          */
         window.setInterval(function () {
-            checkDowntime();
+            //checkDowntime();
         }, 5000);
 
 
@@ -263,7 +291,7 @@
                 url: "controllers/boxstatuscheck.php",
                 global: false,
                 dataType: "json",
-                data: {TypeOfStatus:"box"},
+                data: {TypeOfStatus: "box"},
                 cache: false,
                 success: function (response) {
                     $.each(response, function (index, value) {
@@ -289,6 +317,59 @@
             });
 
         }
+        $(document).on("click","#apkUpload",(function() {
+           console.log("APK Folder:"+  $("#folder").val());
+            var theFolder = $("#folder").val();
+            var filename = $('#apkUploadFile').val().split('\\').pop();
+            var file_data = $('#apkUploadFile').prop('files')[0];
+            var form_data = new FormData();
+            WriteAPKFileToFirebase(filename, $("#fileversion").val());
+            /*
+            form_data.append('fileToUpload', file_data);
+            form_data.append('folder', theFolder);
+            if($("#fileversion").val().trim()==""){
+                alert("File Version Cannot Be Blank!");
+            }else {
+                $.ajax({
+                    url: '../../dependencies/php/uploadfiles.php', // point to server-side PHP script
+                    dataType: 'text',  // what to expect back from the PHP script, if anything
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'POST',
+                    error: function () {
+                        console.log('error with APK Upload');
+                    },
+                    success: function (php_script_response) {
+                        console.log(php_script_response); // display response from the PHP script, if any
+
+                        switch (parseInt(php_script_response)) {
+                            case 0:
+                                console.log('Failure: 0');
+                                break;
+                            case 1:
+                                $('#lblResponse').text('File Uploaded Successfully .');
+
+                                break;
+                            case 5:
+                                console.log('Failure: 5');
+                                $('#lblResponse').text('Sorry, your file is too large.');
+                                break;
+                            case 3:
+                                console.log('Failure: 3');
+                                $('#lblResponse').text('Sorry, File is not an image.');
+                                break;
+                            case 4:
+                                console.log('Failure: 4 - File Already Exists');
+                                $('#lblResponse').text('Sorry, File Already Exists.');
+                                break;
+                        }
+                    }
+                });
+
+            }*/
+        }));
         function checkAPI() {
 
             $.ajax({
@@ -296,7 +377,7 @@
                 url: "controllers/boxstatuscheck.php",
                 global: false,
                 dataType: "json",
-                data: {TypeOfStatus:"API"},
+                data: {TypeOfStatus: "API"},
                 cache: false,
                 success: function (response) {
 

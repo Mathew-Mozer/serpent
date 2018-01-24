@@ -49,11 +49,37 @@ $(document).on("click","#uploadfile",(function() {
  */
 var i=0;
 $(document).on("textInput input",".picviewduration",(function() {
-
+if($(this).val()>0){
+    $(this).closest('td').css({'background-color': '#0066cc'});
+    console.log("blue")
+}else{
+    $(this).val('0')
+    $(this).closest('td').css({'background-color': '#800000'});
+    console.log("red")
+    }
     $.ajax({
         url: 'controllers/promotioncontrollers/picviewercontroller.php',
         type: 'post',
         data: {action:'changeDuration',pictureid:$(this).data('picid'),newduration:$(this).val()},
+        cache: false,
+        global: false,
+        success: function (html) {
+            //console.log(html);
+        },
+        error: function (xhr, desc, err) {
+            //console.log(xhr + "\n" + err);
+        }
+    });
+}));
+$(document).on("textInput input",".picvieworder",(function() {
+    if($(this).val()>0){
+    }else{
+        $(this).val('0')
+    }
+    $.ajax({
+        url: 'controllers/promotioncontrollers/picviewercontroller.php',
+        type: 'post',
+        data: {action:'changeOrder',pictureid:$(this).data('picid'),newOrder:$(this).val()},
         cache: false,
         global: false,
         success: function (html) {
@@ -97,3 +123,25 @@ $(document).on("click",".delete-picture-slideshow",(function() {
 var loadPictures = function (promoid) {
         $('#PictureList').load("views/displaypromotionviews/picturelist.php", {promoid: promoid});
 }
+
+
+
+function WriteAPKFileToFirebase(filename,version) {
+    var offset = new Date().getTime();
+    var folder = $("#folder").val();
+    var newPostKey = firebase.database().ref().child('Files/' + folder).push().key;
+    var postData = {
+        Filename: filename,
+        Version: version,
+        TimeStamp:-offset
+    };
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    console.log("d:" + postData);
+    updates['/Files/'+ folder  +"/"+ newPostKey] = postData;
+    updates['/APK/' + folder + '/'] = postData;
+
+    return firebase.database().ref().update(updates);
+}
+
+

@@ -1,7 +1,8 @@
 <form action="index.php" method="post">
     <input type="text" value="GetSettings" name="action"><br>
    <br>
-    Mac Address<input type="text" value="00000000000000E0" name="macAddress"><br>
+    <!--Mac Address<input type="text" value="00000000000000E0" name="macAddress"><br>!-->
+    LinkCode<input type="text" value="VPW922" name="linkcode"><br>
     <input type="submit" value="Submit">
 </form>
 <hr>

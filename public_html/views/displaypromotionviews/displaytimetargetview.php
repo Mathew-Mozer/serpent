@@ -93,6 +93,7 @@ $promotion = new PromotionModel($dbcon->read_database());
 
             }
         });
+        console.log('id:' + $("#promotion-view-modal").data('promo-id'));
         getModalData($("#promotion-view-modal").data('promo-id'), 14)
 
     </script>

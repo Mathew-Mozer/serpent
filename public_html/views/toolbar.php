@@ -49,6 +49,18 @@
             }
 
             ?>
+            <?php
+            if($_SESSION['isGod']) {
+                ?>
+                <div id="chimeratv-settings-btn" class="button-body tool-button" data-toggle="tooltip"
+                     title="ChimeraTV Settings">
+                    <!--<span class="glyphicon icon-glyphicon-new-property tool-glyphicon white" aria-hidden="true"></span>-->
+                    <i class="font-awesome-toolbar fa fa-cogs fa-3x"></i>
+                </div>
+                <?php
+            }
+
+            ?>
         <?php
       }
  ?>

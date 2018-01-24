@@ -29,8 +29,10 @@ class DisplayData
     public $height=0;
     public $fitw=true;
     public $fith=false;
-    public $flip;
-    public $debug;
+    public $flip=false;
+    public $debug=true;
+    public $kiosk=true;
+    public $isVertical=true;
 //Specific Scene Settings
     public $sceneList;
 

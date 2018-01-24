@@ -106,4 +106,18 @@ if(!isset($_SESSION)) {
     <script src="startbootstrap-admin/vendor/metisMenu/metisMenu.min.js"></script>
 
     <link href="dependencies/js/spectrum/spectrum.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDCDs9l3uezm9R8UsgIfh9FbUWBi4i9FwQ",
+            authDomain: "chimeratvhome.firebaseapp.com",
+            databaseURL: "https://chimeratvhome.firebaseio.com",
+            projectId: "chimeratvhome",
+            storageBucket: "chimeratvhome.appspot.com",
+            messagingSenderId: "861035877293"
+        };
+        firebase.initializeApp(config);
+    </script>
 </head>

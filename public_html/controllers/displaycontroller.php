@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $propertyDisplayModel = new PropertyDisplays($dbcon->read_database(), 0);
         $result = $propertyDisplayModel->getDisplayWithId($_POST['displayId']);
         $array = array('id' => $result->getId(), 'name' => $result->getName(), 'propertyId' => $result->getPropertyId(),
-            'serial' => $result->getSerial(), 'macAddress' => $result->getMacAddress());
+            'serial' => $result->getSerial(), 'macAddress' => $result->getMacAddress(),'linkcode'=>$result->getLinkCode());
         $promotionModel = new PromotionModel($dbcon->read_database());
         $propertyList = $promotionModel->getPromotionProperties();
         $properties = [];
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $values = [];
         $values['displayId'] = $_POST['displayId'];
         $values['propertyId'] = $_POST['propertyId'];
-        if ($propertyDisplayModel->assignDisplayWithId($values)) {
+        if ($propertyDisplayModel->assignDisplayWithId($_POST)) {
             $updated['updated'] = true;
         }
         return json_encode($updated);
@@ -70,7 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset( $_POST['packageName'])){
             $command['packageName'] = $_POST['packageName'];
         }
-        $response = $display->sendMessage($command,$display->getFCMToken());
+
+        if($display->getFCMToken()==""||!isset($_POST['FCMToken'])){
+            $fcmToken = 0;
+            $fcmKey = $_POST['FCMToken'];
+        }else{
+            $fcmToken = 1;
+            $fcmKey = $display->getFCMToken();
+        }
+        $response = $display->sendMessage($command,$fcmKey,$fcmToken);
         echo $response;
         var_dump($_POST);
     }

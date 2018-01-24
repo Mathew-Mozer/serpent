@@ -5,19 +5,21 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-require_once "../models/PermissionModel.php";
-require_once("../dependencies/php/HelperFunctions.php");
+require_once $prevdir."../models/PermissionModel.php";
+require_once($prevdir."../dependencies/php/HelperFunctions.php");
 require_once(getServerPath() . "dbcon.php");
 $dbcon = NEW DbCon();
 $canUpdate = false;
+
 if (isset($_POST['append_promotion'])) {
     if ($_POST['append_promotion'] == true) {
         $row = $_POST;
+        echo("<script>alert('yes')</script>");
     } else {
-
+        echo("<script>alert('not')</script>");
     }
-
 }
+
 $glyphstatus = "glyphicon-play";
 
 if (isset($row['promo_status'])) {
@@ -41,6 +43,7 @@ if (isset($row['promo_status'])) {
 
 }
 $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']);
+
 ?>
 
 <div id="tile-<?php echo $row['promo_id']; ?>" class="tile-body <?php echo $row['promo_id']; ?>"
@@ -57,13 +60,14 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
             echo $row['promotion_label'];
 
         }
-        //echo $row['promotion_label']?></div>
+        //echo $row['promotion_label']?>&nbsp;<span class="glyphicon glyphicon-edit editPromoName"></span></div>
+
     <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image'] ?>">
 
   <!--  <div class="tile-promotion-artifact">
         <i class="font-awesome fa <?php //echo $row['artifact'] ?>"></i>
     </div>-->
-    <div class="tile-menu-bar" style="display: none">
+    <div class="tile-menu-bar" style="">
         <div class="tile-menu-item">
             <?php if ((bool)$permission->hasPermissionById('promotion_settings', $row['property_id'], 'U') || $_SESSION['isGod']) { ?>
                 <div class="tile-menu-item settingsBtn" data-promo-id="<?php echo $row['promo_id']; ?>"
@@ -84,6 +88,5 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
                 <span class="glyphicon glyphicon-remove-circle glyphicon-menu black " aria-hidden="true"></span>
             </div><?php } ?>
     </div>
-
 </div>
 

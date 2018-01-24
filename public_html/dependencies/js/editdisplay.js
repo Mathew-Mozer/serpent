@@ -153,19 +153,27 @@ $(document).on("click", ".save-btn", function () {
 });
 
 $(document).on("click", ".send-fcm-command", function () {
+var useToken = Display.FCMToken;
 
+    if($(this).data("token")=="CTV"){
+      console.log("Sending to CTV");
+        useToken=Display.ctvfirebasetoken;
+    }else{
+        console.log("Sending to Home");
+    }
     $.ajax({
         url: 'controllers/displaycontroller.php',
         type: 'post',
         data: {
             action: 'SendCommandToDisplay',
             display_id:$(this).data("display-id"),
+            FCMToken:useToken,
             command:$(this).data("command"),
             packageName:$(this).data("package-name")
         },
         cache: false,
         success: function ($results) {
-            $("<div style='text-align: center'>Please allow 30 seconds for the app to restart.<br> If it does not restart please contact customer support.</div>").dialog();
+            //$("<div style='text-align: center'>Please allow 30 seconds for the app to restart.<br> If it does not restart please contact customer support.</div>").dialog();
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -173,7 +181,7 @@ $(document).on("click", ".send-fcm-command", function () {
     });
 });
 $(document).on("click", "#view-api-data", function () {
-    window.open(window.location.href+'API/104/index.php?action=GetSettings&mac='+$("#display-mac").val(),"");
+    window.open(window.location.href+'API/104/index.php?action=GetSettings&mac='+$("#display-mac").val()+'&linkcode=' + $("#display-linkcode").val(),"");
     return false;
 });
 
@@ -192,9 +200,12 @@ $(document).on("click", "#save-display-options", function () {
             display_fitw:$('#display-fitw').is(":checked"),
             display_fith:$('#display-fith').is(":checked"),
             displayId:$('#display-id').val(),
+            display_linkcode:$('#display-linkcode').val(),
             display_flip:$('#display-flip').is(":checked"),
+            display_flipv:$('#display-flipv').is(":checked"),
             display_debug:$('#display-debug').is(":checked"),
-            display_vertical:$('#display-vertical').is(":checked")
+            display_vertical:$('#display-vertical').is(":checked"),
+            display_kiosk:$('#display-kiosk').is(":checked")
         },
         cache: false,
         success: function ($results) {

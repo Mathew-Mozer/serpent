@@ -9,6 +9,26 @@ var loadViewTimes = function (promoid) {
 $(document).on("click", ".add-new-timetarget", function () {
     addNewTimeTarget($("#promotion-view-modal").data('promo-id'));
 });
+$(document).on("click", ".add-new-timetargetx", function () {
+
+    //addNewTimeTarget($("#promotion-view-modal").data('promo-id'));
+    var passnum = Math.floor((Math.random() * 999999) + 1);
+    var person = prompt("THIS WILL RESTART ALL JACKPOTS! USE WISELY!\nPlease enter this number exactly: " + passnum, "");
+
+    if (person == null || person == "") {
+        txt = "Board was NOT reset";
+    } else {
+        if(passnum==person){
+            alert("Reset Complete");
+            timetargetpromos.forEach(promoloop)
+        }else{
+            alert("Password Incorrect. Please Try Again");
+        }
+    }
+
+
+});
+
 $(document).on("click", ".time-table-confirm", function () {
     TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 0,$(this).attr('data-target-id'),0);
 });
@@ -21,7 +41,9 @@ $(document).on("click", ".time-table-unconfirm", function () {
 $(document).on("click", ".time-table-archive", function () {
     TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 2,$(this).attr('data-target-id'),0);
 });
-
+var promoloop = function(item,index){
+    addNewTimeTarget(item);
+}
 var TimeTargetUpdate = function (promoId, action,timeTargetId,endTimeTarget) {
     switch (action) {
         case 0:

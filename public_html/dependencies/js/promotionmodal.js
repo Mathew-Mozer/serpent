@@ -8,11 +8,11 @@
  */
 var promotionViewModal = $("#promotion-view-modal").dialog({
     autoOpen: false,
-        height: '800',
-    width: '900',
+    height: $( window ).height()-($( window ).height()*.10),
+    width: $( window ).width()-($( window ).width()*.10),
     modal: true,
     cache: false,
-    position: 'center',
+    position: 'fixed',
     buttons: {
         Update: function () {
             console.log("update promotion");
@@ -22,6 +22,9 @@ var promotionViewModal = $("#promotion-view-modal").dialog({
         },
     close: function( event, ui ) {
         $(".ui-dialog-buttonset").toggle(true);
+    },
+    open: function (event,ui) {
+        
     }
 
     });

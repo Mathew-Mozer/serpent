@@ -2,6 +2,7 @@
 /**
  * This is the property view
  */
+
 ?>
 <div class="promotion-view" id=<?php echo "\"promotion-list-" . $property['property_id'] . "\""; ?>>
     <h2 class="property-title"><?php echo $property['property_name']; ?>
@@ -31,15 +32,40 @@
             <span class="glyphicon glyphicon-plus-sign glyphicon-new-tile white" aria-hidden="true"></span>
         </div>
     </div>
-
     <?php
     }
+    $prevdir="";
     $promotionList = $promotion->getAllPromotionsByProperty($property['property_id']);
     if (count($promotionList) > 0) {
         foreach ($promotionList as $row) {
             include 'promotionview.php';
         }
     } ?>
+<div style="background-color: #c3cacc;">
+    <?php if ($permission->hasPermissionById('display', $property['property_id'], 'U') || $_SESSION['isGod']) { ?>
+    <div style="float: left; line-height: 60px; margin-left: 55px; margin-right:20px"><h3 id="display-name" class="header-text display-friendly-name display-font">Displays</h3></div>
+        <?php
+
+        $propertyDisplay = new PropertyDisplays($dbcon->read_database(), $property['property_id']);
+        $promotionData = new PromotionModel($dbcon->read_database());
+        $propertyDisplays = $propertyDisplay->getDisplays();
+        foreach ($propertyDisplays as $display) { ?>
+            <div style="float: left">
+                <button title="<?php  echo($display->getDisplayLocation()."&nbsp;")?>" data-toggle="tooltip" type="button" data-property-id="<?php echo $property['property_id']; ?>"
+                        data-property-name="<?php echo $property['property_name']; ?>"
+                        data-display-id="<?php echo $display->getId(); ?>"
+                        data-display-linkcode="<?php echo $display->getLinkCode(); ?>"
+                        class="btn btn-info btn-lg edit-display-btn" style="width: 150px; margin-right: 15px;margin-left: 15px"><?php echo $display->getName();?><br>
+                </button>
+            </div>
+        <?php }
+    }
+            ?>
+    <div style="clear:both; float: none"></div>
+
 </div>
+
+</div>
+
 </div>
 

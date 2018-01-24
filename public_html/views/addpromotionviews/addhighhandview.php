@@ -26,9 +26,12 @@ if (!isset($_POST['promotion_template'])) {
 
                         <br>
                         <br>
-                        <label for="payout-value">Default Payout</label><br>
+                        <label for="payout-value">Payout</label><br>
                         <input id="payout-value" name="payout_value" type="number" value="250"
-                               placeholder="Default Payout"/>
+                               placeholder="Default Payout"/><br>
+                        <button class="btn btn-info btn-sm addtohighhandpayout" data-operator="+" data-amount="100">+$100</button>
+                        <button class="btn btn-info btn-sm addtohighhandpayout" data-operator="-"  data-amount="100">-$100</button>
+                        <button class="btn btn-info btn-sm addtohighhandpayout" data-operator="="  data-amount="100">$100</button>
                     </div>
                 </td>
                 <td>
@@ -159,3 +162,30 @@ if (isset($_POST['promotion_settings'])) {
     }
 }
 ?>
+<script>
+    var addToHighHandPayout = function () {
+        switch ($(this).data("operator")){
+            case "+":
+                $("#payout-value").val(parseInt($("#payout-value").val()) + parseFloat($(this).data("amount")));
+
+                break;
+            case "-":
+                $("#payout-value").val(parseInt($("#payout-value").val()) - parseFloat($(this).data("amount")));
+                break;
+            case "=":
+                $("#payout-value").val($(this).data("amount"));
+
+                break;
+
+        }
+        if(parseInt($("#payout-value").val())>9999||parseInt($("#payout-value").val())<=0){
+            console.log ("Out of Range");
+            $("#payout-value").val(100);
+        }else{
+            console.log("In Range");
+        }
+
+    }
+    $(".addtohighhandpayout").unbind('click').click(addToHighHandPayout);
+
+</script>

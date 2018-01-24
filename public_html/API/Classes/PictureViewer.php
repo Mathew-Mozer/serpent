@@ -20,7 +20,7 @@ public $picturelist= array();
         global $conn;
         $dbcon = new DbCon();
         $conn = $dbcon->read_database();
-        $sql = 'SELECT * from picview_pictures where picview_pictures_promoid=? order by picview_pictures_id DESC ';
+        $sql = 'SELECT * from picview_pictures where picview_pictures_promoid=? order by picview_pictures_order ASC ';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSessionID));
         //echo("found something".$pSessionID);
@@ -30,6 +30,7 @@ public $picturelist= array();
             $pd->id = $result['picview_pictures_id'];
             $pd->filename = "http://".$_SERVER['HTTP_HOST']."/clientpictures/uploads/".$result['picview_pictures_promoid']."/".$result['picview_pictures_filename'];
             $pd->duration = $result['picview_pictures_duration'];
+            $pd->order = $result['picview_pictures_order'];
                 array_push($this->picturelist,$pd);
         }
     }

@@ -48,7 +48,9 @@ class Scene
         $this->sceneType = $promo_type_id;
         $this->sceneID = $psceneID;
         $this->EffectID = $pEffectID;
-        $this->lastUpdated = $this->convertTime($lastupdated);
+        if($promoID!=0){
+            $this->lastUpdated = $this->convertTime($lastupdated);
+        }
         $this->animation = (bool)$animation;
         $this->skinDataID = $pSkinId;
         $this->sceneSkin = new Skin($psceneID, $pSkinId, $propertyId);
@@ -224,6 +226,7 @@ class Scene
     }
     function loadTimeTargetData($pSceneID)
     {
+        //If there is no data being shown its becuase there is no session.
         $tdata = new TimeTarget();
         $sql = 'SELECT * FROM `time_target_sessions`,time_target where time_target_archive=\'0\' and time_target_promoid=? and time_target_session_promoid=time_target_promoid ORDER BY time_target_session_id desc,time_target_id desc limit 1 ';
         $statement = $this->conn->prepare($sql);
@@ -247,14 +250,15 @@ class Scene
     function loadTimeTargetXData($pSceneID)
     {
 
-        $sql = "Select * from promotion,promo_property where promotion.promotion_id=promo_property.promo_property_promo_id AND promo_property.promo_property_property_id = (select promo_property_property_id from promo_property where promo_property_promo_id=?) and promotion_type_id='14' and promotion_status='1' and promotion.promotion_visible='1' limit 4";
+        //$sql = "Select * from promotion,promo_property where promotion.promotion_id=promo_property.promo_property_promo_id AND promo_property.promo_property_property_id = (select promo_property_property_id from promo_property where promo_property_promo_id=?) and promotion_type_id='14' and promotion_status='1' and promotion.promotion_visible='1' limit 4";
+        $sql = "select * from promotion p where p.promotion_parent =?";
         //echo("sql:".$sql);
         $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $this->timeTargetXData = new TimeTargetX();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             //echo("found");
-            array_push($this->timeTargetXData->TimeTargetData, $this->loadTimeTargetData($result['promo_property_promo_id']));
+            array_push($this->timeTargetXData->TimeTargetData, $this->loadTimeTargetData($result['promotion_id']));
         }
     }
     function loadPointsGTData($pSceneID)
@@ -302,6 +306,7 @@ class Scene
             $this->pointsGTData->Value3Title = $result['pgt_right_title'];
             $this->pointsGTData->SpriteAtlas = $result['pgt_atlas'];
             $this->pointsGTData->PayoutList = $result['pgt_payout'];
+            $this->pointsGTData->StartDate = $result['pgt_race_begin'];
             $this->pointsGTData->datestart = $date3;
                 $this->pointsGTData->dateend = $date2;
                     $this->pointsGTData->datenow = $date3;
