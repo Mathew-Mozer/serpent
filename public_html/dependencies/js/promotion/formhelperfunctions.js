@@ -157,6 +157,7 @@ var getModalData = function (promotionId, promotionTypeId) {
  * @returns {{}}
  */
 var getFormData = function (formId) {
+
     var data = {};
     var formDataInput = document.getElementById(formId).getElementsByTagName('INPUT');
     var formDataSelect = document.getElementById(formId).getElementsByTagName('SELECT');

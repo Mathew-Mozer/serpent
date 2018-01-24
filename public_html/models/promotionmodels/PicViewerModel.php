@@ -26,11 +26,13 @@ class PicViewerModel
      */
     public function add($values)
     {
-        $sql = "INSERT INTO picview_settings (picview_settings_promoid, picview_settings_type)
-                                 VALUES (:promotion_id,:pictype);";
+        $sql = "INSERT INTO picview_settings (picview_settings_promoid, picview_settings_type,picview_settings_vertical)
+                                 VALUES (:promotion_id,:pictype,:picviewvertical);";
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
+        $result->bindValue(':picviewvertical', $values['picview_settings_vertical'], PDO::PARAM_STR);
         $result->bindValue(':pictype', 0, PDO::PARAM_STR);
+
         $result->execute();
         return $result;
     }
@@ -96,7 +98,7 @@ class PicViewerModel
              WHERE
                picview_pictures_promoid=:id
              ORDER BY
-              picview_pictures_id DESC;";
+              picview_pictures_order ASC;";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
@@ -131,7 +133,20 @@ class PicViewerModel
         $result->execute();
         //return var_dump($result);
     }
-
+    public function changeOrder($values)
+    {
+        $sql = "Update
+               picview_pictures
+               set picview_pictures_order=:order
+             WHERE
+               picview_pictures_id=:id
+               limit 1;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $values['pictureid'], PDO::PARAM_STR);
+        $result->bindValue(':order', $values['newOrder'], PDO::PARAM_STR);
+        $result->execute();
+        //return var_dump($result);
+    }
 }
 
 ?>

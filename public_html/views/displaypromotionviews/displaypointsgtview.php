@@ -231,7 +231,7 @@
         }
     }
     //pastebox.bind("propertychange change keyup input paste", function(event){
-    pastebox.bind("propertychange change keyup paste", function (event) {
+    pastebox.bind("propertychange change keyup input paste", function (event) {
         //alert(event.);
         myHandler();
     });

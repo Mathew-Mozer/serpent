@@ -57,7 +57,8 @@ class TimeTargetModel{
        $result->bindValue(':maxpayout', $values['time_target_maxpayout'], PDO::PARAM_STR);
        $result->bindValue(':defhour', $values['time_target_def_hour'], PDO::PARAM_STR);
        $result->bindValue(':defminute', $values['time_target_def_minute'], PDO::PARAM_STR);
-        echo("it tried");
+       var_dump($values);
+       echo("it tried: ". $values['promotionId']);
        $result->execute();
        return $result;
    }
@@ -84,6 +85,7 @@ class TimeTargetModel{
      $result->execute();
 
      $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+
      return $promoResult;
    }
     public function getAllSessions($id){
@@ -140,6 +142,14 @@ class TimeTargetModel{
         $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
         $result->execute();
         return $result;
+    }
+    public function getAllTimeTargetChildren($promoID){
+        $sql = "select * from promotion p where p.promotion_parent =:id";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $promoID, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
     }
  }
 ?>

@@ -32,7 +32,7 @@ class PropertyDisplays
     private function getAllDisplaysWithPropertyId($propertyId)
     {
         $getDisplays = "SELECT * FROM display WHERE display.property_id="
-            . $propertyId . " ORDER BY display.display_id;";
+            . $propertyId . " ORDER BY display.display_name asc;";
         $displayStatement = $this->conn->prepare($getDisplays);
         $displayStatement->execute();
         $result = $displayStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -88,8 +88,9 @@ class PropertyDisplays
      */
     public function assignDisplayWithId($values)
     {
-        $sql = "UPDATE display SET property_id = " . $values['propertyId'] . " WHERE display_id = " . $values['displayId'];
+        $sql = "UPDATE display SET display_name='".$values['displayName'] ."', property_id = " . $values['propertyId'] . " WHERE display_id = " . $values['displayId'];
         $statement = $this->conn->prepare($sql);
+        //echo($sql);
         return $statement->execute();
     }
 
@@ -248,10 +249,20 @@ class PropertyDisplays
         }else{
             $values['display_flip']='0';
         }
+        if($values['display_flipv']=="true"){
+            $values['display_flipv']='1';
+        }else{
+            $values['display_flip']='0';
+        }
         if($values['display_debug']=="true"){
             $values['display_debug']='1';
         }else{
             $values['display_debug']='0';
+        }
+        if($values['display_kiosk']=="true"){
+            $values['display_kiosk']='1';
+        }else{
+            $values['display_kiosk']='0';
         }
         if($values['display_vertical']=="true"){
             $values['display_vertical']='1';
@@ -268,8 +279,11 @@ class PropertyDisplays
                   display_fitw=:fitw,
                   display_fith=:fith,
                   display_flip=:flip,
+                  display_flipv=:flipv,
                   display_debug=:debug,
-                  display_vertical=:vertical
+                  display_vertical=:vertical,
+                  display_kiosk=:kiosk,
+                  display_linkcode=:linkcode
                 WHERE 
                   display_id=:displayId';
         $statement = $this->conn->prepare($sql);
@@ -282,8 +296,12 @@ class PropertyDisplays
             $statement->bindValue(':fitw', $values['display_fitw'], PDO::PARAM_STR);
             $statement->bindValue(':fith', $values['display_fith'], PDO::PARAM_STR);
             $statement->bindValue(':flip', $values['display_flip'], PDO::PARAM_STR);
+            $statement->bindValue(':flipv', $values['display_flipv'], PDO::PARAM_STR);
             $statement->bindValue(':debug', $values['display_debug'], PDO::PARAM_STR);
+            $statement->bindValue(':kiosk', $values['display_kiosk'], PDO::PARAM_STR);
             $statement->bindValue(':vertical', $values['display_vertical'], PDO::PARAM_STR);
+        $statement->bindValue(':linkcode', $values['display_linkcode'], PDO::PARAM_STR);
+
         $statement->execute();
 
         return $values;

@@ -10,7 +10,7 @@
  * Creates the modal
  * @type {any}
  */
-var settingsModal = $("#settings").dialog({
+var settingsModal = $("#promotion-view-modal").dialog({
         autoOpen: false,
         height: 800,
         width: 900,
@@ -22,8 +22,8 @@ var settingsModal = $("#settings").dialog({
         },
     buttons: {
         Update: function () {
-            updatePromotion($("#settings").data('promo-id'),$("#settings").data('promo-type-id'),1);
-            $("#settings").dialog('close');
+            updatePromotion($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('promo-type-id'),1);
+            $("##promotion-view-modal").dialog('close');
         }}
     });
 
@@ -50,6 +50,7 @@ var settingsModal = $("#settings").dialog({
  */
 var openSettingsModal = function() {
         settingsModal.dialog('open');
+
     };
 
 /**

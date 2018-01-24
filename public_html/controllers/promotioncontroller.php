@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $reflectionClass = new ReflectionClass($className);
         $classReference = $reflectionClass->newInstanceArgs(array($conn->insert_database()));
         $oldRecord = $classReference->get($_POST['promotionId']);
+        
         $newRecord = array_merge($oldRecord, $_POST);
         $classReference->update($newRecord);
         $promotion->setUpdatedTimestamp($_POST['promotionId']);
@@ -95,7 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         header('content-type:application/json');
         echo json_encode($response);
+    }else if (($_POST['action'] == 'updateChildPromoId')) {
+        $promotion = new PromotionModel($conn->insert_database());
+        $response = $promotion->linkChildToParent($_POST);
+        header('content-type:application/json');
+        echo json_encode($response);
     }
+
 
 }
 ?>

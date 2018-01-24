@@ -22,6 +22,8 @@ date_default_timezone_set('America/Los_Angeles');
 $displayData = new DisplayData();
 $conn;
 CheckDeviceCheck();
+$linkcode = "";
+$useLinkCode=false;
 if (isset($_POST["action"])||isset($_GET["action"])) {
     if (isset($_POST["macAddress"])) {
         $macAddress = $_POST["macAddress"];
@@ -31,17 +33,38 @@ if (isset($_POST["action"])||isset($_GET["action"])) {
         $macAddress = $_GET["mac"];
         $action = $_GET["action"];
     }
+    if (isset($_GET["linkcode"])) {
+        $linkcode = $_GET["linkcode"];
+        $useLinkCode=true;
+    }
+    if (isset($_GET["linkcode"])) {
+        $linkcode = $_GET["linkcode"];
+        $action = $_GET["action"];
+        $useLinkCode=true;
+    } if (isset($_POST["linkcode"])) {
+        $linkcode = $_POST["linkcode"];
+        $action = $_POST["action"];
+        $useLinkCode=true;
+    }
 
     switch ($action) {
+        case "GetLinkCode":
+            echo(getLinkCode());
+            break;
         case "GetSettings":
             //Get Box Settings
-            if (isBoxedRegistered($macAddress)) {
+
+            if (isBoxedRegistered($macAddress,$linkcode)) {
+
                 loadSceneData();
                 if(isset($_POST["FireBaseToken"])) {
                     UpdateFireBaseToken($macAddress, $_POST["FireBaseToken"]);
                 }
+                if(isset($_POST["linkcode"])&& $macAddress!="") {
+                    UpdateLinkCode($macAddress,$_POST["linkcode"]);
+                }
             } else {
-                registerDisplay($_POST["macAddress"]);
+                registerDisplay($linkcode);
             }
             break;
         case "LogFromBox":
@@ -69,6 +92,15 @@ function UpdateFireBaseToken($mac,$token){
     $dbcon = new DbCon();
     $conn = $dbcon->update_database();
     $sql = "UPDATE display SET display_gcmid=:newvalue WHERE display_mac_address=:mac;";
+    $result = $conn->prepare($sql);
+    $result->bindValue(':newvalue', $token, PDO::PARAM_STR);
+    $result->bindValue(':mac', $mac, PDO::PARAM_STR);
+    $result->execute();
+}
+function UpdateLinkCode($mac,$token){
+    $dbcon = new DbCon();
+    $conn = $dbcon->update_database();
+    $sql = "UPDATE display SET display_linkcode=:newvalue WHERE display_mac_address=:mac;";
     $result = $conn->prepare($sql);
     $result->bindValue(':newvalue', $token, PDO::PARAM_STR);
     $result->bindValue(':mac', $mac, PDO::PARAM_STR);
@@ -131,30 +163,61 @@ function UpdateDeviceTimeStamp($displayid, $field)
     $tmpres = $result->execute();
 }
 
-function registerDisplay($macAddress)
+function registerDisplay($linkcode)
 {
     global $conn;
     $dbcon = new DbCon();
     $conn = $dbcon->insert_database();
-    $sql = "INSERT INTO display (display_mac_address) VALUES (:macid);";
+    $sql = "INSERT INTO display (display_linkcode) VALUES (:linkcode);";
     $result = $conn->prepare($sql);
-    $result->bindValue(':macid', $macAddress, PDO::PARAM_STR);
+    $result->bindValue(':linkcode', $linkcode, PDO::PARAM_STR);
     $result->execute();
 
 }
+function getLinkCode(){
+    global $conn;
+    $characters = 'ABCDEFGHJKLKMPQRSTUVWXYZ23456789';
 
+    $found = false;
+    $max = strlen($characters) - 1;
+
+    do{
+        $string = '';
+        for ($i = 0; $i < 6; $i++) {
+            $string .= $characters[mt_rand(0, $max)];
+        }
+        $dbcon = new DbCon();
+        $conn = $dbcon->read_database();
+        $sql = "SELECT * FROM display WHERE display_linkcode=?";
+        $statement = $conn->prepare($sql);
+        $statement->execute(array($string));
+        $count = $statement->rowCount();
+        if($count>0){
+            $found=true;
+        }
+    }while($found);
+    return $string;
+}
 //Registers a display in the database by creating a new record with
 
 function loadSceneData()
 {
-    global $displayData, $conn, $macAddress;
+    global $displayData, $conn, $macAddress,$useLinkCode,$linkcode;
 
     $dbcon = new DbCon();
     $conn = $dbcon->read_database();
-    //$sql = 'SELECT *,display.property_id as prid,promotion_skin,promotion_status,scene_effectid,display_monitor,display_lockedpromo,promotion_lastupdated,scene_duration,display_appversion,display_name, promotion.promotion_id, promotion.promotion_sceneid, promotion_property.skin_id,promotion_type_id, property.property_id, display.display_id,property.property_asset_bundle_url,property.property_asset_bundle_windows,property.property_asset_name,property.property_default_logo,property.property_name FROM display,property,promotion_property,promotion,api WHERE api_id=display_api_id and promotion_property.property_id=property.property_id and display.property_id and promotion_property.display_id=display.display_id and promotion_property.promotion_id=promotion.promotion_id and promotion_status>0 and display.display_mac_address=?';
-    $sql = "SELECT *,display.property_id as prid FROM display, property, api WHERE api_id=display_api_id and display.property_id=property.property_id and display.display_mac_address=?";
-    $statement = $conn->prepare($sql);
-    $statement->execute(array($macAddress));
+    if($useLinkCode){
+
+        $sql = "SELECT *,display.property_id as prid FROM display, property, api WHERE api_id=display_api_id and display.property_id=property.property_id and display.display_linkcode=?";
+        $statement = $conn->prepare($sql);
+        $statement->execute(array($linkcode));
+    }else{
+
+        $sql = "SELECT *,display.property_id as prid FROM display, property, api WHERE api_id=display_api_id and display.property_id=property.property_id and display.display_mac_address=?";
+        $statement = $conn->prepare($sql);
+        $statement->execute(array($macAddress));
+    }
+
     $tmpSceneArray = array();
     foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
         //$displayData->BundleAndroidUrl="http://connect.typhonpacificstudios.com/tv/assetbundles/tpsAndroid.unity3d";
@@ -170,21 +233,22 @@ function loadSceneData()
         $displayData->displayID = $result['display_id'];
         $displayData->monitor = $result['display_monitor'];
         $displayData->apiurl = $result['api_url'];
-
         $displayData->fitw = (bool)$result['display_fitw'];
         $displayData->fith = (bool)$result['display_fith'];
         $displayData->flip = (bool)$result['display_flip'];
+        $displayData->flipv = (bool)$result['display_flipv'];
         $displayData->isVertical = (bool)$result['display_vertical'];
         $displayData->width = $result['display_width'];
         $displayData->height = $result['display_height'];
         $displayData->debug = (bool)$result['display_debug'];
+        $displayData->kiosk = (bool)$result['display_kiosk'];
         $displayData->sceneList = loadScenes($result);
         //Add Scenes to Display
         //echo("Promoid:".$result[promotion_id]." Promotion Type ID".$result[promotion_type_id]." skinid:".$result[skin_id]." sceneid".$result[promotion_sceneid]."<br><br><br>");
 
     }
 
-    if ($displayData->displayID != 0) {
+    if ($displayData->displayID != 0 ) {
         if(isset($_POST["appVersion"])) {
             if ($_POST["appVersion"] != $displayData->AppVersion) {
                 UpdateDisplayData('display_appversion', $_POST["appVersion"], $displayData->AppVersion, $displayData->displayID, true);
@@ -204,6 +268,7 @@ function loadSceneData()
 
     if ($displayData->sceneList === null) {
         $tmpScene = new Scene(0, 0, 0, 0, 0, 0, 0, 0,0);
+        $displayData->flip=false;
         $tmpScene->promotionStatus = 0;
         array_push($tmpSceneArray, $tmpScene);
         $displayData->sceneList = $tmpSceneArray;
@@ -227,6 +292,7 @@ function loadScenes($display)
     $statement->execute(array($display['display_id']));
     $tmpSceneArray = array();
     foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+
 
         //if ($result['promotion_skin'] != 0) {
          //   $tmpSkinID = $result['promotion_skin'];
@@ -392,25 +458,27 @@ function shouldShowPromo($promoid)
     return $val;
 }
 
-function isBoxedRegistered($macAddress)
+function isBoxedRegistered($macAddress,$linkcode)
 {
     //If box registered to 0 then return message saying box isn't registered to a casino
     //Else return settings
-    global $conn;
-    $dbcon = new DbCon();
-    $conn = $dbcon->read_database();
-    $sql = 'SELECT * FROM display WHERE display_mac_address=?';
-    $statement = $conn->prepare($sql);
-    $statement->execute(array($macAddress));
+    if($linkcode!="") {
+        global $conn;
+        $dbcon = new DbCon();
+        $conn = $dbcon->read_database();
+        $sql = 'SELECT * FROM display WHERE display_linkcode=?';
+        $statement = $conn->prepare($sql);
+        $statement->execute(array($linkcode));
 
-    $result = $statement->fetch(PDO::FETCH_ASSOC);
-    if (!$result) {
-        echo($macAddress);
-        return false;
-    } else {
-        return true;
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$result) {
+            echo($macAddress);
+            return false;
+        } else {
+            return true;
+        }
     }
-
+    return true;
 }
 
 ?>

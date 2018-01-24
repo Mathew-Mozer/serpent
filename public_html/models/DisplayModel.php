@@ -22,8 +22,11 @@ class DisplayModel
     private $fitw;
     private $fith;
     private $flip;
+    private $flipv;
     private $isVertical;
     private $fcmid;
+    private $linkCode;
+    private $kiosk;
     /**
      * DisplayModel constructor.
      * @param $values
@@ -54,9 +57,12 @@ class DisplayModel
         $this->setFitW($fieldArray['display_fitw']);
         $this->setFitH($fieldArray['display_fith']);
         $this->setFlip($fieldArray['display_flip']);
+        $this->setFlipv($fieldArray['display_flipv']);
         $this->setDebug($fieldArray['display_debug']);
         $this->setFCMToken($fieldArray['display_gcmid']);
         $this->setVertical($fieldArray['display_vertical']);
+        $this->setLinkCode($fieldArray['display_linkcode']);
+        $this->setKiosk($fieldArray['display_kiosk']);
 //var_dump($fieldArray);
     }
 
@@ -92,6 +98,9 @@ class DisplayModel
     public function setVertical($val){
         $this->isVertical=$val;
     }
+    public function setLinkCode($val){
+        $this->linkCode=$val;
+    }
     public function setAppVersion($val)
     {
         $this->appVersion = $val;
@@ -106,6 +115,10 @@ class DisplayModel
     {
         $this->width = $val;
     }
+    public function setKiosk($val)
+    {
+        $this->kiosk = $val;
+    }
 
     public function setFitW($val)
     {
@@ -119,6 +132,10 @@ class DisplayModel
     public function setFlip($val)
     {
         $this->flip = $val;
+    }
+    public function setFlipv($val)
+    {
+        $this->flipv = $val;
     }
     public function setDebug($val)
     {
@@ -181,6 +198,9 @@ class DisplayModel
     public function getFCMToken(){
         return $this->fcmid;
     }
+    public function getLinkCode(){
+        return $this->linkCode;
+    }
     public function getApiId()
     {
         return $this->apiId;
@@ -194,6 +214,10 @@ class DisplayModel
     public function getHeight()
     {
         return $this->height;
+    }
+    public function getKiosk()
+    {
+        return $this->kiosk;
     }
 
     public function getWidth()
@@ -213,6 +237,10 @@ class DisplayModel
     public function getFlip()
     {
         return $this->flip;
+    }
+    public function getFlipv()
+    {
+        return $this->flipv;
     }
     public function getDebug()
     {
@@ -308,12 +336,18 @@ class DisplayModel
     {
         return $this->displayLocation;
     }
-    public function sendMessage($data, $target)
+    public function sendMessage($data, $target,$fcmTarget)
     {
 //FCM api URL
         $url = 'https://fcm.googleapis.com/fcm/send';
 //api_key available in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
-        $server_key = 'AAAAhPnCBB8:APA91bHgbUuDFr3WqW6c8nNi_z7VHJhcE46O6cxZPaNf2u-nnGKsLo14mascocTvsjcuWsmaWynudC7aKrOA3yUi7fwxeRNXaRvsgYiAdv_pIWr-A7EY4lOKaC1UZEeVUGeh8eHiiee-';
+        //ChimeraTVHome Key
+
+        $server_key1 = 'AAAAyHm8060:APA91bEnz0bbTlBOCoIzBXJXGoueeEETsxnlfQFlK7IM2gV-GRUaifgQdAKZfYJYPDGlyBnfARXwhpyzbLfGxbsxQWSkPjkGKsZzy9HMfKyskLf3omvA8FuWEwZrUFbvyvSfWKdihOl0';
+        //ChimeraTVManager Key
+        $server_key2 = 'AAAAhPnCBB8:APA91bHgbUuDFr3WqW6c8nNi_z7VHJhcE46O6cxZPaNf2u-nnGKsLo14mascocTvsjcuWsmaWynudC7aKrOA3yUi7fwxeRNXaRvsgYiAdv_pIWr-A7EY4lOKaC1UZEeVUGeh8eHiiee-';
+
+        $server_key = array($server_key1,$server_key2);
         $fields = array();
         $fields['data'] =  $data;
         if (is_array($target)) {
@@ -324,7 +358,7 @@ class DisplayModel
 //header with content_type api key
         $headers = array(
             'Content-Type:application/json',
-            'Authorization:key=' . $server_key
+            'Authorization:key=' . $server_key[$fcmTarget]
         );
 
         $ch = curl_init();
@@ -340,6 +374,6 @@ class DisplayModel
             die('FCM Send Error: ' . curl_error($ch));
         }
         curl_close($ch);
-        return $result;
+        return "Sending to:".$fcmTarget. " Result:".$result;
     }
 }

@@ -2,6 +2,7 @@
 /**
  * This is the kick for cash form
  */
+
 ?>
 
 
@@ -75,6 +76,7 @@
 <script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime()?>"></script>
 <?php
 if(isset($_POST['promotion_settings'])) {
+    echo('promoid: '.$_POST['promotion_id']);
     if ($_POST['promotion_settings']) {
         echo "<script>getModalData(" . $_POST['promotion_id'] . "," . $_POST['promotion_type'] . ");</script>";
     }

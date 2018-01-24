@@ -8,8 +8,8 @@
  */
 var changePromotionStatusModal = $('#createProperty').dialog({
     autoOpen: false,
-    height: 175,
-    width: 175,
+    width: "auto",
+    height: 50,
     modal: true,
     title: 'Choose Status',
     buttons: {}

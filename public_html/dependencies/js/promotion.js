@@ -14,9 +14,11 @@ function detectMobile() {
  */
 var tileBodyClick = function () {
 //alert('data:' + $(this).data("property-point-storage"));
+    console.log("clicked Promotion");
     $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
     $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
     $("#promotion-view-modal").data('promo-point-storage', $(this).data("property-point-storage"));
+    console.log("Display:" +  $(this).data("promo-type"));
     $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php",{promoid:$(this).data("promo-id"),pointstorage:$(this).data("property-point-storage")});
     promotionViewModal.dialog('open');
 };
@@ -126,54 +128,52 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
 };
 
 var selectedElement;
-var promoStffatusButtonClick = function (e) {
+var editPromoName = function (e) {
     e.stopPropagation();
-    $("#createProperty").load("views/changepromostatusview.php");
-    selectedElement = this;
-    changePromotionStatusModal.dialog('open');
-    $('.ui-dialog').position({
-        my: "bottom",
-        at: "bottom",
-        of: selectedElement
-    });
+
 }
-var promoStatusButtonClick = function (e) {
-    e.stopPropagation();
-    var currentObject = $(this);
+var changePromoStatus = function () {
+    changePromotionStatusModal.dialog('close');
+    currentObject = $(selectedElement);
     var curStatus = parseInt($(this).data("promo-status"));
-    var nextStatus = parseInt($(this).data("promo-status"))+1;
-    var promoId = $(this).data("promo-id");
-    if(nextStatus>3)
-        nextStatus=0;
-    //console.log("current status="+curStatus);
+    //alert(curStatus + " - promoid:" + $(this).data("promoid"));
     $.ajax({
         url: 'controllers/promotioncontroller.php',
         type: 'post',
         data: {
             action: 'updatePromotionStatus',
-            promotionId: promoId,
-            nextStatus: nextStatus
+            promotionId: $(this).data("promoid"),
+            nextStatus: curStatus
         },
         cache: false,
         success: function (response) {
 
             currentObject.data("promo-status",response['promo_status']);
 
-            //console.log('setting promo status '+currentObject.data("promo-status"));
+            console.log('setting promo status '+currentObject.data("promo-status"));
             switch(parseInt(response['promo_status'])){
                 case 0:
                     currentObject.find('span').removeClass('glyphicon-clock');
+                    currentObject.find('span').removeClass('glyphicon-stop');
+                    currentObject.find('span').removeClass('glyphicon-pause');
                     currentObject.find('span').addClass('glyphicon-stop');
+
                     break;
                 case 1:
+                    currentObject.find('span').removeClass('glyphicon-clock');
                     currentObject.find('span').removeClass('glyphicon-stop');
+                    currentObject.find('span').removeClass('glyphicon-pause');
                     currentObject.find('span').addClass('glyphicon-play');
                     break;
                 case 2:
-                    currentObject.find('span').removeClass('glyphicon-play');
+                    currentObject.find('span').removeClass('glyphicon-clock');
+                    currentObject.find('span').removeClass('glyphicon-stop');
+                    currentObject.find('span').removeClass('glyphicon-pause');
                     currentObject.find('span').addClass('glyphicon-pause');
                     break;
                 case 3:
+                    currentObject.find('span').removeClass('glyphicon-clock');
+                    currentObject.find('span').removeClass('glyphicon-stop');
                     currentObject.find('span').removeClass('glyphicon-pause');
                     currentObject.find('span').addClass('glyphicon-time');
                     break;
@@ -184,7 +184,9 @@ var promoStatusButtonClick = function (e) {
         }
 
     });
-};
+
+}
+
 var settingsButtonClick = function (e) {
     e.stopPropagation();
     console.log('settings clicked');
@@ -192,10 +194,9 @@ var settingsButtonClick = function (e) {
 
     //var perm = canDelete(ids[0],id);
     //getSettings(ids[1],ids[2], perm);
-    $("#settings").data('promo-id', $(this).data("promo-id"));
-    $("#settings").data('promo-type-id', $(this).data("promo-type-id"));
-    $("#settings").load("views/addpromotionviews/add"+$(this).data("promo-type")+"view.php",{propertyId: $(this).data("promo-property-id") ,promotion_settings:true, promotion_id:$(this).data("promo-id"), promotion_type:$(this).data("promo-type-id")});
-
+    $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
+    $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
+    $("#promotion-view-modal").load("views/addpromotionviews/add"+$(this).data("promo-type")+"view.php",{propertyId: $(this).data("promo-property-id") ,promotion_settings:true, promotion_id:$(this).data("promo-id"), promotion_type:$(this).data("promo-type-id")});
     openSettingsModal();
 };
 /**

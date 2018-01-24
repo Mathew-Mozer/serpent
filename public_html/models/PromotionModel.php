@@ -85,8 +85,38 @@ class PromotionModel
         return $promoResult['promotion_type_class_name'];
     }
 
-    public function getAllPromotionsByProperty($propertyId)
+    public function getAllPromotionsByProperty($propertyId,$type=0)
     {
+            $tmp="";
+        if($type!=0){
+            $tmp = " AND promotion.promotion_type_id=".$type;
+        }
+        $sql = "SELECT *,
+                      promotion.promotion_status as promo_status,
+                      promotion.promotion_id as promo_id,
+                      promotion.artifact as artifact,
+                      promotion_type.promotion_type_id as promo_type_id,
+                      promotion_type.promotion_type_title as promo_title,
+                      promotion_type.promotion_type_image as promo_image,
+                      promotion_type.promotion_type_file_name as file_name,
+                      promo_property.promo_property_property_id as property_id
+                    FROM
+                      promotion, promotion_type, promo_property, property
+                    WHERE
+                      promo_property.promo_property_template = 0".
+                    $tmp." AND promotion.promotion_type_id = promotion_type.promotion_type_id
+                      AND promotion.promotion_parent=0 
+                      AND  promotion.promotion_id = promo_property.promo_property_promo_id
+                      AND property.property_id = promo_property.promo_property_property_id
+                      AND promotion.promotion_visible = 1 AND property.property_id =  :id;
+                    ";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
+    public function getPromotionDetails($promoid){
         $sql = "SELECT *,
                       promotion.promotion_status as promo_status,
                       promotion.promotion_id as promo_id,
@@ -103,15 +133,14 @@ class PromotionModel
                       AND promotion.promotion_type_id = promotion_type.promotion_type_id
                       AND  promotion.promotion_id = promo_property.promo_property_promo_id
                       AND property.property_id = promo_property.promo_property_property_id
-                      AND promotion.promotion_visible = 1 AND property.property_id =  :id;
+                      AND promotion.promotion_visible = 1 AND promotion.promotion_id = :id;
                     ";
         $result = $this->db->prepare($sql);
-        $result->bindValue(':id', $propertyId, PDO::PARAM_STR);
+        $result->bindValue(':id', $promoid, PDO::PARAM_STR);
         $result->execute();
-        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-
     public function getPromotionTypes($propertyId)
     {
         if ($_SESSION['isGod']) {
@@ -168,7 +197,15 @@ class PromotionModel
         $this->setUpdatedTimestamp($promotionId);
         return $promoResult;
     }
-
+    public function linkChildToParent($post){
+        $parentId=$post["parentId"];
+        $childId=$post["childId"];
+        $sql = "update promotion set promotion_parent=:newparentid where promotion_id=:promotionId;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':newparentid', $parentId, PDO::PARAM_STR);
+        $result->bindValue(':promotionId', $childId, PDO::PARAM_STR);
+        $result->execute();
+    }
     public function archivePromotion($promotionId)
     {
         $sql = "update promotion set promotion_visible=0 where promotion_id=:promotionId limit 1";
@@ -242,7 +279,7 @@ class PromotionModel
 
     public function getPromotionById($id)
     {
-        $sql = "SELECT promotion_type_id, promotion_visible, settings, artifact, promotion_sceneid, promotion_lastupdated FROM promotion WHERE promotion_id = :id;";
+        $sql = "SELECT *, promotion_type_id, promotion_visible, settings, artifact, promotion_sceneid, promotion_lastupdated FROM promotion WHERE promotion_id = :id;";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
@@ -259,7 +296,31 @@ class PromotionModel
         $image = $result->fetch(PDO::FETCH_ASSOC);
         return $image;
     }
-
+    public function getPromotionChildren($id){
+        $sql = "SELECT *,
+                      promotion.promotion_status as promo_status,
+                      promotion.promotion_id as promo_id,
+                      promotion.artifact as artifact,
+                      promotion_type.promotion_type_id as promo_type_id,
+                      promotion_type.promotion_type_title as promo_title,
+                      promotion_type.promotion_type_image as promo_image,
+                      promotion_type.promotion_type_file_name as file_name,
+                      promo_property.promo_property_property_id as property_id
+                    FROM
+                      promotion, promotion_type, promo_property, property
+                    WHERE
+                      promo_property.promo_property_template = 0
+                      AND promotion.promotion_type_id = promotion_type.promotion_type_id
+                      AND  promotion.promotion_id = promo_property.promo_property_promo_id
+                      AND property.property_id = promo_property.promo_property_property_id
+                      AND promotion.promotion_visible = 1 AND promotion.promotion_parent =  :id;
+                    ";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
     public function getPromotionTypeById($id)
     {
         $sql = "SELECT promotion_type.promotion_type_title, promotion.promotion_id
@@ -358,9 +419,10 @@ WHERE promotion.promotion_id = :id;";
                 AND p.promo_property_property_id=account_permissions.excess_id 
                 AND promotion.promotion_type_id = promotion_type.promotion_type_id 
                 AND property.property_id = promo_property_property_id
+                AND promotion.promotion_parent=0
                 GROUP BY p.promo_property_promo_id";
         } else {
-            $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion 
+            $sql = "SELECT * FROM account_permissions,promo_property p, promotion_type, promotion,property 
                 WHERE NOT EXISTS ( SELECT null FROM promotion_property d 
                 WHERE d.promotion_id = p.promo_property_promo_id 
                 AND d.display_id=:display_id ) 
@@ -372,6 +434,8 @@ WHERE promotion.promotion_id = :id;";
                 AND account_permissions.tag_id='2' 
                 AND account_permissions.excess_id=p.promo_property_property_id
                 AND account_permissions.account_id=:acct_id
+                AND property.property_id = promo_property_property_id
+                AND promotion.promotion_parent=0
                 GROUP BY p.promo_property_promo_id";
         }
 
@@ -383,6 +447,7 @@ WHERE promotion.promotion_id = :id;";
         }
         $result->execute();
         $unassignedPromotions = $result->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($unassignedPromotions);
         return $unassignedPromotions;
     }
 

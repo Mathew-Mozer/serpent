@@ -55,9 +55,11 @@
                 <Select id="pgt-atlas" name="pgt_atlas">
                     <option value="0">Race Cars</option>
                     <option value="1">Chinese Dragon</option>
+                    <option value="6">Chinese New Year 2018</option>
                     <option value="2">Baseball</option>
                     <option value="3">Motorcycles</option>
                     <option value="4">Chip Drop</option>
+                    <option value="5">Christmas Points Only</option>
                 </Select>
 
 

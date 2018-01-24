@@ -15,7 +15,9 @@
     <br>
     <br>
     <div class="option-group">
-        <label>Picture Slideshow Type</label> <br>
+        <label>Picture Slideshow Type</label>   <br/>
+
+
         <input class="high-hand-radio" value="0" name="picview_settings_type" id="holdem"
 
                type="radio"
@@ -26,6 +28,7 @@
                type="radio" hidden/>
         <label for="previous" hidden> Shows pictures on every scene(Displays on top of other scenes)</label>
         <br/>
+        <input type="checkbox" name="picview_settings_vertical"><label for="disabled"> Vertical Images </label><br>
         <br/>
 
         <br/>

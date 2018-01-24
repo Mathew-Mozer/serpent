@@ -55,9 +55,10 @@ if (count($TimeTargets) > 0) {
             ?>
 
                 </span>
-
+                <?php if($canDelete){ ?>
                     <span data-target-id="<?php echo($timeTarget['time_target_session_id']) ?>"
                           class="glyphicon glyphicon-trash time-table-button time-table-button-black time-table-archive"></span>
+                <?php }?>
             </td>
         </tr>
         <?php

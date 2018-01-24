@@ -14,7 +14,7 @@
     foreach ($unassignedDisplays as $display) {
     ?>
         <div class="unassigned-display-body promotion-preview-display display-settings">
-            <p class="unassigned-display-display-text"><?php echo $display->getMacAddress(); ?></p>
+            <p class="unassigned-display-display-text"><?php echo($display->getLinkCode()); ?></p>
             <span id="<?php echo $display->getId(); ?>"
                   class="glyphicon glyphicon-exclamation-sign tool-glyphicon white display-options" aria-hidden="true"></span>
         </div>

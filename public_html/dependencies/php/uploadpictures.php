@@ -66,6 +66,18 @@ if(isset($_POST['promoid'])) {
             $values['picview_pictures_filename'] = str_replace(' ','_',basename($_FILES["fileToUpload"]["name"]));
             $values['promoid'] = $_POST['promoid'];
             $PicViewerModel->AddPictureToDatabase($values);
+            if($imageFileType=="jpg"||$imageFileType=="jpeg"){
+                if(imageIsCMYK($target_file)){
+                    //is CMYK
+                    $i = new Imagick($target_file);
+                    $i->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+                    $i->writeImage($target_file);
+                    $i->destroy();
+
+                }   else{
+
+                }
+            }
             echo "1";
         } else {
             echo "0";
@@ -75,5 +87,10 @@ if(isset($_POST['promoid'])) {
 else{
     echo('PromoID isn\'t set');
     print_r($_POST);
+}
+function imageIsCMYK($file)
+{
+    $im = new Imagick($file);
+    return ($im->getimagecolorspace() == Imagick::COLORSPACE_CMYK);
 }
 ?>

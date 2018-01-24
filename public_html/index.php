@@ -11,6 +11,13 @@ date_default_timezone_set('America/Los_Angeles');
  * This is the main page that finds them, bring them all and in the darkness
  * bind them.
  */
+if(isset($_GET['debug'])){
+    $_SESSION['addMicroTime'] = true;
+
+}else{
+    $_SESSION['addMicroTime'] = false;
+}
+
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
@@ -22,11 +29,9 @@ $promotion = new PromotionModel($dbcon->read_database());
 
 <div id="page">
 </div>
-
-<div id="settings" style="display: none;" title="Settings">
+<div id="dialog" title="Promotion Status">
 
 </div>
-
 <div id="addPromotion" style="display: none;" title="Promotion">
     <form id="add-promotion-form" action="controllers/addpromotioncontroller.php" method="post">
         <div id="promotion-select">
@@ -73,6 +78,7 @@ $promotion = new PromotionModel($dbcon->read_database());
     <p id="displayName"></p>
     <p id="displaySerial"></p>
     <p id="displayMacAddress"></p>
+    <input type="text" id="unassigneddisplayname">
     <select id="displayProperties"></select>
 </div>
 
