@@ -4,8 +4,18 @@
  */
 ?>
 <label for="add-promotion">Edit Player Points</label>
+<style>
+    .RedCircle{
+        color: red;
+    }
+    .GreenCircle{
+        color: green;
+    }
 
+</style>
 <div id="add-promotion">
+    <input type="text" value="0" name="pgt_race_begin" id="pgt_race_begin" hidden>
+    <input type="text" value="0" name="pgt_race_end" id="pgt_race_end" hidden>
     <input type="text" value="0" name="playerCount" id="playerCount" hidden>
     <?php
 
@@ -14,16 +24,16 @@
         echo '<script>$("#playerCount").val("20")</script>';
         ?>
         <button type="button" id="btnClearPlayers">Clear Players</button>
-        <table>
+
+        <table class=".table-striped">
             <tr>
                 <td>
-
+<table class="table table-striped">
                     <?php
                     for ($i = 1; $i <= 20; $i++) {
-                        if ($i == 11)
-                            echo('</td><td>')
+                        echo("<tr><td>");
                         ?>
-                        <div class="playerForms">&nbsp;<?php echo $i; ?> &nbsp; <input type="hidden"
+                        <div class="">&nbsp;<?php echo $i; ?> &nbsp; <input type="hidden"
                                                                                        id="txtID<?php echo $i; ?>"
                                                                                        name="pgt_player_id<?php echo $i; ?>"><input
                                 type="text" id="txtName<?php echo $i; ?>"
@@ -31,18 +41,33 @@
                                                                                type="number" min="0"
                                                                                name="pgt_current_points<?php echo $i; ?>">
                         </div>
-                    <?php } ?>
+
+                    <?php
+                    echo("</tr></td>");
+                    } ?></table>
+                </td>
+                <td style="vertical-align: top"> <div class="center">
+                        <h4>Copy and Paste Report</h4>
+                        <textarea id="TextBox1" name="pastedReport" cols="25" placeholder="Copy and Paste Report" onchange="//myHandler()"
+                                  onkeypress="this.onchange();" oninput="this.onchange();" onchange="//myHandler();"
+                                  onpaste="this.onchange();"></textarea>
+                    </div>
+                    <div>
+                        <table class="table" style="width: 200px">
+                            <tr>Report Verification</tr>
+                            <tr><td><span id="chkBeginDate" class="glyphicon glyphicon-remove-circle RedCircle">&nbsp;</span> Begin Date<br> <span id="correctBeginDate"></span></td></tr>
+                            <tr><td><span  id="chkBeginTime" class="glyphicon glyphicon-remove-circle  RedCircle">&nbsp;</span> Begin Time <br><span id="correctBeginTime"></span></td></tr>
+                            <tr><td><span id="chkEndDate" class="glyphicon glyphicon-remove-circle RedCircle">&nbsp;</span> End Date<br><span id="correctEndDate"></span></td><tr><td><span  id="chkEndTime" class="glyphicon glyphicon-remove-circle RedCircle">&nbsp;</span> End Time <br> <span id="correctEndTime"></span></td></tr>
+                        </table>
+                    </div>
+
                 </td>
             </tr>
         </table>
+        </div>
     <br>
     <hr>
-        <div class="center">
-            <h4>Copy and Paste Report</h4>
-            <textarea id="TextBox1" name="pastedReport" cols="25" placeholder="Copy and Paste Report" onchange="//myHandler()"
-                      onkeypress="this.onchange();" oninput="this.onchange();" onchange="//myHandler();"
-                      onpaste="this.onchange();"></textarea>
-        </div>
+
     <?php
     break;
     case 1:
@@ -153,16 +178,61 @@
 </script>
 
 <script>
-    var pastebox = $("#TextBox1");
+    function convertMilTime(input) {
+        return moment(input, 'HH:mm:ss').format('h:mm:ss A');
+    }
+    function fixTime(input) {
+        return moment(input, 'h:mm A').format('h:mm:ss A');
+    }
+    var isCorrect = false;
+function fixDate(date) {
+    var dateParts = date.split('-');
+    return dateParts[1] + "/" + dateParts[2] + "/" + dateParts[0].substr(2)
+}
     function secondarypoints() {
-
-        var tmp = pastebox.val().split('Points');
-        tmp = tmp[1].split('Report Totals');
+        var tmpBox = pastebox.val().split('Points');
+        tmp = tmpBox[1].split('Report Totals');
         var lines = tmp[0].split('\n');
         var player = [""];
         var playercnt = 0;
         var cnt=0;
         extrafld = [""];
+        var flds = tmpBox[0].split('\n');
+        var nflds = flds[2].split(' ');
+        var beginDate = $('#pgt_race_begin').val().split(' ');
+        var endDate = $('#pgt_race_end').val().split(' ');
+        beginDate[0] = fixDate(beginDate[0]);
+        endDate[0] = fixDate(endDate[0]);
+        if(nflds[3]==beginDate[0]){
+            $('#chkBeginDate').toggleClass("glyphicon-remove-circle RedCircle",false).toggleClass("glyphicon-ok-circle GreenCircle",true)
+            $('#correctBeginDate').text("")
+        }else{
+            $('#chkBeginDate').toggleClass("glyphicon-remove-circle RedCircle",true).toggleClass("glyphicon-ok-circle GreenCircle",false)
+            $('#correctBeginDate').text("Needed:" +beginDate[0] )
+        }
+        if(nflds[7]==endDate[0]){
+            $('#chkEndDate').toggleClass("glyphicon-remove-circle RedCircle",false).toggleClass("glyphicon-ok-circle GreenCircle",true)
+            $('#correctEndDate').text("")
+        }else{
+            $('#chkEndDate').toggleClass("glyphicon-remove-circle RedCircle",true).toggleClass("glyphicon-ok-circle GreenCircle",false)
+            $('#correctEndDate').text("Needed:" +endDate[0])
+        }
+
+        if(convertMilTime(beginDate[1])== fixTime(nflds[4] + nflds[5])){
+            $('#chkBeginTime').toggleClass("glyphicon-remove-circle RedCircle",false).toggleClass("glyphicon-ok-circle GreenCircle",true)
+            $('#correctBeginTime').text("")
+        }else{
+            $('#chkBeginTime').toggleClass("glyphicon-remove-circle RedCircle",true).toggleClass("glyphicon-ok-circle GreenCircle",false)
+            $('#correctBeginTime').text("Needed:" +convertMilTime(beginDate[1]))
+        }
+        if(convertMilTime(endDate[1])== fixTime(nflds[8] + nflds[9])){
+            $('#chkEndTime').toggleClass("glyphicon-remove-circle RedCircle",false).toggleClass("glyphicon-ok-circle GreenCircle",true)
+            $('#correctEndTime').text("")
+        }else{
+            $('#chkEndTime').toggleClass("glyphicon-remove-circle RedCircle",true).toggleClass("glyphicon-ok-circle GreenCircle",false)
+            $('#correctEndTime').text("Needed:" +convertMilTime(endDate[1]))
+        }
+
         for (i = 0; i < lines.length; i++) {
             //if(i<3){
             // alert(lines[i]);
@@ -197,16 +267,22 @@
 
 
 
-                        console.log("Player:" + player[0]);
+                        //console.log("Player:" + player[0]);
 
                     }
 
                 }
                 var nm = player[0].split(', ');
-                document.getElementById('txtName' + (playercnt+1)).value = nm[1] +" " + nm[0];
+                if(nm.length>1){
+                    document.getElementById('txtName' + (playercnt+1)).value = (nm[1] +" " + nm[0]).replace(/ *\([^)]*\) */g, " ");
+                }else{
+                    document.getElementById('txtName' + (playercnt+1)).value = (nm[0]).replace(/ *\([^)]*\) */g, " ").replace(',',"");
+                }
+
+                //document.getElementById('txtName' + (playercnt+1)).value = document.getElementById('txtName' + (playercnt+1)).value.replace(/ *\([^)]*\) */g, " ")
                 document.getElementById('txtPoints' + (playercnt+1)).value = parseInt(player[13].replace(',',''));
                 playercnt++;
-                    //console.log(player);
+                //console.log(player);
 
 
 
@@ -224,12 +300,13 @@
                         }
                     }
                 }
-                    //console.log(cnt + " " + extrafld);
+                //console.log(cnt + " " + extrafld);
             }
 
             //}
         }
     }
+    var pastebox = $("#TextBox1");
     //pastebox.bind("propertychange change keyup input paste", function(event){
     pastebox.bind("propertychange change keyup input paste", function (event) {
         //alert(event.);
@@ -245,6 +322,7 @@
     function myHandler() {
         var pastebox = document.getElementById('TextBox1');
         if (pastebox.value.indexOf("Rated Play")>-1) {
+            //console.log("secondary points")
             secondarypoints();
         } else {
 
@@ -289,12 +367,13 @@
 
                 var eachLine = pastebox.value.split("\n");
             var cnt = 1;
+
             for (var l = 0, len = eachLine.length; l < len; l++) {
                 if (cnt < 21) {
                     var dnewstr = eachLine[l].split(String.fromCharCode(9));
                     if (dnewstr.length > 3) {
                         if (dnewstr[2] != !isNaN && dnewstr[0] != !isNaN) {
-                            //alert(dnewstr[1]);
+                            alert(dnewstr[1]);
                             document.getElementById('txtName' + (cnt)).value = dnewstr[1];
                             document.getElementById('txtPoints' + (cnt)).value = dnewstr[2].replace(',', '');
                             $('#playerCount').val(cnt);
@@ -312,6 +391,7 @@
         }
 
     }
+
 
     function insertIntoArray(array, location,value){
         console.log ("length is:" + array.length);

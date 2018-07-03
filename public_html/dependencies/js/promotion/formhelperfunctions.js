@@ -137,7 +137,10 @@ var getModalData = function (promotionId, promotionTypeId) {
             $(".loader").removeClass("hidden");
         },
         success: function (response) {
+            console.log(response)
+            console.log("dipply")
             setFormData('add-promotion', response)
+            enableFP();
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -189,6 +192,7 @@ var getFormData = function (formId) {
         data[formDataTextArea[i].name] = formDataTextArea[i].value;
     }
     //console.log(data);
+
     return data;
 };
 
@@ -215,6 +219,7 @@ var setFormData = function (formId, data) {
                     }
                 }
             } else if (formDataInput[i].type.toLowerCase() == 'checkbox') {
+                $(formDataInput[i]).trigger('change');
                 //console.log(formDataInput[i].name+":"+ data[formDataInput[i].name]);
                 if (data[formDataInput[i].name] == 1) {
                     formDataInput[i].checked = true;

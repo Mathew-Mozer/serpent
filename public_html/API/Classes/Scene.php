@@ -9,6 +9,7 @@
 
 include 'moduleIncludes.php';
 date_default_timezone_set('America/Los_Angeles');
+
 class Scene
 {
     //Unique Identifier for the record of the scene
@@ -31,14 +32,14 @@ class Scene
     public $timeTargetXData;
     public $monsterCarloData;
     public $PictureViewerData;
+    public $DisplayListData;
     public $sceneSkin;
 
 
     //Database Global Variables
     private $conn;
 
-
-    function __construct($promoID, $promo_type_id, $pSceneDuration, $pSkinId, $psceneID, $lastupdated, $pEffectID, $propertyId,$animation)
+    function __construct($promoID, $promo_type_id, $pSceneDuration, $pSkinId, $psceneID, $lastupdated, $pEffectID, $propertyId, $animation)
     {
         $dbcon = new DbCon();
         $this->conn = $dbcon->read_database();
@@ -48,15 +49,13 @@ class Scene
         $this->sceneType = $promo_type_id;
         $this->sceneID = $psceneID;
         $this->EffectID = $pEffectID;
-        if($promoID!=0){
-            $this->lastUpdated = $this->convertTime($lastupdated);
+        if ($promoID != 0) {
+            if (strlen($this->lastUpdated) > 5)
+                $this->lastUpdated = $this->convertTime($lastupdated);
         }
         $this->animation = (bool)$animation;
         $this->skinDataID = $pSkinId;
         $this->sceneSkin = new Skin($psceneID, $pSkinId, $propertyId);
-
-
-
 
 
         //Query data for the scene and put relevant data in $sceneData
@@ -64,7 +63,7 @@ class Scene
             //High Hand
             case 1:
                 //$this->loadHighHandData();
-                $this->highHandData=$this->loadHighHandData($promoID,true);
+                $this->highHandData = $this->loadHighHandData($promoID, true);
                 break;
             //PointsGT
             case 4:
@@ -72,7 +71,7 @@ class Scene
                 break;
             //Picture Viewer
             case 5:
-                $this->loadPictureData($promoID);
+                $this->PictureViewerData = $this->loadPictureData($promoID);
                 break;
 
             case 8:
@@ -85,22 +84,24 @@ class Scene
                 $this->loadKickForCashData($promoID);
                 break;
             case 9:
-               $this->monsterCarloData = $this->loadMonsterCarloData($promoID);
+                $this->monsterCarloData = $this->loadMonsterCarloData($promoID);
                 break;
             case 13:
                 $this->MatchMadnessData = $this->loadMultiplierMadnessData($promoID);
                 break;
             case 14:
 
-                $this->timeTargetData= $this->loadTimeTargetData($promoID);
+                $this->timeTargetData = $this->loadTimeTargetData($promoID);
                 break;
             case 15:
                 $this->loadTimeTargetXData($promoID);
+            case 17:
+                $this->DisplayListData= $this->loadDisplayListData($promoID);
                 break;
         }
     }
 
-    function loadHighHandData($pSceneID,$loadMonsterCarlo)
+    function loadHighHandData($pSceneID, $loadMonsterCarlo)
     {
         $sql = 'SELECT * from high_hand where promotion_id=? order by high_hand.id desc limit 1';
         $statement = $this->conn->prepare($sql);
@@ -127,9 +128,9 @@ class Scene
 
             $hhdata->LockToTime = $result['high_hand_locktotime'];
             $hhdata->loadHighHands($hhdata->session, $hhdata->handcount);
-            if($loadMonsterCarlo) {
+            if ($loadMonsterCarlo) {
                 $tmpMonsterCarloID = $mmdata->findMonsterCarlo($hhdata->session);
-                if($tmpMonsterCarloID!=0) {
+                if ($tmpMonsterCarloID != 0) {
                     //echo($tmpMonsterCarloID);
                     $this->monsterCarloData = $this->loadMonsterCarloData($tmpMonsterCarloID);
                     $hhdata->paytype = 2;
@@ -144,31 +145,47 @@ class Scene
 
     function loadMultiplierMadnessData($pSceneID)
     {
-       // public MmCardList cardList;
-
-
+        // public MmCardList cardList;
         $sql = 'SELECT * from multi_madness where multi_madness_promoid=? order by multi_madness_id desc limit 1';
         $statement = $this->conn->prepare($sql);
         //echo ("sceneid".$pSceneID);
         $statement->execute(array($pSceneID));
-        $mmdata  = new MatchMadness();
+        $mmdata = new MatchMadness();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $mmdata->active = 1;
             $mmdata->id = $result['multi_madness_id'];
             $mmdata->session = $result['multi_madness_promoid'];
             //$mmdata->buzzerTimer;
-            $mmdata->timerActive=0;
+            $mmdata->timerActive = 0;
             $mmdata->loadMMCards($mmdata->session);
         }
         return $mmdata;
     }
-    function loadMonsterCarloData($pSceneID)
+    function loadDisplayListData($pSceneID)
     {
-            $sql = 'SELECT * from monster_carlo_settings where monster_carlo_settings_promotion_id=? order by monster_carlo_settings_id desc limit 1';
+        $pictureData = new PictureViewer();
+        $sql = 'SELECT * from listdisplay where listdisplay_promoid=? order by listdisplay_id desc limit 1';
         $statement = $this->conn->prepare($sql);
         //echo ("sceneid".$pSceneID);
         $statement->execute(array($pSceneID));
-        $mmdata  = new MonsterCarlo();
+        $dldata = new DisplayList();
+        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
+            $dldata->id = $result['listdisplay_promoid'];
+            $dldata->text1 = $result['listdisplay_text1'];
+            $dldata->text1Title = $result['listdisplay_text1title'];
+            $dldata->ListData = $dldata->loadDataList($result['listdisplay_promoid']);
+            $this->PictureViewerData = $this->loadPictureData($result['listdisplay_slideshowid']);
+
+        }
+        return $dldata;
+    }
+    function loadMonsterCarloData($pSceneID)
+    {
+        $sql = 'SELECT * from monster_carlo_settings where monster_carlo_settings_promotion_id=? order by monster_carlo_settings_id desc limit 1';
+        $statement = $this->conn->prepare($sql);
+        //echo ("sceneid".$pSceneID);
+        $statement->execute(array($pSceneID));
+        $mmdata = new MonsterCarlo();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             $mmdata->active = 1;
             $mmdata->id = $result['monster_carlo_settings_id'];
@@ -176,29 +193,34 @@ class Scene
             $mmdata->hhid = $result['monster_carlo_settings_hhid'];
 
             $mmdata->payout = $result['monster_carlo_settings_payouts'];
-            if($mmdata->hhid!=0) {
+            if ($mmdata->hhid != 0) {
                 $this->highHandData = $this->loadHighHandData($mmdata->hhid, false);
                 $this->highHandData->payouts = $mmdata->payout;
-                $this->highHandData->paytype=2;
+                $this->highHandData->paytype = 2;
             }
             $mmdata->loadMonsterCarloCards($mmdata->hhid);
         }
 
         return $mmdata;
     }
-    function loadPictureData($pSceneID){
+
+    function loadPictureData($pSceneID)
+    {
+
+        $newData = new PictureViewer();
         $sql = 'SELECT * from picview_settings where picview_settings_promoid=? order by picview_settings_id desc limit 1';
         $statement = $this->conn->prepare($sql);
-        //echo ("sceneid".$pSceneID);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-            $this->PictureViewerData = new PictureViewer();
-            $this->PictureViewerData->ID = $result['picview_settings_id'];
-            $this->PictureViewerData->session = $result['picview_settings_promoid'];
-            $this->PictureViewerData->type = $result['picview_settings_type'];
-            $this->PictureViewerData->loadPictureData($this->PictureViewerData->session);
+            $newData = new PictureViewer();
+            $newData->ID = $result['picview_settings_id'];
+            $newData->session = $result['picview_settings_promoid'];
+            $newData->type = $result['picview_settings_type'];
+            $newData->loadPictureData($newData->session);
         }
+        return $newData;
     }
+
     function loadPrizeEventData($pSceneID)
     {
         $sql = 'SELECT * from prize_event where prize_event_promo_id=? order by prize_event_id desc limit 1';
@@ -219,11 +241,12 @@ class Scene
             $this->PrizeEventData->NextTimeVisible = $result['prize_event_nexttimevisible'];
             $this->PrizeEventData->secondsToHorn = $result['prize_event_secondtohorn'];
             $this->PrizeEventData->loadPrizeWinners($this->PrizeEventData->session);
-            if($result['prize_event_useprizes']){
+            if ($result['prize_event_useprizes']) {
                 $this->PrizeEventData->JackPotAmount = $this->PrizeEventData->TotalPrizeAmount;
             }
         }
     }
+
     function loadTimeTargetData($pSceneID)
     {
         //If there is no data being shown its becuase there is no session.
@@ -232,7 +255,8 @@ class Scene
         $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-            $tdata->id = $result['time_target_session_id'];
+            //$tdata->id = $result['time_target_session_id'];
+            $tdata->id = $result['time_target_id'];
             $tdata->seed = $result['time_target_seed'];
             $tdata->startTime = $result['time_target_start'];
             $tdata->endTime = $result['time_target_end'];
@@ -244,9 +268,37 @@ class Scene
             $tdata->cards = $result['time_target_cards'];
             $tdata->MaxPayout = $result['time_target_maxpayout'];
             $tdata->progressive = $result['time_target_progressive'];
+            $tdata->defhour = $result['time_target_def_hour'];
+            $tdata->defmin = $result['time_target_def_minute'];
+            $tdata->valoption = $result['time_target_valoption'];
+            $tdata->otherPromoID = $result['time_target_multpromoid'];
+            $tdata->useMult = $result['time_target_usemult'];
+            $tdata->multiplier = $result['time_target_multiplier'];
+
+            $date1 = new DateTime($result['time_target_lastcardchange']);
+            $date3 = new DateTime(date('Y-m-d H:i:s'));
+            if ($result['time_target_usemult'] == 1&&$result['time_target_usemult']!=0&&$tdata->multiplier!=0 ) {
+                $subtt = new TimeTarget();
+                $subtt = $this->loadTimeTargetData($tdata->otherPromoID);
+                $tdata->seed = $subtt->seed * $tdata->multiplier;
+                $tdata->add = $subtt->add * $tdata->multiplier;
+                $tdata->startTime = $subtt->startTime;
+                $tdata->endTime = $subtt->endTime;
+                $tdata->min = $subtt->min;
+            }
+            if ($result['time_target_randomcard'] == 1) {
+                if ($this->dateDifference($date3, $date1) > 0) {
+                    $tdata->updateCard();
+                } else {
+                    //echo($this->dateDifference($date3, $date1)."-".$date3->format('Y-m-d H:i:s')."*".$date1->format('Y-m-d H:i:s')."*");
+                };
+            }
+
+
         }
         return $tdata;
     }
+
     function loadTimeTargetXData($pSceneID)
     {
 
@@ -256,11 +308,35 @@ class Scene
         $statement = $this->conn->prepare($sql);
         $statement->execute(array($pSceneID));
         $this->timeTargetXData = new TimeTargetX();
+        $parentTdata = new TimeTarget();
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
             //echo("found");
-            array_push($this->timeTargetXData->TimeTargetData, $this->loadTimeTargetData($result['promotion_id']));
+            $tdata = $this->loadTimeTargetData($result['promotion_id']);
+            if(count($this->timeTargetXData->TimeTargetData)==0){
+                $parentTdata = clone $tdata;
+            }
+
+            if($tdata->cards=="PC"){
+                $card = $parentTdata->cards;
+            }else{
+                $card = $tdata->cards;
+            }
+            switch ($tdata->valoption){
+                case 0:
+                    $tdata->cards=$card;
+                    break;
+                case 1:
+                    $tdata->cards=substr($card, -1) ;
+                    break;
+                case 2:
+                    $tdata->cards=substr($card, 0,-1) ;
+                    //echo("tcard:".$card);
+                    break;
+            }
+            array_push($this->timeTargetXData->TimeTargetData,$tdata);
         }
     }
+
     function loadPointsGTData($pSceneID)
     {
 
@@ -274,29 +350,29 @@ class Scene
             $date2 = new DateTime($result['pgt_race_end']);
             $date3 = new DateTime(date('Y-m-d H:i:s'));
 
-                if($date3>$date2){
-                  $this->pointsGTData->finished=True;
-                }else{
-                    $this->pointsGTData->finished=False;
-                }
-            if($date1>$date3){
-                $dt =0;
-            }else{
-            $dt=$this->dateDifference($date3, $date1, '%d') + 1;
+            if ($date3 > $date2) {
+                $this->pointsGTData->finished = True;
+            } else {
+                $this->pointsGTData->finished = False;
+            }
+            if ($date1 > $date3) {
+                $dt = 0;
+            } else {
+                $dt = $this->dateDifference($date3, $date1, '%d') + 1;
             }
 
             $this->pointsGTData->DaysInSession = $this->dateDifference($date2, $date1, '%d') + 1;
-            if($dt>$this->dateDifference($date2, $date1, '%d') + 1   ){
-                $dt=$this->dateDifference($date2, $date1, '%d') + 1;
+            if ($dt > $this->dateDifference($date2, $date1, '%d') + 1) {
+                $dt = $this->dateDifference($date2, $date1, '%d') + 1;
                 $fin = true;
                 //echo("is");
-            }else{
+            } else {
                 //echo("is not");
                 $fin = false;
             }
             //echo("dt:".$dt." - dd ".());
             $this->pointsGTData->DayOfSession = $dt;
-            $this->pointsGTData->finished=false;
+            $this->pointsGTData->finished = false;
             $this->pointsGTData->lastUpdated = $result['pgt_timestamp'];
             $this->pointsGTData->title = $result['pgt_title'];
             $this->pointsGTData->Value1 = $result['pgt_subtitle'];
@@ -308,8 +384,8 @@ class Scene
             $this->pointsGTData->PayoutList = $result['pgt_payout'];
             $this->pointsGTData->StartDate = $result['pgt_race_begin'];
             $this->pointsGTData->datestart = $date3;
-                $this->pointsGTData->dateend = $date2;
-                    $this->pointsGTData->datenow = $date3;
+            $this->pointsGTData->dateend = $date2;
+            $this->pointsGTData->datenow = $date3;
             if ($result['pgt_enable_instant_winners']) {
                 $this->pointsGTData->InstantWinners = $this->getPointsGTInstantWinners($pSceneID);
             }
@@ -332,7 +408,6 @@ class Scene
     function dateDifference($date_1, $date_2, $differenceFormat = '%d')
     {
         $interval = date_diff($date_1, $date_2);
-
         return $interval->format($differenceFormat);
 
     }
@@ -376,7 +451,9 @@ class Scene
 
 
     }
-    function convertTime($time){
+
+    function convertTime($time)
+    {
         $dt = new DateTime($time, new DateTimeZone('UTC'));
 
 // change the timezone of the object without changing it's time

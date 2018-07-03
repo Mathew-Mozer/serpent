@@ -2,34 +2,43 @@
 /*
 * This page controls the footer and closing material for the website
 */
-
+$websiteversion=13;
+if(isset($_SESSION["debug"])){
+    if($_SESSION["debug"]){
+        $websiteversion=microtime();
+        echo("Debug=True");
+    }
+}
 
 ?>
-
-<script src="dependencies/js/optionsmodal.js?t=<?php if ($_SESSION['addMicroTime'])echo(microtime()); ?>"></script>
-<script src="dependencies/js/addpromotionmodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/createproperty.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/displayview.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotionmodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/editdisplay.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/addusermodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/editusermodal.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/editusers.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/viewdocuments.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/viewAccount.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/firebasemanager.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/multipliermadness.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/monstercarlo.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/sessionmanager.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/timetracker.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/prizeevent.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/skinmanager.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/changepromostatus.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/uploadpicture.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/pointsgt.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
-<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php if ($_SESSION['addMicroTime']) echo(microtime()); ?>"></script>
+<script src="dependencies/js/promotion.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/optionsmodal.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/addpromotionmodal.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/createproperty.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/displayview.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotionmodal.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/editdisplay.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/date.js"></script>
+<script src="dependencies/js/addusermodal.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/editusermodal.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/editusers.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/viewdocuments.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/viewAccount.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/firebasemanager.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/multipliermadness.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/monstercarlo.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/sessionmanager.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/timetracker.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/prizeevent.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/skinmanager.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/changepromostatus.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/uploadpicture.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/pointsgt.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/menuboard.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/displaylist.js?t=<?php echo($websiteversion)?>"></script>
+<script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo($websiteversion)?>"></script>
 <script src="dependencies/js/JqueryTemplates/jquery.loadTemplate-1.4.4.js"></script>
+<script src="dependencies/js/jquery.ui.touch-punch.min.js?t=<?php echo($websiteversion)?>"></script>
 
 <script>
 
@@ -39,7 +48,9 @@
             loadThinkingDonut();
         }).bind("ajaxComplete", function () {
             unloadThinkingDonut();
-        });
+        }).bind("ajaxError", function () {
+            unloadThinkingDonut();
+        });;
         var isMobile = false; //initiate as false
 
 // device detection
@@ -58,10 +69,6 @@
 
 
         $('.displays').hide();
-
-        $('#unassigned-displays').hide();
-        $('.displays').hide();
-        $('#unassigned-displays').hide();
 
         //Load tooltips
         $('[data-toggle="tooltip"]').tooltip();
@@ -119,22 +126,20 @@
 ///
 
 
-        var promoStatusButtonClick = function (e) {
-            e.stopPropagation();
-            var currentObject = $(e);
-            changePromotionStatusModal =$("#dialog").dialog();
-            var promoId = $(this).data("promo-id");
-            $("#dialog").load("views/changepromostatusview.php",{promoid:promoId});
 
-            selectedElement = this;
-
-            changePromotionStatusModal.dialog('open');
-            changePromotionStatusModal.dialog({width: 250,height:325});
-
-        };
 ///
         $(".promotionStatusBtn").unbind('click').click(promoStatusButtonClick);
         $(".promotionDeleteBtn").unbind('click').click(promotionDeleteBtnClick);
+/*
+        $(document).on("click", ".promotionStatusBtn", function (e) {
+            e.stopPropagation()
+            promoStatusButtonClick(e);
+        });
+        $(document).on("click", ".promotionDeleteBtn", function (e) {
+            e.stopPropagation()
+            promotionDeleteBtnClick(e);
+        });
+        */
         $(document).on("ajaxStop", function (e) {
         });
         $(document).on("click", ".toggleMonitorStatusBtn", function () {
@@ -202,7 +207,33 @@
             $(this).toggleClass("fa-caret-square-o-right");
         });
 
+        $(document).on("click", ".edit-promo-details", function () {
+            console.log("Should have opened")
+            $('#promo-display-settings-dialog').load("views/editpromodisplaysettings.php", {
+                propertyId: this.id,
+                promoid: $(this).data("promo-id"),
+                skinId: $(this).data("skin-id"),
+                duration: $(this).data("promo-duration"),
+                promopropertyid:$(this).data("promoproperty-id"),
+                displayId:$(this).data("display-id")});
+            updatePromoSettingsDialog.dialog( "open" )
+        });
 
+
+        $(".edit-promo-title").click(function (e) {
+
+                e.stopPropagation()
+            //e.preventDefault();
+            console.log("Should have opened edit promo title: " + $(this).data("promo-id"))
+
+            $('#promo-display-settings-dialog').load("views/editpromosettings.php", {
+                propertyId: this.id,
+                promoid: $(this).data("promo-id"),
+                skinId: $(this).data("skin-id"),
+                promopropertyid:$(this).data("promoproperty-id")
+            });
+            updatePromoTitleDialog.dialog( "open" )
+        });
         /**
          * Toggles display and promotion view
          */
@@ -218,7 +249,7 @@
                 //code to switch to promotion view
                 $("#toggle-display").removeClass("hidden");
                 $('.displays').hide();
-                $('#unassigned-displays').hide();
+                //$('#unassigned-displays').hide();
                 $('.promotion-view').show();
             }
         });
@@ -228,6 +259,15 @@
          */
         $(".display-options").click(function () {
             getDisplayById(this.id);
+        });
+        $(document).on("click", ".remove-unassigned-display", function () {
+            deleteUnassignedDisplay($(this).data("display-id"));
+        });
+
+
+        $(document).on("click", ".refresh-unassigned-display", function () {
+            console.log("Refresh Unassigned displays")
+            refreshUnassignedDisplay();
         });
 
         /**
@@ -239,6 +279,34 @@
         $("#chimeratv-settings-btn").click(function () {
             $('#createProperty').load("views/chimeratvsettingsview.php", {propertyId: this.id});
             viewDocumentsModal.dialog('open');
+        });
+        $("#debug-toggle-btn").click(function () {
+            console.log("Sending Debug Request")
+            $.ajax({
+                type: "GET",
+                url: "controllers/logincontroller.php",
+                global: false,
+                data: {action: "toggleDebug"},
+                cache: false,
+                error: function (response) {
+                    console.log('error:' + response);
+                    //location.reload();
+                },
+                success: function (response) {
+                    console.log("Debug=" + response)
+                    switch (response){
+                        case "1":
+                            $("#debug-toggle-btn").children("i").toggleClass("fa-toggle-off",false)
+                            $("#debug-toggle-btn").children("i").toggleClass("fa-toggle-on",true)
+                            break;
+                        default:
+                            $("#debug-toggle-btn").children("i").toggleClass("fa-toggle-on",false)
+                            $("#debug-toggle-btn").children("i").toggleClass("fa-toggle-off",true)
+                    }
+
+
+                }
+            });
         });
 
         /**
@@ -252,18 +320,21 @@
             var propertyId = $(this).data("property-id");
             var displayId = $(this).data("display-id");
             var propertyName = $(this).data("property-name");
-
-            showEditDisplayModal(propertyId, displayId, propertyName);
+            var linkcode = $(this).data("display-linkcode");
+            console.log("LinkCode:" + linkcode)
+            openNav();
+            showEditDisplayModal(propertyId, displayId, propertyName,linkcode);
         });
 
-
-        function showEditDisplayModal(propertyid, displayid, propertyname) {
-            $("#editDisplayModal").load("modals/displaymodalform.php", {
+        function showEditDisplayModal(propertyid, displayid, propertyname,linkcode) {
+            $("#sidenavPage").load("views/newdisplaymodalform.php", {
                 propertyId: propertyid,
                 displayId: displayid,
+                linkcode: linkcode,
                 propertyName: propertyname
             });
-            editDisplayModal.dialog('open');
+
+            //editDisplayModal.dialog('open');
         }
 
         /**
@@ -467,5 +538,33 @@
 
         unloadThinkingDonut();
     })
+    function ConfirmDialog(message) {
+        $('<div></div>').appendTo('body')
+            .html('<div><h6>'+message+'?</h6></div>')
+            .dialog({
+                modal: true, title: 'Delete message', zIndex: 10000, autoOpen: true,
+                width: 'auto', resizable: false,
+                buttons: {
+                    Yes: function () {
+                        // $(obj).removeAttr('onclick');
+                        // $(obj).parents('.Parent').remove();
+
+                        $('body').append('<h1>Confirm Dialog Result: <i>Yes</i></h1>');
+
+                        $(this).dialog("close");
+                    },
+                    No: function () {
+                        $('body').append('<h1>Confirm Dialog Result: <i>No</i></h1>');
+
+                        $(this).dialog("close");
+                    }
+                },
+                close: function (event, ui) {
+                    $(this).remove();
+                }
+            });
+    };
+
+
 </script>
 </html>

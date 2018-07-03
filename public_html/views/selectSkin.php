@@ -7,7 +7,7 @@
  */
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath() . "dbcon.php";
-require "../models/PropertyDisplays.php";
+require_once "../models/PropertyDisplays.php";
 $dbcon = new DBCon();
 $displayProperties = new PropertyDisplays($dbcon->read_Database(), $_POST['propertyId']);
 $skins = $displayProperties->getSkinTypes($_POST['propertyId']);

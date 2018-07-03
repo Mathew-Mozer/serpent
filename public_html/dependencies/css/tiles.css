@@ -20,6 +20,8 @@
 .select-tile {
     background-color: lightgray;
     width: 300px;
+    float: left;
+    margin: 10px;
 
 }
 
@@ -36,7 +38,7 @@
 
 .tile-icon-select-promo {
     top: 0px;
-    left: -20px;
+    left: 0px;
 }
 
 .tile-menu-bar {
@@ -117,13 +119,14 @@
     box-shadow: 2px 0px 5px #969696;
     text-shadow: 1px 1px #707070;
 }
-@media
-only screen and (max-width: 960px),
-(min-device-width: 900px) and (max-device-width: 1024px)  {
-    .no-mobile{
+
+@media only screen and (max-width: 960px),
+(min-device-width: 900px) and (max-device-width: 1024px) {
+    .no-mobile {
         display: none;
     }
 }
+
 .tile-promotion-artifact {
     clear: both;
     max-height: 30px;
@@ -143,7 +146,6 @@ only screen and (max-width: 960px),
     display: inline-block;
     box-shadow: 2px 2px 5px #969696;
 }
-
 
 .display-list-artifact {
     clear: both;
@@ -256,3 +258,21 @@ only screen and (max-width: 960px),
 .toolbench {
     text-align: center;
 }
+
+.newpromo-title {
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: dodgerblue
+}
+.promo-template-button{
+    background-color: lightgray;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: dodgerblue;
+    width: 200px;
+    text-align: center;
+    text-transform: capitalize;
+}
+

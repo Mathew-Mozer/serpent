@@ -2,8 +2,8 @@
  * Created by Mathew on 1/16/2017.
  */
 console.log('loaded timetracker.js');
-var loadViewTimes = function (promoid) {
-    $('#timetrackerbody').load("views/displaypromotionviews/timetrackerlist.php", {promoid: promoid});
+var loadViewTimes = function (promoid,propertyid) {
+    $('#timetrackerbody').load("views/displaypromotionviews/timetrackerlist.php", {promoid: promoid,propertyid:propertyid});
 }
 
 $(document).on("click", ".add-new-timetarget", function () {
@@ -30,21 +30,21 @@ $(document).on("click", ".add-new-timetargetx", function () {
 });
 
 $(document).on("click", ".time-table-confirm", function () {
-    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 0,$(this).attr('data-target-id'),0);
+    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 0,$(this).attr('data-target-id'),0,$(this).attr('data-target-paidamt'));
 });
 $(document).on("click", ".time-table-end", function () {
-    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 1,$(this).attr('data-target-id'),1);
+    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 1,$(this).attr('data-target-id'),1,$(this).attr('data-target-paidamt'));
 });
 $(document).on("click", ".time-table-unconfirm", function () {
-    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 1,$(this).attr('data-target-id'),0);
+    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 1,$(this).attr('data-target-id'),0,$(this).attr('data-target-paidamt'));
 });
 $(document).on("click", ".time-table-archive", function () {
-    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 2,$(this).attr('data-target-id'),0);
+    TimeTargetUpdate($("#promotion-view-modal").data('promo-id'), 2,$(this).attr('data-target-id'),0,$(this).attr('data-target-paidamt'));
 });
 var promoloop = function(item,index){
     addNewTimeTarget(item);
 }
-var TimeTargetUpdate = function (promoId, action,timeTargetId,endTimeTarget) {
+var TimeTargetUpdate = function (promoId, action,timeTargetId,endTimeTarget,paidamt) {
     switch (action) {
         case 0:
             $action = 'confirmTimeTarget';
@@ -56,31 +56,37 @@ var TimeTargetUpdate = function (promoId, action,timeTargetId,endTimeTarget) {
             $action = 'archiveTimeTarget';
             break
     }
+    data = {
+        action: $action,
+        promotionId: promoId,
+        timetargetpaidamt: paidamt,
+        timetargetpaidby: $("#promotion-view-modal").data('property-id'),
+        timeTargetId: timeTargetId,
+        endTime:endTimeTarget
+    };
+    console.log("dd " + JSON.stringify(data))
+
     $.ajax({
         url: 'controllers/promotioncontrollers/timetargetcontroller.php',
         type: 'post',
-        data: {
-            action: $action,
-            promotionId: promoId,
-            timeTargetId: timeTargetId,
-            endTime:endTimeTarget
-        },
+        data: data ,
         cache: false,
         success: function (response) {
-            loadViewTimes(promoId);
+            loadViewTimes(promoId,$("#promotion-view-modal").data('property-id'));
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
         }
 
     });
+
 }
 var addNewTimeTarget = function (promoId) {
     $seed = $('#ttSeed').val();
     $start = $('#ttStart').val();
     $incrmin = $('#ttIncrementValue').val();
     $addamt = $('#ttIncrementAmount').val();
-    console.log($start);
+    console.log("proid"+$("#promotion-view-modal").data('property-id'));
     $.ajax({
         url: 'controllers/promotioncontrollers/timetargetcontroller.php',
         type: 'post',
@@ -94,11 +100,12 @@ var addNewTimeTarget = function (promoId) {
         },
         cache: false,
         success: function (response) {
-            loadViewTimes(promoId);
+            loadViewTimes(promoId,$("#promotion-view-modal").data('property-id'));
         },
         error: function (xhr, desc, err) {
             console.log(xhr + "\n" + err);
         }
 
     });
+
 }

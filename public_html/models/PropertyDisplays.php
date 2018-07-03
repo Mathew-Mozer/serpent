@@ -56,6 +56,35 @@ class PropertyDisplays
         }
         return $displays;
     }
+    public function getAllDisplays()
+    {
+        $getDisplays = "SELECT * FROM display ORDER BY display.display_name asc;";
+        $displayStatement = $this->conn->prepare($getDisplays);
+        $displayStatement->execute();
+        $result = $displayStatement->fetchAll(PDO::FETCH_ASSOC);
+        $displays = array();
+        $count = 0;
+        $display = null;
+        /*
+        foreach ($result as $array) {
+            $display = new DisplayModel($array);
+            if ($display->getName() != $array['display_name']) {
+                if ($count != 0) {
+                    $display->setPromotions($this->getDisplayPromotions($display->getId()));
+                    array_push($displays, $display);
+                }
+                $count = 1;
+            }
+            if ($display->getName() != 'unnamed') {
+                $display->setPromotions($this->getDisplayPromotions($display->getId()));
+                array_push($displays, $display);
+            }
+
+        }
+        */
+        $displays=$result;
+        return $displays;
+    }
 
     /**
      * Get display with ID
@@ -144,7 +173,18 @@ class PropertyDisplays
         $displayResult = $result->fetch(PDO::FETCH_ASSOC);
         return $displayResult;
     }
+    public function updatePromotionDisplayOrder($post){
+        $temp = $post["promos"];
+        $sql="";
+        foreach ($temp as $value){
+            $sql .= "UPDATE promotion_property SET display_order='".$value["order"]."' WHERE promotion_property_id=".$value["promoid"].";";
 
+        //   print_r($value);
+        }
+        echo ($sql);
+        $result = $this->conn->prepare($sql);
+        $result->execute();
+    }
     public function updateDisplayWithId($id, $name, $displayLocation)
     {
         $sql = "UPDATE display SET display_name=:current_name, display_location=:display_location WHERE display_id=:id;";
@@ -154,23 +194,36 @@ class PropertyDisplays
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
     }
-
+    public function removeUnassignedDisplay($values)
+    {
+        $sql = "delete from display WHERE display_id=:id; limit 1";
+        $result = $this->conn->prepare($sql);
+        $result->bindValue(':id', $values["displayId"], PDO::PARAM_STR);
+        $count = $result->execute();
+        return $count;
+    }
     /**
      * Add promotion to display
      */
     public function addPromotionToDisplay($values)
     {
+        $tmpDisplayPromos = $this->getDisplayPromotions($values['displayId']);
+        foreach($tmpDisplayPromos as $struct) {
+            if ($values['promotionId'] == $struct["promotion_id"]) {
+                echo("Promo Already Added");
+                break;
+            }
+        }
         $sql = "INSERT INTO `promotion_property`(`promotion_id`, `property_id`, `skin_id`, `display_id`, `scene_duration`, `active`)
         VALUES (:promotionId,:propertyId,:skinId,:display,:sceneDuration,:active)";
         $statement = $this->conn->prepare($sql);
-
+        echo("DisplayID: ".$values['displayId']);
         $statement->bindValue(':promotionId', $values['promotionId'], PDO::PARAM_STR);
         $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
         $statement->bindValue(':skinId', $values['skinId'], PDO::PARAM_STR);
         $statement->bindValue(':display', $values['displayId'], PDO::PARAM_STR);
         $statement->bindValue(':sceneDuration', $values['sceneDuration'], PDO::PARAM_STR);
         $statement->bindValue(':active', $values['active'], PDO::PARAM_STR);
-
         $statement->execute();
     }
 
@@ -181,6 +234,7 @@ class PropertyDisplays
      */
     public function removePromotionFromDisplay($promotionId, $displayId)
     {
+        echo($promotionId." test ".$displayId);
         $sql = 'DELETE FROM `promotion_property` 
  WHERE promotion_property.promotion_id = :promotionId 
  AND promotion_property.display_id = :displayId;UPDATE display set display_lockedpromo=0 where display_lockedpromo=:promotionId';
@@ -210,6 +264,16 @@ class PropertyDisplays
         $statement->bindValue(':propertyId', $propertyId, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getSkinById($skinid)
+    {
+
+        $sql = 'SELECT skin.skin_name,skin.skin_id FROM skin WHERE skin.skin_id = :skinId;';
+        $statement = $this->conn->prepare($sql);
+        $statement->bindValue(':skinId', $skinid, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 

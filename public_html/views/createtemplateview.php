@@ -7,16 +7,28 @@
 
 ?>
 <div id="use-template-prompt">
-    <p>Do you want to use a previously created template?</p>
+    <button type='button' id='scratch-promotion-btn'>Create New</button>
+    <p style="newpromo-title">Template Gallery</p>
     <br>
+    <div id="template-tabs">
+        <ul>
+            <li><a href="#tabs-2">My Templates</a></li>
+            <li><a href="#tabs-1">Global Templates</a></li>
+        </ul>
+        <div id="tabs-2">
+            <p><div id="select-template">
+                <label for="template-options">Select Template </label>
+                <div id="promo-templates" style="width: 50%">
 
-</div>
-
-<div id="select-template" hidden>
-    <label for="template-options">Select Template </label>
-    <select id="template-options" name="template-options">
-    </select>
-    <br>
+                </div>
+                <br>
+            </div>
+            </p>
+        </div>
+        <div id="tabs-1">
+            <p>Currently There are no Templates to use.</p>
+        </div>
+    </div>
 </div>
 
 <div id="save-template-prompt">
@@ -30,4 +42,8 @@
     <br>
     <br>
 </div>
-
+<script>
+    $( function() {
+        $( "#template-tabs" ).tabs();
+    } );
+</script>

@@ -24,11 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $promotion = new PromotionModel($conn->insert_database());
         $className = $promotion->getPromotionModelName($_POST['promotionTypeId']);
         require '../models/promotionmodels/'.$className.'.php';
+        print_r($_POST);
         $reflectionClass = new ReflectionClass($className);
         $classReference = $reflectionClass->newInstanceArgs(array($conn->insert_database()));
         $oldRecord = $classReference->get($_POST['promotionId']);
-        
-        $newRecord = array_merge($oldRecord, $_POST);
+        if(is_array($oldRecord)){
+            $newRecord = array_merge($oldRecord, $_POST);
+        }else{
+            $newRecord = $_POST;
+        }
+
         $classReference->update($newRecord);
         $promotion->setUpdatedTimestamp($_POST['promotionId']);
         header('content-type:application/json');

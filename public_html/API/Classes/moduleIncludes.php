@@ -19,5 +19,6 @@ include 'Skin.php';
 include 'PokerHand.php';
 include 'PictureViewer.php';
 include 'MultiplierMadness.php';
+include 'DisplayList.php';
 include '../Modules/SlackTool.php';
 ?>

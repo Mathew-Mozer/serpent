@@ -18,17 +18,21 @@ if(isset($_POST["promotion_id"])){
 
 <div class="outer">
     Promotions Linked:
-    <div class="innerwrap"></div>
+    <div class="innerwrap">
+
+    </div>
+
     <?php
     $childPromos = $promotion->getPromotionChildren($_POST["promotion_id"]);
     switch (sizeof($childPromos)) {
         case 4:
+        case 6:
         case 13:
             break;
         default:
             ?>
             <span
-                style="font-size: large; color: red">You need 4 or 13 active promotions. You currently have <?php echo(sizeof($childPromos)) ?>
+                style="font-size: large; color: red">You need 4,6 or 13 active promotions. You currently have <?php echo(sizeof($childPromos)) ?>
                 .</span>
             <?php
     }
@@ -57,8 +61,6 @@ if(isset($_POST["promotion_id"])){
     }
     ?>
     <br>
-
-
     <div class="outer">
         Linkable Promotions
         <div class="innerwrap"></div>

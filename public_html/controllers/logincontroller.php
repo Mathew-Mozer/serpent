@@ -2,12 +2,12 @@
 /**
  * This validates user login credentials
  */
-session_start();
+
 require('../models/LoginValidationModel.php');
 
 //If call is sent by post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    session_start();
     //If user is logging out destroy session
     if ($_POST['action'] == 'logout') {
         var_dump($_SESSION);
@@ -29,5 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('content-type:application/json');
         echo json_encode($response);
     }
+}else{
+
+if ($_GET['action'] == 'toggleDebug') {
+    if (isset($_SESSION['debug'])) {
+        $_SESSION['debug'] = !$_SESSION['debug'];
+
+        echo $_SESSION['debug'];
+    }else{
+        $_SESSION['debug']=true;
+        echo $_SESSION['debug'];
+    }
+}
 }
 ?>

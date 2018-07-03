@@ -3,7 +3,7 @@ session_start();
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath() . "dbcon.php";
 require "../models/PromotionModel.php";
-require "../models/PropertyDisplays.php";
+require_once "../models/PropertyDisplays.php";
 require "../models/PermissionModel.php";
 $dbcon = new DBCon();
 ?>
@@ -18,7 +18,7 @@ $assignedPromotions = $displayOptions->getPromotionsByDisplayId($_POST['displayI
 $unassignedPromotions = $displayOptions->getUnassignedPromotions($_POST['displayId'], $_SESSION['userId']);
 $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']);
 ?>
-<div id="display-info" data-property-id="<?php echo($_POST['propertyId'])?>" data-display-id="<?php echo($_POST['displayId'])?>">
+<div id="display-infoold" data-property-id="<?php echo($_POST['propertyId'])?>" data-display-id="<?php echo($_POST['displayId'])?>">
     <button class="display-modal-view-switch" data-tab="display-promotions-modal-view"> Display Promotions </button>
     <?php if ($_SESSION['isGod']) { ?>
         <button class="display-modal-view-switch" data-tab="display-admin-options-modal"> Administrator Options</button>
@@ -26,10 +26,10 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
     }
     ?>
 </div>
-<div id="display-admin-options-modal" class="display-modal-view" hidden>
+<div id="display-admin-options-modalold" class="display-modal-view" hidden>
 
 </div>
-<div id="display-promotions-modal-view" class="display-modal-view">
+<div id="display-promotions-modal-viewold" class="display-modal-view">
 <form>
     <div id="display-id-form" hidden data-display-id="<?php echo $_POST['displayId']; ?>"></div>
     <div id="property-id-form" hidden data-property-id="<?php echo $_POST['propertyId']; ?>"></div>

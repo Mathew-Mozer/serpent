@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 if (isset($_POST['property_name'])) {
     $property['property_name'] = $_POST['property_name'];
     $property['property_id'] = $_POST['propertyId'];
-    include('../models/PropertyDisplays.php');
+    require_once('../models/PropertyDisplays.php');
     include('../models/PromotionModel.php');
     require "../models/PermissionModel.php";
     require_once("../dependencies/php/HelperFunctions.php");

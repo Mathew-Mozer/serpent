@@ -1,9 +1,10 @@
+<!doctype html>
 <?php
 if(!isset($_SESSION)) {
     session_start();
 }
 require "dependencies/php/header.php";
-require "models/PromotionModel.php";
+require_once "models/PromotionModel.php";
 require "models/PermissionModel.php";
 date_default_timezone_set('America/Los_Angeles');
 
@@ -11,13 +12,6 @@ date_default_timezone_set('America/Los_Angeles');
  * This is the main page that finds them, bring them all and in the darkness
  * bind them.
  */
-if(isset($_GET['debug'])){
-    $_SESSION['addMicroTime'] = true;
-
-}else{
-    $_SESSION['addMicroTime'] = false;
-}
-
 $promotion = new PromotionModel($dbcon->read_database());
 ?>
 <body>
@@ -26,9 +20,15 @@ $promotion = new PromotionModel($dbcon->read_database());
         <div class='thinking-donut' style='transform:scale(0.50);'></div>
     </div>
 </div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+   <div id="sidenavPage">
 
+   </div>
+</div>
 <div id="page">
 </div>
+
 <div id="dialog" title="Promotion Status">
 
 </div>
@@ -134,7 +134,10 @@ $promotion = new PromotionModel($dbcon->read_database());
 <div class="donut loader hidden">
     <div class='thinking-donut' style='transform:scale(0.50);'></div>
 </div>
+<div id="promo-display-settings-dialog" title="Promotion Display Settings">
 
+
+</div>
 </body>
 <script src="dependencies/js/login.js"></script>
 <script>
@@ -153,4 +156,67 @@ $promotion = new PromotionModel($dbcon->read_database());
 //
     ?>
 
+</script>
+<!--  Testing! -->
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 45;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+#page{
+    transition: margin-left .5s;
+}
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }
+</style>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "325px";
+        document.getElementById("page").style.marginLeft = "325px";
+    }
+
+    function closeNav() {
+        document.getElementById("sidenavPage").innerHTML = ""
+        document.getElementById("mySidenav").style.width = "0";
+
+        document.getElementById("page").style.marginLeft = "0px";
+        $( ".selector" ).sortable( "destroy" );
+        $( ".dragToPromos" ).draggable( "destroy" );
+        $('.moveTile').toggle(false);
+    }
 </script>

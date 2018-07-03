@@ -6,13 +6,11 @@
  * Create the update promotion modal
  * @type {any}
  */
+//height: $( window ).height()-($( window ).height()*.10),
+  //  width: $( window ).width()-($( window ).width()*.10),
 var promotionViewModal = $("#promotion-view-modal").dialog({
-    autoOpen: false,
-    height: $( window ).height()-($( window ).height()*.10),
-    width: $( window ).width()-($( window ).width()*.10),
-    modal: true,
-    cache: false,
-    position: 'fixed',
+        position: 'center',
+        resizable: false,
     buttons: {
         Update: function () {
             console.log("update promotion");

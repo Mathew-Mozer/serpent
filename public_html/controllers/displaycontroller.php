@@ -5,7 +5,7 @@
 
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath() . "dbcon.php";
-require "../models/PropertyDisplays.php";
+require_once "../models/PropertyDisplays.php";
 require "../models/PromotionModel.php";
 $dbcon = NEW DbCon();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -38,10 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else if ($_POST['action'] == 'updateDisplaySettings') {
         $displayProperties = new PropertyDisplays($dbcon->update_database(), $_POST['propertyId']);
         $displayProperties->updateDisplayWithId($_POST['displayId'], $_POST['displayName'], $_POST['displayLocation']);
+    } else if ($_POST['action'] == 'removeUnassignedDisplay') {
+        $displayProperties = new PropertyDisplays($dbcon->insert_database(), null);
+        echo($displayProperties->removeUnassignedDisplay($_POST));
     } else if ($_POST['action'] == 'addPromotion') {
         $displayProperties = new PropertyDisplays($dbcon->insert_database(), null);
         $displayProperties->addPromotionToDisplay($_POST);
-    } else if ($_POST['action'] == 'removePromotion') {
+    }
+    else if ($_POST['action'] == 'removePromotion') {
         $displayProperties = new PropertyDisplays($dbcon->delete_database(), null);
         $displayProperties->removePromotionFromDisplay($_POST['promotionId'], $_POST['displayId']);
     } else if ($_POST['action'] == 'updatePromotionDisplaySettings') {
@@ -62,6 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $response = $displayProperties->updatePromotionDisplayOptions($_POST);
         echo(var_dump($response));
         var_dump($_POST);
+    } else if ($_POST['action'] == 'updateDisplayOrder') {
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), null);
+        $response = $displayProperties->updatePromotionDisplayOrder($_POST);
+        echo(var_dump($response));
+        var_dump($_POST);
+    } else if ($_POST['action'] == 'getAllDisplays') {
+        $displayProperties = new PropertyDisplays($dbcon->update_database(), null);
+        $display = $displayProperties->getAllDisplays();
+        echo json_encode($display);
     } else if ($_POST['action'] == 'SendCommandToDisplay') {
         $displayProperties = new PropertyDisplays($dbcon->update_database(), null);
         $display = $displayProperties->getDisplayWithId($_POST['display_id']);
@@ -70,16 +83,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset( $_POST['packageName'])){
             $command['packageName'] = $_POST['packageName'];
         }
-
-        if($display->getFCMToken()==""||!isset($_POST['FCMToken'])){
-            $fcmToken = 0;
-            $fcmKey = $_POST['FCMToken'];
-        }else{
-            $fcmToken = 1;
-            $fcmKey = $display->getFCMToken();
-        }
+        $fcmToken = $_POST["serviceID"];
+        $fcmKey = $_POST["FCMToken"];
+        //$fcmKey1="fBXK3Wd6qmE:APA91bHOvCicsSGGoeOEfqVASE-QbtppCXAfg05X4g9on-s9GDoPc7AUjr45ihBAmCyg1GDIS1wMZL0Q_DsbfHfpEmVyEXa0pPAo_n9NK-a4HJ8MZxNb163d1tvvyV5GlITv-Bplfk3i";
+        //$fcmKey2="c2JT5AZkP-c:APA91bFxybiD7kXyd6whPU6B50uE0hKCYqVReiATDfmHOHm94QHOj2GUrW_DN_mof5jCJU_ZH504LP3nzTd-jC8gFgClJQq9Z76aND3oob4RAi_YEiZSvJnX89dsShXgoOqltWY17y3h";
+        //$fcmKey3 = $display->getFCMToken();
+        //$response = $display->sendMessage($command,$display->getFCMToken(),0);
+       // echo $response."<br>";
+       // $response = $display->sendMessage($command,$_POST["FCMToken"],1);
+       // echo $response."<br>";
+       // $response = $display->sendMessage($command,$display->getFCMToken(),1);
+       // echo $response."<br>";
+        //$response = $display->sendMessage($command,$fcmKey1,0);
         $response = $display->sendMessage($command,$fcmKey,$fcmToken);
-        echo $response;
+        //$response = $display->sendMessage($command,$fcmKey3,0);
+        echo ($response);
+        //$response = $display->sendMessage($command,$fcmKey1,0);
+        //echo ($response);
+        //$response = $display->sendMessage($command,$fcmKey2,0);
+        //echo ($response);
+        //$response = $display->sendMessage($command,$fcmKey3,0);
+        //echo ($response);
         var_dump($_POST);
     }
 

@@ -50,6 +50,16 @@ class PromotionModel
         $promoResult = $result->fetchAll(PDO::FETCH_ASSOC);
         return $promoResult;
     }
+    public function getPropertyByID($propertyID)
+    {
+        $sql = "SELECT * FROM property where property_id =:propid ;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':propid', $propertyID, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
+
     /**
      * Get list of properties that logged in user can access
      * @return PDOStatement
@@ -85,12 +95,17 @@ class PromotionModel
         return $promoResult['promotion_type_class_name'];
     }
 
-    public function getAllPromotionsByProperty($propertyId,$type=0)
+    public function getAllPromotionsByProperty($propertyId,$type=0,$nochild=0)
     {
             $tmp="";
+            $child="";
         if($type!=0){
             $tmp = " AND promotion.promotion_type_id=".$type;
         }
+        if($nochild==0){
+            $child = "AND promotion.promotion_parent=0";
+        };
+
         $sql = "SELECT *,
                       promotion.promotion_status as promo_status,
                       promotion.promotion_id as promo_id,
@@ -105,7 +120,7 @@ class PromotionModel
                     WHERE
                       promo_property.promo_property_template = 0".
                     $tmp." AND promotion.promotion_type_id = promotion_type.promotion_type_id
-                      AND promotion.promotion_parent=0 
+                      ".$child." 
                       AND  promotion.promotion_id = promo_property.promo_property_promo_id
                       AND property.property_id = promo_property.promo_property_property_id
                       AND promotion.promotion_visible = 1 AND property.property_id =  :id;
@@ -279,14 +294,22 @@ class PromotionModel
 
     public function getPromotionById($id)
     {
-        $sql = "SELECT *, promotion_type_id, promotion_visible, settings, artifact, promotion_sceneid, promotion_lastupdated FROM promotion WHERE promotion_id = :id;";
+        $sql = "SELECT *, promotion_visible, settings, artifact, promotion_sceneid, promotion_lastupdated FROM promotion,promotion_type WHERE promotion_type.promotion_type_id=promotion.promotion_type_id and promotion_id = :id;";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $id, PDO::PARAM_STR);
         $result->execute();
         $promoResult = $result->fetch(PDO::FETCH_ASSOC);
         return $promoResult;
     }
-
+    public function getDisplayPromotionById($promoid,$displayid)
+    {
+        $sql = "SELECT * FROM promotion_property,promotion_type WHERE promotion_type.promotion_type_id=promotion_property.promotion_type_id and promotion_id = :id;";
+        $result = $this->db->prepare($sql);
+        $result->bindValue(':id', $promoid, PDO::PARAM_STR);
+        $result->execute();
+        $promoResult = $result->fetch(PDO::FETCH_ASSOC);
+        return $promoResult;
+    }
     public function getPromotionImageByPromotionId($id)
     {
         $sql = "SELECT promotion_type_image as image FROM promotion, promotion_type
@@ -343,12 +366,11 @@ WHERE promotion.promotion_id = :id;";
         return $promoResult;
     }
 
-    public function setUpdatedTimestamp($promotionId)
+    public function setUpdatedTimestamp($post)
     {
-
         $sql = "update promotion set promotion_lastupdated=now() where promotion_id=:promotionId;";
         $result = $this->db->prepare($sql);
-        $result->bindValue(':promotionId', $promotionId, PDO::PARAM_STR);
+        $result->bindValue(':promotionId', $post, PDO::PARAM_STR);
         $result->execute();
         //echo($result->rowCount());
     }
@@ -396,7 +418,7 @@ WHERE promotion.promotion_id = :id;";
                       AND promotion.promotion_visible = 1
                       AND promotion_property.active = 1
                       AND promotion_property.display_id = :id
-                      GROUP BY promotion.promotion_id ORDER BY promotion_property.display_id;
+                      GROUP BY promotion.promotion_id ORDER BY promotion_property.display_order;
                     ";
         $result = $this->db->prepare($sql1);
         $result->bindValue(':id', $displayId);
@@ -504,6 +526,7 @@ WHERE promotion.promotion_id = :id;";
 }
     public function getTemplates($values)
     {
+        $results="";
         if ($values['promotionType'] == 'kickforcash') {
             $sql = 'select promotion.promotion_id,promo_property.promo_property_promo_id,promo_property.promo_property_template_name
             from kick_for_cash,promotion,promo_property
@@ -525,8 +548,9 @@ WHERE promotion.promotion_id = :id;";
             and high_hand.promotion_id=promo_property.promo_property_promo_id 
             and promo_property.promo_property_property_id=:propertyId 
             and promo_property.promo_property_template=1';
+        }else{
+            return $results;
         }
-
         $statement = $this->db->prepare($sql);
         $statement->bindValue(':propertyId', $values['propertyId'], PDO::PARAM_STR);
         $statement->execute();

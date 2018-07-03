@@ -23,9 +23,8 @@ public $picturelist= array();
         $sql = 'SELECT * from picview_pictures where picview_pictures_promoid=? order by picview_pictures_order ASC ';
         $statement = $conn->prepare($sql);
         $statement->execute(array($pSessionID));
-        //echo("found something".$pSessionID);
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-
+            //echo("found something".$pSessionID);
             $pd = new PictureData();
             $pd->id = $result['picview_pictures_id'];
             $pd->filename = "http://".$_SERVER['HTTP_HOST']."/clientpictures/uploads/".$result['picview_pictures_promoid']."/".$result['picview_pictures_filename'];

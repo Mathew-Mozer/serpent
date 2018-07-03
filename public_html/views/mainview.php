@@ -9,7 +9,8 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    require "../models/PromotionModel.php";
+    require_once "../models/PromotionModel.php";
+    //require_once "../models/PropertyDisplays.php";
     require "../models/PermissionModel.php";
     require_once("../dependencies/php/HelperFunctions.php");
     require_once(getServerPath() . "dbcon.php");
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $propertyRowIndex = 0;
 
     //List all the properties that the current user has permissions to view
-    require "../models/PropertyDisplays.php";
+
     if ($permission->hasPermissionByAccount('display_manager','C')||$_SESSION['isGod']) {
         require "unassigneddisplayview.php";
     }
@@ -41,14 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include('propertyview.php');
             $propertyRowIndex++;
             ?>
+           <!--
                 <hr>
 
                 <div id="displayViewContainer<?php echo($property['property_id']) ?>">
                 <?php
-                include 'displayview.php';
+            //    include 'displayview.php';
             ?>
             </div>
-
+            -->
             <?php
 
         }

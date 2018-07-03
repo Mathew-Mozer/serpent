@@ -5,6 +5,9 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+if(!isset($prevdir)){
+    $prevdir="";
+}
 require_once $prevdir."../models/PermissionModel.php";
 require_once($prevdir."../dependencies/php/HelperFunctions.php");
 require_once(getServerPath() . "dbcon.php");
@@ -14,9 +17,9 @@ $canUpdate = false;
 if (isset($_POST['append_promotion'])) {
     if ($_POST['append_promotion'] == true) {
         $row = $_POST;
-        echo("<script>alert('yes')</script>");
+        //echo("<script>alert('yes')</script>");
     } else {
-        echo("<script>alert('not')</script>");
+        //echo("<script>alert('not')</script>");
     }
 }
 
@@ -46,21 +49,21 @@ $permission = new PermissionModel($dbcon->update_database(), $_SESSION['userId']
 
 ?>
 
-<div id="tile-<?php echo $row['promo_id']; ?>" class="tile-body <?php echo $row['promo_id']; ?>"
-
+<div id="tile-<?php echo $row['promo_id']; ?>" class="dragToPromos tile-body <?php echo $row['promo_id']; ?>"
+     data-default-time="<?php echo $row['promotion_type_default_time']; ?>"
+     data-skin-id="<?php echo $row['promotion_skin']; ?>"
      data-promo-type-id="<?php echo $row['promo_type_id']; ?>" data-promo-id="<?php echo $row['promo_id']; ?>"
      data-promo-status="<?php echo $row['promo_status']; ?>" data-promo-type="<?php echo $row['file_name']; ?>"
-     data-property-point-storage="<?php echo $row['property_point_storage']; ?>"
+     data-property-point-storage="<?php echo 0 //$row['property_point_storage']; ?>"
+     data-property-id="<?php echo $row['property_id']; ?>"
      data-toggle="tooltip" title="<?php echo $row['promo_title'] . " " . $row['promo_id']; ?>">
-
-    <div class="tile-promotion-title"><?php
+    <div class="tile-promotion-title"><span class="glyphicon glyphicon-move moveTile" style="display: none"></span><span><?php
         if ($row['promotion_label'] == "") {
             echo $row['promotion_type_title'];
         } else {
             echo $row['promotion_label'];
-
         }
-        //echo $row['promotion_label']?>&nbsp;<span class="glyphicon glyphicon-edit editPromoName"></span></div>
+        //echo $row['promotion_label']?><div style="padding-left: 10px;" class="glyphicon glyphicon-edit edit-promo-title"></div></span> </div>
 
     <img class="tile-icon" src="dependencies/images/<?php echo $row['promo_image'] ?>">
 
