@@ -38,7 +38,7 @@
             </td>
             <td style="vertical-align: top; width: 50%;">
                 <label for="payout">Payout Value</label><br>
-                <input id="payout" name="pgt_payout" type="text" placeholder="Payout">
+                <input id="payout" class="csvToList" name="pgt_payout" type="text" placeholder="Payout">
 
                 <br><br>
 
@@ -81,7 +81,7 @@
                         <tbody>
                         <tr>
                             <td><input name="pgt_instant_winner_id1" type="hidden"><input id="pgt_enable_instant_winner1" name="pgt_enable_instant_winner1" type="checkbox"></td>
-                            <td><input class="pgt-instant-winner" id="enable-instant-winner1-prize" name="pgt_prize_amount1" type="number" min="0"
+                            <td><input class="pgt-instant-winner" id="enable-instant-winner1-prize" name="pgt_prize_amount1" type="text" min="0"
                                        placeholder="25"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner1-threshold" name="pgt_points1" type="number" min="0"
                                        placeholder="250"></td>
@@ -89,7 +89,7 @@
                         </tr>
                         <tr>
                             <td> <input name="pgt_instant_winner_id2" type="hidden"><input id="pgt_enable_instant_winner2" name="pgt_enable_instant_winner2" type="checkbox"></td>
-                            <td><input class="pgt-instant-winner" id="enable-instant-winner2-prize" name="pgt_prize_amount2" type="number" min="0"
+                            <td><input class="pgt-instant-winner" id="enable-instant-winner2-prize" name="pgt_prize_amount2" type="text" min="0"
                                        placeholder="50"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner2-threshold" name="pgt_points2" type="number" min="0"
                                        placeholder="500"></td>
@@ -98,7 +98,7 @@
                         </tr>
                         <tr>
                             <td><input name="pgt_instant_winner_id3" type="hidden"><input id="pgt_enable_instant_winner2" name="pgt_enable_instant_winner3" type="checkbox"></td>
-                            <td><input class="pgt-instant-winner" id="enable-instant-winner3-prize" name="pgt_prize_amount3" type="number" min="0"
+                            <td><input class="pgt-instant-winner" id="enable-instant-winner3-prize" name="pgt_prize_amount3" type="text" min="0"
                                        placeholder="75"></td>
                             <td><input class="pgt-instant-winner" id="enable-instant-winner3-threshold" name="pgt_points3" type="number" min="0"
                                        placeholder="750"></td>
@@ -126,6 +126,7 @@
     });
     //first fp
     var enableFP = function () {
+        changeCSVToList();
         var $fp1 = $( "#start-date" ),
             now = moment().subtract( "seconds", 1 );
         $fp1.val( moment($( "#start-date" ).val()).format( "YYYY-MM-DD HH:mm:00") );
@@ -169,25 +170,54 @@
             $fp2.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
             $fp2.filthypillow( "hide" );
         } );
-        $("#btnAddDayPGT").on("click", function (event) {
-            $fp1.val(moment($fp1.val()).add("Days",1).format( "YYYY-MM-DD HH:mm:00") );
-            $fp2.val(moment($fp2.val()).add("Days",1).format( "YYYY-MM-DD HH:mm:00") );
-        });
-        $("#btnminusDayPGT").on("click", function (event) {
-            $fp1.val(moment($fp1.val()).subtract("Days",1).format( "YYYY-MM-DD HH:mm:00") );
-            $fp2.val(moment($fp2.val()).subtract("Days",1).format( "YYYY-MM-DD HH:mm:00") );
-        });
-        $("#btnAddDaysPGT").on("click", function (event) {
-            $fp1.val(moment($fp1.val()).add("Days",7).format( "YYYY-MM-DD HH:mm:00") );
-            $fp2.val(moment($fp2.val()).add("Days",7).format( "YYYY-MM-DD HH:mm:00") );
-        });
+
 
     }
 
 
 
 </script>
+<script>
+    $(".csvToList").toggle(true);
 
+    var changeCSVToList = function () {
+      /*
+        var replaced = $(".csvToList");
+        if($("div[convertedid='"+$(replaced).attr("id")+"']").length==0) {
+            console.log("Converting now")
+            var parentDiv = $(".csvToList").parent();
+            replaceContent(replaced);
+            var itm2 ="<table style='width:350px '><tr><td>Option 1</td><td>Option 2</td><td></td></tr>";
+            itm2 +="<tr><td><input type='text' placeholder='Option 1'> </td><td><input type='text' placeholder='Option 1'> </td><td><button type=\"button\" class=\"btn btn-success\">+</button></td></tr>"
+            itm2 +="</table>"
+            $(itm2).insertBefore(replaced)
+        }
+        $(document).on("click", ".btnDeleteEntry", function () {
+            console.log('Click Delete')
+            $(this).parent().parent().remove()
+        });
+*/
+    }
+    var replaceContent = function (replaced) {
+        var array = $('.csvToList').val().split(",");
+        var itmText="<table style='width:350px '><tr><td>Order</td><td>Opt. 1</td><td>Option 2</td><td></td></tr>";
+        console.log("Array:" + array.length)
+        for (var i = 0; i < array.length; i++) {
+            var indItm = array[i].split(";");
+            console.log("len:" + indItm.length)
+            if(indItm.length==1){
+                indItm.push("&lt;none&gt;")
+            }else{
+
+            }
+            itmText += "<tr><td>"+ parseInt(i+1) + " - </td><td>&nbsp;" + indItm[0] + "</td><td>"+indItm[1]+"</td><td><button type='button' class='btn btn-sm btn-danger btnDeleteEntry'>X</button></td></tr>";
+        }
+        var itm = "<div convertedID='" + $(replaced).attr("id") + "' style='width: 400px; height: 110px;overflow: auto;'>" +
+            itmText;
+        itm +="</div>"
+        $(itm).insertBefore(replaced)
+    }
+</script>
 <script src="dependencies/js/promotion/formhelperfunctions.js?t=<?php echo microtime() ?>"></script>
 
 <?php
