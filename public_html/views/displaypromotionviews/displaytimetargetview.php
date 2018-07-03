@@ -16,8 +16,8 @@ $promotion = new PromotionModel($dbcon->read_database());
 ?>
 
 <div id="add-promotion">
-
-    <table class="table table-striped">
+<div id="msg"></div>
+    <table id="tttargettable" class="table table-striped">
         <thead>
         <tr>
             <td>Seed</td>
@@ -41,22 +41,27 @@ $promotion = new PromotionModel($dbcon->read_database());
         </tr>
         </tbody>
     </table>
-    <input id="ttlockDef" name="time_target_lock_defaults" type="number" value="" hidden>
+    <input id="ttlockDef" name="time_target_lock_defaults" type="number" value="8"hidden>
+    <input id="ttmultipromo" name="time_target_multpromoid" type="number" value="" hidden>
+    <input id="ttusemulti" name="time_target_usemult" type="number" value="" hidden>
+    <input id="ttlockpromo" name="time_target_nostartnew" type="number" value="" hidden>
     <input id="ttlDefhour" name="time_target_def_hour" type="number" value="-1" hidden>
     <input id="ttDefmin" name="time_target_def_minute" type="number" value="-1" hidden>
     <input id="ttprog" name="time_target_progressive" type="number" value="0" hidden>
 
-    <div style="height: 350px; width: 800px; overflow: auto">
+    <div style="height: 350px; width: 1000px; overflow: auto">
     <table class="table table-striped">
         <thead>
         <tr>
             <td>ID</td>
+            <td>Paid At</td>
             <td>Seed</td>
             <td>Start Time</td>
             <td>End Time</td>
             <td>Inc. Min.</td>
             <td>Add Amt</td>
-            <td></td>
+            <td>Current Amount</td>
+            <td>Paid Amount</td>
         </tr>
         </thead>
         <tbody id="timetrackerbody">
@@ -64,12 +69,20 @@ $promotion = new PromotionModel($dbcon->read_database());
         </tbody>
     </table>
     </div>
-    <script src="dependencies/js/promotion/formhelperfunctions.js"></script>
+
     <script>
 
         var d1 = moment().subtract( "seconds", 1 );
         var now =moment().subtract( "seconds", 1 );
+
+
+
+
         $( "#ttlockDef" ).bind("change paste keyup", function(){
+            if($( "#ttlockpromo" ).val()=="1"){
+                $("#tttargettable").toggle(false);
+                $("#msg").html("This promotion is locked.")
+            }
             if($( "#ttlockDef" ).val()=="1"){
                 $('#ttIncrementValue').attr('disabled', true);
                 $('#ttIncrementAmount').attr('disabled', true);
@@ -99,8 +112,13 @@ $promotion = new PromotionModel($dbcon->read_database());
     </script>
     <script>
 
-        loadViewTimes($("#promotion-view-modal").data('promo-id'));
+        loadViewTimes($("#promotion-view-modal").data('promo-id'),$("#promotion-view-modal").data('property-id'));
         var enableFP = function () {
+            if($("#ttusemulti").val()==1){
+                $("#tttargettable").toggle(false);
+                $("#msg").html("This promotion is locked. To start a new session you have to reset the parent promotion")
+            }
+
             var $fp = $( ".filthypillow" ), now=moment().subtract( "seconds", 1 ) ;
             $fp.val(d1.format( "YYYY-MM-DD HH:mm:00") );
             $fp.filthypillow( {
@@ -129,3 +147,4 @@ $promotion = new PromotionModel($dbcon->read_database());
         }
 
     </script>
+    <script src="dependencies/js/promotion/formhelperfunctions.js"></script>

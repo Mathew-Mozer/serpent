@@ -18,9 +18,59 @@ var tileBodyClick = function () {
     $("#promotion-view-modal").data('promo-id', $(this).data("promo-id"));
     $("#promotion-view-modal").data('promo-type-id', $(this).data("promo-type-id"));
     $("#promotion-view-modal").data('promo-point-storage', $(this).data("property-point-storage"));
+    $("#promotion-view-modal").data('property-id', $(this).data("property-id"));
     console.log("Display:" +  $(this).data("promo-type"));
-    $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php",{promoid:$(this).data("promo-id"),pointstorage:$(this).data("property-point-storage")});
+    $("#promotion-view-modal").load("views/displaypromotionviews/display" + $(this).data("promo-type") + "view.php",{propertyid:$(this).data("property-id"),promoid:$(this).data("promo-id"),pointstorage:$(this).data("property-point-storage")});
+    var diagheight = 850;
+    var diagwidth = 1400;
+    switch ($(this).data("promo-type-id")){
+        case 1: //High Hand Gold
+            diagheight = 768;
+            diagwidth = 1024;
+        break;
+        case 4: // Point Race
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 5: //Picture Slideshow
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 8: // Prize Event
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 9: // Monster Carlo
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 11: // Kick for cash
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 13: // Multiplier Madness
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 14: // Time Target
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 15: // Time Target X
+            diagheight = 768;
+            diagwidth = 1024;
+            break;
+        case 15: // Custom Promotion
+            diagheight = 768;
+            diagwidth = 1200;
+            break;
+    }
+
+    promotionViewModal.dialog('option','height',$(window).height());
+    promotionViewModal.dialog('option','width',$(window).width());
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     promotionViewModal.dialog('open');
+    closeNav();
 };
 
 /**
@@ -33,7 +83,7 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
     if(lockstatus){
         promoId=0;
     }
-    //console.log('promoLock=' + displayId);
+    console.log('promoLock=' + displayId);
 
     $.ajax({
         url: 'controllers/displaycontroller.php',
@@ -46,7 +96,12 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
         cache: false,
         success: function (response) {
             $("#displayViewContainer"+propertyId).load("views/displayview.php", {propertyId: propertyId, displayId: displayId,property_name:propertyName});
-            //console.log("return ls:" + lockstatus + " - promoid:" + promoId + " - displayid:"+ displayId + " - propertyname:" + propertyId)
+            console.log("return ls:" + lockstatus + " - promoid:" + promoId + " - displayid:"+ displayId + " - propertyname:" + propertyName)
+            $("#sidenavPage").load("views/newdisplaymodalform.php", {
+                propertyId: propertyId,
+                displayId: displayId,
+                propertyName: propertyName
+            });
         },
         error: function(xhr, desc, err) {
             console.log(xhr + "\n" + err);
@@ -94,6 +149,19 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
 
     });
 };
+var promoStatusButtonClick = function (e) {
+    e.stopPropagation();
+    var currentObject = $(e);
+    changePromotionStatusModal =$("#dialog").dialog();
+    var promoId = $(this).data("promo-id");
+    $("#dialog").load("views/changepromostatusview.php",{promoid:promoId});
+
+    selectedElement = this;
+
+    changePromotionStatusModal.dialog('open');
+    changePromotionStatusModal.dialog({width: 250,height:325});
+    return false
+};
     var promotionDeleteBtnClick = function (e) {
         e.stopPropagation();
 
@@ -118,11 +186,10 @@ function promoLockButtonClick(lockstatus,promoId,displayId,propertyName,property
             error: function(xhr, desc, err) {
                 console.log(xhr + "\n" + err);
             }
-
         });
     }else{
         alert('did not delete');
-        alert("this-" +$('#promolockbtn-'+promoId).data('display-id'));
+
     }
 
 };
@@ -246,3 +313,47 @@ var dehighlightCurrentOption = function () {
     $(this).removeClass("tile-menu-item-hover");
 
 };
+
+
+var updatePromoSettingsDialog = $( "#promo-display-settings-dialog" ).dialog({
+    autoOpen: false,
+    height: 200,
+    width: 350,
+    modal: true,
+    buttons: {
+        "Save": function () {
+            var sceneDuration = $('#update-promo-scene-duration').val();
+            var skinId = $('#update-promo-scene-skin').val();
+            var promoid = $('#update-promo-scene-skin').data("promo-id");
+            console.log("dur:" + sceneDuration + " skinId: " + skinId + " promoid: " + promoid)
+            savePromotionDisplaySettings(promoid, sceneDuration, skinId);
+        },
+        Cancel: function() {
+            updatePromoSettingsDialog.dialog( "close" );
+        }
+    },
+    close: function() {
+
+    }
+});
+var updatePromoTitleDialog = $( "#promo-display-settings-dialog" ).dialog({
+    autoOpen: false,
+    height: 200,
+    width: 350,
+    modal: true,
+    buttons: {
+        "Save": function () {
+            var sceneDuration = $('#update-promo-scene-duration').val();
+            var skinId = $('#update-promo-scene-skin').val();
+            var promoid = $('#update-promo-scene-skin').data("promo-id");
+            console.log("dur:" + sceneDuration + " skinId: " + skinId + " promoid: " + promoid)
+            savePromotionDisplaySettings(promoid, sceneDuration, skinId);
+        },
+        Cancel: function() {
+            updatePromoSettingsDialog.dialog( "close" );
+        }
+    },
+    close: function() {
+
+    }
+});

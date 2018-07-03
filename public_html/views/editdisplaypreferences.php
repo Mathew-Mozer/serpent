@@ -3,7 +3,7 @@ session_start();
 require "../dependencies/php/HelperFunctions.php";
 require getServerPath() . "dbcon.php";
 require "../models/PromotionModel.php";
-require "../models/PropertyDisplays.php";
+require_once "../models/PropertyDisplays.php";
 require "../models/PermissionModel.php";
 $dbcon = new DBCon();
 //var_dump($_POST);
@@ -30,6 +30,7 @@ $promotion = new PromotionModel($dbcon->read_database());
         <li><a href="#tabs-1">Display Properties</a></li>
         <li><a href="#tabs-2">Commands</a></li>
         <li><a href="#tabs-3">Software</a></li>
+        <li><a href="#tabs-4">Logs</a></li>
     </ul>
     <div id="tabs-1">
         <div class="option-group">
@@ -133,7 +134,12 @@ $promotion = new PromotionModel($dbcon->read_database());
                     <td>
                         <label for="top-content-box">Kiosk Mode</label><br>
                         <input id="display-kiosk" class="display-field" data-column="display_kiosk"
-                               type="checkbox" <?php echo(isChecked($display->getKiosk())) ?>>
+                               type="checkbox">
+                    </td>
+                    <td>
+                        <label for="top-content-box">Log Errors</label><br>
+                        <input id="display-log" class="display-field" data-column="display_log"
+                               type="checkbox">
                     </td>
                 </tr>
                 <tr>
@@ -143,12 +149,20 @@ $promotion = new PromotionModel($dbcon->read_database());
                     <td><label for="top-content-box">Server Time</label><br>
                         <input id="" class="display-field firebase-display-settings" data-setting="ServerTime"
                                type="checkbox"></td>
+                    <td style="padding-left: 20px; padding-right: 20px"><label for="top-content-box">Min Mem</label><br>
+                        <input id="" class="display-field firebase-display-settings" data-setting="memUsageMinThreshhold"
+                               style="width: 40px" type="number"></td>
+                    <td style="padding-left: 20px; padding-right: 20px"><label for="top-content-box">Max Mem</label><br>
+                        <input id="" style="width: 40px" class="display-field firebase-display-settings" data-setting="memUsageMaxThreshhold"
+                               type="number"></td>
+
                 </tr>
+                <button type="button" id="save-display-options">Save Display Info</button>
             </table>
         </div>
     </div>
     <div id="tabs-2">
-        <button type="button" id="save-display-options">Save Display Info</button>
+
         <button type="button" id="view-api-data">View API Data</button>
         <br>
         <button type="button" class="send-fcm-command" data-display-id="<?php echo($_POST['displayid']) ?>"
@@ -243,6 +257,18 @@ $promotion = new PromotionModel($dbcon->read_database());
         </div>
         <br style="clear: left;" />
     </div>
+    <div id="tabs-4">
+        <table class="table thead-dark" id="LogTable">
+            <thead>
+            <tr><th>Timestamp</th><th>App</th><th>Category</th><th>Category</th><th></th></tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <br style="clear: left;" />
+        <button type="button" class="btn btn-danger btnClearLogs" data-linkcode="<?php echo($display->getLinkCode()) ?>">Clear All Logs!</button>
+    </div>
 </div>
 
 
@@ -269,7 +295,6 @@ function isSelected($val1, $val2)
     var Display = "";
     function ConnectToFirebase($key) {
         console.log("Attempting")
-
         $("#display-key").hide();
         firebase.database().ref('Displays').orderByChild("LinkCode").equalTo('<?php echo($display->getLinkCode()) ?>').once('value').then(function (snapshot) {
             snapshot.forEach(function (userSnapshot) {
@@ -281,20 +306,54 @@ function isSelected($val1, $val2)
             });
         });
     }
+
+    function ConnectToLog($key) {
+        console.log("Attempting To View Log")
+        var userRef = firebase.database().ref('/DisplayLogs/<?php echo($display->getLinkCode()) ?>').orderByKey().limitToLast(50);
+       /*
+        userRef.once('value', function (snapshot) {
+            snapshot.forEach(function (userSnapshot) {
+                console.log("Log Key:" + DisplayKey);
+                         AddLogToList(userSnapshot)
+                });
+        });
+        */
+
+       userRef.on('value', function (snapshot) {
+           $("#LogTable > tbody").empty()
+               snapshot.forEach(function (userSnapshot) {
+
+                   AddLogToList(userSnapshot)
+               });
+        });
+    }
+    function AddLogToList(userSnapshot) {
+        //console.log("Log" + JSON.stringify(userSnapshot))
+        logitem = JSON.parse(JSON.stringify(userSnapshot))
+        logitem.key = userSnapshot.key;
+        console.log("Log Item Key:" + logitem.key);
+        var date =moment.utc(logitem.Timestamp).format('M/D/YY h:mm:ss A')
+        $row = "<tr><td>"+logitem.Application+"</td><td>"+logitem.Details+"</td><td>"+date+"</td><td>"+logitem.Category+"</td><td><button type='button' data-logkey="+logitem.key+" class='btn btn-warning removeLogItem'>X</button></td></tr>"
+        $("#LogTable > tbody").prepend($row)
+
+
+    }
     function StartFirebaseDisplayListener($str) {
-        console.log("Started from:" + $str);
+        //console.log("Started from:" + $str);
         var userRef = firebase.database().ref('/Displays/' + DisplayKey);
         userRef.on('value', function (snapshot) {
             Display = JSON.parse(JSON.stringify(snapshot));
-            console.log(JSON.stringify(snapshot));
+          //  console.log(JSON.stringify(snapshot));
             $("#display-kiosk").prop('checked', Display.Kiosk);
+            $("#display-log").prop('checked', Display.logErrors);
+
             $("#display-key").show();
             $("#display-key").prop('title', DisplayKey)
             if (DisplayKey != null) {
                 $("#display-firebase").css("color", "Green");
                 $("#display-firebase").prop("title", DisplayKey);
             } else {
-                console.log("FCM Token NOT Found:")
+            //    console.log("FCM Token NOT Found:")
                 $("#display-firebase").css("color", "Grey");
                 $("#display-firebase").prop("title", "");
             }
@@ -311,9 +370,16 @@ function isSelected($val1, $val2)
             if (Display.ServerTime != null) {
                 $(".firebase-display-settings[data-setting='ServerTime']").prop('checked', Display.ServerTime);
             }
+            if (Display.memUsageMaxThreshhold != null) {
+                $(".firebase-display-settings[data-setting='memUsageMaxThreshhold']").val(Display.memUsageMaxThreshhold);
+            }
+            if (Display.memUsageMinThreshhold != null) {
+                $(".firebase-display-settings[data-setting='memUsageMinThreshhold']").val(Display.memUsageMinThreshhold);
+            }
         });
     }
     ConnectToFirebase();
+    ConnectToLog();
     $(document).ready(function () {
 
         $("#display-kiosk").change(function () {
@@ -322,10 +388,31 @@ function isSelected($val1, $val2)
             saveFirebaseDisplay();
 
         });
+        $("#display-log").change(function () {
+            Display.logErrors = $("#display-log").prop('checked');
+            console.log("clicked log?" + $("#display-log").prop('checked'));
+            saveFirebaseDisplay();
+
+        });
         $(".firebase-display-settings").change(function () {
             //Display[$(".firebase-display-settings").data("setting")] = $(this).prop('checked')
-            Display[$(this).data("setting")] = $(this).prop('checked')
-            console.log("clicked?" + $(this).data("setting") + ":" + $(this).prop('checked'));
+
+            var type = $(this).attr('type');
+
+            switch (type){
+                case "checkbox":
+                    Display[$(this).data("setting")] = $(this).prop('checked')
+
+                    break;
+                case "number":
+                    Display[$(this).data("setting")] = +$(this).val();
+                    break;
+                default:
+                    console.log("Type: " + type)
+            }
+
+
+            console.log("Changed" + $(this).data("setting") + "to: " + Display[$(this).data("setting")]);
             saveFirebaseDisplay();
 
         });
@@ -333,6 +420,23 @@ function isSelected($val1, $val2)
             Display.LinkCode = $('#display-linkcode').val();
             saveFirebaseDisplay();
         })
+        $(document).on('click', '.removeLogItem', function(){
+            console.log("Removing <?php echo($display->getLinkCode()) ?>/"+ $(this).data("logkey"))
+            var logRef = firebase.database().ref('/DisplayLogs/<?php echo($display->getLinkCode()) ?>/'+ $(this).data("logkey"))
+            logRef.remove()
+        });
+
+        $('.btnClearLogs').click(function () {
+            if (confirm('Are you sure you want to clear EVERY LOG?')) {
+                console.log("Deleting logs of: <?php echo($display->getLinkCode()) ?>");
+                var userRef = firebase.database().ref('/DisplayLogs/<?php echo($display->getLinkCode()) ?>')
+                //var userRef = firebase.database().ref('/DisplayLogs/')
+                userRef.remove();
+            } else {
+                console.log("Logs are safe:");
+            }
+        })
+
         $('#display-firebase').click(function () {
             if (DisplayKey == null) {
                 console.log("Trying to save firebase");
@@ -344,6 +448,7 @@ function isSelected($val1, $val2)
                     DisplayName: "<?php echo($display->getName()) ?>",
                     API: $("#display-api-id option:selected").val(),
                     Monitor: true,
+                    logErrors: false,
                     ServerTime:true
                 };
                 Updates[DisplayKey] = Display;

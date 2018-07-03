@@ -26,13 +26,16 @@ class PicViewerModel
      */
     public function add($values)
     {
+        $isVert = 0;
+        if(isset($values['picview_settings_vertical'])){
+            $isVert=$values['picview_settings_vertical'];
+        }
         $sql = "INSERT INTO picview_settings (picview_settings_promoid, picview_settings_type,picview_settings_vertical)
                                  VALUES (:promotion_id,:pictype,:picviewvertical);";
         $result = $this->db->prepare($sql);
         $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
-        $result->bindValue(':picviewvertical', $values['picview_settings_vertical'], PDO::PARAM_STR);
+        $result->bindValue(':picviewvertical', $isVert, PDO::PARAM_STR);
         $result->bindValue(':pictype', 0, PDO::PARAM_STR);
-
         $result->execute();
         return $result;
     }
@@ -86,6 +89,9 @@ class PicViewerModel
         $result->execute();
         $target_dir = "../../clientpictures/uploads/".$_POST['promotionId']."/";
         unlink($target_dir.$values["picview_pictures_filename"]);
+        $username = "test";
+        $msg = "-" . $username . "- " . $target_dir.$values["picview_pictures_filename"];
+        SlackTool::slack($msg, "#displaylog", $_POST["displayname"]);
         return($values);
     }
 

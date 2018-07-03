@@ -18,7 +18,13 @@ $TimeTargets = $TimeTargetModel->getAllTimeTargetChildren($_POST['promoid']);
 ?>
 <div id="add-promotion">
 <table class="table table-striped">
+    <col width="50px">
+    <col width="50px">
+    <col width="50px">
+    <col width="50px">
+    <col width="50px">
     <thead>
+
     <tr>
         <td>Seed</td>
         <td>Start</td>
@@ -29,14 +35,14 @@ $TimeTargets = $TimeTargetModel->getAllTimeTargetChildren($_POST['promoid']);
     </thead>
     <tbody>
     <tr>
-        <td><input id="ttSeed" type="number" name="time_target_default_seed" value="500"></td>
+        <td><input style="width: 75px" id="ttSeed" type="number" name="time_target_default_seed" value="500"></td>
         <td><input id="ttStart" class="filthypillow">
 
         </td>
-        <td><input id="ttIncrementValue" name="time_target_default_Increment" type="number" value="60"></td>
-        <td><input id="ttIncrementAmount" name="time_target_default_add_amt" type="number" value="100"></td>
+        <td><input  style="width: 75px" id="ttIncrementValue" name="time_target_default_Increment" type="number" value="60"></td>
+        <td><input  style="width: 75px" id="ttIncrementAmount" name="time_target_default_add_amt" type="number" value="100"></td>
         <td>
-            <button type="button" class="add-new-timetargetx"> Start New Board</button>
+            <button type="button" class="add-new-timetargetx">Start New Board</button>
         </td>
     </tr>
     </tbody>
@@ -145,5 +151,31 @@ foreach ($TimeTargets as $promo){
     getModalData('<?php echo($promolist[0])?>', 14)
     var timetargetpromos = <?php echo json_encode($promolist) ?>
 
+    var enableFP = function () {
+        var $fp = $( ".filthypillow" ), now=moment().subtract( "seconds", 1 ) ;
+        $fp.val(d1.format( "YYYY-MM-DD HH:mm:00") );
+        $fp.filthypillow( {
+            calendar: {
+                saveOnDateSelect: false,
+                isPinned: true
+            },
+            initialDateTime: function( m ) {
+                if($('#ttlDefhour').val()>-1){
+                    m.hour($('#ttlDefhour').val())
+                }
+                if($('#ttDefmin').val()>-1){
+                    m.minute($('#ttDefmin').val());
+                }
+                return m;
+            }
+        });
+        $fp.on( "focus", function( ) {
+            $fp.filthypillow( "show" );
+        } );
+        $fp.on( "fp:save", function( e, dateObj ) {
+            $fp.val( dateObj.format( "YYYY-MM-DD HH:mm:00") );
+            $fp.filthypillow( "hide" );
+        } );
 
+    }
 </script>

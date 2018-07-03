@@ -13,7 +13,7 @@
         font-weight: bolder;
         text-align: center;
     }
-    .btn-link{
+    .btn-del-link{
         color: red;
     }
     .btn-link:hover{
@@ -70,7 +70,7 @@ if (count($PicViewerPictures) > 0) {
                         </td>
                 </tr>
                 <tr class="imageOptions">
-                    <td colspan="<?php echo($colsp) ?>">Duration: <input class="picviewduration" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" style="width: 40px; color: black" type="number" value="<?php echo($PicViewerPicture['picview_pictures_duration']) ?>"> Seconds <br> Order: <input class="picvieworder" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" style="width: 40px; color: black" type="number" value="<?php echo($PicViewerPicture['picview_pictures_order']) ?>">&nbsp; <span class='btn btn-link glyphicon glyphicon-trash delete-picture-slideshow' data-picname="<?php  echo($PicViewerPicture['picview_pictures_filename'])?>" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" name='remove-picture'></span></td>
+                    <td colspan="<?php echo($colsp) ?>">Duration: <input class="picviewduration" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" style="width: 40px; color: black" type="number" value="<?php echo($PicViewerPicture['picview_pictures_duration']) ?>"> Seconds <br> Order: <input class="picvieworder" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" style="width: 40px; color: black" type="number" value="<?php echo($PicViewerPicture['picview_pictures_order']) ?>">&nbsp; <span class='btn btn-del-link btn-link glyphicon glyphicon-trash delete-picture-slideshow' data-picname="<?php  echo($PicViewerPicture['picview_pictures_filename'])?>" data-picid="<?php echo($PicViewerPicture['picview_pictures_id']) ?>" name='remove-picture'></span></td>
                 </tr>
             </table>
 

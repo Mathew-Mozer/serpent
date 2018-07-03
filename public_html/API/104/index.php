@@ -25,6 +25,11 @@ CheckDeviceCheck();
 $linkcode = "";
 $useLinkCode=false;
 if (isset($_POST["action"])||isset($_GET["action"])) {
+    if(isset($_GET["action"])){
+        $action=$_GET["action"];
+    }else{
+        $action = $_POST["action"];
+    }
     if (isset($_POST["macAddress"])) {
         $macAddress = $_POST["macAddress"];
         $action = $_POST["action"];
@@ -46,10 +51,23 @@ if (isset($_POST["action"])||isset($_GET["action"])) {
         $action = $_POST["action"];
         $useLinkCode=true;
     }
-
     switch ($action) {
         case "GetLinkCode":
             echo(getLinkCode());
+            break;
+        case "GetPictureSlideShowSettings":
+            $promoid="none";
+            if(isset($_POST["promoid"])) {
+                $promoid=$_POST["promoid"];
+            }
+            if(isset($_GET["promoid"])) {
+                $promoid=$_GET["promoid"];
+            }
+            //echo("Promoid:".$promoid);
+            $newobj = new PictureObject;
+            $tmpScene = new Scene($promoid,"14",0,0,0,0,0,0,0);
+            //$newobj->PictureViewerData =;
+            print_r(json_encode($tmpScene->loadPictureData($promoid)));
             break;
         case "GetSettings":
             //Get Box Settings
@@ -168,7 +186,7 @@ function registerDisplay($linkcode)
     global $conn;
     $dbcon = new DbCon();
     $conn = $dbcon->insert_database();
-    $sql = "INSERT INTO display (display_linkcode) VALUES (:linkcode);";
+    $sql = "INSERT INTO display (display_linkcode,display_added) VALUES (:linkcode,UTC_TIMESTAMP());";
     $result = $conn->prepare($sql);
     $result->bindValue(':linkcode', $linkcode, PDO::PARAM_STR);
     $result->execute();
@@ -225,6 +243,7 @@ function loadSceneData()
         $displayData->BundleWindowsURL ='http://'.$_SERVER['HTTP_HOST']."/API/AssetBundles/" . $result['property_asset_bundle_windows'];
         $displayData->propertyID = $result['prid'];
         $displayData->BundleVer = 1;
+        $displayData->TimeFromServer = currentTimeStamp() ;
         $displayData->AssetName = $result['property_asset_name'];
         $displayData->DefaultLogo = $result['property_default_logo'];
         $displayData->lockedScene = $result['display_lockedpromo'];
@@ -292,7 +311,7 @@ function loadScenes($display)
     $statement->execute(array($display['display_id']));
     $tmpSceneArray = array();
     foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $result) {
-
+    //echo($result['promotion_id']);
 
         //if ($result['promotion_skin'] != 0) {
          //   $tmpSkinID = $result['promotion_skin'];
@@ -346,7 +365,11 @@ function currentTime()
     //return "10:01:00";
     return date('H:i:s');
 }
-
+function currentTimeStamp()
+{
+    //return "10:01:00";
+    return date("m/d/Y h:i:s a");
+}
 function currentDay($ses)
 {
     //$curday = 5;
@@ -481,4 +504,9 @@ function isBoxedRegistered($macAddress,$linkcode)
     return true;
 }
 
+
+class PictureObject
+{
+
+}
 ?>

@@ -110,6 +110,20 @@ $(document).ready(function () {
 
 
 });
+$(document).on("click", "#btnAddDayPGT", function () {
+
+    $( "#start-date" ).val(moment($( "#start-date" ).val()).add("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+    $( "#end-date" ).val(moment($( "#end-date" ).val()).add("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+});
+$(document).on("click", "#btnminusDayPGT", function () {
+    $( "#start-date" ).val(moment($( "#start-date" ).val()).subtract("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+    $( "#end-date" ).val(moment($( "#end-date" ).val()).subtract("Days",1).format( "YYYY-MM-DD HH:mm:00") );
+});
+$(document).on("click", "#btnAddDaysPGT", function () {
+
+    $( "#start-date" ).val(moment($( "#start-date" ).val()).add("Days",7).format( "YYYY-MM-DD HH:mm:00") );
+    $( "#end-date" ).val(moment($( "#end-date" ).val()).add("Days",7).format( "YYYY-MM-DD HH:mm:00") );
+});
 var gupdatePromotion = function (promotionId) {
 
     $.ajax({

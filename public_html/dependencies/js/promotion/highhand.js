@@ -207,11 +207,11 @@ var getAllHands = function (id) {
 
 
                 var html = "";
-                html+='<tr><td class="no-mobile">' + handID + '</td>';
-                html+='<td class="no-mobile">' + handDate + '</td>';
-                html+='<td>' + handName + "<div id='currentStatus-"+handID+"'></div></td>";
+                html+='<tr><td  style="width: 50px" class="no-mobile">' + handID + '</td>';
+                html+='<td  style="width: 50px" class="no-mobile">' + handDate + '</td>';
+                html+='<td style="width: 50px">' + handName + "<div id='currentStatus-"+handID+"'></div></td>";
 
-                html+='<td width="500px">';
+                html+='<td>';
                 for(card=1;card < cardcount+1;card++){
                     html+='' + "<img class='card standard-card' id='handCards"+card+"-"+handID+"'>"
                 }
@@ -225,7 +225,7 @@ var getAllHands = function (id) {
                 //html+='' + "<img class='card standard-card' id='handCards8-"+handID+"'>"
                 html+='</td>';
 
-                html+="<td> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
+                html+="<td style='width: 200px'> <button class='to-winner' id='set-to-winner-" + handID + "' name='"+handID+"'  type='button'>Winner</button>"+
                     "<button class='to-pending' id='set-to-pending-" + handID + "' name='"+handID+"'  type='button'>Pending</button>"+
                     "<button class='to-last' id='set-to-last-" + handID + "' name='"+handID+"'  type='button'>Last Hand</button>"+
                     "<button class='to-delete' id='delete-last-" + handID + "' name='"+handID+"'  type='button'>Delete Hand</button></td>";

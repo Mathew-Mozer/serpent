@@ -64,10 +64,10 @@ h3.display-friendly-name{
 }
 
 .promotion-preview-body {
-    max-height: 75px;
-    max-width: 75px;
-    min-height: 75px;
-    min-width: 75px;
+    max-height: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    min-width: 50px;
     background-color: #fcfdff;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -110,10 +110,10 @@ h3.display-friendly-name{
 .promotion-lock-overlay{
     background-color: grey;
     opacity: 0.5;
-    max-height: 75px;
-    max-width: 75px;
-    min-height: 75px;
-    min-width: 75px;
+    max-height: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    min-width: 50px;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
@@ -129,9 +129,9 @@ h3.display-friendly-name{
 .lock-glyphicon{
     position: absolute;
     text-align: center;
-    top: 14px;
-    right: 23px;
-    font-size: 48px;
+    top: 6px;
+    right: 12px;
+    font-size: 45px;
     display: block;
     z-index: 20;
     text-shadow: 1px 1px #0c0c0c;
@@ -182,4 +182,10 @@ p.unassigned-display-display-text{
     max-width: 25px;
     min-height: 25px;
     min-width: 25px;
+}
+.checkbox-image-lg{
+    max-height: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    min-width: 50px;
 }

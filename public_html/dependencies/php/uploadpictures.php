@@ -17,7 +17,7 @@ if(isset($_POST['promoid'])) {
     $target_dir = "../../clientpictures/uploads/" . $_POST['promoid'] . "/";
     if (!file_exists($target_dir)) {
         mkdir($target_dir, 0777, true);
-        echo('directory made');
+        //echo('directory made');
     }
     $target_file = $target_dir . str_replace(' ','_',basename($_FILES["fileToUpload"]["name"]));
     $uploadOk = 1;

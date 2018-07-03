@@ -27,6 +27,7 @@ class DisplayModel
     private $fcmid;
     private $linkCode;
     private $kiosk;
+    private $AddedTimeStamp;
     /**
      * DisplayModel constructor.
      * @param $values
@@ -63,6 +64,7 @@ class DisplayModel
         $this->setVertical($fieldArray['display_vertical']);
         $this->setLinkCode($fieldArray['display_linkcode']);
         $this->setKiosk($fieldArray['display_kiosk']);
+        $this->setAdded($fieldArray['display_added']);
 //var_dump($fieldArray);
     }
 
@@ -118,6 +120,10 @@ class DisplayModel
     public function setKiosk($val)
     {
         $this->kiosk = $val;
+    }
+    public function setAdded($val)
+    {
+        $this->AddedTimeStamp = $val;
     }
 
     public function setFitW($val)
@@ -205,7 +211,10 @@ class DisplayModel
     {
         return $this->apiId;
     }
-
+    public function getAddedTimeStamp()
+    {
+        return $this->AddedTimeStamp;
+    }
     public function getAppVersion()
     {
         return $this->appVersion;
@@ -341,8 +350,8 @@ class DisplayModel
 //FCM api URL
         $url = 'https://fcm.googleapis.com/fcm/send';
 //api_key available in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
-        //ChimeraTVHome Key
 
+        //ChimeraTVHome Key
         $server_key1 = 'AAAAyHm8060:APA91bEnz0bbTlBOCoIzBXJXGoueeEETsxnlfQFlK7IM2gV-GRUaifgQdAKZfYJYPDGlyBnfARXwhpyzbLfGxbsxQWSkPjkGKsZzy9HMfKyskLf3omvA8FuWEwZrUFbvyvSfWKdihOl0';
         //ChimeraTVManager Key
         $server_key2 = 'AAAAhPnCBB8:APA91bHgbUuDFr3WqW6c8nNi_z7VHJhcE46O6cxZPaNf2u-nnGKsLo14mascocTvsjcuWsmaWynudC7aKrOA3yUi7fwxeRNXaRvsgYiAdv_pIWr-A7EY4lOKaC1UZEeVUGeh8eHiiee-';

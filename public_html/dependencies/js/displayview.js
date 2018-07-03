@@ -14,6 +14,29 @@ var getDisplayById = function (id) {
     });
 };
 
+var refreshUnassignedDisplay = function(){
+    console.log("Should load")
+    $("#unassigned-displays").load('views/unassigneddisplayview.php')
+};
+var deleteUnassignedDisplay = function(id){
+    if (confirm('Are you sure you want to remove this display?')) {
+        console.log("Deleting: " + id)
+        $.ajax({
+            url: 'controllers/displaycontroller.php',
+            type: 'post',
+            data: {action: 'removeUnassignedDisplay', displayId: id},
+            cache: false,
+            success: function (response) {
+                if(response==1){
+                    $(".unassigned-display-body[data-display-id="+id+"]").remove()
+                }
+            }
+        });
+
+    } else {
+        console.log("Didn't Delete Display")
+    }
+};
 var assignDisplayModal = $("#assign-display").dialog({
     autoOpen: false,
     height: 400,

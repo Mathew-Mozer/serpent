@@ -41,8 +41,46 @@ class TimeTargetModel{
      * @param $values
      */
    public function add($values){
-       $sql = "INSERT INTO time_target (time_target_promoid, time_target_title,time_target_contenttitle,time_target_content,time_target_cards,time_target_default_seed,time_target_default_Increment,time_target_default_add_amt,time_target_progressive,time_target_lock_defaults,time_target_maxpayout,time_target_def_hour,time_target_def_minute)
-                                 VALUES (:promotion_id,:title,:contenttitle,:content,:cards,:defseed,:defincr,:defadd,:isprog,:deflock,:maxpayout,:defhour,:defminute);";
+       $sql = "INSERT INTO time_target (time_target_promoid,
+                time_target_title,
+                time_target_contenttitle,
+                time_target_content,
+                time_target_cards,
+                time_target_default_seed,
+                time_target_default_Increment,
+                time_target_default_add_amt,
+                time_target_progressive,
+                time_target_lock_defaults,
+                time_target_maxpayout,
+                time_target_def_hour,
+                time_target_def_minute,
+                time_target_randomcard,
+                time_target_lastcardchange,
+                time_target_valoption,
+                time_target_nostartnew,
+                time_target_multpromoid,
+                time_target_usemult,
+                time_target_multiplier)
+         VALUES (:promotion_id,
+                 :title,
+                 :contenttitle,
+                 :content,
+                 :cards,
+                 :defseed,
+                 :defincr,
+                 :defadd,
+                 :isprog,
+                 :deflock,
+                 :maxpayout,
+                 :defhour,
+                 :defminute,
+                 :randocard,
+                 :lastcardchange,
+                 :valoption,
+                 :nostartnew,
+                 :multpromoid,
+                 :usemult,
+                 :multiplier);";
        $result = $this->db->prepare($sql);
        $result->bindValue(':promotion_id', $values['promotionId'], PDO::PARAM_STR);
        $result->bindValue(':contenttitle', $values['time_target_contenttitle'], PDO::PARAM_STR);
@@ -57,6 +95,13 @@ class TimeTargetModel{
        $result->bindValue(':maxpayout', $values['time_target_maxpayout'], PDO::PARAM_STR);
        $result->bindValue(':defhour', $values['time_target_def_hour'], PDO::PARAM_STR);
        $result->bindValue(':defminute', $values['time_target_def_minute'], PDO::PARAM_STR);
+       $result->bindValue(':randocard', $values['time_target_randomcard'], PDO::PARAM_STR);
+       $result->bindValue(':lastcardchange', $values['time_target_lastcardchange'], PDO::PARAM_STR);
+       $result->bindValue(':valoption', $values['time_target_valoption'], PDO::PARAM_STR);
+       $result->bindValue(':nostartnew', $values['time_target_nostartnew'], PDO::PARAM_STR);
+       $result->bindValue(':multpromoid', $values['time_target_multpromoid'], PDO::PARAM_STR);
+       $result->bindValue(':usemult', $values['time_target_usemult'], PDO::PARAM_STR);
+       $result->bindValue(':multiplier', $values['time_target_multiplier'], PDO::PARAM_STR);
        var_dump($values);
        echo("it tried: ". $values['promotionId']);
        $result->execute();
@@ -106,9 +151,12 @@ class TimeTargetModel{
         return $promoResult;
     }
     public function confirmTimeTarget($values){
-        $sql = "Update time_target_sessions set time_target_approved='1' where time_target_session_id=:id";
+       //var_dump($values);
+        $sql = "Update time_target_sessions set time_target_approved='1',time_target_paidamt=:paidamt,time_target_paidby=:paidby where time_target_session_id=:id";
         $result = $this->db->prepare($sql);
         $result->bindValue(':id', $values['timeTargetId'], PDO::PARAM_STR);
+        $result->bindValue(':paidamt', $values['timetargetpaidamt'], PDO::PARAM_STR);
+        $result->bindValue(':paidby', $values['timetargetpaidby'], PDO::PARAM_STR);
         $result->execute();
         return $result;
     }

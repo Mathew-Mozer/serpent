@@ -27,13 +27,13 @@
         ?>
 
 
-        <div id = "toggle-display" class="toggle-display-btn button-body tool-button" data-toggle="tooltip" title="Switch to Display View">
+        <div id = "toggle-display" class="toggle-display-btn button-body tool-button hidden" data-toggle="tooltip" title="Switch to Display View">
             <!--<span class="glyphicon glyphicon-tasks tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-tasks fa-3x"></i>
         </div>
 
 
-        <div id = "toggle-promotion" class="toggle-display-btn hidden button-body tool-button" data-toggle="tooltip" title="Switch to Promotion View">
+        <div id = "toggle-promotion" class="toggle-display-btn hidden button-body tool-button" data-toggle="tooltip" title="Switch to Promotion View" hidden>
             <!--<span class="glyphicon glyphicon-certificate tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-star-half-full fa-3x"></i>
         </div>
@@ -56,6 +56,29 @@
                      title="ChimeraTV Settings">
                     <!--<span class="glyphicon icon-glyphicon-new-property tool-glyphicon white" aria-hidden="true"></span>-->
                     <i class="font-awesome-toolbar fa fa-cogs fa-3x"></i>
+                </div>
+                <?php
+            }
+
+            ?>
+            <?php
+            if($_SESSION['isGod']) {
+                ?>
+                <div id="debug-toggle-btn" class="button-body tool-button" data-toggle="tooltip"
+                     title="Debug">
+                    <?php
+                    if(isset($_SESSION['debug'])) {
+                        if ($_SESSION['debug']) {
+                            $debugtoggle = "fa-toggle-on";
+                        } else {
+                            $debugtoggle = "fa-toggle-off";
+                        }
+                    }else{
+                        $debugtoggle = "fa-toggle-off";
+                    }
+                    ?>
+                    <!--<span class="glyphicon icon-glyphicon-new-property tool-glyphicon white" aria-hidden="true"></span>-->
+                    <i class="font-awesome-toolbar fa <?php echo($debugtoggle)?> fa-3x"></i>
                 </div>
                 <?php
             }
@@ -102,6 +125,8 @@
             <!--<span class="glyphicon glyphicon-log-out tool-glyphicon white" aria-hidden="true"></span>-->
             <i class="font-awesome-toolbar fa fa-sign-out fa-3x"></i>
         </div>
-
+        <div id="UserInfo">
+            Logged in as: <?php echo $_SESSION['user'] ?>
+        </div>
     </div>
 </div>
